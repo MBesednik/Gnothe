@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="hr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <!-- bootstrap grid css -->
+    <link rel="stylesheet" href="css/plugins/bootstrap-grid.css" />
+    <!-- font awesome css -->
+    <link rel="stylesheet" href="css/plugins/font-awesome.min.css" />
+    <!-- swiper css -->
+    <link rel="stylesheet" href="css/plugins/swiper.min.css" />
+    <!-- fancybox css -->
+    <link rel="stylesheet" href="css/plugins/fancybox.min.css" />
+    <!-- Gnothe scss -->
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- page name -->
+    <title>Gnothe</title>
+
+    <style>
+      /* Stilovi za upitnik za analizu ego stanja */
+      /* Ovi stilovi se odnose samo na elemente upitnika i neće utjecati na header, footer i druge dijelove */
+
+      /* Naslov upitnika */
+      h1 {
+        color: rgba(0, 0, 0, 0.95);
+        text-align: center;
+        margin: 50px 0 30px;
+        font-family: "Outfit", sans-serif;
+        font-weight: 500;
+        font-size: 42px;
+      }
+
+      /* Uvodni tekst */
+      .introduction {
+        background-color: #fff;
+        padding: 25px;
+        border-radius: 8px;
+        margin-bottom: 30px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+        font-family: "Outfit", sans-serif;
+        line-height: 1.6;
+      }
+
+      .introduction p {
+        color: rgba(0, 0, 0, 0.7);
+        margin-bottom: 15px;
+      }
+
+      .introduction p:last-child {
+        margin-bottom: 0;
+      }
+
+      .introduction strong {
+        font-weight: 600;
+        color: rgba(0, 0, 0, 0.9);
+      }
+
+      /* Forma upitnika */
+      #questionnaireForm {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      /* Pitanja */
+      .question {
+        background-color: #fff;
+        padding: 25px;
+        margin-bottom: 20px;
+        border-radius: 8px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        font-family: "Outfit", sans-serif;
+      }
+
+      .question:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+      }
+
+      .question-text {
+        font-weight: 500;
+        margin-bottom: 16px;
+        color: rgba(0, 0, 0, 0.9);
+        font-size: 18px;
+        line-height: 1.5;
+      }
+
+      /* Opcije odgovora */
+      .options {
+        margin-left: 10px;
+      }
+
+      .option {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 12px;
+        padding: 5px 0;
+        transition: transform 0.2s ease;
+      }
+
+      .option:hover {
+        transform: translateX(5px);
+      }
+
+      /* Popravljeni radio buttoni */
+      .option input[type="radio"] {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+
+        /* Osiguravanje savršenog kruga s fiksnim dimenzijama */
+        width: 22px;
+        height: 22px;
+        min-width: 22px;
+        min-height: 22px;
+        max-width: 22px;
+        max-height: 22px;
+
+        /* Oblikovanje kruga */
+        border: 2px solid rgba(0, 0, 0, 0.15);
+        border-radius: 50%;
+
+        /* Ostali stilovi */
+        outline: none;
+        margin-right: 12px;
+        margin-top: 2px;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+        position: relative;
+
+        /* Ovo osigurava da nema deformacije oblika */
+        box-sizing: border-box;
+        padding: 0;
+        display: block;
+      }
+
+      /* Stil za označeni radio button */
+      .option input[type="radio"]:checked {
+        border-color: #5dc2a5;
+        background-color: white;
+      }
+
+      /* Krug unutar radio buttona kada je označen */
+      .option input[type="radio"]:checked::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        /* Savršeni unutarnji krug */
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: #5dc2a5;
+
+        /* Dodatno osiguranje da nema deformacije */
+        box-sizing: border-box;
+      }
+
+      /* Hover efekt */
+      .option input[type="radio"]:hover {
+        border-color: #5dc2a5;
+      }
+
+      .option label {
+        font-weight: 300;
+        color: rgba(0, 0, 0, 0.75);
+        cursor: pointer;
+        user-select: none;
+        font-size: 16px;
+        line-height: 1.5;
+        padding-top: 2px;
+      }
+
+      /* Gumb za izračun rezultata */
+      .button-container {
+        text-align: center;
+        margin: 30px 0 50px;
+      }
+
+      #calculateBtn {
+        background-color: #5dc2a5;
+        color: white;
+        border: none;
+        padding: 14px 30px;
+        font-size: 16px;
+        border-radius: 40px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        font-family: "Outfit", sans-serif;
+        font-weight: 500;
+        box-shadow: 0 5px 15px rgba(93, 194, 165, 0.3);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      #calculateBtn:hover {
+        background-color: #4ca989;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(93, 194, 165, 0.4);
+      }
+
+      #calculateBtn:active {
+        transform: translateY(0);
+        box-shadow: 0 3px 10px rgba(93, 194, 165, 0.3);
+      }
+
+      /* Rezultati upitnika */
+      #results {
+        display: none;
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        margin: 40px auto;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        max-width: 800px;
+        font-family: "Outfit", sans-serif;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+      }
+
+      #results.visible {
+        opacity: 1;
+      }
+
+      #results h2 {
+        color: rgba(0, 0, 0, 0.9);
+        text-align: center;
+        margin-bottom: 30px;
+        font-weight: 500;
+        font-size: 28px;
+      }
+
+      .result-category {
+        margin-bottom: 25px;
+      }
+
+      .result-category > div:first-child {
+        display: flex;
+        align-items: center;
+        margin-bottom: 8px;
+        font-size: 18px;
+      }
+
+      .result-category > div:first-child strong {
+        margin-right: 8px;
+        color: rgba(0, 0, 0, 0.9);
+        font-weight: 500;
+      }
+
+      .progress-bar {
+        height: 10px;
+        background-color: rgba(0, 0, 0, 0.05);
+        border-radius: 10px;
+        margin: 10px 0;
+        overflow: hidden;
+      }
+
+      .progress {
+        height: 100%;
+        border-radius: 10px;
+        transition: width 1s cubic-bezier(0, 0, 0.3642, 1);
+      }
+
+      .parent-color {
+        background-color: #3498db;
+      }
+
+      .adult-color {
+        background-color: #5dc2a5;
+      }
+
+      .child-color {
+        background-color: #e67e22;
+      }
+
+      .description {
+        font-size: 15px;
+        font-style: italic;
+        color: rgba(0, 0, 0, 0.6);
+        line-height: 1.5;
+      }
+
+      .dominant {
+        margin-top: 25px;
+        padding: 20px;
+        background-color: rgba(0, 0, 0, 0.02);
+        border-left: 4px solid #5dc2a5;
+        border-radius: 0 8px 8px 0;
+      }
+
+      .dominant p {
+        margin: 0 0 10px;
+        color: rgba(0, 0, 0, 0.8);
+        line-height: 1.6;
+      }
+
+      .dominant p:last-child {
+        margin-bottom: 0;
+      }
+
+      .dominant p strong {
+        color: #5dc2a5;
+        font-weight: 500;
+      }
+
+      .dominant .ego-name {
+        color: #5dc2a5;
+        font-weight: 500;
+      }
+
+      /* Responzivni dizajn */
+      @media screen and (max-width: 992px) {
+        h1 {
+          font-size: 36px;
+          margin: 40px 0 25px;
+        }
+
+        .introduction,
+        .question,
+        #results {
+          padding: 20px;
+          margin-left: 15px;
+          margin-right: 15px;
+        }
+
+        #questionnaireForm {
+          padding: 0 15px;
+        }
+      }
+
+      @media screen and (max-width: 768px) {
+        h1 {
+          font-size: 30px;
+          margin: 30px 0 20px;
+        }
+
+        .question-text {
+          font-size: 16px;
+        }
+
+        .option label {
+          font-size: 15px;
+        }
+
+        #calculateBtn {
+          padding: 12px 25px;
+          font-size: 15px;
+        }
+
+        #results h2 {
+          font-size: 24px;
+        }
+      }
+
+      @media screen and (max-width: 480px) {
+        .option {
+          align-items: flex-start;
+        }
+
+        .option input[type="radio"] {
+          margin-top: 3px;
+        }
+
+        .dominant {
+          padding: 15px;
+        }
+      }
+
+      /* Stilovi za loader */
+      .loader-container {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.95);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .loader {
+        width: 60px;
+        height: 60px;
+        border: 6px solid rgba(93, 194, 165, 0.2);
+        border-radius: 50%;
+        border-top: 6px solid #5dc2a5;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="loader-container">
+      <div class="loader"></div>
+    </div>
+
+    <!-- wrapper -->
+    <div class="mil-wrapper" id="top">
+      <!-- cursor -->
+      <div class="mil-ball">
+        <span class="mil-icon-1">
+          <svg viewBox="0 0 128 128">
+            <path
+              d="M106.1,41.9c-1.2-1.2-3.1-1.2-4.2,0c-1.2,1.2-1.2,3.1,0,4.2L116.8,61H11.2l14.9-14.9c1.2-1.2,1.2-3.1,0-4.2	c-1.2-1.2-3.1-1.2-4.2,0l-20,20c-1.2,1.2-1.2,3.1,0,4.2l20,20c0.6,0.6,1.4,0.9,2.1,0.9s1.5-0.3,2.1-0.9c1.2-1.2,1.2-3.1,0-4.2	L11.2,67h105.5l-14.9,14.9c-1.2,1.2-1.2,3.1,0,4.2c0.6,0.6,1.4,0.9,2.1,0.9s1.5-0.3,2.1-0.9l20-20c1.2-1.2,1.2-3.1,0-4.2L106.1,41.9	z"
+            />
+          </svg>
+        </span>
+        <div class="mil-more-text">More</div>
+        <div class="mil-choose-text">Сhoose</div>
+      </div>
+      <!-- cursor end -->
+
+      <!-- preloader -->
+      <!-- <div class="mil-preloader">
+        <div class="mil-preloader-animation">
+          <div class="mil-pos-abs mil-animation-1">
+            <p class="mil-h3 mil-muted mil-thin">Pioneering</p>
+            <p class="mil-h3 mil-muted">Creative</p>
+            <p class="mil-h3 mil-muted mil-thin">Excellence</p>
+          </div>
+          <div class="mil-pos-abs mil-animation-2">
+            <div class="mil-reveal-frame">
+              <p class="mil-reveal-box"></p>
+              <p class="mil-h3 mil-muted mil-thin">Gnothe.com</p>
+            </div>
+          </div>
+        </div>
+      </div> -->
+      <!-- preloader end -->
+
+      <!-- scrollbar progress -->
+      <div class="mil-progress-track">
+        <div class="mil-progress"></div>
+      </div>
+      <!-- scrollbar progress end -->
+
+      <!-- menu -->
+      <div class="mil-menu-frame">
+        <!-- frame clone -->
+        <div class="mil-frame-top">
+          <a href="index.html" class="mil-logo">
+            <div class="gnothe-logo">
+              <div class="gnothe-main">GNOTHE</div>
+              <div class="gnothe-subtitle">COACHING & COUNSELING</div>
+            </div>
+          </a>
+          <div class="mil-menu-btn">
+            <span></span>
+          </div>
+        </div>
+        <!-- frame clone end -->
+        <div class="container">
+          <div class="mil-menu-content">
+            <div class="row">
+              <div class="col-xl-5">
+                <nav class="mil-main-menu" id="swupMenu">
+                  <ul>
+                    <li class="mil-has-children">
+                      <a href="index.html">Naslovna</a>
+                    </li>
+                    <li class="mil-has-children">
+                      <a href="about.html">O meni</a>
+                    </li>
+                    <li class="mil-has-children">
+                      <a href="#">Usluge</a>
+                      <ul>
+                        <li><a href="service.html">Više detalja</a></li>
+                      </ul>
+                    </li>
+                    <li class="mil-has-children">
+                      <a href="#.">Testiranje</a>
+                      <ul>
+                        <li><a href="404.html">Test #1</a></li>
+                        <li><a href="404.html">Test #2</a></li>
+                      </ul>
+                    </li>
+                    <li class="mil-has-children">
+                      <a href="gallery.html">Galerija</a>
+                    </li>
+                    <li class="mil-has-children mil-active">
+                      <a href="#">Kontakt</a>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+              <div class="col-xl-7">
+                <div class="mi-invert-fix">
+                  <div class="mil-animation-frame">
+                    <div
+                      class="mil-animation mil-position-5 mil-scale"
+                      data-value-1="4"
+                      data-value-2="1"
+                    ></div>
+                    <div
+                      class="mil-animation mil-position-6 mil-scale"
+                      data-value-1="1"
+                      data-value-2="1"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- menu -->
+
+      <!-- curtain -->
+      <div class="mil-curtain"></div>
+      <!-- curtain end -->
+
+      <!-- frame -->
+      <div class="mil-frame">
+        <div class="mil-frame-top">
+          <a href="index.html" class="mil-logo">Gnothe</a>
+          <div class="mil-menu-btn">
+            <span></span>
+          </div>
+        </div>
+        <div class="mil-frame-bottom">
+          <div class="mil-current-page"></div>
+          <div class="mil-back-to-top">
+            <a href="#top" class="mil-link mil-dark mil-arrow-place">
+              <span>Početak</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- frame end -->
+
+      <!-- content -->
+      <div class="mil-content">
+        <div id="swupMain" class="mil-main-transition">
+          <!-- banner -->
+          <div class="mil-inner-banner mil-p-0-120">
+            <div class="mil-banner-content mil-center mil-up">
+              <div class="container" style="margin-bottom: 40px"></div>
+            </div>
+          </div>
+          <!-- banner end -->
+
+          <h1>Upitnik za analizu ego stanja</h1>
+
+          <div class="introduction">
+            <p>
+              <strong>Upute:</strong> Odgovorite na svako pitanje odabirom
+              jednog od ponuđenih odgovora. Razmislite o svojim reakcijama i
+              ponašanju u svakodnevnim situacijama.
+            </p>
+            <p>
+              Nakon što odgovorite na sva pitanja, kliknite na gumb "Izračunaj
+              rezultate" kako biste vidjeli analizu svojih ego stanja prema
+              teoriji transakcijske analize.
+            </p>
+          </div>
+
+          <form id="questionnaireForm">
+            <div class="question">
+              <div class="question-text">
+                1. Kada se suočim s izazovima, obično:
+              </div>
+              <div class="options">
+                <div class="option">
+                  <input
+                    type="radio"
+                    id="q1a"
+                    name="q1"
+                    value="parent"
+                    required
+                  />
+                  <label for="q1a"
+                    >a) Razmišljam o tome što bi drugi od mene očekivali ili
+                    kako bi reagirali.</label
+                  >
+                </div>
+                <div class="option">
+                  <input type="radio" id="q1b" name="q1" value="adult" />
+                  <label for="q1b"
+                    >b) Analiziram situaciju i pokušavam donijeti racionalnu
+                    odluku.</label
+                  >
+                </div>
+                <div class="option">
+                  <input type="radio" id="q1c" name="q1" value="child" />
+                  <label for="q1c"
+                    >c) Osjećam se preplavljeno i često reagiram
+                    impulzivno.</label
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="question">
+              <div class="question-text">
+                2. U situacijama kada netko treba pomoć, najčešće:
+              </div>
+              <div class="options">
+                <div class="option">
+                  <input
+                    type="radio"
+                    id="q2a"
+                    name="q2"
+                    value="parent"
+                    required
+                  />
+                  <label for="q2a">a) Pokušavam dati savjete i podršku.</label>
+                </div>
+                <div class="option">
+                  <input type="radio" id="q2b" name="q2" value="adult" />
+                  <label for="q2b"
+                    >b) Pokušavam razumjeti situaciju i ponuditi praktična
+                    rješenja.</label
+                  >
+                </div>
+                <div class="option">
+                  <input type="radio" id="q2c" name="q2" value="child" />
+                  <label for="q2c"
+                    >c) Pokušavam se zabaviti i skrenuti pažnju s
+                    problema.</label
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="question">
+              <div class="question-text">
+                3. Kada razmišljam o svojim emocijama, obično:
+              </div>
+              <div class="options">
+                <div class="option">
+                  <input
+                    type="radio"
+                    id="q3a"
+                    name="q3"
+                    value="parent"
+                    required
+                  />
+                  <label for="q3a"
+                    >a) Pokušavam ih kontrolirati i ne pokazivati ih
+                    previše.</label
+                  >
+                </div>
+                <div class="option">
+                  <input type="radio" id="q3b" name="q3" value="adult" />
+                  <label for="q3b"
+                    >b) Razmišljam o tome kako se osjećam i zašto.</label
+                  >
+                </div>
+                <div class="option">
+                  <input type="radio" id="q3c" name="q3" value="child" />
+                  <label for="q3c"
+                    >c) Iskreno izražavam svoje emocije, bez obzira na
+                    situaciju.</label
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="question">
+              <div class="question-text">
+                4. U društvenim interakcijama, najčešće:
+              </div>
+              <div class="options">
+                <div class="option">
+                  <input
+                    type="radio"
+                    id="q4a"
+                    name="q4"
+                    value="parent"
+                    required
+                  />
+                  <label for="q4a"
+                    >a) Pokušavam biti podrška drugima i brinuti se o njihovim
+                    potrebama.</label
+                  >
+                </div>
+                <div class="option">
+                  <input type="radio" id="q4b" name="q4" value="adult" />
+                  <label for="q4b"
+                    >b) Razgovaram s ljudima na temelju zajedničkih interesa i
+                    informacija.</label
+                  >
+                </div>
+                <div class="option">
+                  <input type="radio" id="q4c" name="q4" value="child" />
+                  <label for="q4c"
+                    >c) Volim se zabavljati i često se ponašam spontano.</label
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="question">
+              <div class="question-text">
+                5. Kada se suočim s kritikama, obično:
+              </div>
+              <div class="options">
+                <div class="option">
+                  <input
+                    type="radio"
+                    id="q5a"
+                    name="q5"
+                    value="parent"
+                    required
+                  />
+                  <label for="q5a"
+                    >a) Pokušavam objasniti svoje postupke i opravdati
+                    se.</label
+                  >
+                </div>
+                <div class="option">
+                  <input type="radio" id="q5b" name="q5" value="adult" />
+                  <label for="q5b"
+                    >b) Razmišljam o kritikama i procjenjujem jesu li
+                    opravdane.</label
+                  >
+                </div>
+                <div class="option">
+                  <input type="radio" id="q5c" name="q5" value="child" />
+                  <label for="q5c"
+                    >c) Osjećam se povrijeđeno i često reagiram emotivno.</label
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="question">
+              <div class="question-text">
+                6. Kada postavljam ciljeve, obično:
+              </div>
+              <div class="options">
+                <div class="option">
+                  <input
+                    type="radio"
+                    id="q6a"
+                    name="q6"
+                    value="parent"
+                    required
+                  />
+                  <label for="q6a"
+                    >a) Razmišljam o tome što bi drugi od mene očekivali.</label
+                  >
+                </div>
+                <div class="option">
+                  <input type="radio" id="q6b" name="q6" value="adult" />
+                  <label for="q6b"
+                    >b) Postavljam realne ciljeve i planiram kako ih
+                    ostvariti.</label
+                  >
+                </div>
+                <div class="option">
+                  <input type="radio" id="q6c" name="q6" value="child" />
+                  <label for="q6c"
+                    >c) Sanjarim o onome što bih volio raditi, bez obzira na
+                    realnost.</label
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="question">
+              <div class="question-text">
+                7. U stresnim situacijama, najčešće:
+              </div>
+              <div class="options">
+                <div class="option">
+                  <input
+                    type="radio"
+                    id="q7a"
+                    name="q7"
+                    value="parent"
+                    required
+                  />
+                  <label for="q7a"
+                    >a) Pokušavam smiriti situaciju i dati savjete.</label
+                  >
+                </div>
+                <div class="option">
+                  <input type="radio" id="q7b" name="q7" value="adult" />
+                  <label for="q7b"
+                    >b) Analiziram situaciju i tražim racionalna
+                    rješenja.</label
+                  >
+                </div>
+                <div class="option">
+                  <input type="radio" id="q7c" name="q7" value="child" />
+                  <label for="q7c"
+                    >c) Osjećam se uzrujano i često se povlačim ili reagiram
+                    emocionalno.</label
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="button-container">
+              <button type="button" id="calculateBtn">
+                Izračunaj rezultate
+              </button>
+            </div>
+          </form>
+
+          <div id="results">
+            <h2>Rezultati analize ego stanja</h2>
+
+            <div class="result-category">
+              <div>
+                <strong>Roditelj:</strong> <span id="parentPercentage">0</span>%
+              </div>
+              <div class="progress-bar">
+                <div
+                  class="progress parent-color"
+                  id="parentBar"
+                  style="width: 0%"
+                ></div>
+              </div>
+
+              <div class="description">
+                Odgovori karakteristični za Roditelja uključuju brigu o drugima,
+                davanje savjeta i kontroliranje emocija.
+              </div>
+            </div>
+
+            <div class="result-category">
+              <div>
+                <strong>Odrasli:</strong> <span id="adultPercentage">0</span>%
+              </div>
+              <div class="progress-bar">
+                <div
+                  class="progress adult-color"
+                  id="adultBar"
+                  style="width: 0%"
+                ></div>
+              </div>
+              <div class="description">
+                Odgovori karakteristični za Odraslog uključuju racionalnu
+                analizu, praktično rješavanje problema i objektivno sagledavanje
+                situacije.
+              </div>
+            </div>
+
+            <div class="result-category">
+              <div>
+                <strong>Dijete:</strong> <span id="childPercentage">0</span>%
+              </div>
+              <div class="progress-bar">
+                <div
+                  class="progress child-color"
+                  id="childBar"
+                  style="width: 0%"
+                ></div>
+              </div>
+              <div class="description">
+                Odgovori karakteristični za Dijete uključuju spontanost,
+                emocionalne reakcije i želju za igrom i zabavom.
+              </div>
+            </div>
+
+            <div class="dominant" id="dominantEgoState"></div>
+
+            <div style="margin-top: 20px">
+              <p>
+                <strong>Napomena:</strong> Ovaj upitnik je pojednostavljeni
+                instrument za osobnu refleksiju prema teoriji transakcijske
+                analize. Nije dijagnostički alat i ne zamjenjuje stručnu
+                procjenu.
+              </p>
+            </div>
+          </div>
+
+          <!-- footer -->
+          <footer class="mil-soft-bg">
+            <div class="mi-invert-fix">
+              <div class="container mil-p-120-60">
+                <div class="row justify-content-between">
+                  <div class="col-md-4 col-lg-4 mil-mb-60">
+                    <div class="mil-muted mil-logo mil-up mil-mb-30">
+                      <img
+                        style="width: 300px"
+                        src="./img/logo/GNOTHE grey-02.png"
+                        alt=""
+                      />
+                    </div>
+
+                    <p class="mil-up mil-mb-30">Stupimo u kontakt:</p>
+
+                    <div class="mil-up">
+                      <a
+                        href="#"
+                        onclick="window.open('mailto:melita.zajkovski@gmail.com','_self')"
+                        class="mil-button mil-arrow-place"
+                        >Kontaktirajte me</a
+                      >
+                    </div>
+                  </div>
+                  <div class="col-md-7 col-lg-6">
+                    <div class="row justify-content-end">
+                      <div class="col-md-6 col-lg-7">
+                        <nav class="mil-footer-menu mil-mb-60">
+                          <ul>
+                            <li class="mil-up">
+                              <a href="index.html">Naslovna</a>
+                            </li>
+                            <li class="mil-up">
+                              <a href="about.html">O meni</a>
+                            </li>
+                            <li class="mil-up">
+                              <a href="service.html">Usluge</a>
+                            </li>
+                            <li class="mil-up mil-active">
+                              <a href="test.html">Test</a>
+                            </li>
+                            <li class="mil-up">
+                              <a href="gallery.html">Galerija</a>
+                            </li>
+                            <li class="mil-up">
+                              <a href="#">Kontakt</a>
+                            </li>
+                          </ul>
+                        </nav>
+                      </div>
+                      <div class="col-md-6 col-lg-5">
+                        <h6 class="mil-up mil-mb-30">Hrvatska, Zagreb</h6>
+
+                        <p class="mil-up">
+                          melita.zajkovski@gmail.com <br />
+                          Neka Adresa 55<br />
+                          <span class="mil-no-wrap">+385 98 811 651</span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row justify-content-between flex-sm-row-reverse">
+                  <div class="col-md-4 col-lg-6 mil-mb-60">
+                    <div class="mil-vert-between">
+                      <div class="mil-mb-30">
+                        <ul class="mil-social-icons mil-up">
+                          <li>
+                            <a href="#." target="_blank" class="social-icon">
+                              <i class="far fa-circle"></i
+                            ></a>
+                          </li>
+                          <li>
+                            <a href="#." target="_blank" class="social-icon">
+                              <i class="far fa-circle"></i
+                            ></a>
+                          </li>
+                          <li>
+                            <a href="#." target="_blank" class="social-icon">
+                              <i class="far fa-circle"></i
+                            ></a>
+                          </li>
+                          <li>
+                            <a href="#." target="_blank" class="social-icon">
+                              <i class="far fa-circle"></i
+                            ></a>
+                          </li>
+                        </ul>
+                      </div>
+                      <p class="mil-up">
+                        © Copyright 2025 - M.B. All Rights Reserved.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </footer>
+          <!-- footer end -->
+
+          <!-- hidden elements -->
+          <div class="mil-hidden-elements">
+            <div class="mil-dodecahedron">
+              <div class="mil-pentagon">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+              <div class="mil-pentagon">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+              <div class="mil-pentagon">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+              <div class="mil-pentagon">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+              <div class="mil-pentagon">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+              <div class="mil-pentagon">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+              <div class="mil-pentagon">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+              <div class="mil-pentagon">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+              <div class="mil-pentagon">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+              <div class="mil-pentagon">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+              <div class="mil-pentagon">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+              <div class="mil-pentagon">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+            </div>
+
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              class="mil-arrow"
+            >
+              <path
+                d="M 14 5.3417969 C 13.744125 5.3417969 13.487969 5.4412187 13.292969 5.6367188 L 13.207031 5.7226562 C 12.816031 6.1136563 12.816031 6.7467188 13.207031 7.1367188 L 17.070312 11 L 4 11 C 3.448 11 3 11.448 3 12 C 3 12.552 3.448 13 4 13 L 17.070312 13 L 13.207031 16.863281 C 12.816031 17.254281 12.816031 17.887344 13.207031 18.277344 L 13.292969 18.363281 C 13.683969 18.754281 14.317031 18.754281 14.707031 18.363281 L 20.363281 12.707031 C 20.754281 12.316031 20.754281 11.682969 20.363281 11.292969 L 14.707031 5.6367188 C 14.511531 5.4412187 14.255875 5.3417969 14 5.3417969 z"
+              />
+            </svg>
+
+            <svg
+              width="250"
+              viewBox="0 0 300 1404"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              class="mil-lines"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M1 892L1 941H299V892C299 809.71 232.29 743 150 743C67.7096 743 1 809.71 1 892ZM0 942H300V892C300 809.157 232.843 742 150 742C67.1573 742 0 809.157 0 892L0 942Z"
+                class="mil-move"
+              />
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M299 146V97L1 97V146C1 228.29 67.7096 295 150 295C232.29 295 299 228.29 299 146ZM300 96L0 96V146C0 228.843 67.1573 296 150 296C232.843 296 300 228.843 300 146V96Z"
+                class="mil-move"
+              />
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M299 1H1V1403H299V1ZM0 0V1404H300V0H0Z"
+              />
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M150 -4.37115e-08L150 1404L149 1404L149 0L150 -4.37115e-08Z"
+              />
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M150 1324C232.29 1324 299 1257.29 299 1175C299 1092.71 232.29 1026 150 1026C67.7096 1026 1 1092.71 1 1175C1 1257.29 67.7096 1324 150 1324ZM150 1325C232.843 1325 300 1257.84 300 1175C300 1092.16 232.843 1025 150 1025C67.1573 1025 0 1092.16 0 1175C0 1257.84 67.1573 1325 150 1325Z"
+                class="mil-move"
+              />
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M300 1175H0V1174H300V1175Z"
+                class="mil-move"
+              />
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M150 678C232.29 678 299 611.29 299 529C299 446.71 232.29 380 150 380C67.7096 380 1 446.71 1 529C1 611.29 67.7096 678 150 678ZM150 679C232.843 679 300 611.843 300 529C300 446.157 232.843 379 150 379C67.1573 379 0 446.157 0 529C0 611.843 67.1573 679 150 679Z"
+                class="mil-move"
+              />
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M299 380H1V678H299V380ZM0 379V679H300V379H0Z"
+                class="mil-move"
+              />
+            </svg>
+          </div>
+          <!-- hidden elements end -->
+        </div>
+      </div>
+      <!-- content -->
+    </div>
+    <!-- wrapper end -->
+
+    <script>
+      // JavaScript za izračun rezultata i prikaz loadera
+      document.addEventListener("DOMContentLoaded", function () {
+        // Dohvati potrebne elemente
+        const calculateBtn = document.getElementById("calculateBtn");
+        const questionnaireForm = document.getElementById("questionnaireForm");
+        const results = document.getElementById("results");
+        const loaderContainer = document.querySelector(".loader-container");
+
+        // Dodaj event listener na gumb za izračun
+        calculateBtn.addEventListener("click", function () {
+          // Provjera jesu li sva pitanja odgovorena
+          const form = document.getElementById("questionnaireForm");
+          const questions = ["q1", "q2", "q3", "q4", "q5", "q6", "q7"];
+          let allAnswered = true;
+
+          for (let q of questions) {
+            const answered = form.querySelector(`input[name="${q}"]:checked`);
+            if (!answered) {
+              allAnswered = false;
+              break;
+            }
+          }
+
+          if (!allAnswered) {
+            alert("Molimo odgovorite na sva pitanja prije izračuna rezultata.");
+            return;
+          }
+
+          // Sakrij upitnik
+          questionnaireForm.style.display = "none";
+
+          // Prikaži loader
+          loaderContainer.style.display = "flex";
+
+          // Izračunaj rezultate
+          let parentCount = 0;
+          let adultCount = 0;
+          let childCount = 0;
+
+          for (let q of questions) {
+            const answer = form.querySelector(
+              `input[name="${q}"]:checked`
+            ).value;
+            if (answer === "parent") parentCount++;
+            else if (answer === "adult") adultCount++;
+            else if (answer === "child") childCount++;
+          }
+
+          const totalQuestions = questions.length;
+          const parentPercentage = Math.round(
+            (parentCount / totalQuestions) * 100
+          );
+          const adultPercentage = Math.round(
+            (adultCount / totalQuestions) * 100
+          );
+          const childPercentage = Math.round(
+            (childCount / totalQuestions) * 100
+          );
+
+          // Postavi vrijednosti za rezultate
+          document.getElementById("parentPercentage").textContent =
+            parentPercentage;
+          document.getElementById("adultPercentage").textContent =
+            adultPercentage;
+          document.getElementById("childPercentage").textContent =
+            childPercentage;
+
+          document.getElementById("parentBar").style.width =
+            parentPercentage + "%";
+          document.getElementById("adultBar").style.width =
+            adultPercentage + "%";
+          document.getElementById("childBar").style.width =
+            childPercentage + "%";
+
+          // Određivanje dominantnog ego stanja
+          let dominantState = "";
+          let dominantPercentage = 0;
+
+          if (
+            parentPercentage >= adultPercentage &&
+            parentPercentage >= childPercentage
+          ) {
+            dominantState = "Roditelj";
+            dominantPercentage = parentPercentage;
+          } else if (
+            adultPercentage >= parentPercentage &&
+            adultPercentage >= childPercentage
+          ) {
+            dominantState = "Odrasli";
+            dominantPercentage = adultPercentage;
+          } else {
+            dominantState = "Dijete";
+            dominantPercentage = childPercentage;
+          }
+
+          // Prikaz dominantnog ego stanja i interpretacije
+          const dominantElement = document.getElementById("dominantEgoState");
+          dominantElement.innerHTML = `<p>Vaše dominantno ego stanje je <span class="ego-name">${dominantState}</span> (${dominantPercentage}%).</p>`;
+
+          if (dominantState === "Roditelj") {
+            dominantElement.innerHTML += `<p>Ovo ego stanje često uključuje brigu o drugima, davanjem savjeta i pružanjem podrške. Možete biti pažljivi prema potrebama drugih, ali ponekad i previše zabrinuti oko toga što drugi misle ili očekuju od vas.</p>`;
+          } else if (dominantState === "Odrasli") {
+            dominantElement.innerHTML += `<p>Ovo ego stanje karakterizira racionalno razmišljanje, objektivna analiza situacije i traženje praktičnih rješenja. Pristupate izazovima smireno i metodički, donoseći odluke temeljene na činjenicama.</p>`;
+          } else {
+            dominantElement.innerHTML += `<p>Ovo ego stanje se očituje kroz spontanost, emocionalne reakcije i želju za igrom. Iskreno izražavate svoje osjećaje i možete biti kreativni, ali ponekad reagirate impulzivnije u stresnim situacijama.</p>`;
+          }
+
+          // Nakon 3 sekunde, sakrij loader i prikaži rezultate
+          setTimeout(function () {
+            // Sakrij loader
+            loaderContainer.style.display = "none";
+
+            // Prikaži rezultate s animacijom
+            results.style.display = "block";
+
+            // Malo odgode prije animacije radi boljeg efekta
+            setTimeout(function () {
+              results.classList.add("visible");
+
+              // Scroll do rezultata
+              results.scrollIntoView({ behavior: "smooth" });
+            }, 50);
+          }, 3000); // 3 sekunde delay
+        });
+      });
+    </script>
+
+    <!-- jQuery js -->
+    <script src="js/plugins/jquery.min.js"></script>
+    <!-- swup js -->
+    <script src="js/plugins/swup.min.js"></script>
+    <!-- swiper js -->
+    <script src="js/plugins/swiper.min.js"></script>
+    <!-- fancybox js -->
+    <script src="js/plugins/fancybox.min.js"></script>
+    <!-- gsap js -->
+    <script src="js/plugins/gsap.min.js"></script>
+    <!-- scroll smoother -->
+    <script src="js/plugins/smooth-scroll.js"></script>
+    <!-- scroll trigger js -->
+    <script src="js/plugins/ScrollTrigger.min.js"></script>
+    <!-- scroll to js -->
+    <script src="js/plugins/ScrollTo.min.js"></script>
+    <!-- Gnothe js -->
+    <script src="js/main.js"></script>
+  </body>
+</html>
