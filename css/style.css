@@ -1864,7 +1864,7 @@ frame
 }
 
 .mil-frame {
-  padding: 50px 60px 60px 60px;
+  padding-bottom: 60px;
   position: fixed;
   z-index: 2;
   pointer-events: none;
@@ -1934,6 +1934,12 @@ frame
 .mil-dark-bg .gnothe-subtitle {
   color: #ffffff !important;
 }
+.mil-frame-top {
+  position: relative;
+  padding: 40px 60px 30px 60px;
+  backdrop-filter: blur(8px);
+}
+
 @media screen and (max-width: 1200px) {
   .mil-frame .mil-frame-top {
     height: 90px;
@@ -1984,6 +1990,16 @@ frame
   -webkit-transform: rotate(-90deg) translateX(130px) translateY(130px);
   transform: rotate(-90deg) translateX(130px) translateY(130px);
   pointer-events: all;
+}
+
+.link-back-to-top {
+  position: relative;
+  bottom: 50px;
+}
+
+.mil-current-page a {
+  position: relative;
+  top: 50px;
 }
 
 .mil-frame-top {
@@ -2095,13 +2111,14 @@ menu
   top: 0;
   left: 0;
   width: 100%;
-  padding: 50px 60px;
+  padding: 40px 60px 30px 60px;
+  /* background-color: red; */
 }
-@media screen and (max-width: 1200px) {
+/* @media screen and (max-width: 1200px) {
   .mil-menu-frame .mil-frame-top {
     display: none;
   }
-}
+} */
 .mil-menu-frame .mil-frame-top .mil-logo {
   color: rgba(0, 0, 0, 0.95);
 }
