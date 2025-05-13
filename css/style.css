@@ -1859,7 +1859,7 @@ frame
 @media screen and (max-width: 992px) {
   .mil-logo {
     font-size: 36px;
-    backdrop-filter: blur(8px);
+    /* backdrop-filter: blur(8px); */
   }
 }
 
@@ -1937,7 +1937,7 @@ frame
 .mil-frame-top {
   position: relative;
   padding: 40px 60px 30px 60px;
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(5px);
 }
 
 @media screen and (max-width: 1200px) {
@@ -1945,8 +1945,8 @@ frame
     height: 90px;
     border-bottom: solid 1px rgba(255, 255, 255, 0.1);
     padding: 0 30px;
-    -webkit-backdrop-filter: blur(8px);
-    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
   }
   .mil-frame .mil-frame-top .mil-logo {
     color: rgba(0, 0, 0, 0.95);
@@ -2217,7 +2217,7 @@ menu
 }
 
 .mil-menu-list li {
-  list-style-type: none;
+  list-style-type: none !important;
   margin-bottom: 15px;
 }
 .mil-menu-list li:last-child {
