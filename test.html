@@ -16,7 +16,7 @@
     <!-- Gnothe scss -->
     <link rel="stylesheet" href="css/style.css" />
     <!-- Chart.js biblioteka -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
     <!-- page name -->
     <title>Gnothe</title>
 
@@ -105,9 +105,9 @@
         transition: transform 0.2s ease;
       }
 
-      .option:hover {
+      /* .option:hover {
         transform: translateX(5px);
-      }
+      } */
 
       /* Popravljeni radio buttoni */
       .option input[type="radio"] {
@@ -448,6 +448,7 @@
         align-items: center;
         opacity: 0;
         transition: opacity 0.3s ease;
+        overflow: hidden; /* Spriječava scroll dok je popup otvoren */
       }
 
       .graph-popup.visible {
@@ -462,6 +463,8 @@
         max-height: 90vh;
         overflow-y: auto;
         box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+        position: relative; /* Osigurava da sadržaj bude iznad overlaya */
+        z-index: 2001; /* Viši z-index od overlay-a */
       }
 
       .graph-popup-header {
@@ -518,6 +521,143 @@
 
         .graph-popup-content {
           width: 95%;
+        }
+      }
+
+      .graph-item canvas {
+        margin: 0 auto;
+        display: block;
+      }
+      /* Stilovi za sekciju o teoriji transakcijske analize */
+      .theory-section {
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 8px;
+        margin: 0 auto 30px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        max-width: 800px;
+        font-family: "Outfit", sans-serif;
+        line-height: 1.6;
+      }
+
+      .theory-section h2 {
+        color: rgba(0, 0, 0, 0.9);
+        margin-bottom: 25px;
+        font-weight: 500;
+        font-size: 28px;
+        text-align: center;
+      }
+
+      .theory-section h3 {
+        color: rgba(0, 0, 0, 0.85);
+        margin: 25px 0 15px;
+        font-weight: 500;
+        font-size: 22px;
+      }
+
+      .theory-content p {
+        color: rgba(0, 0, 0, 0.75);
+        margin-bottom: 15px;
+        font-size: 16px;
+      }
+
+      .ego-states-container {
+        background-color: rgba(93, 194, 165, 0.05);
+        padding: 25px;
+        border-radius: 8px;
+        margin: 25px 0;
+        border-left: 4px solid #5dc2a5;
+      }
+
+      .ego-states {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin-top: 15px;
+      }
+
+      .ego-state {
+        flex: 1;
+        min-width: 200px;
+        padding: 15px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .ego-state:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+      }
+
+      .ego-icon {
+        display: flex;
+        align-items: center;
+        font-weight: 500;
+        font-size: 18px;
+        margin-bottom: 10px;
+        color: rgba(0, 0, 0, 0.85);
+      }
+
+      .ego-color {
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        margin-right: 8px;
+      }
+
+      .parent .ego-color {
+        background-color: #3498db;
+      }
+
+      .adult .ego-color {
+        background-color: #5dc2a5;
+      }
+
+      .child .ego-color {
+        background-color: #e67e22;
+      }
+
+      /* Responzivni dizajn za sekciju teorije */
+      @media screen and (max-width: 992px) {
+        .theory-section {
+          padding: 25px;
+          margin-left: 15px;
+          margin-right: 15px;
+        }
+
+        .theory-section h2 {
+          font-size: 26px;
+        }
+
+        .theory-section h3 {
+          font-size: 20px;
+        }
+      }
+
+      @media screen and (max-width: 768px) {
+        .theory-section h2 {
+          font-size: 24px;
+        }
+
+        .ego-states {
+          flex-direction: column;
+        }
+
+        .ego-state {
+          min-width: 100%;
+        }
+      }
+
+      @media screen and (max-width: 480px) {
+        .ego-states-container {
+          padding: 15px;
+        }
+
+        .ego-state {
+          padding: 12px;
         }
       }
     </style>
@@ -601,17 +741,18 @@
                         <li><a href="service.html">Više detalja</a></li>
                       </ul>
                     </li>
-                    <li class="mil-has-children">
+                    <li class="mil-has-children mil-active">
                       <a href="#.">Testiranje</a>
                       <ul>
-                        <li><a href="404.html">Test #1</a></li>
-                        <li><a href="404.html">Test #2</a></li>
+                        <li class="">
+                          <a href="test.html">Test Ego Stanja</a>
+                        </li>
                       </ul>
                     </li>
                     <li class="mil-has-children">
                       <a href="gallery.html">Galerija</a>
                     </li>
-                    <li class="mil-has-children mil-active">
+                    <li class="mil-has-children">
                       <a href="#">Kontakt</a>
                     </li>
                   </ul>
@@ -667,13 +808,84 @@
         <div id="swupMain" class="mil-main-transition">
           <!-- banner -->
           <div class="mil-inner-banner mil-p-0-120">
-            <div class="mil-banner-content mil-center mil-up">
+            <div class="mil-banner-content mil-center">
               <div class="container" style="margin-bottom: 40px"></div>
             </div>
           </div>
           <!-- banner end -->
 
-          <h1>Upitnik za analizu ego stanja</h1>
+          <div class="theory-section">
+            <h2>Što je transakcijska analiza?</h2>
+
+            <div class="theory-content">
+              <p>
+                Transakcijska analiza (TA) je teorija ličnosti i socijalnog
+                ponašanja te psihoterapijski pravac koji je razvio Eric Berne u
+                1950-im godinama na temeljima psihoanalize. Temelji se na
+                analizi međuljudskih interakcija, poznatih kao "transakcije",
+                pomoću kojih se analiziraju obrasci ponašanja i komunikacija
+                među pojedincima i grupama.
+              </p>
+
+              <div class="ego-states-container">
+                <h3>Tri ego stanja</h3>
+                <div class="ego-states">
+                  <div class="ego-state parent">
+                    <div class="ego-icon">
+                      <span class="ego-color"></span>Roditelj
+                    </div>
+                    <p>
+                      Obuhvaća sve norme, vrijednosti i uvjerenja koja smo
+                      usvojili od autoriteta u našem životu, poput roditelja ili
+                      učitelja.
+                    </p>
+                  </div>
+                  <div class="ego-state adult">
+                    <div class="ego-icon">
+                      <span class="ego-color"></span>Odrasli
+                    </div>
+                    <p>
+                      Racionalni dio nas koji analizira situacije i donosi
+                      odluke na temelju činjenica.
+                    </p>
+                  </div>
+                  <div class="ego-state child">
+                    <div class="ego-icon">
+                      <span class="ego-color"></span>Dijete
+                    </div>
+                    <p>
+                      Predstavlja naše emocije, kreativnost i spontane reakcije.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <h3>Zašto je to važno?</h3>
+              <p>
+                Razumijevanje vlastitih ego stanja može značajno pomoći u
+                osobnom razvoju i međuljudskim odnosima. Kada prepoznate koje
+                ego stanje dominira u određenim situacijama, možete bolje
+                razumjeti svoje reakcije i ponašanje.
+              </p>
+
+              <p>
+                Osim toga, analiza ego stanja može vam pomoći u razumijevanju
+                drugih. Kada prepoznate iz kojeg ego stanja netko drugi
+                komunicira, možete prilagoditi svoj odgovor i izbjeći
+                nesporazume.
+              </p>
+
+              <p>
+                U konačnici, svjesnost o ego stanjima omogućava vam da preuzmete
+                kontrolu nad svojim reakcijama, poboljšate komunikaciju i
+                izgradite zdravije odnose s drugima. Kroz ovu analizu, postajete
+                svjesniji sebe i svojih interakcija, što vodi ka dubljem
+                razumijevanju i osobnom rastu.
+              </p>
+            </div>
+          </div>
+
+          <h1 class="">Upitnik za analizu ego stanja</h1>
 
           <div class="introduction">
             <p>
@@ -933,7 +1145,7 @@
             </div>
           </form>
 
-          <div id="results">
+          <div id="results" class="">
             <h2>Rezultati analize ego stanja</h2>
 
             <div class="result-category">
@@ -1016,15 +1228,15 @@
                 <div class="graph-container">
                   <div class="graph-item">
                     <h4>Kružni dijagram ego stanja</h4>
-                    <canvas id="pieChart"></canvas>
+                    <canvas id="pieChart" width="300" height="300"></canvas>
                   </div>
                   <div class="graph-item">
                     <h4>Stupčasti prikaz rezultata</h4>
-                    <canvas id="barChart"></canvas>
+                    <canvas id="barChart" width="300" height="300"></canvas>
                   </div>
                   <div class="graph-item">
                     <h4>Radar dijagram profila</h4>
-                    <canvas id="radarChart"></canvas>
+                    <canvas id="radarChart" width="300" height="300"></canvas>
                   </div>
                 </div>
               </div>
@@ -1037,7 +1249,7 @@
               <div class="container mil-p-120-60">
                 <div class="row justify-content-between">
                   <div class="col-md-4 col-lg-4 mil-mb-60">
-                    <div class="mil-muted mil-logo mil-up mil-mb-30">
+                    <div class="mil-muted mil-logo mil-mb-30">
                       <img
                         style="width: 300px"
                         src="./img/logo/GNOTHE grey-02.png"
@@ -1045,9 +1257,9 @@
                       />
                     </div>
 
-                    <p class="mil-up mil-mb-30">Stupimo u kontakt:</p>
+                    <p class="mil-mb-30">Stupimo u kontakt:</p>
 
-                    <div class="mil-up">
+                    <div class="">
                       <a
                         href="#"
                         onclick="window.open('mailto:melita.zajkovski@gmail.com','_self')"
@@ -1061,31 +1273,31 @@
                       <div class="col-md-6 col-lg-7">
                         <nav class="mil-footer-menu mil-mb-60">
                           <ul>
-                            <li class="mil-up">
+                            <li class="">
                               <a href="index.html">Naslovna</a>
                             </li>
-                            <li class="mil-up">
+                            <li class="">
                               <a href="about.html">O meni</a>
                             </li>
-                            <li class="mil-up">
+                            <li class="">
                               <a href="service.html">Usluge</a>
                             </li>
-                            <li class="mil-up mil-active">
+                            <li class="mil-active">
                               <a href="test.html">Test</a>
                             </li>
-                            <li class="mil-up">
+                            <li class="">
                               <a href="gallery.html">Galerija</a>
                             </li>
-                            <li class="mil-up">
+                            <li class="">
                               <a href="#">Kontakt</a>
                             </li>
                           </ul>
                         </nav>
                       </div>
                       <div class="col-md-6 col-lg-5">
-                        <h6 class="mil-up mil-mb-30">Hrvatska, Zagreb</h6>
+                        <h6 class="mil-mb-30">Hrvatska, Zagreb</h6>
 
-                        <p class="mil-up">
+                        <p class="">
                           melita.zajkovski@gmail.com <br />
                           Neka Adresa 55<br />
                           <span class="mil-no-wrap">+385 98 811 651</span>
@@ -1099,7 +1311,7 @@
                   <div class="col-md-4 col-lg-6 mil-mb-60">
                     <div class="mil-vert-between">
                       <div class="mil-mb-30">
-                        <ul class="mil-social-icons mil-up">
+                        <ul class="mil-social-icons">
                           <li>
                             <a href="#." target="_blank" class="social-icon">
                               <i class="far fa-circle"></i
@@ -1122,7 +1334,7 @@
                           </li>
                         </ul>
                       </div>
-                      <p class="mil-up">
+                      <p class="">
                         © Copyright 2025 - M.B. All Rights Reserved.
                       </p>
                     </div>
@@ -1295,13 +1507,22 @@
     <!-- wrapper end -->
 
     <script>
-      // JavaScript za izračun rezultata i prikaz loadera
+      // JavaScript za izračun rezultata, prikaz grafova i upravljanje UI elementima
       document.addEventListener("DOMContentLoaded", function () {
         // Dohvati potrebne elemente
         const calculateBtn = document.getElementById("calculateBtn");
         const questionnaireForm = document.getElementById("questionnaireForm");
+        const theorySection = document.querySelector(".theory-section");
         const results = document.getElementById("results");
         const loaderContainer = document.querySelector(".loader-container");
+        const showGraphBtn = document.getElementById("showGraphBtn");
+        const graphPopup = document.getElementById("graphPopup");
+        const closePopup = document.querySelector(".close-popup");
+
+        // Inicijalizacija varijabli za grafikone
+        let pieChart = null;
+        let barChart = null;
+        let radarChart = null;
 
         // Dodaj event listener na gumb za izračun
         calculateBtn.addEventListener("click", function () {
@@ -1325,6 +1546,9 @@
 
           // Sakrij upitnik
           questionnaireForm.style.display = "none";
+
+          // Sakrij teorijsku sekciju
+          theorySection.style.display = "none";
 
           // Prikaži loader
           loaderContainer.style.display = "flex";
@@ -1419,21 +1643,26 @@
             }, 50);
           }, 3000); // 3 sekunde delay
         });
-      });
-      // Kod za popup s grafovima
-      document.addEventListener("DOMContentLoaded", function () {
-        // Dohvati elemente
-        const showGraphBtn = document.getElementById("showGraphBtn");
-        const graphPopup = document.getElementById("graphPopup");
-        const closePopup = document.querySelector(".close-popup");
 
-        // Ako gumb postoji, dodaj mu event listener
+        // Kod za popup s grafovima
         if (showGraphBtn) {
           showGraphBtn.addEventListener("click", function () {
+            // Onemogući scrollanje na body elementu
+            document.body.style.overflow = "hidden";
+            document.body.style.width = "100%";
+            document.body.style.position = "fixed";
+
+            // Prikaži popup
             graphPopup.style.display = "flex";
+
+            // Odgodite vidljivost popupa za bolju animaciju
             setTimeout(() => {
               graphPopup.classList.add("visible");
-              renderCharts(); // Iscrtaj grafove kad se popup otvori
+
+              // Dodatno odgodite renderiranje grafova za stabilniji prikaz
+              setTimeout(() => {
+                renderCharts();
+              }, 300);
             }, 50);
           });
         }
@@ -1441,187 +1670,273 @@
         // Zatvaranje popupa
         if (closePopup) {
           closePopup.addEventListener("click", function () {
-            graphPopup.classList.remove("visible");
-            setTimeout(() => {
-              graphPopup.style.display = "none";
-            }, 300);
+            closeModal();
           });
         }
 
         // Zatvaranje popupa klikom izvan sadržaja
         graphPopup.addEventListener("click", function (e) {
           if (e.target === graphPopup) {
-            graphPopup.classList.remove("visible");
-            setTimeout(() => {
-              graphPopup.style.display = "none";
-            }, 300);
+            closeModal();
           }
         });
 
-        // Funkcija za iscrtavanje grafova
+        // Funkcija za zatvaranje modalnog prozora
+        function closeModal() {
+          // Ukloni klasu visible za glatku animaciju
+          graphPopup.classList.remove("visible");
+
+          // Nakon što se animacija završi, sakrij popup i vrati scroll
+          setTimeout(() => {
+            graphPopup.style.display = "none";
+
+            // Ponovno omogući scrollanje na body elementu
+            document.body.style.overflow = "";
+            document.body.style.width = "";
+            document.body.style.position = "";
+          }, 300);
+        }
+
+        // Funkcija za iscrtavanje grafova s pristupom resetiranja canvas elemenata
         function renderCharts() {
-          // Dohvati vrijednosti postotaka
+          console.log("Funkcija renderCharts() pozvana");
+
+          // Dohvaćanje postotaka iz DOM-a s fallback vrijednostima ako su prazni
           const parentPercentage = parseInt(
-            document.getElementById("parentPercentage").textContent
+            document.getElementById("parentPercentage").textContent || "0"
           );
           const adultPercentage = parseInt(
-            document.getElementById("adultPercentage").textContent
+            document.getElementById("adultPercentage").textContent || "0"
           );
           const childPercentage = parseInt(
-            document.getElementById("childPercentage").textContent
+            document.getElementById("childPercentage").textContent || "0"
           );
 
-          // Definiraj boje koje će se koristiti
+          console.log(
+            "Postoci:",
+            parentPercentage,
+            adultPercentage,
+            childPercentage
+          );
+
+          // Definiranje boja koje će se koristiti za svako ego stanje
           const colors = {
-            parent: "#3498db",
-            adult: "#5dc2a5",
-            child: "#e67e22",
+            parent: "#3498db", // Plava boja za Roditelja
+            adult: "#5dc2a5", // Zelena boja za Odraslog
+            child: "#e67e22", // Narančasta boja za Dijete
           };
 
+          // NOVI PRISTUP: Resetiranje canvas elemenata
           // 1. Kružni dijagram (Pie Chart)
-          const pieCtx = document.getElementById("pieChart").getContext("2d");
-          if (window.pieChart) window.pieChart.destroy(); // Uništi postojeći graf ako postoji
+          try {
+            // Resetiranje canvas elementa
+            const pieCanvas = document.getElementById("pieChart");
+            if (!pieCanvas) {
+              console.error("Canvas element 'pieChart' nije pronađen!");
+              return;
+            }
 
-          window.pieChart = new Chart(pieCtx, {
-            type: "pie",
-            data: {
-              labels: ["Roditelj", "Odrasli", "Dijete"],
-              datasets: [
-                {
-                  data: [parentPercentage, adultPercentage, childPercentage],
-                  backgroundColor: [colors.parent, colors.adult, colors.child],
-                  borderWidth: 1,
-                },
-              ],
-            },
-            options: {
-              responsive: true,
-              plugins: {
-                legend: {
-                  position: "bottom",
-                },
-                tooltip: {
-                  callbacks: {
-                    label: function (context) {
-                      return `${context.label}: ${context.raw}%`;
+            // Resetiraj canvas stvaranjem novog elementa
+            const newPieCanvas = document.createElement("canvas");
+            newPieCanvas.id = "pieChart";
+            newPieCanvas.width = 300;
+            newPieCanvas.height = 300;
+            pieCanvas.parentNode.replaceChild(newPieCanvas, pieCanvas);
+
+            const pieCtx = newPieCanvas.getContext("2d");
+
+            // Kreiraj novi grafikon
+            pieChart = new Chart(pieCtx, {
+              type: "pie",
+              data: {
+                labels: ["Roditelj", "Odrasli", "Dijete"],
+                datasets: [
+                  {
+                    data: [parentPercentage, adultPercentage, childPercentage],
+                    backgroundColor: [
+                      colors.parent,
+                      colors.adult,
+                      colors.child,
+                    ],
+                    borderWidth: 1,
+                  },
+                ],
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                  legend: {
+                    position: "bottom",
+                  },
+                  tooltip: {
+                    callbacks: {
+                      label: function (context) {
+                        return `${context.label}: ${context.raw}%`;
+                      },
                     },
                   },
                 },
               },
-            },
-          });
+            });
+            console.log("Pie chart kreiran");
+          } catch (error) {
+            console.error("Greška pri kreiranju kružnog dijagrama:", error);
+          }
 
           // 2. Stupčasti dijagram (Bar Chart)
-          const barCtx = document.getElementById("barChart").getContext("2d");
-          if (window.barChart) window.barChart.destroy();
+          try {
+            // Resetiranje canvas elementa
+            const barCanvas = document.getElementById("barChart");
+            if (!barCanvas) {
+              console.error("Canvas element 'barChart' nije pronađen!");
+              return;
+            }
 
-          window.barChart = new Chart(barCtx, {
-            type: "bar",
-            data: {
-              labels: ["Roditelj", "Odrasli", "Dijete"],
-              datasets: [
-                {
-                  label: "Postotak ego stanja",
-                  data: [parentPercentage, adultPercentage, childPercentage],
-                  backgroundColor: [colors.parent, colors.adult, colors.child],
-                  borderColor: [colors.parent, colors.adult, colors.child],
-                  borderWidth: 1,
+            // Resetiraj canvas stvaranjem novog elementa
+            const newBarCanvas = document.createElement("canvas");
+            newBarCanvas.id = "barChart";
+            newBarCanvas.width = 300;
+            newBarCanvas.height = 300;
+            barCanvas.parentNode.replaceChild(newBarCanvas, barCanvas);
+
+            const barCtx = newBarCanvas.getContext("2d");
+
+            // Kreiraj novi grafikon
+            barChart = new Chart(barCtx, {
+              type: "bar",
+              data: {
+                labels: ["Roditelj", "Odrasli", "Dijete"],
+                datasets: [
+                  {
+                    label: "Postotak ego stanja",
+                    data: [parentPercentage, adultPercentage, childPercentage],
+                    backgroundColor: [
+                      colors.parent,
+                      colors.adult,
+                      colors.child,
+                    ],
+                    borderColor: [colors.parent, colors.adult, colors.child],
+                    borderWidth: 1,
+                  },
+                ],
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                scales: {
+                  y: {
+                    beginAtZero: true,
+                    max: 100,
+                    ticks: {
+                      callback: function (value) {
+                        return value + "%";
+                      },
+                    },
+                  },
                 },
-              ],
-            },
-            options: {
-              responsive: true,
-              scales: {
-                y: {
-                  beginAtZero: true,
-                  max: 100,
-                  ticks: {
-                    callback: function (value) {
-                      return value + "%";
+                plugins: {
+                  tooltip: {
+                    callbacks: {
+                      label: function (context) {
+                        return `${context.dataset.label}: ${context.raw}%`;
+                      },
                     },
                   },
                 },
               },
-              plugins: {
-                tooltip: {
-                  callbacks: {
-                    label: function (context) {
-                      return `${context.dataset.label}: ${context.raw}%`;
-                    },
-                  },
-                },
-              },
-            },
-          });
+            });
+            console.log("Bar chart kreiran");
+          } catch (error) {
+            console.error("Greška pri kreiranju stupčastog dijagrama:", error);
+          }
 
           // 3. Radar dijagram (Radar Chart)
-          const radarCtx = document
-            .getElementById("radarChart")
-            .getContext("2d");
-          if (window.radarChart) window.radarChart.destroy();
+          try {
+            // Resetiranje canvas elementa
+            const radarCanvas = document.getElementById("radarChart");
+            if (!radarCanvas) {
+              console.error("Canvas element 'radarChart' nije pronađen!");
+              return;
+            }
 
-          window.radarChart = new Chart(radarCtx, {
-            type: "radar",
-            data: {
-              labels: [
-                "Briga o drugima",
-                "Racionalno razmišljanje",
-                "Spontanost",
-                "Pružanje podrške",
-                "Analitičnost",
-                "Emotivnost",
-                "Savjetovanje",
-              ],
-              datasets: [
-                {
-                  label: "Profil ego stanja",
-                  data: [
-                    parentPercentage * 0.9 +
-                      adultPercentage * 0.2 +
-                      childPercentage * 0.1,
-                    parentPercentage * 0.3 +
-                      adultPercentage * 0.9 +
-                      childPercentage * 0.1,
-                    parentPercentage * 0.1 +
-                      adultPercentage * 0.2 +
-                      childPercentage * 0.9,
-                    parentPercentage * 0.8 +
-                      adultPercentage * 0.3 +
-                      childPercentage * 0.2,
-                    parentPercentage * 0.2 +
-                      adultPercentage * 0.8 +
-                      childPercentage * 0.1,
-                    parentPercentage * 0.3 +
-                      adultPercentage * 0.1 +
-                      childPercentage * 0.8,
-                    parentPercentage * 0.7 +
-                      adultPercentage * 0.4 +
-                      childPercentage * 0.1,
-                  ],
-                  fill: true,
-                  backgroundColor: "rgba(93, 194, 165, 0.2)",
-                  borderColor: "#5dc2a5",
-                  pointBackgroundColor: "#5dc2a5",
-                  pointBorderColor: "#fff",
-                  pointHoverBackgroundColor: "#fff",
-                  pointHoverBorderColor: "#5dc2a5",
-                },
-              ],
-            },
-            options: {
-              responsive: true,
-              maintainAspectRatio: true,
-              scales: {
-                r: {
-                  angleLines: {
-                    display: true,
+            // Resetiraj canvas stvaranjem novog elementa
+            const newRadarCanvas = document.createElement("canvas");
+            newRadarCanvas.id = "radarChart";
+            newRadarCanvas.width = 300;
+            newRadarCanvas.height = 300;
+            radarCanvas.parentNode.replaceChild(newRadarCanvas, radarCanvas);
+
+            const radarCtx = newRadarCanvas.getContext("2d");
+
+            // Kreiraj novi grafikon
+            radarChart = new Chart(radarCtx, {
+              type: "radar",
+              data: {
+                labels: [
+                  "Briga o drugima",
+                  "Racionalno razmišljanje",
+                  "Spontanost",
+                  "Pružanje podrške",
+                  "Analitičnost",
+                  "Emotivnost",
+                  "Savjetovanje",
+                ],
+                datasets: [
+                  {
+                    label: "Profil ego stanja",
+                    data: [
+                      // Ponderirane vrijednosti koje naglašavaju različite karakteristike ego stanja
+                      parentPercentage * 0.9 +
+                        adultPercentage * 0.2 +
+                        childPercentage * 0.1,
+                      parentPercentage * 0.3 +
+                        adultPercentage * 0.9 +
+                        childPercentage * 0.1,
+                      parentPercentage * 0.1 +
+                        adultPercentage * 0.2 +
+                        childPercentage * 0.9,
+                      parentPercentage * 0.8 +
+                        adultPercentage * 0.3 +
+                        childPercentage * 0.2,
+                      parentPercentage * 0.2 +
+                        adultPercentage * 0.8 +
+                        childPercentage * 0.1,
+                      parentPercentage * 0.3 +
+                        adultPercentage * 0.1 +
+                        childPercentage * 0.8,
+                      parentPercentage * 0.7 +
+                        adultPercentage * 0.4 +
+                        childPercentage * 0.1,
+                    ],
+                    fill: true,
+                    backgroundColor: "rgba(93, 194, 165, 0.2)",
+                    borderColor: "#5dc2a5",
+                    pointBackgroundColor: "#5dc2a5",
+                    pointBorderColor: "#fff",
+                    pointHoverBackgroundColor: "#fff",
+                    pointHoverBorderColor: "#5dc2a5",
                   },
-                  suggestedMin: 0,
-                  suggestedMax: 100,
+                ],
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                scales: {
+                  r: {
+                    angleLines: {
+                      display: true,
+                    },
+                    suggestedMin: 0,
+                    suggestedMax: 100,
+                  },
                 },
               },
-            },
-          });
+            });
+            console.log("Radar chart kreiran");
+          } catch (error) {
+            console.error("Greška pri kreiranju radar dijagrama:", error);
+          }
         }
       });
     </script>
