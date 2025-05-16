@@ -17,6 +17,27 @@
     <link rel="stylesheet" href="css/style.css" />
     <!-- page name -->
     <title>Gnothe</title>
+
+    <!-- Add this to your CSS file -->
+    <style>
+      .mil-map-video-container {
+        padding: 60px 0;
+        background-color: #f9f9f9;
+      }
+
+      .mil-map,
+      .mil-video-container {
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      @media (max-width: 991px) {
+        .mil-video-container {
+          margin-top: 30px;
+        }
+      }
+    </style>
   </head>
 
   <body>
@@ -164,7 +185,7 @@
       <!-- content -->
       <div class="mil-content">
         <div id="swupMain" class="mil-main-transition">
-          <!-- banner -->
+          <!-- banner
           <div class="mil-inner-banner mil-p-0-120">
             <div class="mil-banner-content mil-center mil-up">
               <div class="container" style="margin-bottom: 40px">
@@ -182,9 +203,7 @@
               </div>
             </div>
           </div>
-          <!-- banner end -->
-
-          <!-- map -->
+          banner end map
           <div class="mil-map-frame mil-up">
             <div class="mil-map">
               <iframe
@@ -195,8 +214,9 @@
                 referrerpolicy="no-referrer-when-downgrade"
               ></iframe>
             </div>
-          </div>
-          <!-- map end -->
+          </div> -->
+
+          <!-- map and video section -->
 
           <!-- contact start -->
           <section class="mil-soft-bg" id="contact">
@@ -228,6 +248,111 @@
           </section>
           <!-- contact end -->
 
+          <!-- Location and Therapy Space Sections -->
+          <div class="container my-5">
+            <!-- First Row: Location Text and Map -->
+            <div class="row mb-5 align-items-center">
+              <!-- Location Text Column -->
+              <div class="col-lg-5">
+                <div class="location-text pe-lg-4">
+                  <h3 class="mb-4 fw-bold" style="font-size: 2rem; color: #333">
+                    Gdje se nalazimo?
+                  </h3>
+
+                  <p class="mb-3">
+                    Naš prostor smješten je u mirnom dijelu Zaprešića,
+                    stvarajući idealno okruženje za terapijski rad. Lako smo
+                    dostupni javnim prijevozom, a osiguran parking u blizini
+                    olakšava vaš dolazak.
+                  </p>
+
+                  <p class="mb-3">
+                    U okolici se nalaze ugodni kafići i restorani, savršeni za
+                    trenutke refleksije prije ili nakon sesije.
+                  </p>
+
+                  <p class="fw-medium">
+                    Adresa:
+                    <span class="text-dark"
+                      >Ul. kardinala Alojzija Stepinca 8A, 10290, Zaprešić</span
+                    >
+                  </p>
+                </div>
+              </div>
+
+              <!-- Map Column -->
+              <div class="col-lg-7">
+                <div
+                  class="map-container shadow-sm"
+                  style="height: 500px; border-radius: 12px; overflow: hidden"
+                >
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2778.782985686589!2d15.802473711311272!3d45.855642407116065!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4765cfa3a99072ef%3A0x98ff5ddcb77d6eaf!2sUl.%20kardinala%20Alojzija%20Stepinca%208A%2C%2010290%2C%20Zapre%C5%A1i%C4%87!5e0!3m2!1shr!2shr!4v1747388030704!5m2!1shr!2shr"
+                    style="border: 0; width: 100%; height: 100%"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                  ></iframe>
+                </div>
+              </div>
+            </div>
+
+            <!-- Divider -->
+            <div class="row">
+              <div class="col-12">
+                <hr class="my-5" style="opacity: 0.1" />
+              </div>
+            </div>
+
+            <!-- Second Row: Video and Space Description -->
+            <div class="row mb-5 align-items-center">
+              <!-- Video Column -->
+              <div class="col-lg-7">
+                <div
+                  class="video-container shadow-sm"
+                  style="height: 500px; border-radius: 12px; overflow: hidden"
+                >
+                  <video
+                    autoplay
+                    loop
+                    muted
+                    preload="auto"
+                    style="width: 100%; height: 100%; object-fit: cover"
+                  >
+                    <source
+                      src="./img/studio/GNOTHE_video.mp4"
+                      type="video/mp4"
+                    />
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+              </div>
+
+              <!-- Space Description Column -->
+              <div class="col-lg-5">
+                <div class="space-text ps-lg-4">
+                  <h3 class="mb-4 fw-bold" style="font-size: 2rem; color: #333">
+                    Pogledajte kako izgleda naš prostor
+                  </h3>
+                  <p class="mb-3 text-muted">
+                    Naš terapijski prostor dizajniran je kako bi pružio osjećaj
+                    sigurnosti, privatnosti i mira – sve što je potrebno za
+                    kvalitetan psihoterapijski proces.
+                  </p>
+                  <p class="mb-3 text-muted">
+                    Ugodna atmosfera, prirodno svjetlo i pažljivo odabrani
+                    elementi interijera stvaraju okruženje koje pomaže u
+                    opuštanju i otvorenoj komunikaciji.
+                  </p>
+                  <p class="text-muted">
+                    Vjerujemo da fizički prostor značajno doprinosi kvaliteti
+                    terapijskog procesa, zato smo posebnu pažnju posvetili
+                    stvaranju ambijenta koji potiče rast i iscjeljenje.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
           <!-- footer -->
           <footer class="mil-soft-bg">
             <div class="mi-invert-fix">
@@ -284,7 +409,7 @@
 
                         <p class="mil-up">
                           melita.zajkovski@gmail.com <br />
-                          Neka Adresa 55<br />
+                          Ul. kardinala Alojzija Stepinca 8A, 10290, Zaprešić<br />
                           <span class="mil-no-wrap">+385 98 811 651</span>
                         </p>
                       </div>
