@@ -5,12 +5,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const questionnaireForm = document.querySelector(".questionnaire__form");
   const theory = document.querySelector(".theory");
   const results = document.getElementById("results");
-  const showGraphBtn = document.getElementById("showGraphBtn");
-  const graphPopup = document.getElementById("graphPopup");
-  const closePopup = document.querySelector(".graph-popup__close");
 
   // Inicijalizacija varijabli za grafikone
-  let pieChart = null;
   let barChart = null;
   let radarChart = null;
 
@@ -116,14 +112,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const adultPercentage = Math.round((adultCount / totalQuestions) * 100);
     const childPercentage = Math.round((childCount / totalQuestions) * 100);
 
-    // Postavi vrijednosti za rezultate
+    // Postavimo skrivene vrijednosti za grafove (potrebno za rad funkcije renderCharts)
     document.getElementById("parentPercentage").textContent = parentPercentage;
     document.getElementById("adultPercentage").textContent = adultPercentage;
     document.getElementById("childPercentage").textContent = childPercentage;
-
-    document.getElementById("parentBar").style.width = parentPercentage + "%";
-    document.getElementById("adultBar").style.width = adultPercentage + "%";
-    document.getElementById("childBar").style.width = childPercentage + "%";
 
     // Određivanje dominantnog ego stanja
     let dominantState = "";
@@ -172,64 +164,14 @@ document.addEventListener("DOMContentLoaded", function () {
       setTimeout(function () {
         results.classList.add("results--visible");
 
+        // Renderiranje grafova direktno u rezultatima
+        renderCharts();
+
         // Scroll do rezultata
         results.scrollIntoView({ behavior: "smooth" });
       }, 50);
     }, 3000); // 3 sekunde delay
   });
-
-  // Kod za popup s grafovima
-  if (showGraphBtn) {
-    showGraphBtn.addEventListener("click", function () {
-      // Onemogući scrollanje na body elementu
-      document.body.style.overflow = "hidden";
-      document.body.style.width = "100%";
-      document.body.style.position = "fixed";
-
-      // Prikaži popup
-      graphPopup.style.display = "flex";
-
-      // Odgodite vidljivost popupa za bolju animaciju
-      setTimeout(() => {
-        graphPopup.classList.add("graph-popup--visible");
-
-        // Dodatno odgodite renderiranje grafova za stabilniji prikaz
-        setTimeout(() => {
-          renderCharts();
-        }, 300);
-      }, 50);
-    });
-  }
-
-  // Zatvaranje popupa
-  if (closePopup) {
-    closePopup.addEventListener("click", function () {
-      closeModal();
-    });
-  }
-
-  // Zatvaranje popupa klikom izvan sadržaja
-  graphPopup.addEventListener("click", function (e) {
-    if (e.target === graphPopup) {
-      closeModal();
-    }
-  });
-
-  // Funkcija za zatvaranje modalnog prozora
-  function closeModal() {
-    // Ukloni klasu visible za glatku animaciju
-    graphPopup.classList.remove("graph-popup--visible");
-
-    // Nakon što se animacija završi, sakrij popup i vrati scroll
-    setTimeout(() => {
-      graphPopup.style.display = "none";
-
-      // Ponovno omogući scrollanje na body elementu
-      document.body.style.overflow = "";
-      document.body.style.width = "";
-      document.body.style.position = "";
-    }, 300);
-  }
 
   // Funkcija za iscrtavanje grafova s pristupom resetiranja canvas elemenata
   function renderCharts() {
@@ -255,62 +197,7 @@ document.addEventListener("DOMContentLoaded", function () {
       child: "#e67e22", // Narančasta boja za Dijete
     };
 
-    // NOVI PRISTUP: Resetiranje canvas elemenata
-    // 1. Kružni dijagram (Pie Chart)
-    try {
-      // Resetiranje canvas elementa
-      const pieCanvas = document.getElementById("pieChart");
-      if (!pieCanvas) {
-        console.error("Canvas element 'pieChart' nije pronađen!");
-        return;
-      }
-
-      // Resetiraj canvas stvaranjem novog elementa
-      const newPieCanvas = document.createElement("canvas");
-      newPieCanvas.id = "pieChart";
-      newPieCanvas.width = 300;
-      newPieCanvas.height = 300;
-      newPieCanvas.classList.add("graph-popup__canvas");
-      pieCanvas.parentNode.replaceChild(newPieCanvas, pieCanvas);
-
-      const pieCtx = newPieCanvas.getContext("2d");
-
-      // Kreiraj novi grafikon
-      pieChart = new Chart(pieCtx, {
-        type: "pie",
-        data: {
-          labels: ["Roditelj", "Odrasli", "Dijete"],
-          datasets: [
-            {
-              data: [parentPercentage, adultPercentage, childPercentage],
-              backgroundColor: [colors.parent, colors.adult, colors.child],
-              borderWidth: 1,
-            },
-          ],
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: true,
-          plugins: {
-            legend: {
-              position: "bottom",
-            },
-            tooltip: {
-              callbacks: {
-                label: function (context) {
-                  return `${context.label}: ${context.raw}%`;
-                },
-              },
-            },
-          },
-        },
-      });
-      console.log("Pie chart kreiran");
-    } catch (error) {
-      console.error("Greška pri kreiranju kružnog dijagrama:", error);
-    }
-
-    // 2. Stupčasti dijagram (Bar Chart)
+    // Stupčasti dijagram (Bar Chart)
     try {
       // Resetiranje canvas elementa
       const barCanvas = document.getElementById("barChart");
@@ -374,7 +261,7 @@ document.addEventListener("DOMContentLoaded", function () {
       console.error("Greška pri kreiranju stupčastog dijagrama:", error);
     }
 
-    // 3. Radar dijagram (Radar Chart)
+    // Radar dijagram (Radar Chart)
     try {
       // Resetiranje canvas elementa
       const radarCanvas = document.getElementById("radarChart");

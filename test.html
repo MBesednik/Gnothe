@@ -625,6 +625,53 @@
             <div id="results" class="results">
               <h2 class="results__title">Rezultati analize ego stanja</h2>
 
+              <!-- Skriveni elementi za čuvanje podataka -->
+              <span id="parentPercentage" style="display: none">0</span>
+              <span id="adultPercentage" style="display: none">0</span>
+              <span id="childPercentage" style="display: none">0</span>
+
+              <div class="graph-popup__container">
+                <div class="graph-popup__item">
+                  <h4 class="graph-popup__item-title">
+                    Stupčasti prikaz rezultata
+                  </h4>
+                  <canvas
+                    id="barChart"
+                    class="graph-popup__canvas"
+                    width="300"
+                    height="300"
+                  ></canvas>
+                </div>
+                <div class="graph-popup__item">
+                  <h4 class="graph-popup__item-title">
+                    Radar dijagram profila
+                  </h4>
+                  <canvas
+                    id="radarChart"
+                    class="graph-popup__canvas"
+                    width="300"
+                    height="300"
+                  ></canvas>
+                </div>
+              </div>
+
+              <div class="results__dominant" id="dominantEgoState"></div>
+
+              <div class="results__note">
+                <p class="results__note-text">
+                  <strong class="results__note-emphasis">Napomena:</strong> Ovaj
+                  upitnik je pojednostavljeni instrument za osobnu refleksiju
+                  prema teoriji transakcijske analize. Nije dijagnostički alat i
+                  ne zamjenjuje stručnu procjenu.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- STARI REZULTATI S POPUPOM -->
+          <!-- <div id="results" class="results">
+              <h2 class="results__title">Rezultati analize ego stanja</h2>
+
               <div class="results__category">
                 <div class="results__category-header">
                   <strong class="results__category-name">Roditelj:</strong>
@@ -681,6 +728,42 @@
                 </div>
               </div>
 
+              <div class="graph-popup__container">
+                <div class="graph-popup__item">
+                    <h4 class="graph-popup__item-title">
+                      Kružni dijagram ego stanja
+                    </h4>
+                    <canvas
+                      id="pieChart"
+                      class="graph-popup__canvas"
+                      width="300"
+                      height="300"
+                    ></canvas>
+                  </div>
+                <div class="graph-popup__item">
+                  <h4 class="graph-popup__item-title">
+                    Stupčasti prikaz rezultata
+                  </h4>
+                  <canvas
+                    id="barChart"
+                    class="graph-popup__canvas"
+                    width="300"
+                    height="300"
+                  ></canvas>
+                </div>
+                <div class="graph-popup__item">
+                  <h4 class="graph-popup__item-title">
+                    Radar dijagram profila
+                  </h4>
+                  <canvas
+                    id="radarChart"
+                    class="graph-popup__canvas"
+                    width="300"
+                    height="300"
+                  ></canvas>
+                </div>
+              </div>
+
               <div class="results__dominant" id="dominantEgoState"></div>
 
               <div class="results__note">
@@ -692,7 +775,7 @@
                 </p>
               </div>
 
-              <!-- Graph Button -->
+              Graph Button
               <div class="results__graph-container">
                 <button id="showGraphBtn" class="results__graph-button">
                   Prikaz grafova
@@ -700,7 +783,7 @@
               </div>
             </div>
 
-            <!-- Graph Popup -->
+            Graph Popup
             <div id="graphPopup" class="graph-popup">
               <div class="graph-popup__content">
                 <div class="graph-popup__header">
@@ -744,7 +827,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
 
           <!-- footer -->
           <footer class="mil-soft-bg">
