@@ -2403,6 +2403,330 @@ banner
 .mil-banner {
   height: 100vh;
 }
+
+/* ubaceno */
+/* Base styles */
+.mil-banner {
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  background-color: rgb(242, 242, 242);
+}
+
+/* Background gradient elements */
+.banner__bg-gradient {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+}
+
+.banner__bg-gradient--1 {
+  width: 60vw;
+  height: 60vw;
+  background: linear-gradient(
+    135deg,
+    rgba(93, 194, 165, 0.2),
+    rgba(93, 194, 165, 0)
+  );
+  top: -30vw;
+  right: -20vw;
+  animation: float-slow 25s infinite alternate ease-in-out;
+}
+
+.banner__bg-gradient--2 {
+  width: 50vw;
+  height: 50vw;
+  background: linear-gradient(
+    225deg,
+    rgba(93, 194, 165, 0.15),
+    rgba(93, 194, 165, 0)
+  );
+  bottom: -25vw;
+  left: -10vw;
+  animation: float-slow 20s infinite alternate-reverse ease-in-out;
+}
+
+@keyframes float-slow {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    transform: translate(5%, 5%) scale(1.05);
+  }
+}
+
+/* Content wrapper */
+.banner__content-wrapper {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 5vw;
+  z-index: 2;
+}
+
+/* Slides container */
+.banner__slides {
+  position: relative;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Individual slides */
+.banner__slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.banner__slide--active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Title and subtitle */
+.banner__title,
+.banner__subtitle {
+  color: #5dc2a5;
+  text-align: center;
+  font-weight: 300;
+  letter-spacing: 15px;
+  margin-bottom: 20px;
+  transform: translateY(30px);
+  opacity: 0;
+  transition: all 1s ease;
+}
+
+.banner__title {
+  font-size: 8rem;
+}
+
+.banner__subtitle {
+  font-size: 6rem;
+}
+
+.banner__slide--active .banner__title,
+.banner__slide--active .banner__subtitle {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Tagline styling */
+.banner__tagline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s ease;
+  transition-delay: 0.3s;
+}
+
+.banner__slide--active .banner__tagline {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.banner__tagline-line {
+  width: 60px;
+  height: 1px;
+  background-color: #5dc2a5;
+  transform: scaleX(0);
+  transition: transform 1s ease;
+  transition-delay: 0.6s;
+}
+
+.banner__slide--active .banner__tagline-line {
+  transform: scaleX(1);
+}
+
+.banner__tagline p {
+  font-size: 1.2rem;
+  color: #333;
+  text-align: center;
+}
+
+/* Quote section */
+.banner__quote-section {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  height: 20vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5vh;
+}
+
+.banner__quote {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s ease;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.banner__quote--active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.banner__quote p {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 10px;
+  font-weight: 300;
+}
+
+.banner__quote cite {
+  color: #5dc2a5;
+  font-style: normal;
+  font-size: 1.1rem;
+}
+
+/* Scroll indicator */
+.banner__scroll-indicator {
+  position: absolute;
+  bottom: 30px;
+  right: 5vw;
+  color: #5dc2a5;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  opacity: 0;
+  animation: fadeIn 2s forwards;
+  animation-delay: 1.5s;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Pagination */
+.banner__pagination {
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.banner__dot {
+  width: 50px;
+  height: 3px;
+  background-color: rgba(93, 194, 165, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.banner__dot:hover {
+  background-color: rgba(93, 194, 165, 0.7);
+}
+
+.banner__dot--active {
+  background-color: #5dc2a5;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 1200px) {
+  .banner__title {
+    font-size: 7rem;
+  }
+
+  .banner__subtitle {
+    font-size: 5rem;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .banner__title {
+    font-size: 5.5rem;
+    letter-spacing: 10px;
+  }
+
+  .banner__subtitle {
+    font-size: 4rem;
+    letter-spacing: 8px;
+  }
+
+  .banner__quote p {
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .banner__title {
+    font-size: 4rem;
+    letter-spacing: 8px;
+  }
+
+  .banner__subtitle {
+    font-size: 3rem;
+    letter-spacing: 5px;
+  }
+
+  .banner__quote p {
+    font-size: 1.3rem;
+  }
+
+  .banner__scroll-indicator {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .banner__title {
+    font-size: 3rem;
+    letter-spacing: 5px;
+  }
+
+  .banner__subtitle {
+    font-size: 2.2rem;
+    letter-spacing: 3px;
+  }
+
+  .banner__quote p {
+    font-size: 1.1rem;
+  }
+
+  .banner__dot {
+    width: 30px;
+  }
+}
+/* ubaceno */
+
 .mil-banner .container {
   height: 100%;
   display: -webkit-box;
@@ -2471,12 +2795,72 @@ banner
   justify-content: space-between;
   padding: 0 60px 0 90px;
   background-color: rgb(255, 255, 255);
-  height: 180px;
+  height: 320px;
   position: absolute;
-  top: calc(100vh - 180px);
+  /* top: calc(100vh - 320px); */
   left: 0;
   width: 100%;
 }
+
+.mil-banner-panel .banner-columns {
+  display: flex;
+  width: 100%;
+  gap: 60px;
+  align-items: flex-start;
+}
+
+.mil-banner-panel .banner-column {
+  flex: 1;
+}
+
+.mil-banner-panel .banner-column h3 {
+  color: #2c5aa0;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0 0 15px 0;
+  border-bottom: 2px solid #2c5aa0;
+  padding-bottom: 8px;
+}
+
+.mil-banner-panel .banner-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mil-banner-panel .banner-column li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 8px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #333;
+}
+
+.mil-banner-panel .banner-column li::before {
+  content: "•";
+  color: #2c5aa0;
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .mil-banner-panel .banner-columns {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .mil-banner-personal .mil-banner-content .mil-banner-panel {
+    height: auto;
+    position: relative;
+    top: auto;
+    padding: 30px 20px;
+  }
+}
+
 @media screen and (max-width: 992px) {
   .mil-banner-personal .mil-banner-content .mil-banner-panel {
     -webkit-box-orient: vertical;

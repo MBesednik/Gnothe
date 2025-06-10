@@ -37,7 +37,7 @@
       <!-- cursor end -->
 
       <!-- preloader -->
-      <!-- <div class="mil-preloader">
+      <div class="mil-preloader">
         <div class="mil-preloader-animation">
           <div class="mil-pos-abs mil-animation-1">
             <p class="mil-h3 mil-muted mil-thin">Sigurnost</p>
@@ -51,7 +51,7 @@
             </div>
           </div>
         </div>
-      </div> -->
+      </div>
       <!-- preloader end -->
 
       <!-- scrollbar progress -->
@@ -161,12 +161,7 @@
       </div>
       <!-- frame end -->
 
-      <!-- content -->
-      <div class="mil-content">
-        <div id="swupMain" class="mil-main-transition">
-          <!-- banner -->
-          <section class="mil-banner mil-soft-bg-banner">
-            <div class="mi-invert-fix">
+      <!-- <div class="mi-invert-fix">
               <div class="mil-animation-frame">
                 <div
                   class="mil-animation mil-position-1 mil-scale"
@@ -239,10 +234,10 @@
                       <g>
                         <use xlink:href="#circlePath" fill="none" />
                         <text style="letter-spacing: 6.5px">
-                          <!-- circle text -->
+                           circle text 
                           <textPath xlink:href="#circlePath">
                             Povuci dole - Povuci dole -
-                            <!-- Scroll down - Scroll down - -->
+                            Scroll down - Scroll down -
                           </textPath>
                         </text>
                       </g>
@@ -253,6 +248,97 @@
                     ></a>
                   </div>
                 </div>
+              </div>
+            </div> -->
+
+      <!-- content -->
+      <div class="mil-content">
+        <div id="swupMain" class="mil-main-transition">
+          <!-- banner -->
+          <section class="mil-banner mil-soft-bg-banner">
+            <!-- Background gradient elements -->
+            <div class="banner__bg-gradient banner__bg-gradient--1"></div>
+            <div class="banner__bg-gradient banner__bg-gradient--2"></div>
+
+            <div class="banner__content-wrapper">
+              <!-- Slides -->
+              <div class="banner__slides">
+                <!-- Slide 1 -->
+                <div class="banner__slide banner__slide--active" data-index="0">
+                  <h1 class="banner__title">GNOTHE</h1>
+                  <div class="banner__tagline">
+                    <span class="banner__tagline-line"></span>
+                    <p>Begin the journey of self-knowledge</p>
+                  </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="banner__slide" data-index="1">
+                  <h2 class="banner__subtitle">spoznaj sebe</h2>
+                  <div class="banner__tagline">
+                    <span class="banner__tagline-line"></span>
+                    <p>The path to wisdom starts within</p>
+                  </div>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="banner__slide" data-index="2">
+                  <h2 class="banner__subtitle">know thyself</h2>
+                  <div class="banner__tagline">
+                    <span class="banner__tagline-line"></span>
+                    <p>Ancient wisdom for modern healing</p>
+                  </div>
+                </div>
+
+                <!-- Slide 4 -->
+                <div class="banner__slide" data-index="3">
+                  <h2 class="banner__subtitle">gnothi seauton</h2>
+                  <div class="banner__tagline">
+                    <span class="banner__tagline-line"></span>
+                    <p>The inscription at the Temple of Apollo at Delphi</p>
+                  </div>
+                </div>
+
+                <!-- Slide 5 -->
+                <div class="banner__slide" data-index="4">
+                  <h2 class="banner__subtitle">nosce te ipsum</h2>
+                  <div class="banner__tagline">
+                    <span class="banner__tagline-line"></span>
+                    <p>Latin rendering of the timeless principle</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Quote section -->
+              <div class="banner__quote-section">
+                <div class="banner__quote banner__quote--active" data-index="0">
+                  <p>"Nepoznavanje sebe je početna točka zablude"</p>
+                  <cite>— Sokrat</cite>
+                </div>
+                <div class="banner__quote" data-index="1">
+                  <p>
+                    "One can only know and understand others by first knowing
+                    and understanding yourself – your strengths, your limits,
+                    your prejudices"
+                  </p>
+                </div>
+              </div>
+
+              <!-- Scroll indicator -->
+              <div class="banner__scroll-indicator">
+                <span>Scroll to explore</span>
+              </div>
+
+              <!-- Pagination -->
+              <div class="banner__pagination">
+                <span
+                  class="banner__dot banner__dot--active"
+                  data-index="0"
+                ></span>
+                <span class="banner__dot" data-index="1"></span>
+                <span class="banner__dot" data-index="2"></span>
+                <span class="banner__dot" data-index="3"></span>
+                <span class="banner__dot" data-index="4"></span>
               </div>
             </div>
           </section>
@@ -927,5 +1013,7 @@
     <script src="js/plugins/ScrollTo.min.js"></script>
     <!-- Gnothe js -->
     <script src="js/main.js"></script>
+    <!-- HeroSection js -->
+    <script src="js/heroSection.js"></script>
   </body>
 </html>

@@ -16,7 +16,284 @@
     <!-- Gnothe scss -->
     <link rel="stylesheet" href="css/style.css" />
     <!-- page name -->
-    <title>Gnothe</title>
+    <title>Gnothe - O meni</title>
+
+    <style>
+      /* BEM Methodology CSS for About Page */
+      .about-hero {
+        padding: 120px 0 80px;
+        text-align: center;
+      }
+
+      .about-hero__breadcrumb {
+        font-size: 14px;
+        color: #999;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 40px;
+      }
+
+      .about-hero__title {
+        font-size: 48px;
+        font-weight: 300;
+        color: #333;
+        margin-bottom: 20px;
+        line-height: 1.2;
+      }
+
+      .about-hero__name {
+        font-weight: 600;
+        color: #000;
+      }
+
+      .about-content__container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .about-profile {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: center;
+      }
+
+      .about-profile__image {
+        position: relative;
+      }
+
+      .about-profile__img {
+        width: 100%;
+        height: 620px;
+        object-fit: cover;
+        border-radius: 4px;
+      }
+
+      .about-profile__content {
+        padding-left: 40px;
+      }
+
+      .credentials {
+        margin-bottom: 60px;
+      }
+
+      .credentials__title {
+        font-size: 24px;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 30px;
+        position: relative;
+      }
+
+      .credentials__title::after {
+        content: "";
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 40px;
+        height: 2px;
+        background-color: #7dd3c0;
+      }
+
+      .credentials__list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .credentials__item {
+        font-size: 16px;
+        color: #666;
+        margin-bottom: 12px;
+        padding-left: 20px;
+        position: relative;
+      }
+
+      .credentials__item::before {
+        content: "·";
+        position: absolute;
+        left: 0;
+        color: #7dd3c0;
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+      .education {
+        margin-bottom: 60px;
+      }
+
+      .education__title {
+        font-size: 24px;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 30px;
+        position: relative;
+      }
+
+      .education__title::after {
+        content: "";
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 40px;
+        height: 2px;
+        background-color: #7dd3c0;
+      }
+
+      .education__list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .education__item {
+        font-size: 16px;
+        color: #666;
+        margin-bottom: 12px;
+        padding-left: 20px;
+        position: relative;
+      }
+
+      .education__item::before {
+        content: "·";
+        position: absolute;
+        left: 0;
+        color: #7dd3c0;
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+      .organizations {
+        padding: 80px 0;
+        background-color: #f8f8f8;
+      }
+
+      .organizations__title {
+        text-align: center;
+        font-size: 32px;
+        font-weight: 300;
+        color: #333;
+        margin-bottom: 60px;
+      }
+
+      .organizations__grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 40px;
+        max-width: 800px;
+        margin: 0 auto;
+        align-items: center;
+      }
+
+      .organizations__logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 10px;
+        height: 100px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        transition: transform 0.3s ease;
+      }
+
+      .organizations__logo:hover {
+        transform: translateY(-5px);
+      }
+
+      .organizations__img {
+        max-width: 100%;
+        max-height: 80px;
+        object-fit: contain;
+      }
+
+      .contact-section {
+        padding: 80px 0;
+        text-align: center;
+      }
+
+      .contact-section__title {
+        font-size: 32px;
+        font-weight: 300;
+        color: #333;
+        margin-bottom: 20px;
+      }
+
+      .contact-section__subtitle {
+        font-size: 18px;
+        color: #666;
+        margin-bottom: 40px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .contact-section__btn {
+        display: inline-flex;
+        align-items: center;
+        background-color: #7dd3c0;
+        color: white;
+        padding: 18px 40px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 16px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+      }
+
+      .contact-section__btn:hover {
+        background-color: #6bc4b0;
+        transform: translateY(-2px);
+        color: white;
+        text-decoration: none;
+      }
+
+      .contact-section__btn-icon {
+        margin-left: 15px;
+        width: 20px;
+        height: 20px;
+        background-color: #333;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .contact-section__btn-icon::after {
+        content: "→";
+        color: white;
+        font-size: 12px;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .about-hero__title {
+          font-size: 36px;
+        }
+
+        .about-profile {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+
+        .about-profile__content {
+          padding-left: 0;
+        }
+
+        .about-profile__img {
+          height: 400px;
+        }
+
+        .organizations__grid {
+          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+          gap: 20px;
+        }
+      }
+    </style>
   </head>
 
   <body>
@@ -36,24 +313,6 @@
       </div>
       <!-- cursor end -->
 
-      <!-- preloader -->
-      <!-- <div class="mil-preloader">
-        <div class="mil-preloader-animation">
-          <div class="mil-pos-abs mil-animation-1">
-            <p class="mil-h3 mil-muted mil-thin">Pioneering</p>
-            <p class="mil-h3 mil-muted">Creative</p>
-            <p class="mil-h3 mil-muted mil-thin">Excellence</p>
-          </div>
-          <div class="mil-pos-abs mil-animation-2">
-            <div class="mil-reveal-frame">
-              <p class="mil-reveal-box"></p>
-              <p class="mil-h3 mil-muted mil-thin">Gnothe.com</p>
-            </div>
-          </div>
-        </div>
-      </div> -->
-      <!-- preloader end -->
-
       <!-- scrollbar progress -->
       <div class="mil-progress-track">
         <div class="mil-progress"></div>
@@ -67,7 +326,6 @@
           <a href="index.html" class="mil-logo">
             <div class="gnothe-logo">
               <div class="gnothe-main">GNOTHE</div>
-              <!-- <div class="gnothe-subtitle">COACHING & COUNSELING</div> -->
             </div>
           </a>
           <div class="mil-menu-btn">
@@ -140,7 +398,6 @@
           <a href="index.html" class="mil-logo">
             <div class="gnothe-logo">
               <div class="gnothe-main">GNOTHE</div>
-              <!-- <div class="gnothe-subtitle">COACHING & COUNSELING</div> -->
             </div>
           </a>
           <div class="mil-menu-btn">
@@ -164,90 +421,252 @@
       <!-- content -->
       <div class="mil-content">
         <div id="swupMain" class="mil-main-transition">
-          <!-- banner -->
-          <section class="mil-banner-personal">
-            <div class="mil-animation-frame">
-              <div
-                class="mil-animation mil-position-4 mil-dark mil-scale"
-                data-value-1="7"
-                data-value-2="1.4"
-                style="right: 25%"
-              ></div>
+          <!-- About Hero Section -->
+          <section class="about-hero">
+            <div class="mil-banner-content mil-up">
+              <div class="container">
+                <ul class="mil-breadcrumbs mil-mb-60">
+                  <li><a href="index.html">Početna</a></li>
+                  <li><a href="about.html">O meni</a></li>
+                </ul>
+                <h1 class="mil-mb-40">Melita Zajkovski</h1>
+              </div>
             </div>
+          </section>
 
-            <div class="container">
-              <div class="mil-banner-content mil-up">
-                <div class="row align-items-center">
-                  <div class="col-lg-6">
-                    <div class="mil-personal-text">
-                      <p class="mil-mb-60">Pozdrav, ja sam</p>
-                      <h1 class="mil-mb-60">Melita <br />Zajkovski</h1>
-                      <div class="row justify-content-center">
-                        <div class="col-lg-8">
-                          <span class="mil-suptitle mil-suptitle-dark mil-mb-60"
-                            >Članica udruženja za transakcijsku analizu: <br />
-                            UTA, EATA, ITAA i stručnjakinja za EMDR terapiju
-                          </span>
-                        </div>
-                      </div>
-                      <img
-                        src="./img/logo/EAP_Adria_logotip_transparent.png"
-                        alt=""
-                        style="width: 250px"
-                      />
-                    </div>
-                  </div>
-                  <div class="col-lg-6">
-                    <div class="mil-portrait-frame">
-                      <img
-                        src="img/faces/business_woman-removebg.png"
-                        alt="Portrait"
-                      />
-                    </div>
-                  </div>
+          <!-- About Content -->
+          <section class="about-content">
+            <div class="about-content__container">
+              <!-- Profile Section -->
+              <div class="about-profile">
+                <div class="about-profile__image">
+                  <img
+                    src="img/melita/melita02-removebg.png"
+                    alt="Melita Zajkovski"
+                    class="about-profile__img"
+                  />
                 </div>
 
-                <div class="mil-banner-panel">
-                  <h5>Profesionalno vođenje kroz životne izazove</h5>
+                <div class="about-profile__content">
+                  <!-- Credentials -->
+                  <div class="credentials">
+                    <h2 class="credentials__title">Stručne kvalifikacije</h2>
+                    <ul class="credentials__list">
+                      <li class="credentials__item">
+                        Članica udruženja za transakcijsku analizu
+                      </li>
+                      <li class="credentials__item">UTA, EATA, ITAA</li>
+                      <li class="credentials__item">
+                        Članica mreže savjetnika pri EAP Hrvatska
+                      </li>
+                      <li class="credentials__item">
+                        Članica udruženja EMDR Hrvatska
+                      </li>
+                      <li class="credentials__item">DOBA online mentor</li>
+                    </ul>
+                  </div>
 
-                  <div class="mil-right">
-                    <div class="mil-social-frame">
-                      <ul class="mil-social-icons mil-dark">
-                        <li>
-                          <a href="#." target="_blank" class="social-icon"
-                            ><i class="far fa-circle"></i
-                          ></a>
-                        </li>
-                        <li>
-                          <a href="#." target="_blank" class="social-icon"
-                            ><i class="far fa-circle"></i
-                          ></a>
-                        </li>
-                        <li>
-                          <a href="#." target="_blank" class="social-icon"
-                            ><i class="far fa-circle"></i
-                          ></a>
-                        </li>
-                        <li>
-                          <a href="#." target="_blank" class="social-icon"
-                            ><i class="far fa-circle"></i
-                          ></a>
-                        </li>
-                      </ul>
-                    </div>
-
-                    <a
-                      href="#"
-                      onclick="window.open('mailto:melita.zajkovski@gmail.com','_self')"
-                      class="mil-button mil-arrow-place"
-                      >Kontaktirajte me</a
-                    >
+                  <!-- Education -->
+                  <div class="education">
+                    <h2 class="education__title">Edukacije</h2>
+                    <ul class="education__list">
+                      <li class="education__item">
+                        Propedeutika psihoterapije
+                      </li>
+                      <li class="education__item">
+                        Transakcijska analiza, smjer psihoterapija
+                      </li>
+                      <li class="education__item">EMDR Level 2</li>
+                      <li class="education__item">Sistemske konstelacije</li>
+                      <li class="education__item">Polivagalna teorija</li>
+                      <li class="education__item">
+                        Rad s neurodivergentnim osobama
+                      </li>
+                      <li class="education__item">
+                        TRE – tension & trauma release exercises
+                      </li>
+                      <li class="education__item">
+                        Ostale edukacije iz područja psihoterapije i coachinga
+                      </li>
+                    </ul>
                   </div>
                 </div>
               </div>
             </div>
           </section>
-          <!-- banner end -->
+
+          <!-- Organizations Section -->
+          <section class="organizations">
+            <div class="about-content__container">
+              <h2 class="organizations__title">Članstvo u organizacijama</h2>
+              <div class="organizations__grid">
+                <div class="organizations__logo">
+                  <img
+                    src="img/logo/EAP_Adria_logotip_transparent.png"
+                    alt="EAP Adria"
+                    class="organizations__img"
+                  />
+                </div>
+                <div class="organizations__logo">
+                  <img
+                    src="img/logo/ITAA-Member-Badges-2024-web.png"
+                    alt="EAP Hrvatska"
+                    class="organizations__img"
+                  />
+                </div>
+                <div class="organizations__logo">
+                  <div
+                    style="
+                      font-size: 18px;
+                      font-weight: 600;
+                      color: #333;
+                      text-align: center;
+                    "
+                  >
+                    UTA
+                  </div>
+                </div>
+                <div class="organizations__logo">
+                  <div
+                    style="
+                      font-size: 18px;
+                      font-weight: 600;
+                      color: #333;
+                      text-align: center;
+                    "
+                  >
+                    EATA
+                  </div>
+                </div>
+                <div class="organizations__logo">
+                  <div
+                    style="
+                      font-size: 18px;
+                      font-weight: 600;
+                      color: #333;
+                      text-align: center;
+                    "
+                  >
+                    ITAA
+                  </div>
+                </div>
+                <div class="organizations__logo">
+                  <div
+                    style="
+                      font-size: 16px;
+                      font-weight: 600;
+                      color: #333;
+                      text-align: center;
+                    "
+                  >
+                    EMDR<br />Hrvatska
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- footer -->
+          <footer class="mil-soft-bg">
+            <div class="mi-invert-fix">
+              <div class="container mil-p-120-60">
+                <div class="row justify-content-between">
+                  <div class="col-md-4 col-lg-4 mil-mb-60">
+                    <div class="mil-muted mil-logo mil-up mil-mb-30">
+                      <img
+                        style="width: 300px"
+                        src="./img/logo/GNOTHE grey-02.png"
+                        alt=""
+                      />
+                    </div>
+
+                    <p class="mil-up mil-mb-30">Stupimo u kontakt:</p>
+
+                    <div class="mil-up">
+                      <a
+                        href="#"
+                        onclick="window.open('mailto:melita.zajkovski@gmail.com','_self')"
+                        class="mil-button mil-arrow-place"
+                        >Kontaktirajte me</a
+                      >
+                    </div>
+                  </div>
+                  <div class="col-md-7 col-lg-6">
+                    <div class="row justify-content-end">
+                      <div class="col-md-6 col-lg-7">
+                        <nav class="mil-footer-menu mil-mb-60">
+                          <ul>
+                            <li class="mil-up">
+                              <a href="index.html">Naslovna</a>
+                            </li>
+                            <li class="mil-up">
+                              <a href="#">O meni</a>
+                            </li>
+                            <li class="mil-up mil-active">
+                              <a href="service.html">Usluge</a>
+                            </li>
+                            <li class="mil-up">
+                              <a href="test.html">Test</a>
+                            </li>
+                            <li class="mil-up">
+                              <a href="gallery.html">Galerija</a>
+                            </li>
+                            <li class="mil-up">
+                              <a href="contact.html">Kontakt</a>
+                            </li>
+                          </ul>
+                        </nav>
+                      </div>
+                      <div class="col-md-6 col-lg-5">
+                        <h6 class="mil-up mil-mb-30">Hrvatska, Zagreb</h6>
+
+                        <p class="mil-up">
+                          melita.zajkovski@gmail.com <br />
+                          Ul. kardinala Alojzija Stepinca 8A, 10290, Zaprešić<br />
+                          <span class="mil-no-wrap">+385 98 811 651</span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row justify-content-between flex-sm-row-reverse">
+                  <div class="col-md-4 col-lg-6 mil-mb-60">
+                    <div class="mil-vert-between">
+                      <div class="mil-mb-30">
+                        <ul class="mil-social-icons mil-up">
+                          <li>
+                            <a href="#." target="_blank" class="social-icon">
+                              <i class="far fa-circle"></i
+                            ></a>
+                          </li>
+                          <li>
+                            <a href="#." target="_blank" class="social-icon">
+                              <i class="far fa-circle"></i
+                            ></a>
+                          </li>
+                          <li>
+                            <a href="#." target="_blank" class="social-icon">
+                              <i class="far fa-circle"></i
+                            ></a>
+                          </li>
+                          <li>
+                            <a href="#." target="_blank" class="social-icon">
+                              <i class="far fa-circle"></i
+                            ></a>
+                          </li>
+                        </ul>
+                      </div>
+                      <p class="mil-up">
+                        © Copyright 2025 - M.B. All Rights Reserved.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </footer>
+          <!-- footer end -->
 
           <!-- hidden elements -->
           <div class="mil-hidden-elements">
