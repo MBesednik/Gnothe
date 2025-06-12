@@ -16,15 +16,16 @@
     <!-- Gnothe scss -->
     <link rel="stylesheet" href="css/style.css" />
     <!-- page name -->
-    <title>Gnothe - O meni</title>
+    <title>Gnothe</title>
 
     <style>
-      /* BEM Methodology CSS for About Page */
+      /* -------------------------------------------------
+   ABOUT — HERO
+------------------------------------------------- */
       .about-hero {
         padding: 120px 0 80px;
         text-align: center;
       }
-
       .about-hero__breadcrumb {
         font-size: 14px;
         color: #999;
@@ -32,7 +33,6 @@
         letter-spacing: 2px;
         margin-bottom: 40px;
       }
-
       .about-hero__title {
         font-size: 48px;
         font-weight: 300;
@@ -40,18 +40,19 @@
         margin-bottom: 20px;
         line-height: 1.2;
       }
-
       .about-hero__name {
         font-weight: 600;
         color: #000;
       }
 
+      /* -------------------------------------------------
+   GRID
+------------------------------------------------- */
       .about-content__container {
         max-width: 1200px;
         margin: 0 auto;
         padding: 0 20px;
       }
-
       .about-profile {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -59,70 +60,69 @@
         align-items: center;
       }
 
+      /* -------------------------------------------------
+   PROFILNA + “BLOB”
+------------------------------------------------- */
       .about-profile__image {
         position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 500px; /* malo uže za sklad */
+        margin: 0 auto;
+        overflow: visible;
+        isolation: isolate;
       }
 
-      .about-profile__img {
-        width: 100%;
-        height: 620px;
-        object-fit: cover;
-        border-radius: 4px;
-      }
-
-      .about-profile__content {
-        padding-left: 40px;
-      }
-
-      .credentials {
-        margin-bottom: 60px;
-      }
-
-      .credentials__title {
-        font-size: 24px;
-        font-weight: 600;
-        color: #333;
-        margin-bottom: 30px;
-        position: relative;
-      }
-
-      .credentials__title::after {
+      /* 1) plavi blob */
+      .about-profile__image::before {
         content: "";
         position: absolute;
-        bottom: -8px;
-        left: 0;
-        width: 40px;
-        height: 2px;
-        background-color: #7dd3c0;
+        inset: 0;
+        transform: scale(0.95) rotate(-4deg);
+        background: radial-gradient(
+          80% 80% at 30% 25%,
+          #33c8b4 0%,
+          #dce2e4 100%
+        );
+        border-radius: 60% 40% 50% 45% / 48% 60% 40% 52%;
+        z-index: -1;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12); /* nježnija sjena */
       }
 
-      .credentials__list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-      }
-
-      .credentials__item {
-        font-size: 16px;
-        color: #666;
-        margin-bottom: 12px;
-        padding-left: 20px;
-        position: relative;
-      }
-
-      .credentials__item::before {
-        content: "·";
+      /* 2) bijela maska – tanka, samo rub */
+      .about-profile__image::after {
+        content: "";
         position: absolute;
-        left: 0;
-        color: #7dd3c0;
-        font-size: 20px;
-        font-weight: bold;
+        bottom: -2%;
+        left: 50%;
+        width: 115%;
+        height: 14%; /* ↓ još tanje */
+        background: #fff;
+        border-radius: 50%;
+        transform: translateX(-50%) rotate(-2deg);
+        z-index: 1;
+        /* filter: blur(2.5px); */
       }
 
+      /* 3) fotografija */
+      .about-profile__img {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 4/5;
+        object-fit: cover;
+        clip-path: ellipse(47% 49% at 50% 50%);
+      }
+
+      /* -------------------------------------------------
+   KVALIFIKACIJE / EDUKACIJE
+------------------------------------------------- */
+      .credentials,
       .education {
         margin-bottom: 60px;
       }
 
+      .credentials__title,
       .education__title {
         font-size: 24px;
         font-weight: 600;
@@ -130,7 +130,7 @@
         margin-bottom: 30px;
         position: relative;
       }
-
+      .credentials__title::after,
       .education__title::after {
         content: "";
         position: absolute;
@@ -138,15 +138,16 @@
         left: 0;
         width: 40px;
         height: 2px;
-        background-color: #7dd3c0;
+        background: #7dd3c0;
       }
 
+      .credentials__list,
       .education__list {
         list-style: none;
         padding: 0;
         margin: 0;
       }
-
+      .credentials__item,
       .education__item {
         font-size: 16px;
         color: #666;
@@ -154,7 +155,7 @@
         padding-left: 20px;
         position: relative;
       }
-
+      .credentials__item::before,
       .education__item::before {
         content: "·";
         position: absolute;
@@ -164,11 +165,13 @@
         font-weight: bold;
       }
 
+      /* -------------------------------------------------
+   ORGANIZACIJE
+------------------------------------------------- */
       .organizations {
         padding: 80px 0;
-        background-color: #f8f8f8;
+        background: #f8f8f8;
       }
-
       .organizations__title {
         text-align: center;
         font-size: 32px;
@@ -176,7 +179,6 @@
         color: #333;
         margin-bottom: 60px;
       }
-
       .organizations__grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -185,7 +187,6 @@
         margin: 0 auto;
         align-items: center;
       }
-
       .organizations__logo {
         display: flex;
         justify-content: center;
@@ -193,48 +194,45 @@
         text-align: center;
         padding: 10px;
         height: 100px;
-        background-color: white;
+        background: #fff;
         border-radius: 8px;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         transition: transform 0.3s ease;
       }
-
       .organizations__logo:hover {
         transform: translateY(-5px);
       }
-
       .organizations__img {
         max-width: 100%;
         max-height: 80px;
         object-fit: contain;
       }
 
+      /* -------------------------------------------------
+   KONTAKT
+------------------------------------------------- */
       .contact-section {
         padding: 80px 0;
         text-align: center;
       }
-
       .contact-section__title {
         font-size: 32px;
         font-weight: 300;
         color: #333;
         margin-bottom: 20px;
       }
-
       .contact-section__subtitle {
         font-size: 18px;
         color: #666;
         margin-bottom: 40px;
         max-width: 600px;
-        margin-left: auto;
-        margin-right: auto;
+        margin-inline: auto;
       }
-
       .contact-section__btn {
         display: inline-flex;
         align-items: center;
-        background-color: #7dd3c0;
-        color: white;
+        background: #7dd3c0;
+        color: #fff;
         padding: 18px 40px;
         border-radius: 50px;
         text-decoration: none;
@@ -244,32 +242,31 @@
         letter-spacing: 1px;
         transition: all 0.3s ease;
       }
-
       .contact-section__btn:hover {
-        background-color: #6bc4b0;
+        background: #6bc4b0;
         transform: translateY(-2px);
-        color: white;
+        color: #fff;
         text-decoration: none;
       }
-
       .contact-section__btn-icon {
         margin-left: 15px;
         width: 20px;
         height: 20px;
-        background-color: #333;
+        background: #333;
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
       }
-
       .contact-section__btn-icon::after {
         content: "→";
-        color: white;
+        color: #fff;
         font-size: 12px;
       }
 
-      /* Responsive Design */
+      /* -------------------------------------------------
+   RESPONSIVE
+------------------------------------------------- */
       @media (max-width: 768px) {
         .about-hero__title {
           font-size: 36px;
@@ -279,13 +276,25 @@
           grid-template-columns: 1fr;
           gap: 40px;
         }
-
         .about-profile__content {
           padding-left: 0;
         }
 
+        .about-profile__image {
+          max-width: 320px;
+        }
+
+        .about-profile__image::before {
+          transform: scale(1) rotate(-3deg);
+        }
+        .about-profile__image::after {
+          bottom: -4%;
+          width: 125%;
+          height: 18%;
+        }
+
         .about-profile__img {
-          height: 400px;
+          clip-path: ellipse(48% 49% at 50% 50%);
         }
 
         .organizations__grid {
