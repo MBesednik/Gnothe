@@ -17,6 +17,104 @@
     <link rel="stylesheet" href="css/style.css" />
     <!-- page name -->
     <title>Gnothe</title>
+
+    <style>
+      /* ------------- 3-D flip core ------------- */
+      .cards-container {
+        display: flex;
+        flex-wrap: wrap; /* omogućuje prijelom u novi red po potrebi */
+        justify-content: center;
+        gap: 20px; /* razmak među karticama */
+        perspective: 800px; /* globalni 3-D kontekst */
+      }
+
+      .card-container {
+        width: 260px;
+        height: 320px;
+      }
+
+      .card {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        transform-style: preserve-3d;
+        transition: transform 0.7s;
+        cursor: pointer;
+      }
+
+      .card-container:hover .card {
+        transform: rotateY(180deg);
+      }
+
+      /* ------------- prednja & stražnja strana ------------- */
+      .front,
+      .back {
+        position: absolute;
+        inset: 0;
+        padding: 24px 20px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+        border-radius: 12px;
+        background: #fff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        backface-visibility: hidden;
+      }
+
+      .front {
+        font: 700 1.1rem/1.3 "Helvetica Neue", sans-serif;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+      }
+
+      .back {
+        transform: rotateY(180deg);
+        font: 400 0.95rem/1.5 "Helvetica Neue", sans-serif;
+        color: #555;
+      }
+
+      .event-item__btn {
+        background-color: #7dd3c0;
+        color: white;
+        padding: 12px 24px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .event-item__btn:hover {
+        background-color: #6bc4b0;
+        transform: translateY(-2px);
+        color: white;
+        text-decoration: none;
+      }
+
+      .event-item__btn-icon {
+        width: 16px;
+        height: 16px;
+      }
+
+      /* ------------- responzivno: kolona ispod 600 px ------------- */
+      @media (max-width: 600px) {
+        .cards-container {
+          flex-direction: column;
+          align-items: center;
+        }
+        .event-item__btn {
+          text-align: center;
+          justify-content: center;
+        }
+      }
+    </style>
   </head>
 
   <body>
@@ -194,6 +292,96 @@
           <!-- service -->
           <section id="service">
             <div class="container mil-p-120-90">
+              <div class="cards-container">
+                <!-- 1 – Individualno -->
+                <div class="card-container">
+                  <div class="card">
+                    <div class="front">INDIVIDUALNO<br />SAVJETOVANJE</div>
+                    <div class="back">
+                      <p style="margin-bottom: 15px">
+                        Individualni rad kroz principe transakcijske analize u
+                        kombinaciji s EMDR-om, TRE-om i sistemskim
+                        konstelacijama. Susret traje 60 min i može biti uživo
+                        ili online.
+                      </p>
+
+                      <a
+                        href="#"
+                        onclick="window.open('mailto:melita.zajkovski@gmail.com','_self')"
+                        class="event-item__btn"
+                        >Prijavi se</a
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 2 – Partnersko -->
+                <div class="card-container">
+                  <div class="card">
+                    <div class="front">PARTNERSKO<br />SAVJETOVANJE</div>
+                    <div class="back">
+                      <p style="margin-bottom: 15px">
+                        Do 10 susreta po 75;min za bolju komunikaciju i
+                        razumijevanje dinamike odnosa (par ili roditelj–dijete).
+                      </p>
+                      <a
+                        href="#"
+                        onclick="window.open('mailto:melita.zajkovski@gmail.com','_self')"
+                        class="event-item__btn"
+                        >Prijavi se</a
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 3 – Grupno -->
+                <div class="card-container">
+                  <div class="card">
+                    <div class="front">GRUPNO<br />SAVJETOVANJE</div>
+                    <div class="back">
+                      <p style="margin-bottom: 15px">
+                        Sigurno okruženje za osobe sličnih iskustava. Članovi si
+                        međusobno pomažu nositi se sa stresom i mentalnim
+                        izazovima.
+                      </p>
+
+                      <em style="margin-bottom: 15px">
+                        Napomena: grupe podrške nisu zamjena za psihoterapiju.
+                      </em>
+                      <a
+                        href="#"
+                        onclick="window.open('mailto:melita.zajkovski@gmail.com','_self')"
+                        class="event-item__btn"
+                        >Prijavi se</a
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 4 – EAP program -->
+                <div class="card-container">
+                  <div class="card">
+                    <div class="front">
+                      PROGRAM PODRŠKE<br />ZAPOSLENIKA EAP
+                    </div>
+                    <div class="back">
+                      <p style="margin-bottom: 15px">
+                        Savjetovanje za zaposlenike koji se suočavaju sa stresom
+                        na radnom mjestu ili teškim okolnostima koje utječu na
+                        kvalitetu života i radnu sposobnost.
+                      </p>
+
+                      <a
+                        href="#"
+                        onclick="window.open('mailto:melita.zajkovski@gmail.com','_self')"
+                        class="event-item__btn"
+                        >Prijavi se</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <div class="row justify-content-between">
                 <!-- <div class="col-lg-4 mil-relative mil-mb-90">
                   <h4 class="mil-up mil-mb-30">
@@ -207,7 +395,7 @@
                     ne služe vašoj dobrobiti.
                   </p>
                 </div> -->
-                <div class="col-lg-6">
+                <!-- <div class="col-lg-6">
                   <div class="mil-accordion-group mil-up">
                     <div class="mil-accordion-menu">
                       <p class="mil-accordion-head">
@@ -294,7 +482,7 @@
                       </p>
                     </div>
                   </div>
-                </div>
+                </div> -->
               </div>
             </div>
           </section>
