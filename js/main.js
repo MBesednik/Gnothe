@@ -9,6 +9,132 @@ p.s. I am available for Freelance hire (UI design, web development). email: mill
 
 ------------------------------------------- */
 
+// Paralaks efekt na hero sliku
+window.addEventListener("scroll", () => {
+  const scrolled = window.pageYOffset;
+  const heroImage = document.querySelector(".hero__image");
+
+  if (heroImage && scrolled < window.innerHeight) {
+    heroImage.style.transform = `translateY(${scrolled * 0.5}px)`;
+  }
+});
+
+// Smooth scroll na klik scroll indikatora
+document
+  .querySelector(".hero__scroll-indicator")
+  ?.addEventListener("click", () => {
+    window.scrollTo({
+      top: window.innerHeight,
+      behavior: "smooth",
+    });
+  });
+
+// Promjena boje logo i hamburger menu na scroll
+window.addEventListener("scroll", () => {
+  const scrolled = window.pageYOffset;
+  const heroHeight = document.querySelector(".hero").offsetHeight;
+
+  // Provjeri je li menu otvoren
+  const menuFrame = document.querySelector(".mil-menu-frame");
+  const isMenuOpen = menuFrame && menuFrame.classList.contains("mil-active");
+
+  // Ne mijenjaj boju ako je menu otvoren
+  if (!isMenuOpen) {
+    if (scrolled > heroHeight * 0.95) {
+      document.body.classList.add("scrolled-past-hero");
+    } else {
+      document.body.classList.remove("scrolled-past-hero");
+    }
+  }
+});
+
+// Inicijalna provjera pri učitavanju stranice
+document.addEventListener("DOMContentLoaded", () => {
+  const scrolled = window.pageYOffset;
+  const heroHeight = document.querySelector(".hero")?.offsetHeight || 0;
+
+  if (scrolled > heroHeight * 0.95) {
+    document.body.classList.add("scrolled-past-hero");
+  }
+});
+
+// Ponovno postavi boju nakon zatvaranja menija
+document.addEventListener("click", (e) => {
+  if (e.target.closest(".mil-menu-btn")) {
+    setTimeout(() => {
+      const menuFrame = document.querySelector(".mil-menu-frame");
+      const isMenuOpen =
+        menuFrame && menuFrame.classList.contains("mil-active");
+
+      if (!isMenuOpen) {
+        const scrolled = window.pageYOffset;
+        const heroHeight = document.querySelector(".hero")?.offsetHeight || 0;
+
+        if (scrolled > heroHeight * 0.95) {
+          document.body.classList.add("scrolled-past-hero");
+        } else {
+          document.body.classList.remove("scrolled-past-hero");
+        }
+      }
+    }, 300); // Sačekaj da se završi animacija
+  }
+});
+
+// Prati promjene na .mil-menu-frame za fallback podršku
+const observeMenuFrame = () => {
+  const menuFrame = document.querySelector(".mil-menu-frame");
+  if (!menuFrame) return;
+
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.attributeName === "class") {
+        if (menuFrame.classList.contains("mil-active")) {
+          document.body.classList.add("menu-is-open");
+        } else {
+          document.body.classList.remove("menu-is-open");
+
+          // Ponovno provjeri scroll poziciju
+          const scrolled = window.pageYOffset;
+          const heroHeight = document.querySelector(".hero")?.offsetHeight || 0;
+
+          if (scrolled > heroHeight * 0.95) {
+            document.body.classList.add("scrolled-past-hero");
+          } else {
+            document.body.classList.remove("scrolled-past-hero");
+          }
+        }
+      }
+    });
+  });
+
+  observer.observe(menuFrame, { attributes: true });
+};
+
+// Pokreni observer kada je DOM spreman
+document.addEventListener("DOMContentLoaded", observeMenuFrame);
+
+// Promjena boje logo i hamburger menu na scroll
+window.addEventListener("scroll", () => {
+  const scrolled = window.pageYOffset;
+  const heroHeight = document.querySelector(".hero").offsetHeight;
+
+  if (scrolled > heroHeight * 0.95) {
+    document.body.classList.add("scrolled-past-hero");
+  } else {
+    document.body.classList.remove("scrolled-past-hero");
+  }
+});
+
+// Inicijalna provjera pri učitavanju stranice
+document.addEventListener("DOMContentLoaded", () => {
+  const scrolled = window.pageYOffset;
+  const heroHeight = document.querySelector(".hero")?.offsetHeight || 0;
+
+  if (scrolled > heroHeight * 0.95) {
+    document.body.classList.add("scrolled-past-hero");
+  }
+});
+
 $(function () {
   "use strict";
 
