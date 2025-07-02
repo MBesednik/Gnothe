@@ -19,25 +19,18 @@
     <title>Gnothe - Najave</title>
 
     <style>
-      /* BEM Methodology CSS for Announcements Page */
+      /* Modern Clean Design for Announcements Page */
       .announcements-hero {
         padding: 120px 0 80px;
         text-align: center;
-      }
-
-      .announcements-hero__breadcrumb {
-        font-size: 14px;
-        color: #999;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        margin-bottom: 40px;
+        background-color: #fafafa;
       }
 
       .announcements-hero__title {
-        font-size: 48px;
+        font-size: 42px;
         font-weight: 300;
-        color: #333;
-        margin-bottom: 20px;
+        color: #1a1a1a;
+        margin-bottom: 10px;
         line-height: 1.2;
       }
 
@@ -49,275 +42,443 @@
       }
 
       .announcements-content {
-        padding: 80px 0;
+        padding: 100px 0;
+        background-color: #fff;
       }
 
       .announcements-content__container {
         max-width: 1200px;
         margin: 0 auto;
-        padding: 0 20px;
+        padding: 0 40px;
       }
 
       .disclaimer {
-        background-color: #fff3cd;
-        border: 1px solid #ffeaa7;
-        border-radius: 8px;
-        padding: 20px;
-        margin-bottom: 60px;
+        background: linear-gradient(135deg, #fff3cd 0%, #ffeeba 100%);
+        border-radius: 12px;
+        padding: 20px 30px;
+        margin-bottom: 80px;
         text-align: center;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        box-shadow: 0 4px 15px rgba(255, 193, 7, 0.1);
       }
 
       .disclaimer__text {
         color: #856404;
-        font-size: 16px;
+        font-size: 15px;
         font-weight: 500;
         margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
       }
 
+      /* Horizontal Event Cards */
       .events-list {
-        max-width: 800px;
-        margin: 0 auto 80px;
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+        margin-bottom: 100px;
       }
 
-      .event-item {
-        background-color: white;
+      .event-card {
+        background: #fff;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 1px solid #f0f0f0;
+        display: flex;
+        flex-direction: row;
+        min-height: 300px;
+      }
+
+      .event-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+      }
+
+      /* Left Side - Header & Main Info */
+      .event-card__left {
+        flex: 0 0 35%;
+        background: linear-gradient(135deg, #7dd3c0 0%, #6bc4b0 100%);
         padding: 40px;
-        margin-bottom: 40px;
-        border-left: 4px solid #7dd3c0;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
-        transition: all 0.3s ease;
-      }
-
-      .event-item:last-child {
-        margin-bottom: 0;
-      }
-
-      .event-item__header {
-        margin-bottom: 25px;
-      }
-
-      .event-item__badge {
-        background-color: #7dd3c0;
         color: white;
-        padding: 6px 12px;
-        border-radius: 4px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .event-card__badge {
+        background-color: rgba(255, 255, 255, 0.2);
+        color: white;
+        padding: 6px 14px;
+        border-radius: 20px;
         font-size: 11px;
         font-weight: 600;
         text-transform: uppercase;
-        letter-spacing: 1px;
-        margin-bottom: 15px;
+        letter-spacing: 1.2px;
         display: inline-block;
+        margin-bottom: 20px;
+        backdrop-filter: blur(10px);
+        align-self: flex-start;
       }
 
-      .event-item__title {
+      .event-card__title {
         font-size: 28px;
         font-weight: 600;
-        margin-bottom: 8px;
+        margin-bottom: 15px;
         line-height: 1.3;
-        color: #333;
-      }
-
-      .event-item__schedule {
-        font-size: 18px;
-        color: #7dd3c0;
-        font-weight: 500;
-      }
-
-      .event-item__content {
-        margin-bottom: 30px;
-      }
-
-      .event-item__description {
-        color: #666;
-        line-height: 1.6;
-        margin-bottom: 25px;
-        font-size: 16px;
-      }
-
-      .event-details {
-        margin-bottom: 30px;
-      }
-
-      .event-details__grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-        gap: 20px;
-        margin-bottom: 25px;
-      }
-
-      .event-details__item {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-      }
-
-      .event-details__icon {
-        width: 40px;
-        height: 40px;
-        background-color: #f8f9fa;
-        border: 2px solid #7dd3c0;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-      }
-
-      .event-details__info {
-        flex: 1;
-      }
-
-      .event-details__label {
-        font-size: 12px;
-        color: #999;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        margin-bottom: 4px;
-      }
-
-      .event-details__value {
-        font-size: 16px;
-        font-weight: 600;
-        color: #333;
-      }
-
-      .event-item__footer {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 15px;
-        padding-top: 20px;
-        border-top: 1px solid #f0f0f0;
-      }
-
-      .event-item__price {
-        font-size: 24px;
-        font-weight: 700;
-        color: #7dd3c0;
-      }
-
-      .event-item__currency {
-        font-size: 16px;
-        color: #666;
-        margin-left: 4px;
-      }
-
-      .event-item__btn {
-        background-color: #7dd3c0;
         color: white;
-        padding: 12px 24px;
-        border-radius: 6px;
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 14px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        transition: all 0.3s ease;
-        display: inline-flex;
+      }
+
+      .event-card__schedule {
+        font-size: 16px;
+        color: rgba(255, 255, 255, 0.9);
+        font-weight: 400;
+        display: flex;
         align-items: center;
         gap: 8px;
-      }
-
-      .event-item__btn:hover {
-        background-color: #6bc4b0;
-        transform: translateY(-2px);
-        color: white;
-        text-decoration: none;
-      }
-
-      .event-item__btn-icon {
-        width: 16px;
-        height: 16px;
-      }
-
-      .contact-section {
-        background-color: #f8f9fa;
-        padding: 80px 0;
-        text-align: center;
-      }
-
-      .contact-section__title {
-        font-size: 32px;
-        font-weight: 300;
-        color: #333;
         margin-bottom: 20px;
       }
 
-      .contact-section__subtitle {
-        font-size: 18px;
-        color: #666;
-        margin-bottom: 40px;
-        max-width: 600px;
-        margin-left: auto;
-        margin-right: auto;
+      .event-card__price-wrapper {
+        margin-top: auto;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
       }
 
-      .contact-section__btn {
-        display: inline-flex;
-        align-items: center;
-        background-color: #7dd3c0;
-        color: white;
-        padding: 18px 40px;
-        border-radius: 6px;
-        text-decoration: none;
-        font-weight: 500;
-        font-size: 16px;
+      .event-card__price-label {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.8);
         text-transform: uppercase;
-        letter-spacing: 1px;
-        transition: all 0.3s ease;
+        letter-spacing: 0.5px;
+        margin-bottom: 8px;
       }
 
-      .contact-section__btn:hover {
-        background-color: #6bc4b0;
-        transform: translateY(-2px);
+      .event-card__price {
+        font-size: 32px;
+        font-weight: 700;
         color: white;
-        text-decoration: none;
+        display: flex;
+        align-items: baseline;
       }
 
-      .contact-section__btn-icon {
-        margin-left: 15px;
-        width: 20px;
-        height: 20px;
-        background-color: #333;
-        border-radius: 50%;
+      .event-card__currency {
+        font-size: 20px;
+        color: rgba(255, 255, 255, 0.9);
+        margin-left: 5px;
+        font-weight: 400;
+      }
+
+      /* Right Side - Details */
+      .event-card__right {
+        flex: 1;
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .event-card__description {
+        color: #555;
+        line-height: 1.7;
+        margin-bottom: 25px;
+        font-size: 15px;
+      }
+
+      /* Quick Info Pills */
+      .event-card__quick-info {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-bottom: 25px;
+      }
+
+      .info-pill {
+        background-color: #f8f9fa;
+        padding: 10px 18px;
+        border-radius: 25px;
+        font-size: 14px;
+        color: #555;
         display: flex;
         align-items: center;
-        justify-content: center;
+        gap: 8px;
+        border: 1px solid #e9ecef;
       }
 
-      .contact-section__btn-icon::after {
-        content: "→";
+      .info-pill__icon {
+        width: 18px;
+        height: 18px;
+        color: #7dd3c0;
+      }
+
+      .info-pill__label {
+        font-weight: 500;
+      }
+
+      /* Date Pills */
+      .event-card__dates {
+        margin-bottom: 25px;
+      }
+
+      .event-card__dates-title {
+        font-size: 14px;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .event-card__dates-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .date-pill {
+        background-color: #e8f7f5;
+        color: #0e7c61;
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: 500;
+        border: 1px solid #c3ede6;
+      }
+
+      /* CTA Button */
+      .event-card__cta {
+        margin-top: auto;
+        padding-top: 30px;
+      }
+
+      .event-card__btn {
+        background: linear-gradient(135deg, #7dd3c0 0%, #6bc4b0 100%);
         color: white;
-        font-size: 12px;
+        padding: 14px 32px;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 15px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        box-shadow: 0 4px 15px rgba(125, 211, 192, 0.3);
+      }
+
+      .event-card__btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(125, 211, 192, 0.4);
+        color: white;
+        text-decoration: none;
+      }
+
+      /* Additional Info Box */
+      .info-box {
+        background-color: #f0faf8;
+        padding: 20px;
+        border-radius: 12px;
+        border-left: 4px solid #7dd3c0;
+        margin-top: 20px;
+      }
+
+      .info-box__title {
+        font-size: 15px;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 10px;
+      }
+
+      .info-box__text {
+        font-size: 14px;
+        color: #555;
+        line-height: 1.6;
+      }
+
+      .info-box__text a {
+        color: #7dd3c0;
+        text-decoration: none;
+        font-weight: 500;
+      }
+
+      .info-box__text a:hover {
+        text-decoration: underline;
+      }
+
+      /* Free Workshop Highlight */
+      .free-workshop {
+        background: linear-gradient(135deg, #e8f7f5 0%, #d4f1ed 100%);
+        border-radius: 12px;
+        padding: 25px;
+        margin-top: 20px;
+        border: 1px solid #c3ede6;
+      }
+
+      .free-workshop__title {
+        font-size: 16px;
+        font-weight: 600;
+        color: #0e7c61;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .free-workshop__content {
+        font-size: 14px;
+        color: #0a5d4a;
+        line-height: 1.6;
+      }
+
+      /* TRE Info List */
+      .tre-info-list {
+        margin: 20px 0;
+      }
+
+      .tre-info-list__title {
+        font-size: 15px;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 12px;
+      }
+
+      .tre-info-list__items {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .tre-info-list__item {
+        padding: 8px 0;
+        padding-left: 20px;
+        position: relative;
+        color: #555;
+        font-size: 14px;
+      }
+
+      .tre-info-list__item:before {
+        content: "•";
+        position: absolute;
+        left: 0;
+        color: #7dd3c0;
+        font-weight: bold;
+      }
+
+      /* Zebra Story Section */
+      .zebra-story {
+        background: linear-gradient(135deg, #f8f9fa 0%, #f0f1f3 100%);
+        padding: 80px 0;
+        margin-top: 100px;
+      }
+
+      .zebra-story__container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 40px;
+      }
+
+      .zebra-story__wrapper {
+        background: white;
+        border-radius: 20px;
+        padding: 60px;
+        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+        gap: 60px;
+      }
+
+      .zebra-story__content {
+        flex: 1;
+      }
+
+      .zebra-story__image {
+        flex: 0 0 400px;
+        padding-bottom: 20px;
+      }
+
+      .zebra-story__image img {
+        width: 100%;
+        height: auto;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      }
+
+      .zebra-story__title {
+        font-size: 28px;
+        font-weight: 600;
+        color: #1a1a1a;
+        margin-bottom: 30px;
+      }
+
+      .zebra-story__text {
+        color: #555;
+        line-height: 1.8;
+        margin-bottom: 20px;
+        font-size: 16px;
+      }
+
+      .zebra-story__note {
+        font-style: italic;
+        color: #888;
+        font-size: 14px;
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 1px solid #e0e0e0;
       }
 
       /* Responsive Design */
+      @media (max-width: 1024px) {
+        .event-card {
+          flex-direction: column;
+        }
+
+        .event-card__left {
+          flex: none;
+          padding: 30px;
+        }
+
+        .event-card__right {
+          padding: 30px;
+        }
+
+        .zebra-story__wrapper {
+          flex-direction: column;
+          padding: 40px;
+        }
+
+        .zebra-story__image {
+          flex: none;
+          width: 100%;
+          max-width: 500px;
+        }
+      }
+
       @media (max-width: 768px) {
+        .announcements-hero {
+          padding: 80px 0 60px;
+        }
+
         .announcements-hero__title {
-          font-size: 36px;
+          font-size: 32px;
         }
 
-        .event-item {
-          padding: 30px 20px;
+        .announcements-content__container {
+          padding: 0 20px;
         }
 
-        .event-item__title {
+        .event-card__title {
           font-size: 24px;
         }
 
-        .event-item__footer {
-          flex-direction: column;
-          align-items: stretch;
+        .event-card__price {
+          font-size: 28px;
         }
 
-        .event-item__btn {
-          text-align: center;
-          justify-content: center;
-        }
-
-        .event-details__grid {
-          grid-template-columns: 1fr;
+        .zebra-story__wrapper {
+          padding: 30px 20px;
         }
       }
     </style>
@@ -445,12 +606,6 @@
         <div id="swupMain" class="mil-main-transition">
           <!-- Announcements Hero Section -->
           <section class="announcements-hero">
-            <!-- <div class="announcements-hero__breadcrumb">POČETNA / NAJAVE</div>
-            <h1 class="announcements-hero__title">Radionice i grupe podrške</h1>
-            <p class="announcements-hero__subtitle">
-              Pridružite se našim stručno vođenim radionicama i grupama podrške
-              za osobni rast i razvoj
-            </p> -->
             <div class="container">
               <ul class="mil-breadcrumbs mil-mb-60">
                 <li><a href="index.html">Početna</a></li>
@@ -466,208 +621,428 @@
               <!-- Disclaimer -->
               <div class="disclaimer">
                 <p class="disclaimer__text">
-                  ⚠️ Grupe podrške nisu zamjena za psihoterapiju
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="#856404"
+                    style="vertical-align: middle"
+                  >
+                    <path
+                      d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"
+                    />
+                  </svg>
+                  Grupe podrške nisu zamjena za psihoterapiju
                 </p>
               </div>
 
               <!-- Events List -->
               <div class="events-list">
-                <!-- Support Group -->
-                <div class="event-item">
-                  <div class="event-item__header">
-                    <span class="event-item__badge">Najava</span>
-                    <h2 class="event-item__title">
-                      Grupa podrške za odrasle neurodivergentne osobe
+                <!-- Support Group Card -->
+                <div class="event-card">
+                  <div class="event-card__left">
+                    <span class="event-card__badge">NAJAVA</span>
+                    <h2 class="event-card__title">
+                      Grupa podrške za punoljetne neurodivergentne osobe
                     </h2>
-                    <div class="event-item__schedule">
-                      Srijeda 18:30 – 20:00
+                    <div class="event-card__schedule">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                      >
+                        <path
+                          d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"
+                        />
+                      </svg>
+                      18:30 – 20:00
                     </div>
-                  </div>
-
-                  <div class="event-item__content">
-                    <p class="event-item__description">
-                      Grupa se sastaje 2 puta mjesečno, uživo u Zaprešiću, po
-                      unaprijed objavljenom rasporedu. Prijaviti se možete putem
-                      online obrasca ili maila. Vaše je mjesto osigurano uplatom
-                      kotizacije.
-                    </p>
-
-                    <div class="event-details">
-                      <div class="event-details__grid">
-                        <div class="event-details__item">
-                          <div class="event-details__icon">
-                            <svg
-                              width="20"
-                              height="20"
-                              viewBox="0 0 24 24"
-                              fill="#7dd3c0"
-                            >
-                              <path
-                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
-                              />
-                            </svg>
-                          </div>
-                          <div class="event-details__info">
-                            <div class="event-details__label">Frekvencija</div>
-                            <div class="event-details__value">2x mjesečno</div>
-                          </div>
-                        </div>
-
-                        <div class="event-details__item">
-                          <div class="event-details__icon">
-                            <svg
-                              width="20"
-                              height="20"
-                              viewBox="0 0 24 24"
-                              fill="#7dd3c0"
-                            >
-                              <path
-                                d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"
-                              />
-                            </svg>
-                          </div>
-                          <div class="event-details__info">
-                            <div class="event-details__label">
-                              Max sudionika
-                            </div>
-                            <div class="event-details__value">10 osoba</div>
-                          </div>
-                        </div>
-
-                        <div class="event-details__item">
-                          <div class="event-details__icon">
-                            <svg
-                              width="20"
-                              height="20"
-                              viewBox="0 0 24 24"
-                              fill="#7dd3c0"
-                            >
-                              <path
-                                d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
-                              />
-                            </svg>
-                          </div>
-                          <div class="event-details__info">
-                            <div class="event-details__label">Lokacija</div>
-                            <div class="event-details__value">Zaprešić</div>
-                          </div>
-                        </div>
+                    <div class="event-card__price-wrapper">
+                      <div class="event-card__price-label">Kotizacija</div>
+                      <div class="event-card__price">
+                        10<span class="event-card__currency">EUR</span>
                       </div>
                     </div>
                   </div>
 
-                  <div class="event-item__footer">
-                    <div>
-                      <span class="event-item__price"
-                        >10<span class="event-item__currency">EUR</span></span
-                      >
+                  <div class="event-card__right">
+                    <p class="event-card__description">
+                      Grupa je otvorenog tipa. Susreti se održavaju jednom
+                      mjesečno, uživo u Zaprešiću, po unaprijed objavljenom
+                      rasporedu. Na susrete su dobrodošle službeno
+                      dijagnosticirane i samodijagnosticirane neurodivergentne
+                      osobe bez intelektualnih poteškoća.
+                    </p>
+
+                    <p class="event-card__description">
+                      Prijaviti se možete putem online obrasca ili maila, nakon
+                      čega ćete primiti podatke za uplatu. Vaše je mjesto
+                      osigurano uplatom kotizacije.
+                    </p>
+
+                    <div class="event-card__quick-info">
+                      <div class="info-pill">
+                        <svg
+                          class="info-pill__icon"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                        >
+                          <path
+                            d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"
+                          />
+                        </svg>
+                        <span class="info-pill__label">1x mjesečno</span>
+                      </div>
+                      <div class="info-pill">
+                        <svg
+                          class="info-pill__icon"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                        >
+                          <path
+                            d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"
+                          />
+                        </svg>
+                        <span class="info-pill__label">Max 10 osoba</span>
+                      </div>
+                      <div class="info-pill">
+                        <svg
+                          class="info-pill__icon"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                        >
+                          <path
+                            d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
+                          />
+                        </svg>
+                        <span class="info-pill__label">Zaprešić</span>
+                      </div>
                     </div>
-                    <a
-                      href="#"
-                      onclick="window.open('mailto:melita.zajkovski@gmail.com','_self')"
-                      class="event-item__btn"
-                      >Prijavi se</a
-                    >
+
+                    <div class="event-card__dates">
+                      <div class="event-card__dates-title">
+                        Nadolazeći termini
+                      </div>
+                      <div class="event-card__dates-list">
+                        <span class="date-pill">22.10.2025.</span>
+                        <span class="date-pill">19.11.2025.</span>
+                        <span class="date-pill">17.12.2025.</span>
+                      </div>
+                    </div>
+
+                    <div class="info-box">
+                      <div class="info-box__title">
+                        Što je neurodivergencija?
+                      </div>
+                      <div class="info-box__text">
+                        Neurodivergentna osoba je pojedinac čiji se neurološki
+                        razvoj i funkcioniranje razlikuju od neurotipične
+                        populacije. Izraz se koristi za stanja kao što su
+                        spektar autizma, ADHD, disleksija, dispraksija,
+                        diskalkulija i druga neurorazvojna stanja. Iako često
+                        vrlo kreativne i talentirane u jednom području,
+                        neurodivergentne osobe mogu imati poteškoće u drugim
+                        aspektima života (učenje, socijalizacija, ostvarivanje
+                        akademskog ili poslovnog uspjeha).
+                        <br /><br />
+                        Neurorazličitost je širi pojam koji obuhvaća niz
+                        neuroloških razlika prisutnih u populaciji. Oba pojma
+                        naglašavaju važnost razumijevanja različitosti i podrške
+                        osobama različitih kognitivnih i neuroloških profila.
+                        <br /><br />
+                        Više informacija:
+                        <a href="https://udrugaask.hr/" target="_blank"
+                          >Udruga ASK</a
+                        >
+                        |
+                        <a href="https://embrace-autism.com/" target="_blank"
+                          >Embrace Autism</a
+                        >
+                      </div>
+                    </div>
+
+                    <div class="event-card__cta">
+                      <a
+                        href="#"
+                        onclick="window.open('mailto:info@gnothe.hr','_self')"
+                        class="event-card__btn"
+                      >
+                        Prijavi se
+                        <svg
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                        >
+                          <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+                        </svg>
+                      </a>
+                    </div>
                   </div>
                 </div>
 
-                <!-- TRE Workshop -->
-                <div class="event-item">
-                  <div class="event-item__header">
-                    <span class="event-item__badge">Najava</span>
-                    <h2 class="event-item__title">
+                <!-- TRE Workshop Card -->
+                <div class="event-card">
+                  <div class="event-card__left">
+                    <span class="event-card__badge">NAJAVA</span>
+                    <h2 class="event-card__title">
                       Radionica oTREsi stres i napetost
                     </h2>
-                    <div class="event-item__schedule">
-                      Srijeda 18:30 – 20:00
+                    <div class="event-card__schedule">
+                      <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                      >
+                        <path
+                          d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"
+                        />
+                      </svg>
+                      18:30 – 20:00 / 17:30 – 19:00
                     </div>
-                  </div>
-
-                  <div class="event-item__content">
-                    <p class="event-item__description">
-                      TRE je tehnika rada s tijelom kroz vježbe koje pomažu pri
-                      otpuštanju stresa, napetosti i traume. Vježbe u sigurnom
-                      okruženju, aktiviraju prirodni mehanizam drhtanja (tremor)
-                      koji oslobađa mišićnu napetost i umiruje živčani sustav.
-                    </p>
-
-                    <div class="event-details">
-                      <div class="event-details__grid">
-                        <div class="event-details__item">
-                          <div class="event-details__icon">
-                            <svg
-                              width="20"
-                              height="20"
-                              viewBox="0 0 24 24"
-                              fill="#7dd3c0"
-                            >
-                              <path
-                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
-                              />
-                            </svg>
-                          </div>
-                          <div class="event-details__info">
-                            <div class="event-details__label">Frekvencija</div>
-                            <div class="event-details__value">2x mjesečno</div>
-                          </div>
-                        </div>
-
-                        <div class="event-details__item">
-                          <div class="event-details__icon">
-                            <svg
-                              width="20"
-                              height="20"
-                              viewBox="0 0 24 24"
-                              fill="#7dd3c0"
-                            >
-                              <path
-                                d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"
-                              />
-                            </svg>
-                          </div>
-                          <div class="event-details__info">
-                            <div class="event-details__label">
-                              Max polaznika
-                            </div>
-                            <div class="event-details__value">6 osoba</div>
-                          </div>
-                        </div>
-
-                        <div class="event-details__item">
-                          <div class="event-details__icon">
-                            <svg
-                              width="20"
-                              height="20"
-                              viewBox="0 0 24 24"
-                              fill="#7dd3c0"
-                            >
-                              <path
-                                d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
-                              />
-                            </svg>
-                          </div>
-                          <div class="event-details__info">
-                            <div class="event-details__label">Lokacija</div>
-                            <div class="event-details__value">Zaprešić</div>
-                          </div>
-                        </div>
+                    <div class="event-card__price-wrapper">
+                      <div class="event-card__price-label">
+                        Uvodna radionica
+                      </div>
+                      <div class="event-card__price">
+                        35<span class="event-card__currency">EUR</span>
                       </div>
                     </div>
                   </div>
 
-                  <div class="event-item__footer">
-                    <div>
-                      <span class="event-item__price"
-                        >15<span class="event-item__currency">EUR</span></span
-                      >
+                  <div class="event-card__right">
+                    <p class="event-card__description">
+                      TRE® je tehnika rada s tijelom kroz vježbe koje pomažu pri
+                      otpuštanju stresa i napetosti. Vježbe u sigurnom okruženju
+                      aktiviraju prirodni mehanizam drhtanja (tremor) koji
+                      oslobađa mišićnu napetost i umiruje živčani sustav. Vježbe
+                      su jednostavne i pogodne za sve dobne skupine.
+                    </p>
+
+                    <p class="event-card__description">
+                      Uvodna radionica traje dva sata, uključuje teorijski dio o
+                      samoj tehnici i vježbe pod vodstvom TRE® praktičara.
+                      Uvodna radionica je uvjet za vježbanje u grupi koja se
+                      sastaje jednom tjedno u fiksnom terminu. Prijaviti se
+                      možete putem online obrasca ili maila, nakon čega ćete
+                      primiti podatke za uplatu. Vaše je mjesto osigurano
+                      uplatom kotizacije.
+                    </p>
+
+                    <div class="event-card__quick-info">
+                      <div class="info-pill">
+                        <svg
+                          class="info-pill__icon"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                        >
+                          <path
+                            d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"
+                          />
+                        </svg>
+                        <span class="info-pill__label">2 sata</span>
+                      </div>
+                      <div class="info-pill">
+                        <svg
+                          class="info-pill__icon"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                        >
+                          <path
+                            d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"
+                          />
+                        </svg>
+                        <span class="info-pill__label">Max 8 osoba</span>
+                      </div>
+                      <div class="info-pill">
+                        <svg
+                          class="info-pill__icon"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                        >
+                          <path
+                            d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
+                          />
+                        </svg>
+                        <span class="info-pill__label">Zaprešić</span>
+                      </div>
+                      <div class="info-pill">
+                        <svg
+                          class="info-pill__icon"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                        >
+                          <path
+                            d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"
+                          />
+                        </svg>
+                        <span class="info-pill__label"
+                          >Četvrtkom 18:30 – 19:45</span
+                        >
+                      </div>
                     </div>
-                    <a
-                      href="#"
-                      onclick="window.open('mailto:melita.zajkovski@gmail.com','_self')"
-                      class="event-item__btn"
-                      >Prijavi se</a
-                    >
+
+                    <div class="tre-info-list">
+                      <div class="tre-info-list__title">
+                        TRE® se preporučuje kod:
+                      </div>
+                      <ul class="tre-info-list__items">
+                        <li class="tre-info-list__item">
+                          kronična bol i napetost
+                        </li>
+                        <li class="tre-info-list__item">anksioznost</li>
+                        <li class="tre-info-list__item">burnout sindrom</li>
+                        <li class="tre-info-list__item">
+                          poteškoće s usnivanjem, nesanica
+                        </li>
+                        <li class="tre-info-list__item">
+                          izloženost stresorima
+                        </li>
+                        <li class="tre-info-list__item">
+                          izloženost traumatičnim događajima
+                        </li>
+                        <li class="tre-info-list__item">neurodivergentnost</li>
+                      </ul>
+                    </div>
+
+                    <div class="event-card__dates">
+                      <div class="event-card__dates-title">
+                        Datumi uvodnih TRE® radionica
+                      </div>
+                      <div class="event-card__dates-list">
+                        <span class="date-pill"
+                          >5.11.2025. (18:30 – 20:00)</span
+                        >
+                        <span class="date-pill"
+                          >17.12.2025. (18:30 – 20:00)</span
+                        >
+                      </div>
+                    </div>
+
+                    <div class="event-card__dates">
+                      <div class="event-card__dates-title">
+                        Grupne TRE® radionice
+                      </div>
+                      <div class="event-card__dates-list">
+                        <span class="date-pill"
+                          >Četvrtkom 18:30 – 19:45 - 15 EUR</span
+                        >
+                      </div>
+                    </div>
+
+                    <div class="free-workshop">
+                      <div class="free-workshop__title">
+                        <svg
+                          width="20"
+                          height="20"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                        >
+                          <path
+                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+                          />
+                        </svg>
+                        Besplatne radionice povodom Dana mentalnog zdravlja
+                      </div>
+                      <div class="free-workshop__content">
+                        <strong>Petak, 10.10.2025.</strong><br />
+                        Radionice će se održati u dva termina uz obavezne
+                        prijave. Maksimalan broj polaznika po grupi je 8.<br /><br />
+                        • Srijeda 8.10.2025. od 18:30 do 20:00<br />
+                        • Petak 10.10.2025. od 17:30 do 19:00<br /><br />
+                        <em>Obavezne prijave na mail info@gnothe.hr</em>
+                      </div>
+                    </div>
+
+                    <div class="event-card__cta">
+                      <a
+                        href="#"
+                        onclick="window.open('mailto:info@gnothe.hr','_self')"
+                        class="event-card__btn"
+                      >
+                        Prijavi se
+                        <svg
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                        >
+                          <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+                        </svg>
+                      </a>
+                    </div>
                   </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Zebra Story Section -->
+          <section class="zebra-story">
+            <div class="zebra-story__container">
+              <div class="zebra-story__wrapper">
+                <div class="zebra-story__content">
+                  <h3 class="zebra-story__title">
+                    Znate li zašto zebre nemaju čir na želucu?
+                  </h3>
+                  <div class="zebra-story__image">
+                    <img
+                      src="img/blog/zebra.png"
+                      alt="Zebra u afričkoj savani"
+                    />
+                  </div>
+                  <p class="zebra-story__text">
+                    Zamislite afričku savanu i zebru koja u miru pase travu.
+                    Odjednom, iz svog skrovišta iskače lav. Zebri je jasno da je
+                    u opasnosti. Njen mozak aktivira režim preživljavanja (fight
+                    or flight) – srce ubrzano kuca i usmjerava krv prema
+                    mišićima, povisuje se tlak, pojačava se znojenje, imunitet
+                    se isključuje a probava zaustavlja jer energiju u tom trenu
+                    zebra treba za borbu ili bijeg, a ne za probavljanje hrane.
+                    Kada opasnost prođe, zebra opet pase travu kao da se ništa
+                    nije desilo. Ne ruminira o tom događaju prije spavanja, ne
+                    uzima lijekove za smirenje, niti ide na psihoterapiju.
+                  </p>
+                  <p class="zebra-story__text">
+                    U slučaju da lav ipak uhvati zebru, ona ima još jednu opciju
+                    za spas a to je režim smrzavanja (freeze) kada se zebra
+                    pravi mrtva a vitalne funkcije su na minimumu. Poruka za
+                    lava je – ja sam strvina, pojedeš li me, mogao bi se
+                    otrovati. Kada se lav udalji, zebra se otrese i nastavi
+                    svojim putem.
+                  </p>
+                  <p class="zebra-story__text">
+                    Za razliku od zebre, čovjek vidi lava i tamo gdje ga nema.
+                    Naš mozak ne zna razliku između stvarne opasnosti (vidim
+                    lava koji me želi pojesti) i anticipirane (što ako sada
+                    iskoči lav iz grma) koja je zapravo samo misao u našoj
+                    glavi. Naravno, u životu modernog čovjeka lav više nije
+                    prijetnja ali kritika od strane šefa, otplata kredita ili
+                    prekid veze trigeriraju iste procese u našem tijelu kao da
+                    nam je život ugrožen. To znači da se pripremamo za borbu ili
+                    bijeg, da nam je aktiviran primitivni dio mozga koji nas
+                    štiti od opasnosti no ne može prepoznati je li opasnost
+                    stvarna ili nije. Kada takvo stanje pobuđenosti (ili
+                    zaleđenosti) živčanog sustava potraje, dolazi do posljedica
+                    po naše fizičko i mentalno zdravlje.
+                  </p>
+                  <p class="zebra-story__text">
+                    TRE® vježbe vraćaju našem tijelu urođeni mehanizam
+                    regulacije živčanog sustava – poput zebre koja se otrese i
+                    nastavi svojim putem.
+                  </p>
+                  <p class="zebra-story__text">
+                    <strong
+                      >Budi kao zebra, podsjeti svoje tijelo da ima urođeni
+                      mehanizam regulacije živčanog sustava!</strong
+                    >
+                  </p>
+                  <p class="zebra-story__note">
+                    *TRE® nije zamjena za medicinske ili psihološke postupke
+                    oporavka od traume, već dodatna potpora.
+                  </p>
                 </div>
               </div>
             </div>
@@ -677,17 +1052,15 @@
           <footer class="mil-soft-bg">
             <div class="mi-invert-fix">
               <div class="container mil-p-120-60">
-                <div class="row justify-content-between">
-                  <div class="col-md-4 col-lg-4 mil-mb-60">
-                    <div class="mil-muted mil-logo mil-up mil-mb-30">
-                      <img
-                        style="width: 300px"
-                        src="./img/logo/GNOTHE grey-02.png"
-                        alt=""
-                      />
+                <div class="row justify-content-between align-items-start">
+                  <div class="col-md-4 col-lg-4 mil-mb-60 footer-logo">
+                    <div class="mil-logo mil-up mil-mb-30">
+                      <a href="index.html" class="mil-logo">
+                        <div class="gnothe-logo">
+                          <div class="gnothe-main">GNOTHE</div>
+                        </div>
+                      </a>
                     </div>
-
-                    <p class="mil-up mil-mb-30">Stupimo u kontakt:</p>
 
                     <div class="mil-up">
                       <a
@@ -698,10 +1071,14 @@
                       >
                     </div>
                   </div>
+
                   <div class="col-md-7 col-lg-6">
-                    <div class="row justify-content-end">
+                    <div class="row justify-content-end align-items-start">
                       <div class="col-md-6 col-lg-7">
-                        <nav class="mil-footer-menu mil-mb-60">
+                        <nav
+                          class="mil-footer-menu mil-mb-60"
+                          style="padding-top: 0"
+                        >
                           <ul>
                             <li class="mil-up">
                               <a href="index.html">Naslovna</a>
@@ -709,59 +1086,63 @@
                             <li class="mil-up">
                               <a href="about.html">O meni</a>
                             </li>
+                            <li class="mil-up">
+                              <a href="service.html">Usluge</a>
+                            </li>
                             <li class="mil-up mil-active">
-                              <a href="#">Usluge</a>
+                              <a href="#">Najave</a>
                             </li>
                             <li class="mil-up">
-                              <a href="test.html">Test</a>
+                              <a href="test.html">Terapijski pristup</a>
                             </li>
-
                             <li class="mil-up">
                               <a href="contact.html">Kontakt</a>
                             </li>
                           </ul>
                         </nav>
                       </div>
-                      <div class="col-md-6 col-lg-5">
-                        <h6 class="mil-up mil-mb-30">Hrvatska, Zagreb</h6>
 
-                        <p class="mil-up">
-                          melita.zajkovski@gmail.com <br />
-                          Ul. Alojzija Stepinca 8A, 10290, Zaprešić<br />
-                          <span class="mil-no-wrap">+385 98 811 651</span>
-                        </p>
+                      <div class="col-md-6 col-lg-5" style="padding-top: 0">
+                        <ul class="mil-menu-list mil-up mil-mb-60">
+                          <li>
+                            <h6
+                              class=""
+                              style="margin-bottom: 15px; margin-top: 0"
+                            >
+                              GNOTHE, obrt za savjetovanje
+                            </h6>
+                          </li>
+
+                          <li>vl.&nbsp;Melita&nbsp;Zajkovski</li>
+                          <li>Hrvatske&nbsp;mladeži&nbsp;6c,&nbsp;Zaprešić</li>
+
+                          <li>MB:&nbsp;98518267</li>
+                        </ul>
                       </div>
                     </div>
                   </div>
                 </div>
 
                 <div class="row justify-content-between flex-sm-row-reverse">
+                  <div class="col-md-7 col-lg-6">
+                    <div class="row justify-content-between">
+                      <div class="col-md-12 col-lg-12 mil-mb-60">
+                        <!-- Lokacija / naslov bloka -->
+                        <h6 class="mil-up mil-mb-30">Hrvatska, Zagreb</h6>
+
+                        <!-- Kontakt podaci -->
+                        <p class="mil-up">
+                          melita.zajkovski@gmail.com<br />
+                          Ul. Alojzija Stepinca 8A,<br />
+                          10290, Zaprešić<br />
+                          <span class="mil-no-wrap">+385 98 811 651</span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
                   <div class="col-md-4 col-lg-6 mil-mb-60">
                     <div class="mil-vert-between">
-                      <div class="mil-mb-30">
-                        <ul class="mil-social-icons mil-up">
-                          <li>
-                            <a href="#." target="_blank" class="social-icon">
-                              <i class="far fa-circle"></i
-                            ></a>
-                          </li>
-                          <li>
-                            <a href="#." target="_blank" class="social-icon">
-                              <i class="far fa-circle"></i
-                            ></a>
-                          </li>
-                          <li>
-                            <a href="#." target="_blank" class="social-icon">
-                              <i class="far fa-circle"></i
-                            ></a>
-                          </li>
-                          <li>
-                            <a href="#." target="_blank" class="social-icon">
-                              <i class="far fa-circle"></i
-                            ></a>
-                          </li>
-                        </ul>
-                      </div>
                       <p class="mil-up">
                         © Copyright 2025 - M.B. All Rights Reserved.
                       </p>
