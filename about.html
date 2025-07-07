@@ -46,95 +46,101 @@
       }
 
       /* -------------------------------------------------
-   GRID
+   NOVA PROFILE SEKCIJA
 ------------------------------------------------- */
       .about-content__container {
         max-width: 1200px;
         margin: 0 auto;
         padding: 0 20px;
       }
+
       .about-profile {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 80px;
-        align-items: center;
-      }
-
-      /* -------------------------------------------------
-   PROFILNA + “BLOB”
-------------------------------------------------- */
-      .about-profile__image {
-        position: relative;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        max-width: 500px; /* malo uže za sklad */
-        margin: 0 auto;
-        overflow: visible;
-        isolation: isolate;
-      }
-
-      /* 1) plavi blob */
-      .about-profile__image::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        transform: scale(0.95) rotate(-4deg);
-        background: radial-gradient(
-          80% 80% at 30% 25%,
-          #33c8b4 0%,
-          #dce2e4 100%
-        );
-        border-radius: 60% 40% 50% 45% / 48% 60% 40% 52%;
-        z-index: -1;
-        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12); /* nježnija sjena */
-      }
-
-      /* 2) bijela maska – tanka, samo rub */
-      .about-profile__image::after {
-        content: "";
-        position: absolute;
-        bottom: -2%;
-        left: 50%;
-        width: 115%;
-        height: 14%; /* ↓ još tanje */
+        grid-template-columns: 1fr auto;
+        gap: 100px;
+        align-items: start;
         background: #fff;
-        border-radius: 50%;
-        transform: translateX(-50%) rotate(-2deg);
-        z-index: 1;
-        /* filter: blur(2.5px); */
+        padding: 80px 60px;
+        border-radius: 12px;
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+        margin-bottom: 60px;
       }
 
-      /* 3) fotografija */
+      /* Profile Left Side */
+      .about-profile__left {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 30px;
+        max-width: 400px;
+        margin: 0 auto;
+      }
+
+      /* Profile Image */
+      .about-profile__image {
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        overflow: hidden;
+        flex-shrink: 0;
+        border: 6px solid #fff;
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+      }
+
       .about-profile__img {
         width: 100%;
-        height: auto;
-        aspect-ratio: 4/5;
+        height: 100%;
         object-fit: cover;
-        clip-path: ellipse(47% 49% at 50% 50%);
+        object-position: center 20%;
       }
 
-      /* -------------------------------------------------
-   KVALIFIKACIJE / EDUKACIJE
-------------------------------------------------- */
+      /* Profile Text */
+      .about-profile__content {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .profile-name {
+        font-size: 40px;
+        font-weight: 700;
+        color: #333;
+        margin: 0;
+        line-height: 1.2;
+      }
+
+      .profile-title {
+        font-size: 18px;
+        color: #666;
+        line-height: 1.5;
+        margin: 0;
+      }
+
+      /* Credentials sidebar */
+      .about-profile__credentials {
+        min-width: 280px;
+      }
+
       .credentials,
       .education {
-        margin-bottom: 60px;
+        margin-bottom: 40px;
       }
 
       .credentials__title,
       .education__title {
-        font-size: 24px;
+        font-size: 20px;
         font-weight: 600;
         color: #333;
-        margin-bottom: 30px;
+        margin-bottom: 20px;
         position: relative;
+        padding-bottom: 8px;
       }
       .credentials__title::after,
       .education__title::after {
         content: "";
         position: absolute;
-        bottom: -8px;
+        bottom: 0;
         left: 0;
         width: 40px;
         height: 2px;
@@ -149,11 +155,12 @@
       }
       .credentials__item,
       .education__item {
-        font-size: 16px;
+        font-size: 14px;
         color: #666;
-        margin-bottom: 12px;
+        margin-bottom: 10px;
         padding-left: 20px;
         position: relative;
+        line-height: 1.4;
       }
       .credentials__item::before,
       .education__item::before {
@@ -161,7 +168,7 @@
         position: absolute;
         left: 0;
         color: #7dd3c0;
-        font-size: 20px;
+        font-size: 18px;
         font-weight: bold;
       }
 
@@ -274,32 +281,64 @@
 
         .about-profile {
           grid-template-columns: 1fr;
+          text-align: center;
           gap: 40px;
+          padding: 50px 20px;
         }
-        .about-profile__content {
-          padding-left: 0;
+
+        .about-profile__left {
+          max-width: none;
         }
 
         .about-profile__image {
-          max-width: 320px;
+          width: 150px;
+          height: 150px;
+          border: 5px solid #fff;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
         }
 
-        .about-profile__image::before {
-          transform: scale(1) rotate(-3deg);
-        }
-        .about-profile__image::after {
-          bottom: -4%;
-          width: 125%;
-          height: 18%;
+        .profile-name {
+          font-size: 32px;
         }
 
-        .about-profile__img {
-          clip-path: ellipse(48% 49% at 50% 50%);
+        .profile-title {
+          font-size: 16px;
+        }
+
+        .about-profile__credentials {
+          min-width: auto;
+          text-align: left;
+        }
+
+        .credentials,
+        .education {
+          margin-bottom: 30px;
         }
 
         .organizations__grid {
           grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
           gap: 20px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .profile-name {
+          font-size: 28px;
+        }
+
+        .profile-title {
+          font-size: 15px;
+        }
+
+        .about-profile {
+          padding: 40px 15px;
+        }
+
+        .about-profile__image {
+          width: 140px;
+          height: 140px;
+          border: 4px solid #fff;
+          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.16);
         }
       }
     </style>
@@ -433,7 +472,7 @@
                   <li><a href="index.html">Početna</a></li>
                   <li><a href="about.html">O meni</a></li>
                 </ul>
-                <h1 class="mil-mb-40">Melita Zajkovski</h1>
+                <h1 class="mil-mb-40">O meni</h1>
               </div>
             </div>
           </section>
@@ -443,18 +482,28 @@
             <div class="about-content__container">
               <!-- Profile Section -->
               <div class="about-profile">
-                <div class="about-profile__image">
-                  <img
-                    src="img/melita/melita02-removebg.png"
-                    alt="Melita Zajkovski"
-                    class="about-profile__img"
-                  />
+                <div class="about-profile__left">
+                  <div class="about-profile__image">
+                    <img
+                      src="img/melita/melita02-removebg.png"
+                      alt="Melita Zajkovski"
+                      class="about-profile__img"
+                    />
+                  </div>
+
+                  <div class="about-profile__content">
+                    <h2 class="profile-name">Melita Zajkovski</h2>
+                    <p class="profile-title">
+                      edukantica/specijalizantica transakcijske analize<br />smjer
+                      psihoterapija
+                    </p>
+                  </div>
                 </div>
 
-                <div class="about-profile__content">
+                <div class="about-profile__credentials">
                   <!-- Credentials -->
                   <div class="credentials">
-                    <h2 class="credentials__title">Stručne kvalifikacije</h2>
+                    <h3 class="credentials__title">Stručne kvalifikacije</h3>
                     <ul class="credentials__list">
                       <li class="credentials__item">
                         EAP Hrvatska članica mreže savjetnika
@@ -464,14 +513,13 @@
                       </li>
                       <li class="credentials__item">UTA, EATA, ITAA</li>
                       <li class="credentials__item">EMDR Hrvatska</li>
-
                       <li class="credentials__item">PSIHELP</li>
                     </ul>
                   </div>
 
                   <!-- Education -->
                   <div class="education">
-                    <h2 class="education__title">Edukacije</h2>
+                    <h3 class="education__title">Edukacije</h3>
                     <ul class="education__list">
                       <li class="education__item">
                         Propedeutika psihoterapije
@@ -541,16 +589,11 @@
                 </div>
 
                 <div class="organizations__logo">
-                  <div
-                    style="
-                      font-size: 16px;
-                      font-weight: 600;
-                      color: #333;
-                      text-align: center;
-                    "
-                  >
-                    EMDR<br />Hrvatska
-                  </div>
+                  <img
+                    src="img/logo/emdr.webp"
+                    alt="EMDR"
+                    class="organizations__img"
+                  />
                 </div>
               </div>
             </div>
