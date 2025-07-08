@@ -1,80 +1,38 @@
-// JavaScript za izračun rezultata, prikaz grafova i upravljanje UI elementima
+// JavaScript za izračun rezultata, prikaz grafova i upravljanje UI elementima u modalnom prozoru
 document.addEventListener("DOMContentLoaded", function () {
   // Dohvati potrebne elemente
   const calculateBtn = document.getElementById("calculateBtn");
-  const questionnaireForm = document.querySelector(".questionnaire__form");
-  const theory = document.querySelector(".theory");
+  const questionnaireForm = document.getElementById("questionnaireForm");
+  const questionnaireIntro = document.getElementById("questionnaireIntro");
   const results = document.getElementById("results");
+  const modalLoader = document.getElementById("modalLoader");
 
   // Inicijalizacija varijabli za grafikone
   let barChart = null;
   let radarChart = null;
 
-  // Dodaj CSS animaciju za spinner ako ne postoji
-  const existingAnimation = document.querySelector("#loader-animation");
-  if (!existingAnimation) {
-    const styleElement = document.createElement("style");
-    styleElement.id = "loader-animation";
-    styleElement.textContent = `
-      @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-      }
-    `;
-    document.head.appendChild(styleElement);
+  // Funkcija za prikazivanje loadera u modalu
+  function showModalLoader() {
+    modalLoader.style.display = "flex";
+    console.log("Modal loader prikazan!");
   }
 
-  // Funkcija za stvaranje i prikazivanje loadera
-  function showLoader() {
-    // Ukloni postojeći loader ako postoji
-    const oldLoader = document.querySelector(".loader");
-    if (oldLoader) {
-      oldLoader.parentNode.removeChild(oldLoader);
-    }
-
-    // Stvori novi loader
-    const newLoader = document.createElement("div");
-    newLoader.className = "loader";
-    newLoader.style.display = "flex";
-    newLoader.style.justifyContent = "center";
-    newLoader.style.alignItems = "center";
-    newLoader.style.position = "fixed";
-    newLoader.style.top = "0";
-    newLoader.style.left = "0";
-    newLoader.style.width = "100%";
-    newLoader.style.height = "100%";
-    newLoader.style.backgroundColor = "rgba(255, 255, 255, 0.95)";
-    newLoader.style.zIndex = "9999";
-
-    // Stvori spinner
-    const spinner = document.createElement("div");
-    spinner.className = "loader__spinner";
-    spinner.style.width = "60px";
-    spinner.style.height = "60px";
-    spinner.style.border = "6px solid rgba(93, 194, 165, 0.2)";
-    spinner.style.borderRadius = "50%";
-    spinner.style.borderTop = "6px solid #5dc2a5";
-    spinner.style.animation = "spin 1s linear infinite";
-
-    // Dodaj spinner u loader
-    newLoader.appendChild(spinner);
-
-    // Dodaj loader na početak body elementa
-    document.body.insertBefore(newLoader, document.body.firstChild);
-
-    console.log("Loader dinamički kreiran i prikazan!");
-    return newLoader;
+  // Funkcija za skrivanje loadera u modalu
+  function hideModalLoader() {
+    modalLoader.style.display = "none";
+    console.log("Modal loader sakriven!");
   }
 
   // Dodaj event listener na gumb za izračun
   calculateBtn.addEventListener("click", function () {
     // Provjera jesu li sva pitanja odgovorena
-    const form = document.getElementById("questionnaireForm");
     const questions = ["q1", "q2", "q3", "q4", "q5", "q6", "q7"];
     let allAnswered = true;
 
     for (let q of questions) {
-      const answered = form.querySelector(`input[name="${q}"]:checked`);
+      const answered = questionnaireForm.querySelector(
+        `input[name="${q}"]:checked`
+      );
       if (!answered) {
         allAnswered = false;
         break;
@@ -86,14 +44,14 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
+    // Sakrij upute - ovo je novo u modalnoj verziji
+    questionnaireIntro.style.display = "none";
+
     // Sakrij upitnik
     questionnaireForm.style.display = "none";
 
-    // Sakrij teorijsku sekciju
-    theory.style.display = "none";
-
-    // Prikaži loader koristeći našu novu funkciju
-    const loader = showLoader();
+    // Prikaži loader
+    showModalLoader();
 
     // Izračunaj rezultate
     let parentCount = 0;
@@ -101,7 +59,9 @@ document.addEventListener("DOMContentLoaded", function () {
     let childCount = 0;
 
     for (let q of questions) {
-      const answer = form.querySelector(`input[name="${q}"]:checked`).value;
+      const answer = questionnaireForm.querySelector(
+        `input[name="${q}"]:checked`
+      ).value;
       if (answer === "parent") parentCount++;
       else if (answer === "adult") adultCount++;
       else if (answer === "child") childCount++;
@@ -112,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const adultPercentage = Math.round((adultCount / totalQuestions) * 100);
     const childPercentage = Math.round((childCount / totalQuestions) * 100);
 
-    // Postavimo skrivene vrijednosti za grafove (potrebno za rad funkcije renderCharts)
+    // Postavimo skrivene vrijednosti za grafove
     document.getElementById("parentPercentage").textContent = parentPercentage;
     document.getElementById("adultPercentage").textContent = adultPercentage;
     document.getElementById("childPercentage").textContent = childPercentage;
@@ -153,9 +113,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Nakon 3 sekunde, sakrij loader i prikaži rezultate
     setTimeout(function () {
       // Sakrij loader
-      if (loader) {
-        loader.style.display = "none";
-      }
+      hideModalLoader();
 
       // Prikaži rezultate s animacijom
       results.style.display = "block";
@@ -167,8 +125,9 @@ document.addEventListener("DOMContentLoaded", function () {
         // Renderiranje grafova direktno u rezultatima
         renderCharts();
 
-        // Scroll do rezultata
-        results.scrollIntoView({ behavior: "smooth" });
+        // Scroll na vrh modalnog sadržaja da se vide rezultati
+        const modalBody = document.querySelector(".ego-modal-body");
+        modalBody.scrollTop = 0;
       }, 50);
     }, 3000); // 3 sekunde delay
   });
@@ -209,8 +168,10 @@ document.addEventListener("DOMContentLoaded", function () {
       // Resetiraj canvas stvaranjem novog elementa
       const newBarCanvas = document.createElement("canvas");
       newBarCanvas.id = "barChart";
-      newBarCanvas.width = 300;
-      newBarCanvas.height = 300;
+      // Koristite responzivne vrijednosti
+      const containerWidth = Math.min(window.innerWidth * 0.8, 300);
+      newBarCanvas.width = containerWidth;
+      newBarCanvas.height = containerWidth;
       newBarCanvas.classList.add("graph-popup__canvas");
       barCanvas.parentNode.replaceChild(newBarCanvas, barCanvas);
 

@@ -19,6 +19,239 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
     <!-- page name -->
     <title>Gnothe</title>
+
+    <!-- Dodatni stilovi za popup -->
+    <style>
+      /* Popup Modal Styles */
+      .ego-modal {
+        display: none;
+        position: fixed;
+        z-index: 10000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.7);
+        animation: fadeIn 0.3s ease-in-out;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      .ego-modal-content {
+        background-color: #fefefe;
+        margin: 20px auto;
+        padding: 0;
+        border: 1px solid #888;
+        width: 90%;
+        max-width: 900px;
+        max-height: 90vh;
+        overflow-y: auto;
+        border-radius: 10px;
+        position: relative;
+        animation: slideIn 0.3s ease-out;
+      }
+
+      @keyframes slideIn {
+        from {
+          transform: translateY(-50px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      .ego-modal-header {
+        background-color: #7ab8a1;
+        color: white;
+        padding: 25px 30px;
+        border-radius: 10px 10px 0 0;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .ego-modal-header h2 {
+        color: white;
+        margin: 0;
+        font-size: 28px;
+        font-weight: 600;
+      }
+
+      .ego-modal-body {
+        padding: 30px;
+        position: relative;
+        min-height: 600px;
+      }
+
+      .ego-modal-close {
+        color: white;
+        font-size: 32px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: color 0.3s;
+        line-height: 1;
+        padding: 0 5px;
+      }
+
+      .ego-modal-close:hover,
+      .ego-modal-close:focus {
+        color: #f1f1f1;
+      }
+
+      /* Analiziraj se button */
+      .analyze-btn {
+        background-color: #7ab8a1;
+        color: white;
+        padding: 15px 40px;
+        border: none;
+        border-radius: 30px;
+        font-size: 18px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin: 30px auto;
+        display: block;
+        box-shadow: 0 4px 15px rgba(122, 184, 161, 0.3);
+      }
+
+      .analyze-btn:hover {
+        background-color: #69a792;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(122, 184, 161, 0.4);
+      }
+
+      /* Modal Loader Styles */
+      .modal-loader {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.95);
+        z-index: 100;
+        justify-content: center;
+        align-items: center;
+        border-radius: 0 0 10px 10px;
+      }
+
+      .modal-loader__spinner {
+        width: 60px;
+        height: 60px;
+        border: 6px solid rgba(122, 184, 161, 0.2);
+        border-radius: 50%;
+        border-top: 6px solid #7ab8a1;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Scrollbar styling for modal */
+      .ego-modal-content::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      .ego-modal-content::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+      }
+
+      .ego-modal-content::-webkit-scrollbar-thumb {
+        background: #7ab8a1;
+        border-radius: 10px;
+      }
+
+      .ego-modal-content::-webkit-scrollbar-thumb:hover {
+        background: #69a792;
+      }
+      /* Za ekrane manji od 600px */
+      @media (max-width: 600px) {
+        .ego-modal-content {
+          width: 95%;
+          margin: 10px auto;
+        }
+
+        .ego-modal-body {
+          padding: 20px 15px;
+        }
+
+        .graph-popup__container {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .graph-popup__item {
+          width: 100%;
+          max-width: 280px;
+          margin-bottom: 30px;
+        }
+
+        .graph-popup__canvas {
+          max-width: 100%;
+          height: auto !important;
+        }
+      }
+
+      /* Posebno za vrlo male ekrane ispod 470px */
+      @media (max-width: 470px) {
+        .ego-modal-header {
+          padding: 20px 15px;
+        }
+
+        .ego-modal-header h2 {
+          font-size: 22px;
+        }
+
+        .questionnaire__form {
+          padding: 0;
+        }
+
+        .questionnaire__question {
+          margin-bottom: 20px;
+        }
+
+        .questionnaire__option label {
+          font-size: 14px;
+        }
+
+        .graph-popup__item {
+          max-width: 240px;
+        }
+
+        /* Smanji font veličinu naslova grafova */
+        .graph-popup__item-title {
+          font-size: 16px;
+          margin-bottom: 15px;
+        }
+      }
+
+      /* Za ekrane manji od 350px */
+      @media (max-width: 350px) {
+        .graph-popup__item {
+          max-width: 200px;
+        }
+      }
+    </style>
   </head>
 
   <body>
@@ -173,11 +406,6 @@
           </div>
           <!-- banner end -->
 
-          <!-- Loader -->
-          <div class="loader">
-            <div class="loader__spinner"></div>
-          </div>
-
           <div class="container">
             <!-- Theory Section -->
             <div class="theory">
@@ -226,601 +454,442 @@
                     </div>
                   </div>
                 </div>
-
-                <!-- <h3 class="theory__subtitle">Zašto je to važno?</h3>
-                <p class="theory__text">
-                  Razumijevanje vlastitih ego stanja može značajno pomoći u
-                  osobnom razvoju i međuljudskim odnosima. Kada prepoznate koje
-                  ego stanje dominira u određenim situacijama, možete bolje
-                  razumjeti svoje reakcije i ponašanje.
-                </p>
-
-                <p class="theory__text">
-                  Osim toga, analiza ego stanja može vam pomoći u razumijevanju
-                  drugih. Kada prepoznate iz kojeg ego stanja netko drugi
-                  komunicira, možete prilagoditi svoj odgovor i izbjeći
-                  nesporazume.
-                </p>
-
-                <p class="theory__text">
-                  U konačnici, svjesnost o ego stanjima omogućava vam da
-                  preuzmete kontrolu nad svojim reakcijama, poboljšate
-                  komunikaciju i izgradite zdravije odnose s drugima. Kroz ovu
-                  analizu, postajete svjesniji sebe i svojih interakcija, što
-                  vodi ka dubljem razumijevanju i osobnom rastu.
-                </p> -->
-              </div>
-            </div>
-
-            <!-- Questionnaire Section -->
-            <h1 class="questionnaire__title">Upitnik za analizu ego stanja</h1>
-
-            <div class="questionnaire__intro">
-              <p class="questionnaire__intro-text">
-                <strong class="questionnaire__intro-emphasis">Upute:</strong>
-                Odgovorite na svako pitanje odabirom jednog od ponuđenih
-                odgovora. Razmislite o svojim reakcijama i ponašanju u
-                svakodnevnim situacijama.
-              </p>
-              <p class="questionnaire__intro-text">
-                Nakon što odgovorite na sva pitanja, kliknite na gumb "Izračunaj
-                rezultate" kako biste vidjeli analizu svojih ego stanja prema
-                teoriji transakcijske analize.
-              </p>
-            </div>
-
-            <form id="questionnaireForm" class="questionnaire__form">
-              <div class="questionnaire__question">
-                <div class="questionnaire__question-text">
-                  1. Kada se suočim s izazovima, obično:
-                </div>
-                <div class="questionnaire__options">
-                  <div class="questionnaire__option">
-                    <input
-                      type="radio"
-                      id="q1a"
-                      name="q1"
-                      value="parent"
-                      required
-                      class="questionnaire__radio"
-                    />
-                    <label for="q1a" class="questionnaire__label"
-                      >a) Razmišljam o tome što bi drugi od mene očekivali ili
-                      kako bi reagirali.</label
-                    >
-                  </div>
-                  <div class="questionnaire__option">
-                    <input
-                      type="radio"
-                      id="q1b"
-                      name="q1"
-                      value="adult"
-                      class="questionnaire__radio"
-                    />
-                    <label for="q1b" class="questionnaire__label"
-                      >b) Analiziram situaciju i pokušavam donijeti racionalnu
-                      odluku.</label
-                    >
-                  </div>
-                  <div class="questionnaire__option">
-                    <input
-                      type="radio"
-                      id="q1c"
-                      name="q1"
-                      value="child"
-                      class="questionnaire__radio"
-                    />
-                    <label for="q1c" class="questionnaire__label"
-                      >c) Osjećam se preplavljeno i često reagiram
-                      impulzivno.</label
-                    >
-                  </div>
-                </div>
               </div>
 
-              <div class="questionnaire__question">
-                <div class="questionnaire__question-text">
-                  2. U situacijama kada netko treba pomoć, najčešće:
-                </div>
-                <div class="questionnaire__options">
-                  <div class="questionnaire__option">
-                    <input
-                      type="radio"
-                      id="q2a"
-                      name="q2"
-                      value="parent"
-                      required
-                      class="questionnaire__radio"
-                    />
-                    <label for="q2a" class="questionnaire__label"
-                      >a) Pokušavam dati savjete i podršku.</label
-                    >
-                  </div>
-                  <div class="questionnaire__option">
-                    <input
-                      type="radio"
-                      id="q2b"
-                      name="q2"
-                      value="adult"
-                      class="questionnaire__radio"
-                    />
-                    <label for="q2b" class="questionnaire__label"
-                      >b) Pokušavam razumjeti situaciju i ponuditi praktična
-                      rješenja.</label
-                    >
-                  </div>
-                  <div class="questionnaire__option">
-                    <input
-                      type="radio"
-                      id="q2c"
-                      name="q2"
-                      value="child"
-                      class="questionnaire__radio"
-                    />
-                    <label for="q2c" class="questionnaire__label"
-                      >c) Pokušavam se zabaviti i skrenuti pažnju s
-                      problema.</label
-                    >
-                  </div>
-                </div>
-              </div>
-
-              <div class="questionnaire__question">
-                <div class="questionnaire__question-text">
-                  3. Kada razmišljam o svojim emocijama, obično:
-                </div>
-                <div class="questionnaire__options">
-                  <div class="questionnaire__option">
-                    <input
-                      type="radio"
-                      id="q3a"
-                      name="q3"
-                      value="parent"
-                      required
-                      class="questionnaire__radio"
-                    />
-                    <label for="q3a" class="questionnaire__label"
-                      >a) Pokušavam ih kontrolirati i ne pokazivati ih
-                      previše.</label
-                    >
-                  </div>
-                  <div class="questionnaire__option">
-                    <input
-                      type="radio"
-                      id="q3b"
-                      name="q3"
-                      value="adult"
-                      class="questionnaire__radio"
-                    />
-                    <label for="q3b" class="questionnaire__label"
-                      >b) Razmišljam o tome kako se osjećam i zašto.</label
-                    >
-                  </div>
-                  <div class="questionnaire__option">
-                    <input
-                      type="radio"
-                      id="q3c"
-                      name="q3"
-                      value="child"
-                      class="questionnaire__radio"
-                    />
-                    <label for="q3c" class="questionnaire__label"
-                      >c) Iskreno izražavam svoje emocije, bez obzira na
-                      situaciju.</label
-                    >
-                  </div>
-                </div>
-              </div>
-
-              <div class="questionnaire__question">
-                <div class="questionnaire__question-text">
-                  4. U društvenim interakcijama, najčešće:
-                </div>
-                <div class="questionnaire__options">
-                  <div class="questionnaire__option">
-                    <input
-                      type="radio"
-                      id="q4a"
-                      name="q4"
-                      value="parent"
-                      required
-                      class="questionnaire__radio"
-                    />
-                    <label for="q4a" class="questionnaire__label"
-                      >a) Pokušavam biti podrška drugima i brinuti se o njihovim
-                      potrebama.</label
-                    >
-                  </div>
-                  <div class="questionnaire__option">
-                    <input
-                      type="radio"
-                      id="q4b"
-                      name="q4"
-                      value="adult"
-                      class="questionnaire__radio"
-                    />
-                    <label for="q4b" class="questionnaire__label"
-                      >b) Razgovaram s ljudima na temelju zajedničkih interesa i
-                      informacija.</label
-                    >
-                  </div>
-                  <div class="questionnaire__option">
-                    <input
-                      type="radio"
-                      id="q4c"
-                      name="q4"
-                      value="child"
-                      class="questionnaire__radio"
-                    />
-                    <label for="q4c" class="questionnaire__label"
-                      >c) Volim se zabavljati i često se ponašam
-                      spontano.</label
-                    >
-                  </div>
-                </div>
-              </div>
-
-              <div class="questionnaire__question">
-                <div class="questionnaire__question-text">
-                  5. Kada se suočim s kritikama, obično:
-                </div>
-                <div class="questionnaire__options">
-                  <div class="questionnaire__option">
-                    <input
-                      type="radio"
-                      id="q5a"
-                      name="q5"
-                      value="parent"
-                      required
-                      class="questionnaire__radio"
-                    />
-                    <label for="q5a" class="questionnaire__label"
-                      >a) Pokušavam objasniti svoje postupke i opravdati
-                      se.</label
-                    >
-                  </div>
-                  <div class="questionnaire__option">
-                    <input
-                      type="radio"
-                      id="q5b"
-                      name="q5"
-                      value="adult"
-                      class="questionnaire__radio"
-                    />
-                    <label for="q5b" class="questionnaire__label"
-                      >b) Razmišljam o kritikama i procjenjujem jesu li
-                      opravdane.</label
-                    >
-                  </div>
-                  <div class="questionnaire__option">
-                    <input
-                      type="radio"
-                      id="q5c"
-                      name="q5"
-                      value="child"
-                      class="questionnaire__radio"
-                    />
-                    <label for="q5c" class="questionnaire__label"
-                      >c) Osjećam se povrijeđeno i često reagiram
-                      emotivno.</label
-                    >
-                  </div>
-                </div>
-              </div>
-
-              <div class="questionnaire__question">
-                <div class="questionnaire__question-text">
-                  6. Kada postavljam ciljeve, obično:
-                </div>
-                <div class="questionnaire__options">
-                  <div class="questionnaire__option">
-                    <input
-                      type="radio"
-                      id="q6a"
-                      name="q6"
-                      value="parent"
-                      required
-                      class="questionnaire__radio"
-                    />
-                    <label for="q6a" class="questionnaire__label"
-                      >a) Razmišljam o tome što bi drugi od mene
-                      očekivali.</label
-                    >
-                  </div>
-                  <div class="questionnaire__option">
-                    <input
-                      type="radio"
-                      id="q6b"
-                      name="q6"
-                      value="adult"
-                      class="questionnaire__radio"
-                    />
-                    <label for="q6b" class="questionnaire__label"
-                      >b) Postavljam realne ciljeve i planiram kako ih
-                      ostvariti.</label
-                    >
-                  </div>
-                  <div class="questionnaire__option">
-                    <input
-                      type="radio"
-                      id="q6c"
-                      name="q6"
-                      value="child"
-                      class="questionnaire__radio"
-                    />
-                    <label for="q6c" class="questionnaire__label"
-                      >c) Sanjarim o onome što bih volio raditi, bez obzira na
-                      realnost.</label
-                    >
-                  </div>
-                </div>
-              </div>
-
-              <div class="questionnaire__question">
-                <div class="questionnaire__question-text">
-                  7. U stresnim situacijama, najčešće:
-                </div>
-                <div class="questionnaire__options">
-                  <div class="questionnaire__option">
-                    <input
-                      type="radio"
-                      id="q7a"
-                      name="q7"
-                      value="parent"
-                      required
-                      class="questionnaire__radio"
-                    />
-                    <label for="q7a" class="questionnaire__label"
-                      >a) Pokušavam smiriti situaciju i dati savjete.</label
-                    >
-                  </div>
-                  <div class="questionnaire__option">
-                    <input
-                      type="radio"
-                      id="q7b"
-                      name="q7"
-                      value="adult"
-                      class="questionnaire__radio"
-                    />
-                    <label for="q7b" class="questionnaire__label"
-                      >b) Analiziram situaciju i tražim racionalna
-                      rješenja.</label
-                    >
-                  </div>
-                  <div class="questionnaire__option">
-                    <input
-                      type="radio"
-                      id="q7c"
-                      name="q7"
-                      value="child"
-                      class="questionnaire__radio"
-                    />
-                    <label for="q7c" class="questionnaire__label"
-                      >c) Osjećam se uzrujano i često se povlačim ili reagiram
-                      emocionalno.</label
-                    >
-                  </div>
-                </div>
-              </div>
-
-              <div class="questionnaire__button-container">
-                <button
-                  type="button"
-                  id="calculateBtn"
-                  class="questionnaire__button"
-                >
-                  Izračunaj rezultate
-                </button>
-              </div>
-            </form>
-
-            <!-- Results Section -->
-            <div id="results" class="results">
-              <h2 class="results__title">Rezultati analize ego stanja</h2>
-
-              <!-- Skriveni elementi za čuvanje podataka -->
-              <span id="parentPercentage" style="display: none">0</span>
-              <span id="adultPercentage" style="display: none">0</span>
-              <span id="childPercentage" style="display: none">0</span>
-
-              <div class="graph-popup__container">
-                <div class="graph-popup__item">
-                  <h4 class="graph-popup__item-title">
-                    Stupčasti prikaz rezultata
-                  </h4>
-                  <canvas
-                    id="barChart"
-                    class="graph-popup__canvas"
-                    width="300"
-                    height="300"
-                  ></canvas>
-                </div>
-                <div class="graph-popup__item">
-                  <h4 class="graph-popup__item-title">
-                    Radar dijagram profila
-                  </h4>
-                  <canvas
-                    id="radarChart"
-                    class="graph-popup__canvas"
-                    width="300"
-                    height="300"
-                  ></canvas>
-                </div>
-              </div>
-
-              <div class="results__dominant" id="dominantEgoState"></div>
-
-              <div class="results__note">
-                <p class="results__note-text">
-                  <strong class="results__note-emphasis">Napomena:</strong> Ovaj
-                  upitnik je pojednostavljeni instrument za osobnu refleksiju
-                  prema teoriji transakcijske analize. Nije dijagnostički alat i
-                  ne zamjenjuje stručnu procjenu.
-                </p>
-              </div>
+              <!-- Analiziraj se button -->
+              <button id="openAnalysisBtn" class="analyze-btn">
+                Analiziraj se
+              </button>
             </div>
           </div>
 
-          <!-- STARI REZULTATI S POPUPOM -->
-          <!-- <div id="results" class="results">
-              <h2 class="results__title">Rezultati analize ego stanja</h2>
-
-              <div class="results__category">
-                <div class="results__category-header">
-                  <strong class="results__category-name">Roditelj:</strong>
-                  <span id="parentPercentage">0</span>%
-                </div>
-                <div class="results__progress-container">
-                  <div
-                    class="results__progress results__progress--parent"
-                    id="parentBar"
-                    style="width: 0%"
-                  ></div>
-                </div>
-
-                <div class="results__description">
-                  Odgovori karakteristični za Roditelja uključuju brigu o
-                  drugima, davanje savjeta i kontroliranje emocija.
-                </div>
+          <!-- Ego Analysis Modal -->
+          <div id="egoAnalysisModal" class="ego-modal">
+            <div class="ego-modal-content">
+              <div class="ego-modal-header">
+                <h2>Upitnik za analizu ego stanja</h2>
+                <span class="ego-modal-close">&times;</span>
               </div>
+              <div class="ego-modal-body">
+                <!-- Modal Loader -->
+                <div class="modal-loader" id="modalLoader">
+                  <div class="modal-loader__spinner"></div>
+                </div>
 
-              <div class="results__category">
-                <div class="results__category-header">
-                  <strong class="results__category-name">Odrasli:</strong>
-                  <span id="adultPercentage">0</span>%
-                </div>
-                <div class="results__progress-container">
-                  <div
-                    class="results__progress results__progress--adult"
-                    id="adultBar"
-                    style="width: 0%"
-                  ></div>
-                </div>
-                <div class="results__description">
-                  Odgovori karakteristični za Odraslog uključuju racionalnu
-                  analizu, praktično rješavanje problema i objektivno
-                  sagledavanje situacije.
-                </div>
-              </div>
-
-              <div class="results__category">
-                <div class="results__category-header">
-                  <strong class="results__category-name">Dijete:</strong>
-                  <span id="childPercentage">0</span>%
-                </div>
-                <div class="results__progress-container">
-                  <div
-                    class="results__progress results__progress--child"
-                    id="childBar"
-                    style="width: 0%"
-                  ></div>
-                </div>
-                <div class="results__description">
-                  Odgovori karakteristični za Dijete uključuju spontanost,
-                  emocionalne reakcije i želju za igrom i zabavom.
-                </div>
-              </div>
-
-              <div class="graph-popup__container">
-                <div class="graph-popup__item">
-                    <h4 class="graph-popup__item-title">
-                      Kružni dijagram ego stanja
-                    </h4>
-                    <canvas
-                      id="pieChart"
-                      class="graph-popup__canvas"
-                      width="300"
-                      height="300"
-                    ></canvas>
+                <!-- Questionnaire Section -->
+                <div id="questionnaireSection">
+                  <div class="questionnaire__intro" id="questionnaireIntro">
+                    <p class="questionnaire__intro-text">
+                      <strong class="questionnaire__intro-emphasis"
+                        >Upute:</strong
+                      >
+                      Odgovorite na svako pitanje odabirom jednog od ponuđenih
+                      odgovora. Razmislite o svojim reakcijama i ponašanju u
+                      svakodnevnim situacijama.
+                    </p>
+                    <p class="questionnaire__intro-text">
+                      Nakon što odgovorite na sva pitanja, kliknite na gumb
+                      "Izračunaj rezultate" kako biste vidjeli analizu svojih
+                      ego stanja prema teoriji transakcijske analize.
+                    </p>
                   </div>
-                <div class="graph-popup__item">
-                  <h4 class="graph-popup__item-title">
-                    Stupčasti prikaz rezultata
-                  </h4>
-                  <canvas
-                    id="barChart"
-                    class="graph-popup__canvas"
-                    width="300"
-                    height="300"
-                  ></canvas>
+
+                  <form id="questionnaireForm" class="questionnaire__form">
+                    <div class="questionnaire__question">
+                      <div class="questionnaire__question-text">
+                        1. Kada se suočim s izazovima, obično:
+                      </div>
+                      <div class="questionnaire__options">
+                        <div class="questionnaire__option">
+                          <input
+                            type="radio"
+                            id="q1a"
+                            name="q1"
+                            value="parent"
+                            required
+                            class="questionnaire__radio"
+                          />
+                          <label for="q1a" class="questionnaire__label"
+                            >a) Razmišljam o tome što bi drugi od mene očekivali
+                            ili kako bi reagirali.</label
+                          >
+                        </div>
+                        <div class="questionnaire__option">
+                          <input
+                            type="radio"
+                            id="q1b"
+                            name="q1"
+                            value="adult"
+                            class="questionnaire__radio"
+                          />
+                          <label for="q1b" class="questionnaire__label"
+                            >b) Analiziram situaciju i pokušavam donijeti
+                            racionalnu odluku.</label
+                          >
+                        </div>
+                        <div class="questionnaire__option">
+                          <input
+                            type="radio"
+                            id="q1c"
+                            name="q1"
+                            value="child"
+                            class="questionnaire__radio"
+                          />
+                          <label for="q1c" class="questionnaire__label"
+                            >c) Osjećam se preplavljeno i često reagiram
+                            impulzivno.</label
+                          >
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="questionnaire__question">
+                      <div class="questionnaire__question-text">
+                        2. U situacijama kada netko treba pomoć, najčešće:
+                      </div>
+                      <div class="questionnaire__options">
+                        <div class="questionnaire__option">
+                          <input
+                            type="radio"
+                            id="q2a"
+                            name="q2"
+                            value="parent"
+                            required
+                            class="questionnaire__radio"
+                          />
+                          <label for="q2a" class="questionnaire__label"
+                            >a) Pokušavam dati savjete i podršku.</label
+                          >
+                        </div>
+                        <div class="questionnaire__option">
+                          <input
+                            type="radio"
+                            id="q2b"
+                            name="q2"
+                            value="adult"
+                            class="questionnaire__radio"
+                          />
+                          <label for="q2b" class="questionnaire__label"
+                            >b) Pokušavam razumjeti situaciju i ponuditi
+                            praktična rješenja.</label
+                          >
+                        </div>
+                        <div class="questionnaire__option">
+                          <input
+                            type="radio"
+                            id="q2c"
+                            name="q2"
+                            value="child"
+                            class="questionnaire__radio"
+                          />
+                          <label for="q2c" class="questionnaire__label"
+                            >c) Pokušavam se zabaviti i skrenuti pažnju s
+                            problema.</label
+                          >
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="questionnaire__question">
+                      <div class="questionnaire__question-text">
+                        3. Kada razmišljam o svojim emocijama, obično:
+                      </div>
+                      <div class="questionnaire__options">
+                        <div class="questionnaire__option">
+                          <input
+                            type="radio"
+                            id="q3a"
+                            name="q3"
+                            value="parent"
+                            required
+                            class="questionnaire__radio"
+                          />
+                          <label for="q3a" class="questionnaire__label"
+                            >a) Pokušavam ih kontrolirati i ne pokazivati ih
+                            previše.</label
+                          >
+                        </div>
+                        <div class="questionnaire__option">
+                          <input
+                            type="radio"
+                            id="q3b"
+                            name="q3"
+                            value="adult"
+                            class="questionnaire__radio"
+                          />
+                          <label for="q3b" class="questionnaire__label"
+                            >b) Razmišljam o tome kako se osjećam i
+                            zašto.</label
+                          >
+                        </div>
+                        <div class="questionnaire__option">
+                          <input
+                            type="radio"
+                            id="q3c"
+                            name="q3"
+                            value="child"
+                            class="questionnaire__radio"
+                          />
+                          <label for="q3c" class="questionnaire__label"
+                            >c) Iskreno izražavam svoje emocije, bez obzira na
+                            situaciju.</label
+                          >
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="questionnaire__question">
+                      <div class="questionnaire__question-text">
+                        4. U društvenim interakcijama, najčešće:
+                      </div>
+                      <div class="questionnaire__options">
+                        <div class="questionnaire__option">
+                          <input
+                            type="radio"
+                            id="q4a"
+                            name="q4"
+                            value="parent"
+                            required
+                            class="questionnaire__radio"
+                          />
+                          <label for="q4a" class="questionnaire__label"
+                            >a) Pokušavam biti podrška drugima i brinuti se o
+                            njihovim potrebama.</label
+                          >
+                        </div>
+                        <div class="questionnaire__option">
+                          <input
+                            type="radio"
+                            id="q4b"
+                            name="q4"
+                            value="adult"
+                            class="questionnaire__radio"
+                          />
+                          <label for="q4b" class="questionnaire__label"
+                            >b) Razgovaram s ljudima na temelju zajedničkih
+                            interesa i informacija.</label
+                          >
+                        </div>
+                        <div class="questionnaire__option">
+                          <input
+                            type="radio"
+                            id="q4c"
+                            name="q4"
+                            value="child"
+                            class="questionnaire__radio"
+                          />
+                          <label for="q4c" class="questionnaire__label"
+                            >c) Volim se zabavljati i često se ponašam
+                            spontano.</label
+                          >
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="questionnaire__question">
+                      <div class="questionnaire__question-text">
+                        5. Kada se suočim s kritikama, obično:
+                      </div>
+                      <div class="questionnaire__options">
+                        <div class="questionnaire__option">
+                          <input
+                            type="radio"
+                            id="q5a"
+                            name="q5"
+                            value="parent"
+                            required
+                            class="questionnaire__radio"
+                          />
+                          <label for="q5a" class="questionnaire__label"
+                            >a) Pokušavam objasniti svoje postupke i opravdati
+                            se.</label
+                          >
+                        </div>
+                        <div class="questionnaire__option">
+                          <input
+                            type="radio"
+                            id="q5b"
+                            name="q5"
+                            value="adult"
+                            class="questionnaire__radio"
+                          />
+                          <label for="q5b" class="questionnaire__label"
+                            >b) Razmišljam o kritikama i procjenjujem jesu li
+                            opravdane.</label
+                          >
+                        </div>
+                        <div class="questionnaire__option">
+                          <input
+                            type="radio"
+                            id="q5c"
+                            name="q5"
+                            value="child"
+                            class="questionnaire__radio"
+                          />
+                          <label for="q5c" class="questionnaire__label"
+                            >c) Osjećam se povrijeđeno i često reagiram
+                            emotivno.</label
+                          >
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="questionnaire__question">
+                      <div class="questionnaire__question-text">
+                        6. Kada postavljam ciljeve, obično:
+                      </div>
+                      <div class="questionnaire__options">
+                        <div class="questionnaire__option">
+                          <input
+                            type="radio"
+                            id="q6a"
+                            name="q6"
+                            value="parent"
+                            required
+                            class="questionnaire__radio"
+                          />
+                          <label for="q6a" class="questionnaire__label"
+                            >a) Razmišljam o tome što bi drugi od mene
+                            očekivali.</label
+                          >
+                        </div>
+                        <div class="questionnaire__option">
+                          <input
+                            type="radio"
+                            id="q6b"
+                            name="q6"
+                            value="adult"
+                            class="questionnaire__radio"
+                          />
+                          <label for="q6b" class="questionnaire__label"
+                            >b) Postavljam realne ciljeve i planiram kako ih
+                            ostvariti.</label
+                          >
+                        </div>
+                        <div class="questionnaire__option">
+                          <input
+                            type="radio"
+                            id="q6c"
+                            name="q6"
+                            value="child"
+                            class="questionnaire__radio"
+                          />
+                          <label for="q6c" class="questionnaire__label"
+                            >c) Sanjarim o onome što bih volio raditi, bez
+                            obzira na realnost.</label
+                          >
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="questionnaire__question">
+                      <div class="questionnaire__question-text">
+                        7. U stresnim situacijama, najčešće:
+                      </div>
+                      <div class="questionnaire__options">
+                        <div class="questionnaire__option">
+                          <input
+                            type="radio"
+                            id="q7a"
+                            name="q7"
+                            value="parent"
+                            required
+                            class="questionnaire__radio"
+                          />
+                          <label for="q7a" class="questionnaire__label"
+                            >a) Pokušavam smiriti situaciju i dati
+                            savjete.</label
+                          >
+                        </div>
+                        <div class="questionnaire__option">
+                          <input
+                            type="radio"
+                            id="q7b"
+                            name="q7"
+                            value="adult"
+                            class="questionnaire__radio"
+                          />
+                          <label for="q7b" class="questionnaire__label"
+                            >b) Analiziram situaciju i tražim racionalna
+                            rješenja.</label
+                          >
+                        </div>
+                        <div class="questionnaire__option">
+                          <input
+                            type="radio"
+                            id="q7c"
+                            name="q7"
+                            value="child"
+                            class="questionnaire__radio"
+                          />
+                          <label for="q7c" class="questionnaire__label"
+                            >c) Osjećam se uzrujano i često se povlačim ili
+                            reagiram emocionalno.</label
+                          >
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="questionnaire__button-container">
+                      <button
+                        type="button"
+                        id="calculateBtn"
+                        class="questionnaire__button"
+                      >
+                        Izračunaj rezultate
+                      </button>
+                    </div>
+                  </form>
                 </div>
-                <div class="graph-popup__item">
-                  <h4 class="graph-popup__item-title">
-                    Radar dijagram profila
-                  </h4>
-                  <canvas
-                    id="radarChart"
-                    class="graph-popup__canvas"
-                    width="300"
-                    height="300"
-                  ></canvas>
+
+                <!-- Results Section -->
+                <div id="results" class="results" style="display: none">
+                  <h2 class="results__title">Rezultati analize ego stanja</h2>
+
+                  <!-- Skriveni elementi za čuvanje podataka -->
+                  <span id="parentPercentage" style="display: none">0</span>
+                  <span id="adultPercentage" style="display: none">0</span>
+                  <span id="childPercentage" style="display: none">0</span>
+
+                  <div class="graph-popup__container">
+                    <div class="graph-popup__item">
+                      <h4 class="graph-popup__item-title">
+                        Stupčasti prikaz rezultata
+                      </h4>
+                      <canvas
+                        id="barChart"
+                        class="graph-popup__canvas"
+                        width="300"
+                        height="300"
+                      ></canvas>
+                    </div>
+                    <div class="graph-popup__item">
+                      <h4 class="graph-popup__item-title">
+                        Radar dijagram profila
+                      </h4>
+                      <canvas
+                        id="radarChart"
+                        class="graph-popup__canvas"
+                        width="300"
+                        height="300"
+                      ></canvas>
+                    </div>
+                  </div>
+
+                  <div class="results__dominant" id="dominantEgoState"></div>
+
+                  <div class="results__note">
+                    <p class="results__note-text">
+                      <strong class="results__note-emphasis">Napomena:</strong>
+                      Ovaj upitnik je pojednostavljeni instrument za osobnu
+                      refleksiju prema teoriji transakcijske analize. Nije
+                      dijagnostički alat i ne zamjenjuje stručnu procjenu.
+                    </p>
+                  </div>
                 </div>
-              </div>
-
-              <div class="results__dominant" id="dominantEgoState"></div>
-
-              <div class="results__note">
-                <p class="results__note-text">
-                  <strong class="results__note-emphasis">Napomena:</strong> Ovaj
-                  upitnik je pojednostavljeni instrument za osobnu refleksiju
-                  prema teoriji transakcijske analize. Nije dijagnostički alat i
-                  ne zamjenjuje stručnu procjenu.
-                </p>
-              </div>
-
-              Graph Button
-              <div class="results__graph-container">
-                <button id="showGraphBtn" class="results__graph-button">
-                  Prikaz grafova
-                </button>
               </div>
             </div>
-
-            Graph Popup
-            <div id="graphPopup" class="graph-popup">
-              <div class="graph-popup__content">
-                <div class="graph-popup__header">
-                  <h3 class="graph-popup__title">Grafički prikaz rezultata</h3>
-                  <span class="graph-popup__close">&times;</span>
-                </div>
-                <div class="graph-popup__container">
-                  <div class="graph-popup__item">
-                    <h4 class="graph-popup__item-title">
-                      Kružni dijagram ego stanja
-                    </h4>
-                    <canvas
-                      id="pieChart"
-                      class="graph-popup__canvas"
-                      width="300"
-                      height="300"
-                    ></canvas>
-                  </div>
-                  <div class="graph-popup__item">
-                    <h4 class="graph-popup__item-title">
-                      Stupčasti prikaz rezultata
-                    </h4>
-                    <canvas
-                      id="barChart"
-                      class="graph-popup__canvas"
-                      width="300"
-                      height="300"
-                    ></canvas>
-                  </div>
-                  <div class="graph-popup__item">
-                    <h4 class="graph-popup__item-title">
-                      Radar dijagram profila
-                    </h4>
-                    <canvas
-                      id="radarChart"
-                      class="graph-popup__canvas"
-                      width="300"
-                      height="300"
-                    ></canvas>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> -->
+          </div>
 
           <!-- footer -->
           <footer class="mil-soft-bg">
@@ -1088,6 +1157,53 @@
       <!-- content -->
     </div>
     <!-- wrapper end -->
+
+    <!-- Modal specific JavaScript -->
+    <script>
+      // Modal functionality
+      const modal = document.getElementById("egoAnalysisModal");
+      const openBtn = document.getElementById("openAnalysisBtn");
+      const closeBtn = document.querySelector(".ego-modal-close");
+      const modalBody = document.querySelector(".ego-modal-body");
+
+      // Open modal
+      openBtn.onclick = function () {
+        modal.style.display = "block";
+        document.body.style.overflow = "hidden"; // Prevent background scrolling
+      };
+
+      // Close modal
+      closeBtn.onclick = function () {
+        modal.style.display = "none";
+        document.body.style.overflow = "auto"; // Re-enable scrolling
+        resetModal();
+      };
+
+      // Close modal when clicking outside of it
+      window.onclick = function (event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+          document.body.style.overflow = "auto";
+          resetModal();
+        }
+      };
+
+      // Reset modal function
+      function resetModal() {
+        // Reset form
+        document.getElementById("questionnaireForm").reset();
+
+        // Show questionnaire section and instructions
+        document.getElementById("questionnaireSection").style.display = "block";
+        document.getElementById("questionnaireIntro").style.display = "block";
+
+        // Hide results
+        document.getElementById("results").style.display = "none";
+
+        // Hide loader
+        document.getElementById("modalLoader").style.display = "none";
+      }
+    </script>
 
     <script src="js/testEgoStage.js"></script>
 
