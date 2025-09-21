@@ -668,7 +668,6 @@
           toast.textContent = message;
         }
         toast.classList.add("show");
-
         // Auto hide after 5 seconds
         setTimeout(() => {
           hideToast(id);
@@ -680,20 +679,34 @@
         toast.classList.remove("show");
       }
 
+      // Funkcija za formatiranje datuma
+      function getCurrentDate() {
+        const now = new Date();
+        const day = now.getDate().toString().padStart(2, "0");
+        const month = (now.getMonth() + 1).toString().padStart(2, "0");
+        const year = now.getFullYear();
+
+        // Format: DD.MM.YYYY
+        return `${day}.${month}.${year}`;
+      }
+
       // Funkcija za slanje emaila
       function sendEmail(event) {
         event.preventDefault();
-
         const submitBtn = document.getElementById("submitBtn");
 
-        // Disabiluj dugme tokom slanja (ali ostavi isti tekst)
+        // Disabiluj dugme tokom slanja
         submitBtn.disabled = true;
+
+        // Generiši trenutni datum
+        const currentDate = getCurrentDate();
 
         // Pripremi parametre za EmailJS
         const templateParams = {
           user_name: document.getElementById("userName").value,
           user_email: document.getElementById("userEmail").value,
           message: document.getElementById("message").value,
+          current_date: currentDate, // Dodaj trenutni datum
           to_email: "m.besednik69@gmail.com",
         };
 
@@ -704,17 +717,14 @@
           .then(
             function (response) {
               console.log("SUCCESS!", response.status, response.text);
-
               // Prikaži success toast
               showToast("successMessage");
-
               // Resetuj formu
               document.getElementById("contactForm").reset();
             },
             function (error) {
               console.log("FAILED...", error);
               console.log("Error details:", JSON.stringify(error, null, 2));
-
               // Prikaži error toast sa detaljima
               const errorMessage = `Dogodila se greška: ${
                 error.text || error.message || "Nepoznata greška"
