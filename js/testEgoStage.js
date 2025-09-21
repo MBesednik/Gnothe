@@ -152,7 +152,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Definiranje boja koje će se koristiti za svako ego stanje
     const colors = {
       parent: "#3498db", // Plava boja za Roditelja
-      adult: "#5dc2a5", // Zelena boja za Odraslog
+      adult: "#a3b68a", // Zelena boja za Odraslog
       child: "#e67e22", // Narančasta boja za Dijete
     };
 
@@ -283,11 +283,11 @@ document.addEventListener("DOMContentLoaded", function () {
               ],
               fill: true,
               backgroundColor: "rgba(93, 194, 165, 0.2)",
-              borderColor: "#5dc2a5",
-              pointBackgroundColor: "#5dc2a5",
+              borderColor: "#a3b68a",
+              pointBackgroundColor: "#a3b68a",
               pointBorderColor: "#fff",
               pointHoverBackgroundColor: "#fff",
-              pointHoverBorderColor: "#5dc2a5",
+              pointHoverBorderColor: "#a3b68a",
             },
           ],
         },

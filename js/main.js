@@ -9,15 +9,15 @@ p.s. I am available for Freelance hire (UI design, web development). email: mill
 
 ------------------------------------------- */
 
-// Paralaks efekt na hero sliku
-window.addEventListener("scroll", () => {
-  const scrolled = window.pageYOffset;
-  const heroImage = document.querySelector(".hero__image");
+// Paralaks efekt na hero video
+// window.addEventListener("scroll", () => {
+//   const scrolled = window.pageYOffset;
+//   const heroVideo = document.querySelector(".hero__video");
 
-  if (heroImage && scrolled < window.innerHeight) {
-    heroImage.style.transform = `translateY(${scrolled * 0.5}px)`;
-  }
-});
+//   if (heroVideo && scrolled < window.innerHeight) {
+//     heroVideo.style.transform = `translateY(${scrolled * 0.5}px)`;
+//   }
+// });
 
 // Smooth scroll na klik scroll indikatora
 document

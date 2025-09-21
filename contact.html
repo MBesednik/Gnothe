@@ -37,6 +37,70 @@
           margin-top: 30px;
         }
       }
+
+      /* Toast notification styles */
+      .toast-notification {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        max-width: 400px;
+        padding: 16px 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        z-index: 1000;
+        font-size: 14px;
+        font-weight: 500;
+        opacity: 0;
+        transform: translateX(100%) scale(0.3);
+        transition: all 0.3s ease;
+        display: none;
+      }
+
+      .toast-notification.show {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+        display: block;
+        animation: bounceIn 0.6s ease-out;
+      }
+
+      @keyframes bounceIn {
+        0% {
+          opacity: 0;
+          transform: translateX(100%) scale(0.3);
+        }
+        50% {
+          opacity: 1;
+          transform: translateX(-10px) scale(1.05);
+        }
+        70% {
+          transform: translateX(10px) scale(0.95);
+        }
+        100% {
+          opacity: 1;
+          transform: translateX(0) scale(1);
+        }
+      }
+
+      .toast-success {
+        background: #d4edda;
+        color: #155724;
+        border-left: 4px solid #28a745;
+      }
+
+      .toast-error {
+        background: #f8d7da;
+        color: #721c24;
+        border-left: 4px solid #dc3545;
+      }
+
+      @media (max-width: 768px) {
+        .toast-notification {
+          top: 10px;
+          right: 10px;
+          left: 10px;
+          max-width: none;
+        }
+      }
     </style>
   </head>
 
@@ -57,24 +121,6 @@
       </div>
       <!-- cursor end -->
 
-      <!-- preloader -->
-      <!-- <div class="mil-preloader">
-        <div class="mil-preloader-animation">
-          <div class="mil-pos-abs mil-animation-1">
-            <p class="mil-h3 mil-muted mil-thin">Pioneering</p>
-            <p class="mil-h3 mil-muted">Creative</p>
-            <p class="mil-h3 mil-muted mil-thin">Excellence</p>
-          </div>
-          <div class="mil-pos-abs mil-animation-2">
-            <div class="mil-reveal-frame">
-              <p class="mil-reveal-box"></p>
-              <p class="mil-h3 mil-muted mil-thin">Gnothe.com</p>
-            </div>
-          </div>
-        </div>
-      </div> -->
-      <!-- preloader end -->
-
       <!-- scrollbar progress -->
       <div class="mil-progress-track">
         <div class="mil-progress"></div>
@@ -88,7 +134,6 @@
           <a href="index.html" class="mil-logo">
             <div class="gnothe-logo">
               <div class="gnothe-main">GNOTHE</div>
-              <!--  <div class="gnothe-subtitle">COACHING & COUNSELING</div> -->
             </div>
           </a>
           <div class="mil-menu-btn">
@@ -106,17 +151,16 @@
                       <a href="index.html">Naslovna</a>
                     </li>
                     <li class="mil-has-children">
-                      <a href="about.html">O meni</a>
+                      <a href="test.html">Terapijski pristup</a>
                     </li>
                     <li class="mil-has-children">
-                      <a href="service.html">Usluge</a>
+                      <a href="about.html">O meni</a>
                     </li>
+
                     <li class="mil-has-children">
                       <a href="announcement.html">Najave</a>
                     </li>
-                    <li class="mil-has-children">
-                      <a href="test.html">Terapijski pristup</a>
-                    </li>
+
                     <li class="mil-has-children mil-active">
                       <a href="#">Kontakt</a>
                     </li>
@@ -155,7 +199,6 @@
           <a href="index.html" class="mil-logo">
             <div class="gnothe-logo">
               <div class="gnothe-main">GNOTHE</div>
-              <!-- <div class="gnothe-subtitle">COACHING & COUNSELING</div> -->
             </div>
           </a>
           <div class="mil-menu-btn">
@@ -176,42 +219,18 @@
       </div>
       <!-- frame end -->
 
+      <!-- Toast notifications -->
+      <div id="successMessage" class="toast-notification toast-success">
+        Vaša poruka je uspešno poslata! Odgovoriću vam u najkraćem roku.
+      </div>
+
+      <div id="errorMessage" class="toast-notification toast-error">
+        Dogodila se greška prilikom slanja poruke. Molimo pokušajte ponovo.
+      </div>
+
       <!-- content -->
       <div class="mil-content">
         <div id="swupMain" class="mil-main-transition">
-          <!-- banner
-          <div class="mil-inner-banner mil-p-0-120">
-            <div class="mil-banner-content mil-center mil-up">
-              <div class="container" style="margin-bottom: 40px">
-                <ul class="mil-breadcrumbs mil-center mil-mb-60">
-                  <li><a href="index.html">Naslovna</a></li>
-                  <li><a href="#">Kontakt</a></li>
-                </ul>
-                <h1 class="mil-mb-60">Stupimo u kontakt!</h1>
-                <a
-                  href="#contact"
-                  class="mil-link mil-dark mil-arrow-place mil-down-arrow"
-                >
-                  <span>Send message</span>
-                </a>
-              </div>
-            </div>
-          </div>
-          banner end map
-          <div class="mil-map-frame mil-up">
-            <div class="mil-map">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2781.1389813413593!2d15.8706050764659!3d45.80847491040199!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4765d19faebe3581%3A0x948681ce9576cd07!2sKon%C4%8Dar%20%E2%80%93%20Energetski%20transformatori%20d.o.o.!5e0!3m2!1sde!2sat!4v1742333079791!5m2!1sde!2sat"
-                style="border: 0"
-                allowfullscreen=""
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-              ></iframe>
-            </div>
-          </div> -->
-
-          <!-- map and video section -->
-
           <!-- contact start -->
           <section class="mil-soft-bg" id="contact">
             <div class="container mil-p-120-120">
@@ -229,14 +248,14 @@
                   <span class="mil-thin">Spremni za </span> prvi korak
                   <span class="mil-thin"><br />prema</span> promjeni?
                 </h2>
-                <div class="mil-up">
+                <!-- <div class="mil-up">
                   <a
                     href="#"
                     onclick="window.open('mailto:melita.zajkovski@gmail.com','_self')"
                     class="mil-button mil-arrow-place"
                     >Kontaktirajte me</a
                   >
-                </div>
+                </div> -->
               </div>
             </div>
           </section>
@@ -250,27 +269,12 @@
               <div class="col-lg-5">
                 <div class="location-text pe-lg-4">
                   <h3 class="mb-4 fw-bold" style="font-size: 2rem; color: #333">
-                    Gdje se nalazimo?
+                    GNOTHE, obrt za savjetovanje
                   </h3>
 
-                  <p class="mb-3">
-                    Naš prostor smješten je u mirnom dijelu Zaprešića,
-                    stvarajući idealno okruženje za terapijski rad. Lako smo
-                    dostupni javnim prijevozom, a osiguran parking u blizini
-                    olakšava vaš dolazak.
-                  </p>
-
-                  <p class="mb-3">
-                    U okolici se nalaze ugodni kafići i restorani, savršeni za
-                    trenutke refleksije prije ili nakon sesije.
-                  </p>
-
-                  <p class="fw-medium">
-                    Adresa:
-                    <span class="text-dark"
-                      >Ul. Alojzija Stepinca 8A, 10290, Zaprešić</span
-                    >
-                  </p>
+                  <p class="mb-3">vl. Melita Zakojvski</p>
+                  <p class="mb-3">Ul. Alojzija Stepinca 8A, 10290, Zaprešić</p>
+                  <p class="mb-3">+385 98 811 651</p>
                 </div>
               </div>
 
@@ -313,10 +317,7 @@
                     preload="auto"
                     style="width: 100%; height: 100%; object-fit: cover"
                   >
-                    <source
-                      src="./img/studio/GNOTHE_video.mp4"
-                      type="video/mp4"
-                    />
+                    <source src="./img/GNOTHE_video.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
                 </div>
@@ -326,27 +327,63 @@
               <div class="col-lg-5">
                 <div class="space-text ps-lg-4">
                   <h3 class="mb-4 fw-bold" style="font-size: 2rem; color: #333">
-                    Pogledajte kako izgleda naš prostor
+                    Terapijski prostor
                   </h3>
-                  <p class="mb-3 text-muted">
-                    Naš terapijski prostor dizajniran je kako bi pružio osjećaj
-                    sigurnosti, privatnosti i mira – sve što je potrebno za
-                    kvalitetan psihoterapijski proces.
-                  </p>
-                  <p class="mb-3 text-muted">
-                    Ugodna atmosfera, prirodno svjetlo i pažljivo odabrani
-                    elementi interijera stvaraju okruženje koje pomaže u
-                    opuštanju i otvorenoj komunikaciji.
-                  </p>
-                  <p class="text-muted">
-                    Vjerujemo da fizički prostor značajno doprinosi kvaliteti
-                    terapijskog procesa, zato smo posebnu pažnju posvetili
-                    stvaranju ambijenta koji potiče rast i iscjeljenje.
-                  </p>
                 </div>
               </div>
             </div>
           </div>
+
+          <!-- Contact Form Section -->
+          <section id="contact">
+            <div class="container mil-p-120-90">
+              <h3 class="mil-center mil-up mil-mb-120">
+                Kontaktirajte <span class="mil-thin">Me</span>
+              </h3>
+
+              <form class="row align-items-center" id="contactForm">
+                <div class="col-lg-6 mil-up">
+                  <input
+                    type="text"
+                    placeholder="Vaše ime"
+                    name="user_name"
+                    id="userName"
+                    required
+                  />
+                </div>
+                <div class="col-lg-6 mil-up">
+                  <input
+                    type="email"
+                    placeholder="Vaš email"
+                    name="user_email"
+                    id="userEmail"
+                    required
+                  />
+                </div>
+                <div class="col-lg-12 mil-up">
+                  <textarea
+                    placeholder="Unesite svoj upit"
+                    name="message"
+                    id="message"
+                    required
+                  ></textarea>
+                </div>
+                <div class="col-lg-8"></div>
+                <div class="col-lg-4">
+                  <div class="mil-adaptive-right mil-up mil-mb-30">
+                    <button
+                      type="submit"
+                      class="mil-button mil-arrow-place"
+                      id="submitBtn"
+                    >
+                      <span>Pošalji upit</span>
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </section>
+
           <!-- footer -->
           <footer class="mil-soft-bg">
             <div class="mi-invert-fix">
@@ -383,17 +420,16 @@
                               <a href="index.html">Naslovna</a>
                             </li>
                             <li class="mil-up">
-                              <a href="about.html">O meni</a>
+                              <a href="test.html">Terapijski pristup</a>
                             </li>
                             <li class="mil-up">
-                              <a href="service.html">Usluge</a>
+                              <a href="about.html">O meni</a>
                             </li>
+
                             <li class="mil-up">
                               <a href="announcement.html">Najave</a>
                             </li>
-                            <li class="mil-up">
-                              <a href="test.html">Terapijski pristup</a>
-                            </li>
+
                             <li class="mil-up mil-active">
                               <a href="#">Kontakt</a>
                             </li>
@@ -613,6 +649,90 @@
       <!-- content -->
     </div>
     <!-- wrapper end -->
+
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+    <script>
+      // Inicijalizuj EmailJS sa vašim javnim ključem
+      (function () {
+        console.log("Inicijalizujem EmailJS sa Public Key: 3IDB_1FNL6gwDO5f1");
+        emailjs.init("3IDB_1FNL6gwDO5f1");
+        console.log("EmailJS objekat:", emailjs);
+      })();
+
+      // Toast notification functions
+      function showToast(id, message) {
+        const toast = document.getElementById(id);
+        if (message) {
+          toast.textContent = message;
+        }
+        toast.classList.add("show");
+
+        // Auto hide after 5 seconds
+        setTimeout(() => {
+          hideToast(id);
+        }, 5000);
+      }
+
+      function hideToast(id) {
+        const toast = document.getElementById(id);
+        toast.classList.remove("show");
+      }
+
+      // Funkcija za slanje emaila
+      function sendEmail(event) {
+        event.preventDefault();
+
+        const submitBtn = document.getElementById("submitBtn");
+
+        // Disabiluj dugme tokom slanja (ali ostavi isti tekst)
+        submitBtn.disabled = true;
+
+        // Pripremi parametre za EmailJS
+        const templateParams = {
+          user_name: document.getElementById("userName").value,
+          user_email: document.getElementById("userEmail").value,
+          message: document.getElementById("message").value,
+          to_email: "m.besednik69@gmail.com",
+        };
+
+        console.log("Šaljem email sa parametrima:", templateParams);
+
+        emailjs
+          .send("service_vq9x7ls", "template_859q8oi", templateParams)
+          .then(
+            function (response) {
+              console.log("SUCCESS!", response.status, response.text);
+
+              // Prikaži success toast
+              showToast("successMessage");
+
+              // Resetuj formu
+              document.getElementById("contactForm").reset();
+            },
+            function (error) {
+              console.log("FAILED...", error);
+              console.log("Error details:", JSON.stringify(error, null, 2));
+
+              // Prikaži error toast sa detaljima
+              const errorMessage = `Dogodila se greška: ${
+                error.text || error.message || "Nepoznata greška"
+              }`;
+              showToast("errorMessage", errorMessage);
+            }
+          )
+          .finally(function () {
+            // Ponovo omogući dugme
+            submitBtn.disabled = false;
+          });
+      }
+
+      // Dodeli event listener na formu
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", sendEmail);
+    </script>
 
     <!-- jQuery js -->
     <script src="js/plugins/jquery.min.js"></script>

@@ -71,7 +71,7 @@
       }
 
       .ego-modal-header {
-        background-color: #7ab8a1;
+        background-color: #a3b68a;
         color: white;
         padding: 25px 30px;
         border-radius: 10px 10px 0 0;
@@ -113,7 +113,7 @@
 
       /* Analiziraj se button */
       .analyze-btn {
-        background-color: #7ab8a1;
+        background-color: #a3b68a;
         color: white;
         padding: 15px 40px;
         border: none;
@@ -153,7 +153,7 @@
         height: 60px;
         border: 6px solid rgba(122, 184, 161, 0.2);
         border-radius: 50%;
-        border-top: 6px solid #7ab8a1;
+        border-top: 6px solid #a3b68a;
         animation: spin 1s linear infinite;
       }
 
@@ -177,7 +177,7 @@
       }
 
       .ego-modal-content::-webkit-scrollbar-thumb {
-        background: #7ab8a1;
+        background: #a3b68a;
         border-radius: 10px;
       }
 
@@ -249,6 +249,233 @@
       @media (max-width: 350px) {
         .graph-popup__item {
           max-width: 200px;
+        }
+      }
+
+      /* Dodajte ove stilove nakon postojećih media query stilova */
+
+      /* Za male ekrane - prilagodba theory sekcije */
+      @media (max-width: 768px) {
+        /* Ukloni padding s containera samo za theory sekcije */
+        .container > .theory {
+          margin-left: -15px;
+          margin-right: -15px;
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+
+        /* Prilagodi theory naslove */
+        .theory__title {
+          font-size: 24px;
+          margin-bottom: 20px;
+        }
+
+        .theory__subtitle {
+          font-size: 20px;
+        }
+
+        /* Ego stanja na malim ekranima */
+        .theory__ego-states {
+          flex-direction: column;
+          gap: 20px;
+        }
+
+        .theory__ego-state {
+          width: 100%;
+          max-width: none;
+        }
+      }
+      /* Stilovi za EMDR videove */
+      .theory__videos {
+        margin: 40px 0;
+      }
+
+      .theory__videos-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        margin-top: 30px;
+      }
+
+      .theory__video-wrapper {
+        position: relative;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        background: #f8f9fa;
+      }
+
+      .theory__video-wrapper:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .theory__video-wrapper iframe {
+        width: 100%;
+        height: 315px;
+        border: none;
+        border-radius: 12px;
+      }
+
+      /* Dodaj subtitle za videove ako želiš */
+      .theory__video-title {
+        padding: 15px;
+        font-size: 14px;
+        color: #666;
+        text-align: center;
+        background: white;
+        margin: 0;
+        font-weight: 500;
+      }
+
+      /* Responsive dizajn */
+      @media (max-width: 968px) {
+        .theory__videos-container {
+          grid-template-columns: 1fr;
+          gap: 25px;
+        }
+
+        .theory__video-wrapper iframe {
+          height: 280px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .theory__videos {
+          margin: 30px 0;
+        }
+
+        .theory__videos-container {
+          gap: 20px;
+          margin-top: 20px;
+        }
+
+        .theory__video-wrapper iframe {
+          height: 250px;
+        }
+
+        .theory__video-title {
+          padding: 12px;
+          font-size: 13px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .theory__video-wrapper iframe {
+          height: 200px;
+        }
+      }
+
+      /* Posebno za vrlo male ekrane */
+      @media (max-width: 480px) {
+        /* Container ima manji padding */
+        .container {
+          padding-left: 0;
+          padding-right: 0;
+        }
+        .mi-invert-fix > .container {
+          padding-left: 30px;
+          padding-right: 30px;
+        }
+        /* Theory ide potpuno do rubova */
+        .container > .theory {
+          margin-left: 0;
+          margin-right: 0;
+          padding-left: 15px;
+          padding-right: 15px;
+          border-radius: 0; /* Ako ima border-radius */
+        }
+
+        /* Smanji font veličine */
+        .theory__text {
+          font-size: 14px;
+          line-height: 1.6;
+        }
+
+        .theory__title {
+          font-size: 22px;
+        }
+
+        .theory__subtitle {
+          font-size: 18px;
+        }
+
+        /* Analiziraj se gumb prilagodbe */
+        .analyze-btn {
+          width: calc(100% - 30px);
+          padding: 12px 30px;
+          font-size: 16px;
+        }
+
+        /* Modal prilagodbe */
+        .ego-modal-content {
+          width: 100%;
+          margin: 0;
+          border-radius: 0;
+          max-height: 100vh;
+        }
+
+        .ego-modal-body {
+          padding: 15px;
+          min-height: auto;
+        }
+
+        /* Smanji razmake između pitanja */
+        .questionnaire__question {
+          margin-bottom: 15px;
+          padding: 15px;
+        }
+
+        .questionnaire__question-text {
+          font-size: 15px;
+          margin-bottom: 10px;
+        }
+
+        /* Prilagodi opcije */
+        .questionnaire__option {
+          margin-bottom: 8px;
+        }
+
+        .questionnaire__label {
+          font-size: 13px;
+          padding-left: 25px;
+        }
+
+        /* Radio button manji */
+        .questionnaire__radio {
+          width: 16px;
+          height: 16px;
+        }
+      }
+
+      /* Za najmanji ekrani (350px i manje) */
+      @media (max-width: 350px) {
+        .theory__title {
+          font-size: 20px;
+        }
+
+        .theory__text {
+          font-size: 13px;
+        }
+
+        /* Grafovi dodatno smanjeni */
+        .graph-popup__item {
+          max-width: 100%;
+          padding: 10px;
+        }
+
+        .graph-popup__canvas {
+          max-height: 200px;
+        }
+
+        /* Rezultati prilagodbe */
+        .results__title {
+          font-size: 18px;
+        }
+
+        .results__dominant-text {
+          font-size: 14px;
         }
       }
     </style>
@@ -323,17 +550,15 @@
                     <li class="mil-has-children">
                       <a href="index.html">Naslovna</a>
                     </li>
+                    <li class="mil-has-children mil-active">
+                      <a href="#">Terapijski pristup</a>
+                    </li>
                     <li class="mil-has-children">
                       <a href="about.html">O meni</a>
                     </li>
-                    <li class="mil-has-children">
-                      <a href="service.html">Usluge</a>
-                    </li>
+
                     <li class="mil-has-children">
                       <a href="announcement.html">Najave</a>
-                    </li>
-                    <li class="mil-has-children mil-active">
-                      <a href="#">Terapijski pristup</a>
                     </li>
 
                     <li class="mil-has-children">
@@ -409,7 +634,7 @@
           <div class="container">
             <!-- Theory Section -->
             <div class="theory">
-              <h2 class="theory__title">Što je transakcijska analiza?</h2>
+              <h2 class="theory__title">TRANSAKCIJSKA ANALIZA</h2>
 
               <div class="theory__content">
                 <p class="theory__text">
@@ -458,36 +683,71 @@
 
               <!-- Analiziraj se button -->
               <button id="openAnalysisBtn" class="analyze-btn">
-                Analiziraj se
+                Ego stanja test
               </button>
             </div>
             <div class="theory">
-              <h2 class="theory__title">Što je EDMR?</h2>
+              <h2 class="theory__title">EMDR</h2>
 
               <div class="theory__content">
                 <p class="theory__text">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem
-                  aspernatur nemo doloribus aperiam dolore itaque cupiditate
-                  accusamus, harum debitis ea nihil quis maiores nesciunt, quam
-                  in repellendus excepturi voluptatem magnam. Lorem ipsum dolor
-                  sit amet consectetur adipisicing elit. Accusantium eius soluta
-                  necessitatibus facilis dolore? Quod consequuntur vitae odit
-                  quis similique inventore reprehenderit eius atque vel nostrum!
-                  Animi nemo tempore reprehenderit!
+                  EMDR (engl. Eye Movement Desensitization and Reprocessing) je
+                  strukturirana psihoterapijska metoda namijenjena tretmanu
+                  trauma i posttaumatskog stresnog poremećaja. Ova inovativna
+                  tehnika razvija američku psihologicu Francine Shapiro 1987.
+                  godine, a danas je široko priznata i prihvaćena u svjetskoj
+                  praksi. EMDR kombinira elemente iz različitih psihoterapijskih
+                  pristupa s bilateralnom stimulacijom - najčešće brzim
+                  pokretima očiju koji slijede terapeutov prst ili zvuk koji se
+                  naizmjence čuje u lijevom i desnom uhu.
                 </p>
                 <p class="theory__text">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem
-                  aspernatur nemo doloribus aperiam dolore itaque cupiditate
-                  accusamus, harum debitis ea nihil quis maiores nesciunt, quam
-                  in repellendus excepturi voluptatem magnam. Lorem ipsum dolor
-                  sit amet consectetur adipisicing elit. Accusantium eius soluta
-                  necessitatibus facilis dolore? Quod consequuntur vitae odit
-                  quis similique inventore reprehenderit eius atque vel nostrum!
-                  Animi nemo tempore reprehenderit!
+                  Tijekom EMDR seansi, klijent se fokusira na traumatsku
+                  uspomenu dok istovremeno prati terapeutove pokrete prstom ili
+                  prima drugu vrstu bilateralne stimulacije. Ovaj proces pomaže
+                  mozgu da "preradi" traumatske memorije na prirodniji način,
+                  smanjujući njihov emocionalni naboj i utjecaj na svakodnevni
+                  život. EMDR se pokazao iznimno učinkovit ne samo za trauma,
+                  već i za tretman anksioznosti, depresije, fobija i drugih
+                  psiholoških poteškoća. Mnoge studije potvrđuju da EMDR često
+                  donosi značajno poboljšanje u relativno kratkom vremenskom
+                  periodu u odnosu na tradicionalne terapijske pristupe.
                 </p>
+                <br />
+                <h2 class="theory__title">EMDR iskustva</h2>
+
+                <div class="theory__videos">
+                  <div class="theory__videos-container">
+                    <div class="theory__video-wrapper">
+                      <iframe
+                        src="https://www.youtube.com/embed/si6QeZfODGA"
+                        title="EMDR iskustvo - Sandra Bullock"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen
+                      >
+                      </iframe>
+                      <!-- <p class="theory__video-title">
+                        Sandra Bullock dijeli svoja iskustva
+                      </p> -->
+                    </div>
+
+                    <div class="theory__video-wrapper">
+                      <iframe
+                        src="https://www.youtube.com/embed/1IyzDWKZ8Lw"
+                        title="EMDR iskustvo - Miley Cyrus"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen
+                      >
+                      </iframe>
+                      <!-- <p class="theory__video-title">
+                        Miley Cyrus o EMDR terapiji
+                      </p> -->
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="theory">
+            <!-- <div class="theory">
               <h2 class="theory__title">Što je TREĆI NEKI PRISTUP?</h2>
 
               <div class="theory__content">
@@ -512,7 +772,7 @@
                   Animi nemo tempore reprehenderit!
                 </p>
               </div>
-            </div>
+            </div> -->
           </div>
 
           <!-- Ego Analysis Modal -->
@@ -978,18 +1238,16 @@
                             <li class="mil-up">
                               <a href="index.html">Naslovna</a>
                             </li>
+                            <li class="mil-up mil-active">
+                              <a href="#">Terapijski pristup</a>
+                            </li>
                             <li class="mil-up">
                               <a href="about.html">O meni</a>
                             </li>
                             <li class="mil-up">
-                              <a href="service.html">Usluge</a>
-                            </li>
-                            <li class="mil-up">
                               <a href="announcement.html">Najave</a>
                             </li>
-                            <li class="mil-up mil-active">
-                              <a href="#">Terapijski pristup</a>
-                            </li>
+
                             <li class="mil-up">
                               <a href="contact.html">Kontakt</a>
                             </li>
