@@ -19,6 +19,29 @@
     <link rel="stylesheet" href="css/style.css" />
     <!-- Chart.js biblioteka -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <!-- Google Analytics s Consent Mode -->
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-H91S2EESLY"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-H91S2EESLY");
+    </script>
+
+    <!-- Vaš cookie banner -->
+    <link rel="stylesheet" href="css/plugins/cookie-banner.css" />
+
     <!-- page name -->
     <title>Gnothe</title>
 
@@ -1221,15 +1244,6 @@
                         </div>
                       </a>
                     </div>
-
-                    <div class="mil-up">
-                      <a
-                        href="#"
-                        onclick="window.open('mailto:melita.zajkovski@gmail.com','_self')"
-                        class="mil-button mil-arrow-place"
-                        >Kontaktirajte me</a
-                      >
-                    </div>
                   </div>
 
                   <div class="col-md-7 col-lg-6">
@@ -1240,11 +1254,11 @@
                           style="padding-top: 0"
                         >
                           <ul>
-                            <li class="mil-up">
-                              <a href="index.html">Naslovna</a>
-                            </li>
                             <li class="mil-up mil-active">
-                              <a href="#">Terapijski pristup</a>
+                              <a href="#">Naslovna</a>
+                            </li>
+                            <li class="mil-up">
+                              <a href="test.html">Terapijski pristup</a>
                             </li>
                             <li class="mil-up">
                               <a href="index.html#service">Usluge</a>
@@ -1252,6 +1266,7 @@
                             <li class="mil-up">
                               <a href="about.html">O meni</a>
                             </li>
+
                             <li class="mil-up">
                               <a href="announcement.html">Najave</a>
                             </li>
@@ -1270,14 +1285,17 @@
                               class=""
                               style="margin-bottom: 15px; margin-top: 0"
                             >
-                              GNOTHE, obrt za savjetovanje
+                              Radno vrijeme
                             </h6>
                           </li>
 
-                          <li>vl.&nbsp;Melita&nbsp;Zajkovski</li>
-                          <li>Hrvatske&nbsp;mladeži&nbsp;6c,&nbsp;Zaprešić</li>
-
-                          <li>MB:&nbsp;98518267</li>
+                          <li>
+                            <i
+                              class="fa-solid fa-clock"
+                              style="color: #689483; margin-right: 8px"
+                            ></i>
+                            <span>Prema dogovoru</span>
+                          </li>
                         </ul>
                       </div>
                     </div>
@@ -1287,28 +1305,30 @@
                 <div class="row justify-content-between flex-sm-row-reverse">
                   <div class="col-md-7 col-lg-6">
                     <div class="row justify-content-between">
-                      <div class="col-md-12 col-lg-12 mil-mb-60">
-                        <!-- Lokacija / naslov bloka -->
-                        <h6 class="mil-up mil-mb-30">Hrvatska, Zagreb</h6>
+                      <!-- <div class="col-md-12 col-lg-12 mil-mb-60">
+                  <h6 class="mil-up mil-mb-30">Hrvatska, Zagreb</h6>
 
-                        <!-- Kontakt podaci -->
+                  <p class="mil-up">
+                    melita.zajkovski@gmail.com<br />
+                    Ul. Alojzija Stepinca 8A,<br />
+                    10290, Zaprešić<br />
+                    <span class="mil-no-wrap">+385 98 811 651</span>
+                  </p>
+                </div> -->
+                      <div class="mil-vert-between">
                         <p class="mil-up">
-                          melita.zajkovski@gmail.com<br />
-                          Ul. Alojzija Stepinca 8A,<br />
-                          10290, Zaprešić<br />
-                          <span class="mil-no-wrap">+385 98 811 651</span>
+                          <i><b>GNOTHE</b>, obrt za savjetovanje</i>
+
+                          <br />
+                          <a href="privacy-policy.html" style="color: #689483"
+                            >Politika i privatnost</a
+                          >
                         </p>
                       </div>
                     </div>
                   </div>
 
-                  <div class="col-md-4 col-lg-6 mil-mb-60">
-                    <div class="mil-vert-between">
-                      <p class="mil-up">
-                        © Copyright 2025 - M.B. All Rights Reserved.
-                      </p>
-                    </div>
-                  </div>
+                  <div class="col-md-4 col-lg-6 mil-mb-60"></div>
                 </div>
               </div>
             </div>
@@ -1522,6 +1542,40 @@
         document.getElementById("modalLoader").style.display = "none";
       }
     </script>
+
+    <!-- Cookie Banner -->
+    <div id="cookieBanner" class="cookie-banner">
+      <button
+        class="close-x"
+        onclick="closeBanner()"
+        aria-label="Zatvori obavijest"
+      >
+        ×
+      </button>
+      <div class="cookie-content">
+        <div class="cookie-icon">🌿</div>
+        <div class="cookie-body">
+          <p class="cookie-text">
+            Koristimo kolačiće kako bismo poboljšali vaše korisničko iskustvo i
+            analizirali promet na stranici. Više informacija možete pronaći u
+            našoj
+            <a href="/privacy-policy.html" class="cookie-link"
+              >politici privatnosti</a
+            >.
+          </p>
+          <div class="cookie-buttons">
+            <button class="btn-accept" onclick="acceptCookies()">
+              Prihvaćam
+            </button>
+            <button class="btn-reject" onclick="rejectCookies()">
+              Ne, hvala
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/plugins/cookie-banner.js"></script>
 
     <script src="js/testEgoStage.js"></script>
 
