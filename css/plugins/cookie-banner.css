@@ -1,0 +1,249 @@
+/* cookie-banner.css - GNOTHE Psihoterapija dizajn */
+
+/* Glavni banner kontejner */
+.cookie-banner {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background-color: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.04);
+  border-radius: 16px;
+  padding: 24px 28px;
+  max-width: 420px;
+  z-index: 9999;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue",
+    Arial, sans-serif;
+  display: none;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* Prikaži banner */
+.cookie-banner.show {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Animacija ulaska */
+@keyframes slideIn {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Kontejner za sadržaj */
+.cookie-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+/* Ikona */
+.cookie-icon {
+  font-size: 28px;
+  margin-top: 2px;
+  filter: grayscale(20%);
+  opacity: 0.9;
+}
+
+/* Glavni dio s tekstom */
+.cookie-body {
+  flex: 1;
+}
+
+/* Tekst obavijesti */
+.cookie-text {
+  color: #2c3e50;
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0 0 18px 0;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+}
+
+/* Link za privacy policy */
+.cookie-link {
+  color: #689483;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(104, 148, 131, 0.3);
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.cookie-link:hover {
+  color: #5a7f70;
+  border-bottom-color: #5a7f70;
+}
+
+/* Kontejner za gumbove */
+.cookie-buttons {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+/* Gumb za prihvaćanje */
+.btn-accept {
+  background-color: #689483;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  padding: 11px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none;
+  letter-spacing: 0.3px;
+  font-family: inherit;
+}
+
+.btn-accept:hover {
+  background-color: #5a7f70;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(104, 148, 131, 0.3);
+}
+
+.btn-accept:active {
+  transform: translateY(0);
+}
+
+/* Gumb za odbijanje */
+.btn-reject {
+  background-color: transparent;
+  color: #6b7280;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 11px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none;
+  letter-spacing: 0.3px;
+  font-family: inherit;
+}
+
+.btn-reject:hover {
+  color: #374151;
+  border-color: #d1d5db;
+  background-color: #f9fafb;
+}
+
+.btn-reject:active {
+  background-color: #f3f4f6;
+}
+
+/* X gumb za zatvaranje */
+.close-x {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: none;
+  border: none;
+  color: #9ca3af;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 6px;
+  line-height: 1;
+  transition: all 0.3s ease;
+  font-weight: 300;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+}
+
+.close-x:hover {
+  color: #6b7280;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Fokus stilovi za pristupačnost */
+.btn-accept:focus,
+.btn-reject:focus,
+.close-x:focus,
+.cookie-link:focus {
+  outline: 2px solid #689483;
+  outline-offset: 2px;
+}
+
+/* Responzivnost - Tablet */
+@media (max-width: 768px) {
+  .cookie-banner {
+    right: 16px;
+    left: 16px;
+    max-width: none;
+    bottom: 16px;
+  }
+}
+
+/* Responzivnost - Mobitel */
+@media (max-width: 480px) {
+  .cookie-banner {
+    padding: 20px;
+    border-radius: 12px;
+  }
+
+  .cookie-content {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .cookie-icon {
+    font-size: 24px;
+  }
+
+  .cookie-text {
+    font-size: 13px;
+    margin-bottom: 16px;
+  }
+
+  .cookie-buttons {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .btn-accept,
+  .btn-reject {
+    width: 100%;
+    padding: 12px;
+  }
+
+  .close-x {
+    top: 10px;
+    right: 10px;
+  }
+}
+
+/* Animacija za fokus */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(104, 148, 131, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(104, 148, 131, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(104, 148, 131, 0);
+  }
+}
+
+/* Print stilovi */
+@media print {
+  .cookie-banner {
+    display: none !important;
+  }
+}

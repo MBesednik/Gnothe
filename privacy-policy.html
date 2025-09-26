@@ -17,120 +17,88 @@
     <link rel="stylesheet" href="css/plugins/fancybox.min.css" />
     <!-- Gnothe scss -->
     <link rel="stylesheet" href="css/style.css" />
-
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    />
-
     <!-- page name -->
-    <title>Gnothe</title>
-
-    <!-- Add this to your CSS file -->
+    <title>GNOTHE – Politika privatnosti i kolačići</title>
     <style>
-      .mil-map-video-container {
-        padding: 60px 0;
-        background-color: #f9f9f9;
+      .about-hero {
+        padding: 120px 0 80px;
+        text-align: center;
       }
-
-      .mil-map,
-      .mil-video-container {
-        border-radius: 10px;
-        overflow: hidden;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-      }
-
-      @media (max-width: 991px) {
-        .mil-video-container {
-          margin-top: 30px;
-        }
-      }
-
-      /* Toast notification styles */
-      .toast-notification {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        max-width: 400px;
-        padding: 16px 20px;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        z-index: 1000;
+      .about-hero__breadcrumb {
         font-size: 14px;
-        font-weight: 500;
-        opacity: 0;
-        transform: translateX(100%) scale(0.3);
-        transition: all 0.3s ease;
-        display: none;
+        color: #999;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 40px;
       }
-
-      .toast-notification.show {
-        opacity: 1;
-        transform: translateX(0) scale(1);
-        display: block;
-        animation: bounceIn 0.6s ease-out;
+      .about-hero__title {
+        font-size: 48px;
+        font-weight: 300;
+        color: #333;
+        margin-bottom: 20px;
+        line-height: 1.2;
       }
-
-      @keyframes bounceIn {
-        0% {
-          opacity: 0;
-          transform: translateX(100%) scale(0.3);
-        }
-        50% {
-          opacity: 1;
-          transform: translateX(-10px) scale(1.05);
-        }
-        70% {
-          transform: translateX(10px) scale(0.95);
-        }
-        100% {
-          opacity: 1;
-          transform: translateX(0) scale(1);
-        }
-      }
-
-      .toast-success {
-        background: #d4edda;
-        color: #155724;
-        border-left: 4px solid #28a745;
-      }
-
-      .toast-error {
-        background: #f8d7da;
-        color: #721c24;
-        border-left: 4px solid #dc3545;
+      .about-hero__name {
+        font-weight: 600;
+        color: #000;
       }
 
       @media (max-width: 768px) {
-        .toast-notification {
-          top: 10px;
-          right: 10px;
-          left: 10px;
-          max-width: none;
+        .about-hero__title {
+          font-size: 36px;
         }
       }
 
-      .icon-text {
-        display: flex;
-        align-items: flex-start; /* ikona gore, tekst odmah pored */
-        margin-bottom: 14px;
-      }
-
-      .icon-text i {
-        color: #689483;
-        font-size: 1.2rem;
-        margin-right: 10px;
-        margin-top: 3px; /* sitno podešavanje da se bolje poravna s prvim redom teksta */
-        flex-shrink: 0; /* sprječava da ikona bude stisnuta */
-      }
-
-      .icon-text p {
+      .policy-page {
+        line-height: 1.5;
+        color: #222;
         margin: 0;
+        padding: 40px 20px;
+      }
+      .policy-wrap {
+        max-width: 920px;
+        margin: 0 auto;
+      }
+      .policy-section {
+        margin: 0 0 24px;
+      }
+      .policy-title-xl {
+        font-size: 44px;
+        margin: 0 0 24px;
+        font-weight: 800;
+      }
+      .policy-title-lg {
+        font-size: 28px;
+        margin: 40px 0 16px;
+        font-weight: 800;
+      }
+      .policy-paragraph {
+        margin: 0 0 12px;
+      }
+      .policy-list {
+        margin: 0 0 12px 20px;
+        padding: 0;
+      }
+      .policy-strong {
+        font-weight: 700;
+      }
+      .policy-em {
+        font-style: italic;
+      }
+      .policy-datalist {
+        margin: 0;
+      }
+      .policy-term {
+        font-weight: 700;
+        margin: 0 0 2px;
+      }
+      .policy-desc {
+        margin: 0 0 12px;
       }
     </style>
   </head>
 
-  <body>
+  <body class="policy-page">
     <!-- wrapper -->
     <div class="mil-wrapper" id="top">
       <!-- cursor -->
@@ -142,8 +110,8 @@
             />
           </svg>
         </span>
-        <div class="mil-more-text">More</div>
-        <div class="mil-choose-text">Сhoose</div>
+        <div class="mil-more-text">Više</div>
+        <div class="mil-choose-text">Odaberi</div>
       </div>
       <!-- cursor end -->
 
@@ -180,9 +148,6 @@
                       <a href="test.html">Terapijski pristup</a>
                     </li>
                     <li class="mil-has-children">
-                      <a href="index.html#service">Usluge</a>
-                    </li>
-                    <li class="mil-has-children">
                       <a href="about.html">O meni</a>
                     </li>
 
@@ -190,8 +155,8 @@
                       <a href="announcement.html">Najave</a>
                     </li>
 
-                    <li class="mil-has-children mil-active">
-                      <a href="#">Kontakt</a>
+                    <li class="mil-has-children">
+                      <a href="contact.html">Kontakt</a>
                     </li>
                   </ul>
                 </nav>
@@ -248,220 +213,218 @@
       </div>
       <!-- frame end -->
 
-      <!-- Toast notifications -->
-      <div id="successMessage" class="toast-notification toast-success">
-        Vaša poruka je uspešno poslana! Odgovoriću vam u najkraćem roku.
-      </div>
-
-      <div id="errorMessage" class="toast-notification toast-error">
-        Dogodila se greška prilikom slanja poruke. Molimo pokušajte ponovo.
-      </div>
-
       <!-- content -->
       <div class="mil-content">
         <div id="swupMain" class="mil-main-transition">
-          <!-- contact start -->
-          <section class="mil-soft-bg" id="contact">
-            <div class="container mil-p-120-120">
-              <div class="row">
-                <div class="col-lg-10">
-                  <!-- <span
-                    class="mil-suptitle mil-suptitle-right mil-suptitle-dark mil-up"
-                    >Ponekad je najteži dio psihoterapijskog procesa,
-                    <br />odlučiti se na prvi korak.
-                  </span> -->
-                </div>
-              </div>
-              <div class="mil-center">
-                <!-- <h2 class="mil-up mil-mb-60">
-                  <span class="mil-thin">Spremni za </span> prvi korak
-                  <span class="mil-thin"><br />prema</span> promjeni?
-                </h2> -->
-                <!-- <div class="mil-up">
-                  <a
-                    href="#"
-                    onclick="window.open('mailto:melita.zajkovski@gmail.com','_self')"
-                    class="mil-button mil-arrow-place"
-                    >Kontaktirajte me</a
-                  >
-                </div> -->
+          <!-- About Hero Section -->
+          <section class="about-hero">
+            <div class="mil-banner-content mil-up">
+              <div class="container">
+                <ul class="mil-breadcrumbs mil-mb-60">
+                  <li><a href="index.html">Početna</a></li>
+                  <li>
+                    <a href="privacy-policy.html">Politika privatnosti</a>
+                  </li>
+                </ul>
+                <h1 class="mil-mb-40">Politika privatnosti i kolačići</h1>
               </div>
             </div>
           </section>
-          <!-- contact end -->
 
-          <!-- Location and Therapy Space Sections -->
-          <div class="container my-5">
-            <!-- First Row: Location Text and Map -->
-            <div class="row mb-5 align-items-center">
-              <!-- Location Text Column -->
-              <div class="col-lg-5">
-                <div class="location-text pe-lg-4">
-                  <h3 class="mb-4 fw-bold" style="font-size: 2rem; color: #333">
-                    Adresa i kontakt podaci
-                  </h3>
-                  <p class="mb-3">
-                    <i
-                      class="fa-solid fa-location-dot"
-                      style="color: #689483; margin-right: 8px"
-                    ></i>
-                    Ul. Alojzija Stepinca 8A, 10290, Zaprešić
-                  </p>
+          <div class="policy-wrap">
+            <!-- PODACI O OBRTU -->
+            <section class="policy-section">
+              <h1 class="policy-title-xl">Podaci o obrtu</h1>
+              <dl class="policy-datalist">
+                <dt class="policy-term">OBRT:</dt>
+                <dd class="policy-desc">
+                  GNOTHE, obrt za savjetovanje, vl. Melita Zajkovski, Zaprešić,
+                  Hrvatske mladeži 6c
+                </dd>
 
-                  <!-- <h3 class="mb-4 fw-bold" style="font-size: 2rem; color: #333">
-                    Kontakt
-                  </h3> -->
-                  <p class="mb-3">
-                    <i
-                      class="fa-solid fa-envelope"
-                      style="color: #689483; margin-right: 8px"
-                    ></i>
-                    <a
-                      href="mailto:melita.zajkovski@gmail.com"
-                      style="color: inherit; text-decoration: none"
-                      >melita.zajkovski@gmail.com</a
-                    >
-                  </p>
-                  <p class="mb-3">
-                    <i
-                      class="fa-solid fa-phone"
-                      style="color: #689483; margin-right: 8px"
-                    ></i>
-                    <a
-                      href="tel:+38598811651"
-                      style="color: inherit; text-decoration: none"
-                      >+385 98 811 651</a
-                    >
-                  </p>
-                </div>
-              </div>
+                <dt class="policy-term">MBO:</dt>
+                <dd class="policy-desc">98518267</dd>
 
-              <!-- Map Column -->
-              <div class="col-lg-7">
-                <div
-                  class="map-container shadow-sm"
-                  style="height: 500px; border-radius: 12px; overflow: hidden"
+                <dt class="policy-term">Upis u registar:</dt>
+                <dd class="policy-desc">
+                  Obrtni registar – Upravni odjel za gospodarstvo i fondove EU,
+                  ispostava Zaprešić
+                </dd>
+
+                <dt class="policy-term">Transakcijski račun:</dt>
+                <dd class="policy-desc">
+                  Zagrebačka banka d.d., Trg bana J. Jelačića 10, Zagreb
+                </dd>
+
+                <dt class="policy-term">Broj računa (IBAN):</dt>
+                <dd class="policy-desc">HR1823600001103043694</dd>
+              </dl>
+            </section>
+
+            <!-- POLITIKA PRIVATNOSTI -->
+            <section class="policy-section">
+              <h2 class="policy-title-lg">Politika Privatnosti</h2>
+
+              <p class="policy-paragraph">
+                Ova web stranica vodi računa o privatnosti osobnih podataka
+                svojih posjetitelja, stoga je politika privatnosti koja se
+                primjenjuje na osobne podatke prikupljene putem kontaktnog
+                obrasca s ove web stranice ili putem direktne email poruke na
+                adresu
+                <span class="policy-strong">melita.zajkovski@gmail.com</span>.
+              </p>
+
+              <p class="policy-paragraph">
+                usklađena s
+                <span class="policy-strong"
+                  >Općom uredbom o zaštiti osobnih podataka</span
                 >
-                  <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2778.782985686589!2d15.802473711311272!3d45.855642407116065!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4765cfa3a99072ef%3A0x98ff5ddcb77d6eaf!2sUl.%20kardinala%20Alojzija%20Stepinca%208A%2C%2010290%2C%20Zapre%C5%A1i%C4%87!5e0!3m2!1shr!2shr!4v1747388030704!5m2!1shr!2shr"
-                    style="border: 0; width: 100%; height: 100%"
-                    allowfullscreen=""
-                    loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"
-                  ></iframe>
-                </div>
-              </div>
-            </div>
+                koja je na snazi na teritoriju Europske Unije.
+              </p>
 
-            <!-- Divider -->
-            <div class="row">
-              <div class="col-12">
-                <hr class="my-5" style="opacity: 0.1" />
-              </div>
-            </div>
-
-            <!-- Second Row: Video and Space Description -->
-            <div class="row mb-5 align-items-center">
-              <!-- Video Column -->
-              <div class="col-lg-7">
-                <div
-                  class="video-container shadow-sm"
-                  style="height: 500px; border-radius: 12px; overflow: hidden"
+              <p class="policy-paragraph">
+                <span class="policy-strong"
+                  >Vrste osobnih podataka koji se putem web stranice prikupljaju
+                  su:</span
                 >
-                  <video
-                    autoplay
-                    loop
-                    muted
-                    preload="auto"
-                    style="width: 100%; height: 100%; object-fit: cover"
-                  >
-                    <source src="./img/GNOTHE_video.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
-                </div>
-              </div>
+                ime i prezime i adresa e-pošte te po potrebi ostali osobni
+                podaci koje posjetitelji dobrovoljno daju radi primanja odgovora
+                na upite i ostvarenja suradnje.
+              </p>
 
-              <!-- Space Description Column -->
-              <div class="col-lg-5">
-                <div class="space-text ps-lg-4">
-                  <h3 class="mb-4 fw-bold" style="font-size: 2rem; color: #333">
-                    Terapijski prostor
-                  </h3>
+              <p class="policy-paragraph">
+                <span class="policy-strong">Obrada osobnih podataka</span>
+                prikupljenih putem web stranice vodit će se i vršiti u svrhu
+                odgovaranja na upite posjetitelja zainteresiranih za
+                uspostavljanje suradnje, kao i radi ostvarenja same suradnje.
+                Prikupljeni osobni podaci neće se koristiti u druge svrhe.
+              </p>
 
-                  <div class="icon-text">
-                    <i class="fa-solid fa-seedling icon-policy"></i>
-                    <p>
-                      Prostor je dizajniran s ciljem stvaranja ugodnog okruženja
-                      za sve korisnike.
-                    </p>
-                  </div>
+              <p class="policy-paragraph">
+                <span class="policy-strong"
+                  >Obrada osobnih podataka počet će od trenutka primitka</span
+                >
+                osobnih podataka od posjetitelja putem kontaktnog obrasca s ove
+                web stranice ili putem direktne e-poruke na adresu
+                <span class="policy-strong">melita.zajkovski@gmail.com</span>
+              </p>
 
-                  <div class="icon-text">
-                    <i class="fa-solid fa-wheelchair icon-policy"></i>
-                    <p>
-                      Omogućen pristup osobama s invaliditetom i osobama
-                      smanjene pokretljivosti.
-                    </p>
-                  </div>
+              <p class="policy-paragraph">
+                <span class="policy-strong"
+                  >Prikupljeni osobni podaci bit će zadržani</span
+                >
+                do trenutka ostvarenja svrhe u koju su prikupljeni (konačan
+                odgovor na upit posjetitelja ili realizirana suradnja) odnosno
+                tijekom trajanja suradnje zbog koje su potrebni, osim ako je
+                posjetitelj sam odabrao da se njegovi osobni podaci zadrže i na
+                dulji vremenski period radi uspostavljanja buduće suradnje ili
+                radi primanja promotivnih obavijesti.
+              </p>
 
-                  <div class="icon-text">
-                    <i class="fa-solid fa-lightbulb icon-policy"></i>
-                    <p>Prilagodljiva jačina rasvjete.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+              <p class="policy-paragraph">
+                <span class="policy-strong"
+                  >Pristup osobnim podacima ograničen je na zaposlenike
+                  tvrtke</span
+                >
+                koja pritom zadržava pravo da proslijedi prikupljene osobne
+                podatke trećim osobama čije su usluge potrebne za uspješno
+                odgovore na upite posjetitelja web stranice i ostvarenje
+                suradnje s njima.
+              </p>
+
+              <p class="policy-paragraph">
+                <span class="policy-strong"
+                  >Posjetitelji web stranice imaju sljedeća prava:</span
+                >
+              </p>
+              <ul class="policy-list">
+                <li class="policy-paragraph">
+                  pravo informiranja o svojim prikupljenim osobnim podacima
+                </li>
+                <li class="policy-paragraph">
+                  pravo pristupa svojim prikupljenim osobnim podacima
+                </li>
+                <li class="policy-paragraph">
+                  pravo tražiti kopiju svojih prikupljenih osobnih podataka
+                </li>
+                <li class="policy-paragraph">
+                  pravo tražiti ispravak svojih netočnih prikupljenih osobnih
+                  podataka (uz prilaganje točnih informacija)
+                </li>
+                <li class="policy-paragraph">
+                  pravo tražiti prestanak obrade osobnih podataka u svrhu
+                  izravnog marketinga
+                </li>
+                <li class="policy-paragraph">
+                  pravo tražiti brisanje svih svojih prikupljenih osobnih
+                  podataka
+                </li>
+              </ul>
+
+              <p class="policy-paragraph">
+                <span class="policy-strong"
+                  >Svoja prava posjetitelji mogu ostvariti u bilo kojem trenutku
+                  slanjem svojeg zahtjeva</span
+                >
+                na sljedeću e-mail adresu:
+                <span class="policy-strong">melita.zajkovski@gmail.com</span>
+                Svi zahtjevi posjetitelja bit će proslijeđeni i trećim osobama
+                kojima je dan pristup njihovim osobnim podacima radi uspješnih
+                odgovora na njihove upite i ostvarenje željene suradnje.
+              </p>
+            </section>
+
+            <!-- KOLAČIĆI -->
+            <section class="policy-section">
+              <h2 class="policy-title-lg">Kolačići</h2>
+
+              <p class="policy-paragraph">
+                <span class="policy-strong">Što su kolačići?</span><br />
+                Kolačić je informacija spremljena na vaše računalo od strane web
+                stranice koju posjetite. Kolačići obično spremaju vaše postavke,
+                postavke za web stranicu, kao što su preferirani jezik ili
+                adresa. Kasnije, kada opet otvorite istu web stranicu,
+                internetski preglednik šalje natrag kolačiće koji pripadaju toj
+                stranici. Ovo omogućava stranici da prikaže informacije
+                prilagođene vašim potrebama.
+              </p>
+
+              <p class="policy-paragraph">
+                Kolačići mogu spremati širok raspon informacija uključujući
+                osobne informacije (kao što je vaše ime ili e-mail adresa).
+                Ipak, ova informacija može biti spremljena jedino ako vi to
+                omogućite – web stranice ne mogu dobiti pristup informacijama
+                koji im niste dali i ne mogu pristupiti drugim datotekama na
+                vašem računalu. Zadane aktivnosti spremanja i slanja kolačića
+                nisu vam vidljive. Ipak, postavke internetskog preglednika
+                možete promijeniti i tako sami izabrati hoćete li zahtjeve za
+                spremanje kolačića odobriti ili odbiti, te pobrisati spremljene
+                kolačiće automatski pri zatvaranju internetskog preglednika i
+                slično.
+              </p>
+
+              <p class="policy-paragraph">
+                <span class="policy-strong"
+                  >Koje kolačiće koristi ova web stranica?</span
+                ><br />
+                Ova web stranica može koristiti (ovisno o trenutnim postavkama
+                stranice) tzv.
+                <span class="policy-em">first party</span> kolačiće koji
+                dugoročno ne pohranjuju vaše osobne podatke, već im je svrha
+                omogućiti ispravno funkcioniranje kontaktne forme te omogućiti
+                da vaš internetski preglednik zapamti na kojem jeziku želite
+                pregledavati ovu web stranicu.
+              </p>
+
+              <p class="policy-paragraph">
+                <span class="policy-strong">Kako onemogućiti kolačiće?</span
+                ><br />
+                Isključivanjem kolačića odlučujete da li hoćete dopustiti
+                pohranjivanje kolačića na vašem računalu. Postavke kolačića mogu
+                se kontrolirati i konfigurirati u vašem web pregledniku.
+              </p>
+            </section>
           </div>
-
-          <!-- Contact Form Section -->
-          <section id="contact">
-            <div class="container mil-p-120-90">
-              <h3 class="mil-center mil-up mil-mb-120">
-                Kontaktirajte <span class="mil-thin">Me</span>
-              </h3>
-
-              <form class="row align-items-center" id="contactForm">
-                <div class="col-lg-6 mil-up">
-                  <input
-                    type="text"
-                    placeholder="Vaše ime"
-                    name="user_name"
-                    id="userName"
-                    required
-                  />
-                </div>
-                <div class="col-lg-6 mil-up">
-                  <input
-                    type="email"
-                    placeholder="Vaš email"
-                    name="user_email"
-                    id="userEmail"
-                    required
-                  />
-                </div>
-                <div class="col-lg-12 mil-up">
-                  <textarea
-                    placeholder="Unesite svoj upit"
-                    name="message"
-                    id="message"
-                    required
-                  ></textarea>
-                </div>
-                <div class="col-lg-8"></div>
-                <div class="col-lg-4">
-                  <div class="mil-adaptive-right mil-up mil-mb-30">
-                    <button
-                      type="submit"
-                      class="mil-button mil-arrow-place"
-                      id="submitBtn"
-                    >
-                      <span>Pošalji upit</span>
-                    </button>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </section>
 
           <!-- footer -->
           <footer class="mil-soft-bg">
@@ -501,7 +464,7 @@
                             <li class="mil-up">
                               <a href="test.html">Terapijski pristup</a>
                             </li>
-                            <li class="mil-up">
+                            <li class="mil-has-children">
                               <a href="index.html#service">Usluge</a>
                             </li>
                             <li class="mil-up">
@@ -512,8 +475,8 @@
                               <a href="announcement.html">Najave</a>
                             </li>
 
-                            <li class="mil-up mil-active">
-                              <a href="#">Kontakt</a>
+                            <li class="mil-up">
+                              <a href="contact.html">Kontakt</a>
                             </li>
                           </ul>
                         </nav>
@@ -731,100 +694,6 @@
       <!-- content -->
     </div>
     <!-- wrapper end -->
-
-    <!-- EmailJS SDK -->
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-
-    <script>
-      // Inicijalizuj EmailJS sa vašim javnim ključem
-      (function () {
-        console.log("Inicijalizujem EmailJS sa Public Key: 3IDB_1FNL6gwDO5f1");
-        emailjs.init("3IDB_1FNL6gwDO5f1");
-        console.log("EmailJS objekat:", emailjs);
-      })();
-
-      // Toast notification functions
-      function showToast(id, message) {
-        const toast = document.getElementById(id);
-        if (message) {
-          toast.textContent = message;
-        }
-        toast.classList.add("show");
-        // Auto hide after 5 seconds
-        setTimeout(() => {
-          hideToast(id);
-        }, 5000);
-      }
-
-      function hideToast(id) {
-        const toast = document.getElementById(id);
-        toast.classList.remove("show");
-      }
-
-      // Funkcija za formatiranje datuma
-      function getCurrentDate() {
-        const now = new Date();
-        const day = now.getDate().toString().padStart(2, "0");
-        const month = (now.getMonth() + 1).toString().padStart(2, "0");
-        const year = now.getFullYear();
-
-        // Format: DD.MM.YYYY
-        return `${day}.${month}.${year}`;
-      }
-
-      // Funkcija za slanje emaila
-      function sendEmail(event) {
-        event.preventDefault();
-        const submitBtn = document.getElementById("submitBtn");
-
-        // Disabiluj dugme tokom slanja
-        submitBtn.disabled = true;
-
-        // Generiši trenutni datum
-        const currentDate = getCurrentDate();
-
-        // Pripremi parametre za EmailJS
-        const templateParams = {
-          user_name: document.getElementById("userName").value,
-          user_email: document.getElementById("userEmail").value,
-          message: document.getElementById("message").value,
-          current_date: currentDate, // Dodaj trenutni datum
-          to_email: "m.besednik69@gmail.com",
-        };
-
-        console.log("Šaljem email sa parametrima:", templateParams);
-
-        emailjs
-          .send("service_vq9x7ls", "template_859q8oi", templateParams)
-          .then(
-            function (response) {
-              console.log("SUCCESS!", response.status, response.text);
-              // Prikaži success toast
-              showToast("successMessage");
-              // Resetuj formu
-              document.getElementById("contactForm").reset();
-            },
-            function (error) {
-              console.log("FAILED...", error);
-              console.log("Error details:", JSON.stringify(error, null, 2));
-              // Prikaži error toast sa detaljima
-              const errorMessage = `Dogodila se greška: ${
-                error.text || error.message || "Nepoznata greška"
-              }`;
-              showToast("errorMessage", errorMessage);
-            }
-          )
-          .finally(function () {
-            // Ponovo omogući dugme
-            submitBtn.disabled = false;
-          });
-      }
-
-      // Dodeli event listener na formu
-      document
-        .getElementById("contactForm")
-        .addEventListener("submit", sendEmail);
-    </script>
 
     <!-- jQuery js -->
     <script src="js/plugins/jquery.min.js"></script>
