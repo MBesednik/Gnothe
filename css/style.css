@@ -479,17 +479,17 @@ a {
 }
 
 .mil-img-frame {
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   overflow: hidden;
   width: 100%;
-  padding-bottom: 140%;
 }
+
 .mil-img-frame img {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
+  border-radius: 12px;
   -o-object-fit: cover;
   object-fit: cover;
   -o-object-position: center;
@@ -5427,5 +5427,9 @@ html.is-animating .mil-menu-frame {
 }
 
 p {
-  font-size: 18px !important;
+  font-size: 20px !important;
+}
+
+ul li {
+  font-size: 20px !important;
 }

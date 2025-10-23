@@ -23,6 +23,11 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
 
+    <link
+      href="https://fonts.googleapis.com/css2?family=Allura&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- Google Analytics s Consent Mode -->
     <!-- Google tag (gtag.js) -->
     <script
@@ -45,6 +50,236 @@
     <title>Gnothe</title>
 
     <style>
+      /* Popup Modal Styles */
+      .ego-modal {
+        display: none;
+        position: fixed;
+        z-index: 10000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.7);
+        animation: fadeIn 0.3s ease-in-out;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      .ego-modal-content {
+        background-color: #fefefe;
+        margin: 20px auto;
+        padding: 0;
+        border: 1px solid #888;
+        width: 90%;
+        max-width: 900px;
+        max-height: 90vh;
+        overflow-y: auto;
+        border-radius: 10px;
+        position: relative;
+        animation: slideIn 0.3s ease-out;
+      }
+
+      @keyframes slideIn {
+        from {
+          transform: translateY(-50px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      .ego-modal-header {
+        background-color: #689483;
+        color: white;
+        padding: 25px 30px;
+        border-radius: 10px 10px 0 0;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .ego-modal-header h2 {
+        color: white;
+        margin: 0;
+        font-size: 28px;
+        font-weight: 600;
+      }
+
+      .ego-modal-body {
+        padding: 30px;
+        position: relative;
+        min-height: 600px;
+      }
+
+      .ego-modal-close {
+        color: white;
+        font-size: 32px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: color 0.3s;
+        line-height: 1;
+        padding: 0 5px;
+      }
+
+      .ego-modal-close:hover,
+      .ego-modal-close:focus {
+        color: #f1f1f1;
+      }
+
+      /* Analiziraj se button */
+      .analyze-btn {
+        background-color: #689483;
+        color: white;
+        padding: 15px 40px;
+        border: none;
+        border-radius: 30px;
+        font-size: 18px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin: 30px auto;
+        display: block;
+        box-shadow: 0 4px 15px rgba(122, 184, 161, 0.3);
+      }
+
+      .analyze-btn:hover {
+        background-color: #69a792;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(122, 184, 161, 0.4);
+      }
+
+      /* Modal Loader Styles */
+      .modal-loader {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.95);
+        z-index: 100;
+        justify-content: center;
+        align-items: center;
+        border-radius: 0 0 10px 10px;
+      }
+
+      .modal-loader__spinner {
+        width: 60px;
+        height: 60px;
+        border: 6px solid rgba(122, 184, 161, 0.2);
+        border-radius: 50%;
+        border-top: 6px solid #689483;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Scrollbar styling for modal */
+      .ego-modal-content::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      .ego-modal-content::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+      }
+
+      .ego-modal-content::-webkit-scrollbar-thumb {
+        background: #689483;
+        border-radius: 10px;
+      }
+
+      .ego-modal-content::-webkit-scrollbar-thumb:hover {
+        background: #69a792;
+      }
+      /* Za ekrane manji od 600px */
+      @media (max-width: 600px) {
+        .ego-modal-content {
+          width: 95%;
+          margin: 10px auto;
+        }
+
+        .ego-modal-body {
+          padding: 20px 15px;
+        }
+
+        .graph-popup__container {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .graph-popup__item {
+          width: 100%;
+          max-width: 280px;
+          margin-bottom: 30px;
+        }
+
+        .graph-popup__canvas {
+          max-width: 100%;
+          height: auto !important;
+        }
+      }
+
+      /* Posebno za vrlo male ekrane ispod 470px */
+      @media (max-width: 470px) {
+        .ego-modal-header {
+          padding: 20px 15px;
+        }
+
+        .ego-modal-header h2 {
+          font-size: 22px;
+        }
+
+        .questionnaire__form {
+          padding: 0;
+        }
+
+        .questionnaire__question {
+          margin-bottom: 20px;
+        }
+
+        .questionnaire__option label {
+          font-size: 14px;
+        }
+
+        .graph-popup__item {
+          max-width: 240px;
+        }
+
+        /* Smanji font veličinu naslova grafova */
+        .graph-popup__item-title {
+          font-size: 16px;
+          margin-bottom: 15px;
+        }
+      }
+
+      /* Za ekrane manji od 350px */
+      @media (max-width: 350px) {
+        .graph-popup__item {
+          max-width: 200px;
+        }
+      }
+
       .hero {
         position: relative;
         width: 100vw;
@@ -580,6 +815,7 @@
           display: none;
         }
       }
+
       .services-section {
         width: 100%;
       }
@@ -588,6 +824,7 @@
         min-height: 100vh;
         display: flex;
         align-items: center;
+        justify-content: center;
         position: relative;
         overflow: hidden;
         opacity: 0;
@@ -606,7 +843,7 @@
       }
 
       .service-item:nth-child(2) {
-        background-color: #689483;
+        background-color: #e3d1ba;
       }
 
       .service-item:nth-child(3) {
@@ -614,54 +851,27 @@
       }
 
       .service-item:nth-child(4) {
-        background-color: #e3d1ba;
+        background-color: #689483;
       }
 
       .service-container {
-        max-width: 1200px;
+        max-width: 800px;
         margin: 0 auto;
-        padding: 60px 60px;
+        padding: 60px;
         width: 100%;
-      }
-
-      .service-content {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 60px;
-        align-items: center;
-      }
-
-      /* Alternate layout for even items */
-      .service-item:nth-child(even) .service-content {
-        direction: rtl;
-      }
-
-      .service-item:nth-child(even) .text-content,
-      .service-item:nth-child(even) .image-content {
-        direction: ltr;
+        text-align: center;
       }
 
       .text-content {
         opacity: 0;
-        transform: translateX(-30px);
-        animation: slideInLeft 0.8s ease-out 0.3s forwards;
+        transform: translateY(20px);
+        animation: slideIn 0.8s ease-out 0.3s forwards;
       }
 
-      .service-item:nth-child(even) .text-content {
-        animation: slideInRight 0.8s ease-out 0.3s forwards;
-      }
-
-      @keyframes slideInLeft {
+      @keyframes slideIn {
         to {
           opacity: 1;
-          transform: translateX(0);
-        }
-      }
-
-      @keyframes slideInRight {
-        to {
-          opacity: 1;
-          transform: translateX(0);
+          transform: translateY(0);
         }
       }
 
@@ -679,15 +889,15 @@
         color: #333;
       }
 
-      .service-item:nth-child(4) .text-content h2,
-      .service-item:nth-child(4) .text-content p {
+      .service-item:nth-child(2) .text-content h2,
+      .service-item:nth-child(2) .text-content p {
         color: #333;
       }
 
       .service-item:nth-child(1) .text-content h2,
       .service-item:nth-child(1) .text-content p,
-      .service-item:nth-child(2) .text-content h2,
-      .service-item:nth-child(2) .text-content p {
+      .service-item:nth-child(4) .text-content h2,
+      .service-item:nth-child(4) .text-content p {
         color: #fff;
       }
 
@@ -695,34 +905,65 @@
         font-size: clamp(1rem, 2vw, 1.125rem);
         line-height: 1.8;
         opacity: 0.95;
+        margin-bottom: 40px;
       }
 
-      .image-content {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+      .service-button {
+        display: inline-block;
+        padding: 16px 40px;
+        font-size: 1.1rem;
+        font-weight: 500;
+        text-decoration: none;
+        border-radius: 50px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        border: 2px solid transparent;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(10px);
         opacity: 0;
-        transform: scale(0.9);
-        animation: scaleIn 0.8s ease-out 0.5s forwards;
+        animation: buttonFadeIn 0.8s ease-out 0.6s forwards;
       }
 
-      @keyframes scaleIn {
+      @keyframes buttonFadeIn {
         to {
           opacity: 1;
-          transform: scale(1);
         }
       }
 
-      .image-content svg {
-        width: 100%;
-        max-width: 500px;
-        height: auto;
+      /* Button colors for each section */
+      .service-item:nth-child(1) .service-button,
+      .service-item:nth-child(4) .service-button {
+        color: #fff;
+        border-color: rgba(255, 255, 255, 0.3);
+      }
+
+      .service-item:nth-child(1) .service-button:hover,
+      .service-item:nth-child(4) .service-button:hover {
+        background: rgba(255, 255, 255, 0.25);
+        border-color: rgba(255, 255, 255, 0.5);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .service-item:nth-child(2) .service-button,
+      .service-item:nth-child(3) .service-button {
+        color: #333;
+        border-color: rgba(0, 0, 0, 0.2);
+        background: rgba(0, 0, 0, 0.05);
+      }
+
+      .service-item:nth-child(2) .service-button:hover,
+      .service-item:nth-child(3) .service-button:hover {
+        background: rgba(0, 0, 0, 0.1);
+        border-color: rgba(0, 0, 0, 0.3);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
       }
 
       /* Tablet styles */
       @media (max-width: 1024px) {
-        .service-content {
-          gap: 60px;
+        .service-container {
+          padding: 50px 40px;
         }
 
         .text-content h2 {
@@ -741,17 +982,6 @@
           padding: 40px 20px;
         }
 
-        .service-content {
-          grid-template-columns: 1fr;
-          gap: 30px;
-          text-align: center;
-        }
-
-        /* Reset direction for mobile */
-        .service-item:nth-child(even) .service-content {
-          direction: ltr;
-        }
-
         .text-content h2 {
           font-size: 2rem;
           margin-bottom: 20px;
@@ -759,15 +989,12 @@
 
         .text-content p {
           font-size: 1rem;
+          margin-bottom: 30px;
         }
 
-        .image-content svg {
-          max-width: 300px;
-        }
-
-        /* Move image to top on mobile */
-        .image-content {
-          order: -1;
+        .service-button {
+          padding: 14px 32px;
+          font-size: 1rem;
         }
       }
 
@@ -786,8 +1013,9 @@
           font-size: 1.75rem;
         }
 
-        .image-content svg {
-          max-width: 200px;
+        .service-button {
+          padding: 12px 28px;
+          font-size: 0.95rem;
         }
       }
 
@@ -834,6 +1062,105 @@
       .scroll-indicator.hide {
         opacity: 0;
         pointer-events: none;
+      }
+
+      .about-book {
+        object-fit: cover;
+        object-position: center;
+        height: 200px;
+      }
+      /* Toast notification styles */
+      .toast-notification {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        max-width: 400px;
+        padding: 16px 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        z-index: 1000;
+        font-size: 14px;
+        font-weight: 500;
+        opacity: 0;
+        transform: translateX(100%) scale(0.3);
+        transition: all 0.3s ease;
+        display: none;
+      }
+
+      .toast-notification.show {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+        display: block;
+        animation: bounceIn 0.6s ease-out;
+      }
+
+      @keyframes bounceIn {
+        0% {
+          opacity: 0;
+          transform: translateX(100%) scale(0.3);
+        }
+        50% {
+          opacity: 1;
+          transform: translateX(-10px) scale(1.05);
+        }
+        70% {
+          transform: translateX(10px) scale(0.95);
+        }
+        100% {
+          opacity: 1;
+          transform: translateX(0) scale(1);
+        }
+      }
+
+      .toast-success {
+        background: #d4edda;
+        color: #155724;
+        border-left: 4px solid #28a745;
+      }
+
+      .toast-error {
+        background: #f8d7da;
+        color: #721c24;
+        border-left: 4px solid #dc3545;
+      }
+
+      @media (max-width: 768px) {
+        .toast-notification {
+          top: 10px;
+          right: 10px;
+          left: 10px;
+          max-width: none;
+        }
+      }
+
+      .icon-text {
+        display: flex;
+        align-items: flex-start; /* ikona gore, tekst odmah pored */
+        margin-bottom: 14px;
+      }
+
+      .icon-text i {
+        color: #689483;
+        font-size: 1.2rem;
+        margin-right: 10px;
+        margin-top: 3px; /* sitno podešavanje da se bolje poravna s prvim redom teksta */
+        flex-shrink: 0; /* sprječava da ikona bude stisnuta */
+      }
+
+      .icon-text p {
+        margin: 0;
+      }
+      .signature {
+        font-family: "Allura", cursive;
+        font-size: 5rem;
+        color: #2d2d3d;
+        font-weight: 400;
+        font-style: normal;
+        letter-spacing: 2px;
+        display: inline-block;
+        line-height: 1;
+        margin: 0;
+        transform: rotate(-1deg);
       }
     </style>
   </head>
@@ -1113,208 +1440,44 @@
               <div class="row justify-content-between align-items-center">
                 <div class="col-lg-6 col-xl-5">
                   <div class="mil-mb-90">
-                    <p class="mil-up mil-mb-60">
+                    <p class="mil-up mil-mb-30">
                       Pronašli ste sigurno, podržavajuće mjesto na kojem imate
                       priliku bolje upoznati sebe, svoje obrasce ponašanja i
-                      odnose. U svom radu koristim principe
-                      <strong>transakcijske analize</strong>, a ovisno o
-                      potrebama klijenata kombiniram sistemski pristup,
-                      <strong>EMDR</strong> i
-                      <strong>tehnike rada s tijelom.</strong> Poseban naglasak
-                      stavljam na povezanost između
-                      <strong>emocionalnih stanja i tjelesnih simptoma</strong>,
-                      jer iskustva poput stresa, traume ili dugotrajne napetosti
-                      često mogu biti povezani s
-                      <strong>kroničnim bolovima</strong>.
+                      odnose.
                     </p>
-                    <p class="mil-up mil-mb-60">
-                      Neka od područja kojima se bavim u svojoj praksi su:
-                      anksiozna i depresivna stanja, neurodivergentnost, sindrom
-                      sagorijevanja na radnom mjestu (burnout) i osobni razvoj.
-                      Savjetovanje provodim uživo u Zaprešiću i online.
-                      Dobrodošli.
+                    <p class="mil-up mil-mb-20">
+                      U radu s klijentima koristim principe pshihoterapijskog
+                      pravca transakcijska analiza, EMDR i TRE. Neka od tema
+                      kojima se bavim u svojoj praksi su:
                     </p>
+                    <ul class="mil-up mil-mb-30">
+                      <li>anksiozna i depresivna stanja</li>
+                      <li>neurodivergentnost</li>
+                      <li>sindrom sagorijevanja na radnom mjestu (burnout)</li>
+                      <li>partnerski odnosi</li>
+                      <li>osobni razvoj</li>
+                    </ul>
+                    <p class="mil-up mil-mb-30">
+                      Poseban naglasak stavljam na povezanost emocionalnog
+                      stanja i tjelesnih simptoma. Stres, dugotrajna napetost
+                      ili trauma mogu uzrokovati kronične bolove.
+                    </p>
+                    <p class="mil-up mil-mb-30">
+                      Savjetovanje provodim uživo u Zaprešiću ili online.
+                    </p>
+                    <p class="mil-up mil-mb-30">Dobrodošli</p>
+                    <p class="mil-up mil-mb-30 signature">Melita</p>
                   </div>
                 </div>
                 <div class="col-lg-5">
                   <div class="mil-about-photo mil-mb-90">
                     <div class="mil-lines-place"></div>
-                    <div
-                      class="mil-up mil-img-frame"
-                      style="padding-bottom: 160%"
-                    >
-                      <svg
-                        viewBox="0 0 400 640"
-                        xmlns="http://www.w3.org/2000/svg"
-                        style="
-                          width: 100%;
-                          height: 100%;
-                          position: absolute;
-                          top: 0;
-                          left: 0;
-                        "
-                      >
-                        <!-- Zapetljano klupko - gore/lijevo -->
-                        <g transform="translate(130, 320)">
-                          <!-- Ekstremno zapetljane linije - veće -->
-                          <path
-                            d="M -50 -40 Q -55 -20 -40 0 Q -25 25 0 35 Q 25 30 40 15 Q 50 -10 40 -30 Q 25 -45 0 -50 Q -25 -45 -50 -40"
-                            fill="none"
-                            stroke="black"
-                            stroke-width="4"
-                            opacity="0.9"
-                          />
-                          <path
-                            d="M -45 -50 Q -20 -60 10 -50 Q 40 -35 50 -10 Q 45 20 30 45 Q 10 60 -20 55 Q -45 40 -55 15 Q -55 -15 -45 -50"
-                            fill="none"
-                            stroke="black"
-                            stroke-width="4"
-                            opacity="0.9"
-                          />
-                          <path
-                            d="M -35 20 Q -45 40 -20 55 Q 5 65 30 50 Q 50 25 40 -5 Q 25 -30 0 -40 Q -25 -35 -40 -15 Q -40 5 -35 20"
-                            fill="none"
-                            stroke="black"
-                            stroke-width="4"
-                            opacity="0.8"
-                          />
-                          <path
-                            d="M 15 -60 Q 40 -50 55 -25 Q 65 5 55 35 Q 40 55 15 65 Q -15 60 -40 40 Q -60 15 -50 -15 Q -35 -45 -10 -60 Q 5 -65 15 -60"
-                            fill="none"
-                            stroke="black"
-                            stroke-width="4"
-                            opacity="0.8"
-                          />
-                          <path
-                            d="M -60 -25 Q -50 0 -25 15 Q 0 25 25 15 Q 45 0 35 -25 Q 15 -45 -10 -50 Q -35 -45 -60 -25"
-                            fill="none"
-                            stroke="black"
-                            stroke-width="4"
-                            opacity="0.7"
-                          />
-                          <path
-                            d="M -25 -25 Q -10 -10 10 10 Q 25 25 35 35 Q 20 45 0 35 Q -20 25 -35 10 Q -35 -10 -25 -25"
-                            fill="none"
-                            stroke="black"
-                            stroke-width="3.5"
-                            opacity="0.6"
-                          />
-                          <path
-                            d="M 30 -45 Q 50 -35 60 -10 Q 60 20 45 45 Q 25 60 -5 60 Q -35 50 -50 25 Q -55 -5 -40 -35 Q -20 -55 10 -55 Q 25 -50 30 -45"
-                            fill="none"
-                            stroke="black"
-                            stroke-width="3.5"
-                            opacity="0.5"
-                          />
-                          <!-- Dodatne kaotične linije za gustoću -->
-                          <path
-                            d="M -65 10 Q -55 35 -30 50 Q -5 55 20 45 Q 45 30 55 5 Q 50 -25 30 -50 Q 5 -65 -25 -55 Q -50 -35 -60 -10 Q -65 10 -65 10"
-                            fill="none"
-                            stroke="black"
-                            stroke-width="3"
-                            opacity="0.4"
-                          />
-                        </g>
-
-                        <!-- Povezna linija s koncem -->
-                        <path
-                          d="M 185 320 Q 210 320 235 320 Q 260 320 270 320"
-                          fill="none"
-                          stroke="black"
-                          stroke-width="3"
-                          opacity="0.6"
-                        />
-
-                        <!-- Strelica -->
-                        <g transform="translate(225, 320)">
-                          <path
-                            d="M 0 0 L 20 0"
-                            stroke="black"
-                            stroke-width="2.5"
-                            opacity="0.5"
-                          />
-                          <path
-                            d="M 16 -5 L 20 0 L 16 5"
-                            stroke="black"
-                            stroke-width="2.5"
-                            fill="none"
-                            opacity="0.5"
-                          />
-                        </g>
-
-                        <!-- Potpuno uredno klupko - gore/desno -->
-                        <g transform="translate(270, 320)">
-                          <circle
-                            cx="0"
-                            cy="0"
-                            r="60"
-                            fill="none"
-                            stroke="black"
-                            stroke-width="4"
-                            opacity="0.9"
-                          />
-                          <circle
-                            cx="0"
-                            cy="0"
-                            r="50"
-                            fill="none"
-                            stroke="black"
-                            stroke-width="4"
-                            opacity="0.9"
-                          />
-                          <circle
-                            cx="0"
-                            cy="0"
-                            r="40"
-                            fill="none"
-                            stroke="black"
-                            stroke-width="4"
-                            opacity="0.9"
-                          />
-                          <circle
-                            cx="0"
-                            cy="0"
-                            r="30"
-                            fill="none"
-                            stroke="black"
-                            stroke-width="4"
-                            opacity="0.9"
-                          />
-                          <circle
-                            cx="0"
-                            cy="0"
-                            r="20"
-                            fill="none"
-                            stroke="black"
-                            stroke-width="4"
-                            opacity="0.9"
-                          />
-                          <circle
-                            cx="0"
-                            cy="0"
-                            r="10"
-                            fill="none"
-                            stroke="black"
-                            stroke-width="4"
-                            opacity="0.9"
-                          />
-                          <circle
-                            cx="0"
-                            cy="0"
-                            r="3"
-                            fill="black"
-                            opacity="0.9"
-                          />
-                          <!-- Kraj konca koji izlazi -->
-                          <path
-                            d="M 60 0 Q 70 0 80 5 Q 85 8 90 12"
-                            fill="none"
-                            stroke="black"
-                            stroke-width="3"
-                            opacity="0.8"
-                          />
-                        </g>
-                      </svg>
+                    <div class="mil-up mil-img-frame">
+                      <img
+                        src="./img/book.jpeg"
+                        class="about-book"
+                        alt="knjiga"
+                      />
                     </div>
                   </div>
                 </div>
@@ -1443,896 +1606,76 @@
           </section> -->
           <!-- services end -->
 
-          <div class="services-section" id="service">
-            <!-- Service 1 -->
+          <div class="services-section">
             <div class="service-item">
               <div class="service-container">
-                <div class="service-content">
-                  <div class="text-content">
-                    <h2>INDIVIDUALNO SAVJETOVANJE</h2>
-                    <p>
-                      Individualni rad kroz principe transakcijske analize u
-                      kombinaciji s EMDR-om, TRE-om i sistemskim konstelacijama.
-                      Susret traje 60 min i može biti uživo ili online.
-                    </p>
-                  </div>
-                  <div class="image-content">
-                    <svg
-                      viewBox="0 0 400 300"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <g
-                        stroke="currentColor"
-                        stroke-width="2"
-                        fill="none"
-                        opacity="0.4"
-                      >
-                        <!-- Person sitting on chair -->
-                        <!-- Head -->
-                        <circle
-                          cx="200"
-                          cy="80"
-                          r="20"
-                          fill="currentColor"
-                          opacity="0.2"
-                        />
-                        <!-- Body -->
-                        <path d="M200 100 L200 140" stroke-width="3" />
-                        <!-- Arms -->
-                        <path d="M200 110 L180 130" stroke-width="2" />
-                        <path d="M200 110 L220 130" stroke-width="2" />
-                        <!-- Legs -->
-                        <path d="M200 140 L185 170 L185 200" stroke-width="2" />
-                        <path d="M200 140 L215 170 L215 200" stroke-width="2" />
+                <div class="text-content">
+                  <h2>INDIVIDUALNO SAVJETOVANJE</h2>
+                  <p>
+                    Individualni rad se prilagođava i planira u skladu s
+                    potrebama klijenata. Susreti se održavaju jednom tjedno ili
+                    jednom u dva tjedna. Provodi se uživo ili online u trajanju
+                    od 60 minuta.
+                  </p>
 
-                        <!-- Chair -->
-                        <rect
-                          x="170"
-                          y="140"
-                          width="60"
-                          height="5"
-                          fill="currentColor"
-                          opacity="0.3"
-                        />
-                        <rect
-                          x="170"
-                          y="145"
-                          width="5"
-                          height="60"
-                          fill="currentColor"
-                          opacity="0.3"
-                        />
-                        <rect
-                          x="225"
-                          y="145"
-                          width="5"
-                          height="60"
-                          fill="currentColor"
-                          opacity="0.3"
-                        />
-                        <rect
-                          x="170"
-                          y="90"
-                          width="60"
-                          height="55"
-                          rx="5"
-                          stroke-width="2"
-                        />
-
-                        <!-- Therapist's chair (smaller, to the side) -->
-                        <rect
-                          x="280"
-                          y="120"
-                          width="40"
-                          height="40"
-                          rx="5"
-                          stroke-width="1"
-                          opacity="0.3"
-                        />
-                        <rect
-                          x="280"
-                          y="160"
-                          width="40"
-                          height="3"
-                          fill="currentColor"
-                          opacity="0.2"
-                        />
-                        <rect
-                          x="280"
-                          y="163"
-                          width="3"
-                          height="40"
-                          fill="currentColor"
-                          opacity="0.2"
-                        />
-                        <rect
-                          x="317"
-                          y="163"
-                          width="3"
-                          height="40"
-                          fill="currentColor"
-                          opacity="0.2"
-                        />
-
-                        <!-- Small table between -->
-                        <rect
-                          x="245"
-                          y="140"
-                          width="25"
-                          height="20"
-                          rx="3"
-                          fill="currentColor"
-                          opacity="0.1"
-                        />
-                        <rect
-                          x="250"
-                          y="160"
-                          width="2"
-                          height="25"
-                          fill="currentColor"
-                          opacity="0.2"
-                        />
-                        <rect
-                          x="263"
-                          y="160"
-                          width="2"
-                          height="25"
-                          fill="currentColor"
-                          opacity="0.2"
-                        />
-
-                        <!-- Thought bubble elements -->
-                        <circle
-                          cx="150"
-                          cy="60"
-                          r="3"
-                          fill="currentColor"
-                          opacity="0.2"
-                        />
-                        <circle
-                          cx="140"
-                          cy="50"
-                          r="4"
-                          fill="currentColor"
-                          opacity="0.2"
-                        />
-                        <circle
-                          cx="125"
-                          cy="40"
-                          r="6"
-                          fill="currentColor"
-                          opacity="0.2"
-                        />
-                      </g>
-                    </svg>
-                  </div>
+                  <button id="openAnalysisBtn" class="service-button">
+                    Prijavi se
+                  </button>
                 </div>
               </div>
             </div>
 
-            <!-- Service 2 -->
             <div class="service-item">
-              <div class="container">
-                <div class="service-content">
-                  <div class="text-content">
-                    <h2>PARTNERSKO SAVJETOVANJE</h2>
-                    <p>
-                      Do 10 susreta po 75 min za bolju komunikaciju i
-                      razumijevanje dinamike odnosa (par ili roditelj–dijete).
-                    </p>
-                  </div>
-                  <div class="image-content">
-                    <svg
-                      viewBox="0 0 400 300"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <g
-                        stroke="currentColor"
-                        stroke-width="2"
-                        fill="none"
-                        opacity="0.4"
-                      >
-                        <!-- Large couch -->
-                        <path
-                          d="M80 160 Q60 160 60 180 L60 220 Q60 240 80 240 L320 240 Q340 240 340 220 L340 180 Q340 160 320 160 L80 160"
-                        />
-                        <path
-                          d="M80 160 Q80 140 100 140 L300 140 Q320 140 320 160"
-                        />
-                        <path d="M60 180 Q40 180 40 200 L40 220 L60 220" />
-                        <path d="M340 180 Q360 180 360 200 L340 220" />
-                        <!-- Couch back -->
-                        <rect
-                          x="85"
-                          y="145"
-                          width="230"
-                          height="15"
-                          rx="5"
-                          fill="currentColor"
-                          opacity="0.1"
-                        />
-                        <!-- Couch cushions -->
-                        <rect
-                          x="90"
-                          y="165"
-                          width="70"
-                          height="40"
-                          rx="5"
-                          fill="currentColor"
-                          opacity="0.05"
-                        />
-                        <rect
-                          x="165"
-                          y="165"
-                          width="70"
-                          height="40"
-                          rx="5"
-                          fill="currentColor"
-                          opacity="0.05"
-                        />
-                        <rect
-                          x="240"
-                          y="165"
-                          width="70"
-                          height="40"
-                          rx="5"
-                          fill="currentColor"
-                          opacity="0.05"
-                        />
-
-                        <!-- Male figure (left) -->
-                        <circle
-                          cx="140"
-                          cy="100"
-                          r="18"
-                          fill="currentColor"
-                          opacity="0.2"
-                        />
-                        <path d="M140 118 L140 150" stroke-width="3" />
-                        <path d="M140 125 L120 140" stroke-width="2" />
-                        <path d="M140 125 L155 135" stroke-width="2" />
-                        <!-- Male hair (short) -->
-                        <path
-                          d="M125 95 Q125 85 140 85 Q155 85 155 95"
-                          fill="currentColor"
-                          opacity="0.2"
-                        />
-
-                        <!-- Female figure (right) -->
-                        <circle
-                          cx="260"
-                          cy="100"
-                          r="18"
-                          fill="currentColor"
-                          opacity="0.2"
-                        />
-                        <path d="M260 118 L260 150" stroke-width="3" />
-                        <path d="M260 125 L245 135" stroke-width="2" />
-                        <path d="M260 125 L280 140" stroke-width="2" />
-                        <!-- Female hair (longer) -->
-                        <path
-                          d="M245 95 Q245 85 260 85 Q275 85 275 95 L275 110"
-                          fill="currentColor"
-                          opacity="0.2"
-                        />
-
-                        <!-- Connection/Heart between them -->
-                        <path
-                          d="M195 120 Q195 110 200 110 Q205 110 205 120 Q205 130 200 135 Q195 130 195 120"
-                          fill="currentColor"
-                          opacity="0.3"
-                        />
-
-                        <!-- Small side table -->
-                        <rect
-                          x="25"
-                          y="180"
-                          width="25"
-                          height="35"
-                          rx="3"
-                          fill="currentColor"
-                          opacity="0.1"
-                        />
-                        <rect
-                          x="350"
-                          y="180"
-                          width="25"
-                          height="35"
-                          rx="3"
-                          fill="currentColor"
-                          opacity="0.1"
-                        />
-                      </g>
-                    </svg>
-                  </div>
+              <div class="service-container">
+                <div class="text-content">
+                  <h2>PARTNERSKO SAVJETOVANJE</h2>
+                  <p>
+                    Partnersko savjevjetovanje provodi se po modelu od
+                    maksimalno 10 susreta u trajanju 75 minuta. Model se bazira
+                    na principima transakcijske analize a strukturiran je s
+                    ciljem poboljšanja komunikacije i razumijevanje dinamike
+                    odnosa. Susreti se održavaju jednom tjedno ili jednom u dva
+                    tjedna. Provodi se uživo ili online u trajanju od 75 minuta.
+                  </p>
+                  <button id="openAnalysisBtn" class="service-button">
+                    Prijavi se
+                  </button>
                 </div>
               </div>
             </div>
 
-            <!-- Service 3 -->
             <div class="service-item">
-              <div class="container">
-                <div class="service-content">
-                  <div class="text-content">
-                    <h2>GRUPNO SAVJETOVANJE</h2>
-                    <p>
-                      Sigurno okruženje za osobe sličnih iskustava. Članovi si
-                      međusobno pomažu nositi se sa stresom i mentalnim
-                      izazovima.<br /><br /><i
-                        ><b>Napomena</b>: grupe podrške nisu zamjena</i
-                      >
-                      za psihoterapiju.
-                    </p>
-                  </div>
-                  <div class="image-content">
-                    <svg
-                      viewBox="0 0 400 300"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <g
-                        stroke="#333"
-                        stroke-width="2"
-                        fill="none"
-                        opacity="0.7"
-                      >
-                        <!-- Circle guide (invisible) -->
-                        <circle cx="200" cy="150" r="100" stroke="none" />
-
-                        <!-- Chair 1 - top -->
-                        <rect
-                          x="185"
-                          y="40"
-                          width="30"
-                          height="30"
-                          rx="5"
-                          fill="#333"
-                          opacity="0.1"
-                        />
-                        <rect
-                          x="185"
-                          y="35"
-                          width="30"
-                          height="5"
-                          fill="#333"
-                          opacity="0.2"
-                        />
-                        <rect
-                          x="188"
-                          y="70"
-                          width="3"
-                          height="20"
-                          fill="#333"
-                          opacity="0.3"
-                        />
-                        <rect
-                          x="209"
-                          y="70"
-                          width="3"
-                          height="20"
-                          fill="#333"
-                          opacity="0.3"
-                        />
-                        <!-- Person 1 -->
-                        <circle
-                          cx="200"
-                          cy="55"
-                          r="8"
-                          fill="#333"
-                          opacity="0.3"
-                        />
-
-                        <!-- Chair 2 - top right -->
-                        <g transform="rotate(60 200 150)">
-                          <rect
-                            x="185"
-                            y="40"
-                            width="30"
-                            height="30"
-                            rx="5"
-                            fill="#333"
-                            opacity="0.1"
-                          />
-                          <rect
-                            x="185"
-                            y="35"
-                            width="30"
-                            height="5"
-                            fill="#333"
-                            opacity="0.2"
-                          />
-                          <circle
-                            cx="200"
-                            cy="55"
-                            r="8"
-                            fill="#333"
-                            opacity="0.3"
-                          />
-                        </g>
-
-                        <!-- Chair 3 - bottom right -->
-                        <g transform="rotate(120 200 150)">
-                          <rect
-                            x="185"
-                            y="40"
-                            width="30"
-                            height="30"
-                            rx="5"
-                            fill="#333"
-                            opacity="0.1"
-                          />
-                          <rect
-                            x="185"
-                            y="35"
-                            width="30"
-                            height="5"
-                            fill="#333"
-                            opacity="0.2"
-                          />
-                          <circle
-                            cx="200"
-                            cy="55"
-                            r="8"
-                            fill="#333"
-                            opacity="0.3"
-                          />
-                        </g>
-
-                        <!-- Chair 4 - bottom -->
-                        <g transform="rotate(180 200 150)">
-                          <rect
-                            x="185"
-                            y="40"
-                            width="30"
-                            height="30"
-                            rx="5"
-                            fill="#333"
-                            opacity="0.1"
-                          />
-                          <rect
-                            x="185"
-                            y="35"
-                            width="30"
-                            height="5"
-                            fill="#333"
-                            opacity="0.2"
-                          />
-                          <circle
-                            cx="200"
-                            cy="55"
-                            r="8"
-                            fill="#333"
-                            opacity="0.3"
-                          />
-                        </g>
-
-                        <!-- Chair 5 - bottom left -->
-                        <g transform="rotate(240 200 150)">
-                          <rect
-                            x="185"
-                            y="40"
-                            width="30"
-                            height="30"
-                            rx="5"
-                            fill="#333"
-                            opacity="0.1"
-                          />
-                          <rect
-                            x="185"
-                            y="35"
-                            width="30"
-                            height="5"
-                            fill="#333"
-                            opacity="0.2"
-                          />
-                          <circle
-                            cx="200"
-                            cy="55"
-                            r="8"
-                            fill="#333"
-                            opacity="0.3"
-                          />
-                        </g>
-
-                        <!-- Chair 6 - top left -->
-                        <g transform="rotate(300 200 150)">
-                          <rect
-                            x="185"
-                            y="40"
-                            width="30"
-                            height="30"
-                            rx="5"
-                            fill="#333"
-                            opacity="0.1"
-                          />
-                          <rect
-                            x="185"
-                            y="35"
-                            width="30"
-                            height="5"
-                            fill="#333"
-                            opacity="0.2"
-                          />
-                          <circle
-                            cx="200"
-                            cy="55"
-                            r="8"
-                            fill="#333"
-                            opacity="0.3"
-                          />
-                        </g>
-
-                        <!-- Center moderator/focal point -->
-                        <circle
-                          cx="200"
-                          cy="150"
-                          r="12"
-                          fill="#333"
-                          opacity="0.5"
-                        />
-                        <circle
-                          cx="200"
-                          cy="150"
-                          r="20"
-                          stroke-dasharray="3,3"
-                          opacity="0.3"
-                        />
-
-                        <!-- Connection lines -->
-                        <line
-                          x1="200"
-                          y1="90"
-                          x2="200"
-                          y2="130"
-                          stroke-dasharray="2,2"
-                          opacity="0.3"
-                        />
-                        <line
-                          x1="250"
-                          y1="115"
-                          x2="220"
-                          y2="140"
-                          stroke-dasharray="2,2"
-                          opacity="0.3"
-                        />
-                        <line
-                          x1="250"
-                          y1="185"
-                          x2="220"
-                          y2="160"
-                          stroke-dasharray="2,2"
-                          opacity="0.3"
-                        />
-                        <line
-                          x1="200"
-                          y1="210"
-                          x2="200"
-                          y2="170"
-                          stroke-dasharray="2,2"
-                          opacity="0.3"
-                        />
-                        <line
-                          x1="150"
-                          y1="185"
-                          x2="180"
-                          y2="160"
-                          stroke-dasharray="2,2"
-                          opacity="0.3"
-                        />
-                        <line
-                          x1="150"
-                          y1="115"
-                          x2="180"
-                          y2="140"
-                          stroke-dasharray="2,2"
-                          opacity="0.3"
-                        />
-                      </g>
-                    </svg>
-                  </div>
+              <div class="service-container">
+                <div class="text-content">
+                  <h2>GRUPNO SAVJETOVANJE</h2>
+                  <p>
+                    Provodi se u grupi od maksimalno 8 članova u fiksnim
+                    terminima jednom mjesečno, na unaprijed dogovorene datume, u
+                    trajanju od 90 minuta. Potencijalni članovi prolaze
+                    inicijalni intervju s voditeljem grupe. Informacije o
+                    otvaranju novih grupa i prijavama potražite
+                    <a href="announcement.html">ovdje</a>.
+                  </p>
+                  <button id="openAnalysisBtn" class="service-button">
+                    Prijavi se
+                  </button>
                 </div>
               </div>
             </div>
-            <!-- Service 4 -->
+
             <div class="service-item">
-              <div class="container">
-                <div class="service-content">
-                  <div class="text-content">
-                    <h2>PROGRAM PODRŠKE ZAPOSLENICIMA EAP</h2>
-                    <p>
-                      Savjetovanje za zaposlenike koji se suočavaju sa stresom
-                      na radnom mjestu ili teškim okolnostima koje utječu na
-                      kvalitetu života i radnu sposobnost.
-                    </p>
-                  </div>
-                  <div class="image-content">
-                    <svg
-                      viewBox="0 0 400 300"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <g
-                        stroke="#333"
-                        stroke-width="2"
-                        fill="none"
-                        opacity="0.7"
-                      >
-                        <!-- Presentation board/screen -->
-                        <rect
-                          x="150"
-                          y="40"
-                          width="100"
-                          height="70"
-                          rx="3"
-                          fill="#333"
-                          opacity="0.1"
-                        />
-                        <line x1="200" y1="110" x2="200" y2="140" />
-                        <line x1="180" y1="140" x2="220" y2="140" />
-
-                        <!-- Chart on board -->
-                        <rect
-                          x="165"
-                          y="55"
-                          width="70"
-                          height="40"
-                          rx="2"
-                          stroke-width="1"
-                        />
-                        <line
-                          x1="175"
-                          y1="85"
-                          x2="185"
-                          y2="75"
-                          stroke-width="1"
-                        />
-                        <line
-                          x1="185"
-                          y1="75"
-                          x2="195"
-                          y2="80"
-                          stroke-width="1"
-                        />
-                        <line
-                          x1="195"
-                          y1="80"
-                          x2="205"
-                          y2="70"
-                          stroke-width="1"
-                        />
-                        <line
-                          x1="205"
-                          y1="70"
-                          x2="215"
-                          y2="65"
-                          stroke-width="1"
-                        />
-                        <circle
-                          cx="175"
-                          cy="85"
-                          r="2"
-                          fill="#333"
-                          opacity="0.5"
-                        />
-                        <circle
-                          cx="185"
-                          cy="75"
-                          r="2"
-                          fill="#333"
-                          opacity="0.5"
-                        />
-                        <circle
-                          cx="195"
-                          cy="80"
-                          r="2"
-                          fill="#333"
-                          opacity="0.5"
-                        />
-                        <circle
-                          cx="205"
-                          cy="70"
-                          r="2"
-                          fill="#333"
-                          opacity="0.5"
-                        />
-                        <circle
-                          cx="215"
-                          cy="65"
-                          r="2"
-                          fill="#333"
-                          opacity="0.5"
-                        />
-
-                        <!-- Presenter -->
-                        <circle
-                          cx="120"
-                          cy="90"
-                          r="12"
-                          fill="#333"
-                          opacity="0.3"
-                        />
-                        <path d="M120 102 L120 130" stroke-width="3" />
-                        <path d="M120 110 L135 100" stroke-width="2" />
-                        <!-- Pointing arm -->
-                        <path d="M120 110 L105 120" stroke-width="2" />
-
-                        <!-- Audience seats - Row 1 -->
-                        <rect
-                          x="60"
-                          y="180"
-                          width="35"
-                          height="25"
-                          rx="3"
-                          fill="#333"
-                          opacity="0.1"
-                        />
-                        <circle
-                          cx="77"
-                          cy="170"
-                          r="8"
-                          fill="#333"
-                          opacity="0.2"
-                        />
-
-                        <rect
-                          x="110"
-                          y="180"
-                          width="35"
-                          height="25"
-                          rx="3"
-                          fill="#333"
-                          opacity="0.1"
-                        />
-                        <circle
-                          cx="127"
-                          cy="170"
-                          r="8"
-                          fill="#333"
-                          opacity="0.2"
-                        />
-
-                        <rect
-                          x="160"
-                          y="180"
-                          width="35"
-                          height="25"
-                          rx="3"
-                          fill="#333"
-                          opacity="0.1"
-                        />
-                        <circle
-                          cx="177"
-                          cy="170"
-                          r="8"
-                          fill="#333"
-                          opacity="0.2"
-                        />
-
-                        <!-- Audience seats - Row 2 -->
-                        <rect
-                          x="210"
-                          y="180"
-                          width="35"
-                          height="25"
-                          rx="3"
-                          fill="#333"
-                          opacity="0.1"
-                        />
-                        <circle
-                          cx="227"
-                          cy="170"
-                          r="8"
-                          fill="#333"
-                          opacity="0.2"
-                        />
-
-                        <rect
-                          x="260"
-                          y="180"
-                          width="35"
-                          height="25"
-                          rx="3"
-                          fill="#333"
-                          opacity="0.1"
-                        />
-                        <circle
-                          cx="277"
-                          cy="170"
-                          r="8"
-                          fill="#333"
-                          opacity="0.2"
-                        />
-
-                        <rect
-                          x="310"
-                          y="180"
-                          width="35"
-                          height="25"
-                          rx="3"
-                          fill="#333"
-                          opacity="0.1"
-                        />
-                        <circle
-                          cx="327"
-                          cy="170"
-                          r="8"
-                          fill="#333"
-                          opacity="0.2"
-                        />
-
-                        <!-- Notebooks on desks -->
-                        <rect
-                          x="70"
-                          y="195"
-                          width="15"
-                          height="10"
-                          rx="1"
-                          fill="#333"
-                          opacity="0.2"
-                        />
-                        <rect
-                          x="120"
-                          y="195"
-                          width="15"
-                          height="10"
-                          rx="1"
-                          fill="#333"
-                          opacity="0.2"
-                        />
-                        <rect
-                          x="170"
-                          y="195"
-                          width="15"
-                          height="10"
-                          rx="1"
-                          fill="#333"
-                          opacity="0.2"
-                        />
-                        <rect
-                          x="220"
-                          y="195"
-                          width="15"
-                          height="10"
-                          rx="1"
-                          fill="#333"
-                          opacity="0.2"
-                        />
-
-                        <!-- Light bulb (idea/learning) -->
-                        <circle
-                          cx="280"
-                          cy="80"
-                          r="15"
-                          stroke-dasharray="3,3"
-                          opacity="0.3"
-                        />
-                        <path
-                          d="M275 80 Q275 75 280 75 Q285 75 285 80 L285 85 L275 85 Z"
-                          fill="#333"
-                          opacity="0.2"
-                        />
-                        <line
-                          x1="277"
-                          y1="85"
-                          x2="277"
-                          y2="90"
-                          stroke-width="1"
-                        />
-                        <line
-                          x1="280"
-                          y1="85"
-                          x2="280"
-                          y2="90"
-                          stroke-width="1"
-                        />
-                        <line
-                          x1="283"
-                          y1="85"
-                          x2="283"
-                          y2="90"
-                          stroke-width="1"
-                        />
-                      </g>
-                    </svg>
-                  </div>
+              <div class="service-container">
+                <div class="text-content">
+                  <h2>PROGRAM PODRŠKE ZAPOSLENICIMA – EAP</h2>
+                  <p>
+                    Savjetovanje za zaposlenike koji se suočavaju s izazovima na
+                    radnom mjestu ili teškim životnim okolnostima koje utječu na
+                    radnu sposobnost i kvalitetu života. Program je namijenjen
+                    poslodavcima koji žele ugovoriti uslugu podrške za svoje
+                    zaposlenike. Program se izvodi kao individualno savjetovanje
+                    zaposlenika ili kao psihoedukacija za timove.
+                  </p>
+                  <button class="service-button">Zatraži ponudu</button>
                 </div>
               </div>
             </div>
@@ -2702,6 +2045,64 @@
 
     <!-- contact end -->
 
+    <div id="egoAnalysisModal" class="ego-modal">
+      <div class="ego-modal-content">
+        <div class="ego-modal-header">
+          <h2>Prijava na radionicu/uslugu</h2>
+          <span class="ego-modal-close">&times;</span>
+        </div>
+        <div class="ego-modal-body">
+          <!-- Modal Loader -->
+          <div class="modal-loader" id="modalLoader">
+            <div class="modal-loader__spinner"></div>
+          </div>
+
+          <div class="container mil-p-120-90">
+            <form class="row align-items-center" id="contactForm">
+              <div class="col-lg-6 mil-up">
+                <input
+                  type="text"
+                  placeholder="Vaše ime"
+                  name="user_name"
+                  id="userName"
+                  required
+                />
+              </div>
+              <div class="col-lg-6 mil-up">
+                <input
+                  type="email"
+                  placeholder="Vaš email"
+                  name="user_email"
+                  id="userEmail"
+                  required
+                />
+              </div>
+              <div class="col-lg-12 mil-up">
+                <textarea
+                  placeholder="Unesite svoj upit"
+                  name="message"
+                  id="message"
+                  required
+                ></textarea>
+              </div>
+              <div class="col-lg-8"></div>
+              <div class="col-lg-4">
+                <div class="mil-adaptive-right mil-up mil-mb-30">
+                  <button
+                    type="submit"
+                    class="mil-button mil-arrow-place"
+                    id="submitBtn"
+                  >
+                    <span>Pošalji upit</span>
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- footer -->
     <footer class="mil-soft-bg">
       <div class="mi-invert-fix">
@@ -2832,6 +2233,8 @@
     </div>
 
     <script src="js/plugins/cookie-banner.js"></script>
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
     <!-- jQuery js -->
     <script src="js/plugins/jquery.min.js"></script>
@@ -2894,6 +2297,142 @@
           el.style.animationDelay = `${index * 0.1}s`;
         });
       });
+    </script>
+
+    <script>
+      // Modal functionality
+      const modal = document.getElementById("egoAnalysisModal");
+      const openBtn = document.getElementById("openAnalysisBtn");
+      const closeBtn = document.querySelector(".ego-modal-close");
+      const modalBody = document.querySelector(".ego-modal-body");
+
+      // Open modal
+      openBtn.onclick = function () {
+        modal.style.display = "block";
+        document.body.style.overflow = "hidden"; // Prevent background scrolling
+      };
+
+      // Close modal
+      closeBtn.onclick = function () {
+        modal.style.display = "none";
+        document.body.style.overflow = "auto"; // Re-enable scrolling
+        resetModal();
+      };
+
+      // Close modal when clicking outside of it
+      window.onclick = function (event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+          document.body.style.overflow = "auto";
+          resetModal();
+        }
+      };
+
+      // Reset modal function
+      function resetModal() {
+        // Reset form
+        document.getElementById("questionnaireForm").reset();
+
+        // Show questionnaire section and instructions
+        document.getElementById("questionnaireSection").style.display = "block";
+        document.getElementById("questionnaireIntro").style.display = "block";
+
+        // Hide results
+        document.getElementById("results").style.display = "none";
+
+        // Hide loader
+        document.getElementById("modalLoader").style.display = "none";
+      }
+    </script>
+    <script>
+      // Inicijalizuj EmailJS sa vašim javnim ključem
+      (function () {
+        console.log("Inicijalizujem EmailJS sa Public Key: 3IDB_1FNL6gwDO5f1");
+        emailjs.init("3IDB_1FNL6gwDO5f1");
+        console.log("EmailJS objekat:", emailjs);
+      })();
+
+      // Toast notification functions
+      function showToast(id, message) {
+        const toast = document.getElementById(id);
+        if (message) {
+          toast.textContent = message;
+        }
+        toast.classList.add("show");
+        // Auto hide after 5 seconds
+        setTimeout(() => {
+          hideToast(id);
+        }, 5000);
+      }
+
+      function hideToast(id) {
+        const toast = document.getElementById(id);
+        toast.classList.remove("show");
+      }
+
+      // Funkcija za formatiranje datuma
+      function getCurrentDate() {
+        const now = new Date();
+        const day = now.getDate().toString().padStart(2, "0");
+        const month = (now.getMonth() + 1).toString().padStart(2, "0");
+        const year = now.getFullYear();
+
+        // Format: DD.MM.YYYY
+        return `${day}.${month}.${year}`;
+      }
+
+      // Funkcija za slanje emaila
+      function sendEmail(event) {
+        event.preventDefault();
+        const submitBtn = document.getElementById("submitBtn");
+
+        // Disabiluj dugme tokom slanja
+        submitBtn.disabled = true;
+
+        // Generiši trenutni datum
+        const currentDate = getCurrentDate();
+
+        // Pripremi parametre za EmailJS
+        const templateParams = {
+          user_name: document.getElementById("userName").value,
+          user_email: document.getElementById("userEmail").value,
+          message: document.getElementById("message").value,
+          current_date: currentDate, // Dodaj trenutni datum
+          to_email: "m.besednik69@gmail.com",
+        };
+
+        console.log("Šaljem email sa parametrima:", templateParams);
+
+        emailjs
+          .send("service_vq9x7ls", "template_859q8oi", templateParams)
+          .then(
+            function (response) {
+              console.log("SUCCESS!", response.status, response.text);
+              // Prikaži success toast
+              showToast("successMessage");
+              // Resetuj formu
+              document.getElementById("contactForm").reset();
+            },
+            function (error) {
+              console.log("FAILED...", error);
+              console.log("Error details:", JSON.stringify(error, null, 2));
+              // Prikaži error toast sa detaljima
+              const errorMessage = `Dogodila se greška: ${
+                error.text || error.message || "Nepoznata greška"
+              }`;
+              showToast("errorMessage", errorMessage);
+            }
+          )
+          .finally(function () {
+            // Ponovo omogući dugme
+            submitBtn.disabled = false;
+          });
+      }
+
+      // Dodeli event listener na formu
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", sendEmail);
     </script>
   </body>
 </html>
