@@ -1152,7 +1152,7 @@
       }
       .signature {
         font-family: "Allura", cursive;
-        font-size: 5rem;
+        font-size: 4rem !important;
         color: #2d2d3d;
         font-weight: 400;
         font-style: normal;
@@ -1161,6 +1161,30 @@
         line-height: 1;
         margin: 0;
         transform: rotate(-1deg);
+      }
+      .mil-no-bullets {
+        list-style: none;
+        /* padding-left: 20px; */
+        line-height: 1.5;
+      }
+      .checkbox-label {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 15px;
+        cursor: pointer;
+        line-height: 1.6;
+      }
+
+      .checkbox-input {
+        margin-right: 12px;
+        margin-top: 4px;
+        min-width: 18px;
+        min-height: 18px;
+        cursor: pointer;
+      }
+
+      .checkbox-text {
+        flex: 1;
       }
     </style>
   </head>
@@ -1447,10 +1471,12 @@
                     </p>
                     <p class="mil-up mil-mb-20">
                       U radu s klijentima koristim principe pshihoterapijskog
-                      pravca transakcijska analiza, EMDR i TRE. Neka od tema
-                      kojima se bavim u svojoj praksi su:
+                      pravca transakcijska analiza, EMDR i TRE.
                     </p>
-                    <ul class="mil-up mil-mb-30">
+                    <p class="mil-up mil-mb-20">
+                      Neka od tema kojima se bavim u svojoj praksi su:
+                    </p>
+                    <ul class="mil-up mil-mb-30 mil-no-bullets">
                       <li>anksiozna i depresivna stanja</li>
                       <li>neurodivergentnost</li>
                       <li>sindrom sagorijevanja na radnom mjestu (burnout)</li>
@@ -1619,7 +1645,7 @@
                   </p>
 
                   <button id="openAnalysisBtn" class="service-button">
-                    Prijavi se
+                    Zatraži termin
                   </button>
                 </div>
               </div>
@@ -1631,14 +1657,14 @@
                   <h2>PARTNERSKO SAVJETOVANJE</h2>
                   <p>
                     Partnersko savjevjetovanje provodi se po modelu od
-                    maksimalno 10 susreta u trajanju 75 minuta. Model se bazira
-                    na principima transakcijske analize a strukturiran je s
-                    ciljem poboljšanja komunikacije i razumijevanje dinamike
-                    odnosa. Susreti se održavaju jednom tjedno ili jednom u dva
-                    tjedna. Provodi se uživo ili online u trajanju od 75 minuta.
+                    maksimalno 10 susreta. Model se bazira na principima
+                    transakcijske analize a strukturiran je s ciljem poboljšanja
+                    komunikacije i razumijevanje dinamike odnosa. Susreti se
+                    održavaju jednom tjedno ili jednom u dva tjedna. Provodi se
+                    uživo ili online u trajanju od 75 minuta.
                   </p>
                   <button id="openAnalysisBtn" class="service-button">
-                    Prijavi se
+                    Zatraži termin
                   </button>
                 </div>
               </div>
@@ -1675,7 +1701,11 @@
                     zaposlenike. Program se izvodi kao individualno savjetovanje
                     zaposlenika ili kao psihoedukacija za timove.
                   </p>
-                  <button class="service-button">Zatraži ponudu</button>
+                  <button
+                    onclick="document.getElementById('companyModal').style.display='block'"
+                  >
+                    Upit za tvrtke
+                  </button>
                 </div>
               </div>
             </div>
@@ -2103,6 +2133,157 @@
       </div>
     </div>
 
+    <div id="companyModal" class="ego-modal">
+      <div class="ego-modal-content">
+        <div class="ego-modal-header">
+          <h2>Upit za tvrtke</h2>
+          <span class="ego-modal-close">&times;</span>
+        </div>
+        <div class="ego-modal-body">
+          <!-- Modal Loader -->
+          <div class="modal-loader" id="companyModalLoader">
+            <div class="modal-loader__spinner"></div>
+          </div>
+          <div class="container mil-p-120-90">
+            <form class="row align-items-center" id="companyForm">
+              <div class="col-lg-6 mil-up">
+                <input
+                  type="text"
+                  placeholder="Naziv tvrtke"
+                  name="company_name"
+                  id="companyName"
+                  required
+                />
+              </div>
+              <div class="col-lg-6 mil-up">
+                <input
+                  type="number"
+                  placeholder="Broj zaposlenika"
+                  name="employee_count"
+                  id="employeeCount"
+                  required
+                />
+              </div>
+              <div class="col-lg-12 mil-up">
+                <input
+                  type="text"
+                  placeholder="Kontakt osoba (ime i prezime)"
+                  name="contact_person"
+                  id="contactPerson"
+                  required
+                />
+              </div>
+              <div class="col-lg-6 mil-up">
+                <input
+                  type="email"
+                  placeholder="Email kontakt osobe"
+                  name="contact_email"
+                  id="contactEmail"
+                  required
+                />
+              </div>
+              <div class="col-lg-6 mil-up">
+                <input
+                  type="tel"
+                  placeholder="Broj telefona"
+                  name="contact_phone"
+                  id="contactPhone"
+                  required
+                />
+              </div>
+
+              <div class="col-lg-12 mil-up" style="margin-top: 20px">
+                <p style="margin-bottom: 20px; font-weight: 500">
+                  Želim ugovoriti:
+                </p>
+              </div>
+
+              <div class="col-lg-12 mil-up">
+                <label class="checkbox-label">
+                  <input
+                    type="checkbox"
+                    name="service"
+                    value="individualno_savjetovanje"
+                    class="checkbox-input"
+                  />
+                  <span class="checkbox-text"
+                    >Individualno savjetovanje za zaposlenike (uživo ili
+                    online)</span
+                  >
+                </label>
+              </div>
+
+              <div class="col-lg-12 mil-up">
+                <label class="checkbox-label">
+                  <input
+                    type="checkbox"
+                    name="service"
+                    value="savjetovanje_s_obitelji"
+                    class="checkbox-input"
+                  />
+                  <span class="checkbox-text"
+                    >Individualno savjetovanje za zaposlenike i članove uže
+                    obitelji (uživo ili online)</span
+                  >
+                </label>
+              </div>
+
+              <div class="col-lg-12 mil-up">
+                <label class="checkbox-label">
+                  <input
+                    type="checkbox"
+                    name="service"
+                    value="psihoedukacija"
+                    class="checkbox-input"
+                  />
+                  <span class="checkbox-text"
+                    >Psihoedukaciju za tim na određenu temu (uživo ili
+                    online)</span
+                  >
+                </label>
+              </div>
+
+              <div class="col-lg-12 mil-up">
+                <label class="checkbox-label">
+                  <input
+                    type="checkbox"
+                    name="service"
+                    value="tre_seanse"
+                    class="checkbox-input"
+                  />
+                  <span class="checkbox-text"
+                    >TRE seanse za otpuštanje stresa i napetosti za grupu
+                    zaposlenika (uživo)</span
+                  >
+                </label>
+              </div>
+
+              <div class="col-lg-12 mil-up" style="margin-top: 20px">
+                <textarea
+                  placeholder="Dodatne napomene ili pitanja (opcionalno)"
+                  name="additional_notes"
+                  id="additionalNotes"
+                ></textarea>
+              </div>
+
+              <div class="col-lg-8"></div>
+              <div class="col-lg-4">
+                <div class="mil-adaptive-right mil-up mil-mb-30">
+                  <button
+                    type="submit"
+                    class="mil-button mil-arrow-place"
+                    id="companySubmitBtn"
+                  >
+                    <span>Pošalji upit</span>
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- footer -->
     <footer class="mil-soft-bg">
       <div class="mi-invert-fix">
@@ -2232,6 +2413,14 @@
       </div>
     </div>
 
+    <!-- Toast Notifications - dodaj prije </body> -->
+    <div id="successMessage" class="toast-notification toast-success">
+      Uspješno ste poslali poruku!
+    </div>
+    <div id="errorMessage" class="toast-notification toast-error">
+      Dogodila se greška pri slanju poruke.
+    </div>
+
     <script src="js/plugins/cookie-banner.js"></script>
     <!-- EmailJS SDK -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
@@ -2300,26 +2489,42 @@
     </script>
 
     <script>
-      // Modal functionality
+      // Modal functionality - ZAMIJENI POSTOJEĆI KOD
       const modal = document.getElementById("egoAnalysisModal");
-      const openBtn = document.getElementById("openAnalysisBtn");
+      const openBtns = document.querySelectorAll(".service-button"); // Sva dugmad
       const closeBtn = document.querySelector(".ego-modal-close");
       const modalBody = document.querySelector(".ego-modal-body");
 
-      // Open modal
-      openBtn.onclick = function () {
-        modal.style.display = "block";
-        document.body.style.overflow = "hidden"; // Prevent background scrolling
-      };
+      // Dodaj skriveno polje u formu za tip usluge
+      const form = document.getElementById("contactForm");
+      let selectedService = "";
+
+      // Open modal - za SVA dugmad
+      openBtns.forEach((btn, index) => {
+        btn.onclick = function () {
+          modal.style.display = "block";
+          document.body.style.overflow = "hidden";
+
+          // Postavi koja je usluga odabrana
+          const services = [
+            "Individualno savjetovanje",
+            "Partnersko savjetovanje",
+            "Grupno savjetovanje",
+            "Program podrške zaposlenicima (EAP)",
+          ];
+          selectedService = services[index];
+          console.log("Otvorena usluga:", selectedService);
+        };
+      });
 
       // Close modal
       closeBtn.onclick = function () {
         modal.style.display = "none";
-        document.body.style.overflow = "auto"; // Re-enable scrolling
+        document.body.style.overflow = "auto";
         resetModal();
       };
 
-      // Close modal when clicking outside of it
+      // Close modal when clicking outside
       window.onclick = function (event) {
         if (event.target == modal) {
           modal.style.display = "none";
@@ -2330,18 +2535,9 @@
 
       // Reset modal function
       function resetModal() {
-        // Reset form
-        document.getElementById("questionnaireForm").reset();
-
-        // Show questionnaire section and instructions
-        document.getElementById("questionnaireSection").style.display = "block";
-        document.getElementById("questionnaireIntro").style.display = "block";
-
-        // Hide results
-        document.getElementById("results").style.display = "none";
-
-        // Hide loader
+        document.getElementById("contactForm").reset();
         document.getElementById("modalLoader").style.display = "none";
+        selectedService = "";
       }
     </script>
     <script>
@@ -2385,40 +2581,54 @@
       function sendEmail(event) {
         event.preventDefault();
         const submitBtn = document.getElementById("submitBtn");
+        const modalLoader = document.getElementById("modalLoader");
 
-        // Disabiluj dugme tokom slanja
+        // Prikaži loader i disabiluj dugme
         submitBtn.disabled = true;
+        modalLoader.style.display = "flex";
 
-        // Generiši trenutni datum
         const currentDate = getCurrentDate();
 
-        // Pripremi parametre za EmailJS
         const templateParams = {
           user_name: document.getElementById("userName").value,
           user_email: document.getElementById("userEmail").value,
           message: document.getElementById("message").value,
-          current_date: currentDate, // Dodaj trenutni datum
+          service_type: selectedService,
+          current_date: currentDate,
           to_email: "m.besednik69@gmail.com",
         };
 
-        console.log("Šaljem email sa parametrima:", templateParams);
+        console.log("Šaljem email za uslugu:", selectedService);
 
         emailjs
           .send("service_vq9x7ls", "template_859q8oi", templateParams)
           .then(
             function (response) {
               console.log("SUCCESS!", response.status, response.text);
+
+              // Sakrij loader
+              modalLoader.style.display = "none";
+
+              // Zatvori modal
+              modal.style.display = "none";
+              document.body.style.overflow = "auto";
+
               // Prikaži success toast
-              showToast("successMessage");
+              showToast("successMessage", "Uspješno ste poslali poruku!");
+
               // Resetuj formu
               document.getElementById("contactForm").reset();
+              selectedService = "";
             },
             function (error) {
               console.log("FAILED...", error);
-              console.log("Error details:", JSON.stringify(error, null, 2));
-              // Prikaži error toast sa detaljima
+
+              // Sakrij loader
+              modalLoader.style.display = "none";
+
+              // Prikaži error toast
               const errorMessage = `Dogodila se greška: ${
-                error.text || error.message || "Nepoznata greška"
+                error.text || error.message || "Pokušajte ponovo."
               }`;
               showToast("errorMessage", errorMessage);
             }
@@ -2428,7 +2638,6 @@
             submitBtn.disabled = false;
           });
       }
-
       // Dodeli event listener na formu
       document
         .getElementById("contactForm")
