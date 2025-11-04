@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="css/plugins/fancybox.min.css" />
     <!-- Gnothe scss -->
     <link rel="stylesheet" href="css/style.css" />
+    <!-- Index scss -->
+    <link rel="stylesheet" href="css/index.css" />
     <!-- Font Awesome -->
     <link
       rel="stylesheet"
@@ -48,1145 +50,6 @@
     <link rel="stylesheet" href="css/plugins/cookie-banner.css" />
     <!-- page name -->
     <title>Gnothe</title>
-
-    <style>
-      /* Popup Modal Styles */
-      .ego-modal {
-        display: none;
-        position: fixed;
-        z-index: 10000;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: rgba(0, 0, 0, 0.7);
-        animation: fadeIn 0.3s ease-in-out;
-      }
-
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-        }
-        to {
-          opacity: 1;
-        }
-      }
-
-      .ego-modal-content {
-        background-color: #fefefe;
-        margin: 20px auto;
-        padding: 0;
-        border: 1px solid #888;
-        width: 90%;
-        max-width: 900px;
-        max-height: 90vh;
-        overflow-y: auto;
-        border-radius: 10px;
-        position: relative;
-        animation: slideIn 0.3s ease-out;
-      }
-
-      @keyframes slideIn {
-        from {
-          transform: translateY(-50px);
-          opacity: 0;
-        }
-        to {
-          transform: translateY(0);
-          opacity: 1;
-        }
-      }
-
-      .ego-modal-header {
-        background-color: #689483;
-        color: white;
-        padding: 25px 30px;
-        border-radius: 10px 10px 0 0;
-        position: sticky;
-        top: 0;
-        z-index: 10;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .ego-modal-header h2 {
-        color: white;
-        margin: 0;
-        font-size: 28px;
-        font-weight: 600;
-      }
-
-      .ego-modal-body {
-        padding: 30px;
-        position: relative;
-        min-height: 600px;
-      }
-
-      .ego-modal-close {
-        color: white;
-        font-size: 32px;
-        font-weight: bold;
-        cursor: pointer;
-        transition: color 0.3s;
-        line-height: 1;
-        padding: 0 5px;
-      }
-
-      .ego-modal-close:hover,
-      .ego-modal-close:focus {
-        color: #f1f1f1;
-      }
-
-      /* Analiziraj se button */
-      .analyze-btn {
-        background-color: #689483;
-        color: white;
-        padding: 15px 40px;
-        border: none;
-        border-radius: 30px;
-        font-size: 18px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        margin: 30px auto;
-        display: block;
-        box-shadow: 0 4px 15px rgba(122, 184, 161, 0.3);
-      }
-
-      .analyze-btn:hover {
-        background-color: #69a792;
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(122, 184, 161, 0.4);
-      }
-
-      /* Modal Loader Styles */
-      .modal-loader {
-        display: none;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(255, 255, 255, 0.95);
-        z-index: 100;
-        justify-content: center;
-        align-items: center;
-        border-radius: 0 0 10px 10px;
-      }
-
-      .modal-loader__spinner {
-        width: 60px;
-        height: 60px;
-        border: 6px solid rgba(122, 184, 161, 0.2);
-        border-radius: 50%;
-        border-top: 6px solid #689483;
-        animation: spin 1s linear infinite;
-      }
-
-      @keyframes spin {
-        0% {
-          transform: rotate(0deg);
-        }
-        100% {
-          transform: rotate(360deg);
-        }
-      }
-
-      /* Scrollbar styling for modal */
-      .ego-modal-content::-webkit-scrollbar {
-        width: 10px;
-      }
-
-      .ego-modal-content::-webkit-scrollbar-track {
-        background: #f1f1f1;
-        border-radius: 10px;
-      }
-
-      .ego-modal-content::-webkit-scrollbar-thumb {
-        background: #689483;
-        border-radius: 10px;
-      }
-
-      .ego-modal-content::-webkit-scrollbar-thumb:hover {
-        background: #69a792;
-      }
-      /* Za ekrane manji od 600px */
-      @media (max-width: 600px) {
-        .ego-modal-content {
-          width: 95%;
-          margin: 10px auto;
-        }
-
-        .ego-modal-body {
-          padding: 20px 15px;
-        }
-
-        .graph-popup__container {
-          flex-direction: column;
-          align-items: center;
-        }
-
-        .graph-popup__item {
-          width: 100%;
-          max-width: 280px;
-          margin-bottom: 30px;
-        }
-
-        .graph-popup__canvas {
-          max-width: 100%;
-          height: auto !important;
-        }
-      }
-
-      /* Posebno za vrlo male ekrane ispod 470px */
-      @media (max-width: 470px) {
-        .ego-modal-header {
-          padding: 20px 15px;
-        }
-
-        .ego-modal-header h2 {
-          font-size: 22px;
-        }
-
-        .questionnaire__form {
-          padding: 0;
-        }
-
-        .questionnaire__question {
-          margin-bottom: 20px;
-        }
-
-        .questionnaire__option label {
-          font-size: 14px;
-        }
-
-        .graph-popup__item {
-          max-width: 240px;
-        }
-
-        /* Smanji font veličinu naslova grafova */
-        .graph-popup__item-title {
-          font-size: 16px;
-          margin-bottom: 15px;
-        }
-      }
-
-      /* Za ekrane manji od 350px */
-      @media (max-width: 350px) {
-        .graph-popup__item {
-          max-width: 200px;
-        }
-      }
-
-      .hero {
-        position: relative;
-        width: 100vw;
-        height: 100vh;
-        overflow: hidden;
-        margin-left: calc(-50vw + 50%);
-        margin-right: calc(-50vw + 50%);
-      }
-
-      .hero__background {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 1;
-      }
-
-      .hero__overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: radial-gradient(
-          ellipse at center,
-          rgba(0, 0, 0, 0.3) 0%,
-          rgba(0, 0, 0, 0.7) 100%
-        );
-        z-index: 2;
-      }
-
-      /* Stilovi za video umjesto slike */
-      .hero__video {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center;
-        filter: brightness(0.95);
-      }
-
-      .hero__content {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        text-align: center;
-        z-index: 3;
-        color: #ffffff;
-        padding: 0 20px;
-        max-width: 900px;
-        width: 100%;
-      }
-
-      .hero__quote {
-        top: 25px;
-        /* left: 450px; */
-        font-family: "Georgia", "Playfair Display", serif;
-        font-size: 1.1rem;
-        font-style: italic;
-        font-weight: 300;
-        line-height: 1.6;
-        margin-bottom: 3rem;
-        opacity: 0.9;
-        letter-spacing: 0.03em;
-        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-        position: relative;
-        color: #ffffff;
-        padding: 0 1.5em;
-      }
-
-      /* @media (max-width: 1400px) {
-        .hero__quote {
-          top: 210px;
-          left: 0px;
-        }
-      }
-      @media (max-width: 1100px) {
-        .hero__quote {
-          left: 0px;
-        }
-
-        .hero__subtitle {
-          top: 20px;
-          position: relative;
-        }
-      } */
-
-      /* .hero__quote::before,
-      .hero__quote::after {
-        content: '"';
-        font-size: 1.3em;
-        opacity: 0.6;
-        position: absolute;
-        top: -0.1em;
-        color: #ffffff;
-      } */
-
-      /* .hero__quote::before {
-        left: 0;
-      }
-
-      .hero__quote::after {
-        right: 0;
-      } */
-
-      .hero__title-wrapper {
-        position: relative;
-      }
-
-      .hero__title {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-          sans-serif;
-        font-size: 7rem;
-        font-weight: 100;
-        letter-spacing: 0.15em;
-        text-transform: uppercase;
-        margin: 0;
-        position: relative;
-        display: inline-block;
-        line-height: 1;
-        color: #ffffff;
-        white-space: nowrap;
-      }
-
-      .hero__title-letter {
-        display: inline-block;
-        transition: none;
-        position: relative;
-      }
-
-      .hero__title::after {
-        content: "";
-        position: absolute;
-        bottom: -20px;
-        left: 10%;
-        width: 80%;
-        height: 1px;
-        background: linear-gradient(
-          to right,
-          transparent,
-          rgba(255, 255, 255, 0.5),
-          transparent
-        );
-        opacity: 0.8;
-      }
-
-      .hero__subtitle {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-          sans-serif;
-        font-size: 0.9rem;
-        font-weight: 300;
-        letter-spacing: 0.3em;
-        text-transform: lowercase;
-        margin-top: 2rem;
-        opacity: 0.8;
-        color: #ffffff;
-      }
-
-      .hero__scroll-indicator {
-        position: absolute;
-        bottom: 40px;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 3;
-        cursor: pointer;
-        text-align: center;
-      }
-
-      .hero__scroll-text {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-          sans-serif;
-        font-size: 0.7rem;
-        font-weight: 300;
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-        color: rgba(255, 255, 255, 0.6);
-        display: block;
-        margin-bottom: 10px;
-        transition: opacity 0.3s ease;
-      }
-
-      .hero__scroll-indicator::after {
-        content: "";
-        display: block;
-        width: 1px;
-        height: 30px;
-        background: linear-gradient(
-          to bottom,
-          rgba(255, 255, 255, 0.5),
-          transparent
-        );
-        margin: 0 auto;
-        animation: scrollPulse 2s ease-in-out infinite;
-      }
-
-      .hero__scroll-indicator:hover .hero__scroll-text {
-        opacity: 1;
-      }
-
-      /* Animacije */
-      @keyframes scrollPulse {
-        0%,
-        100% {
-          transform: scaleY(0.5);
-          opacity: 0.3;
-        }
-        50% {
-          transform: scaleY(1);
-          opacity: 1;
-        }
-      }
-
-      /* Fade in animacije */
-      .mil-up {
-        opacity: 0;
-        transform: translateY(40px);
-        animation: fadeInUp 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-      }
-
-      .mil-up--delayed {
-        animation-delay: 0.5s;
-      }
-
-      .mil-up--delayed-more {
-        animation-delay: 0.8s;
-      }
-
-      @keyframes fadeInUp {
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      /* Paralaks efekt na skrolanje - primijenjen na video */
-      .hero__video {
-        transition: transform 0.5s ease-out;
-        will-change: transform;
-      }
-
-      /* Letter animacija na load */
-      .hero__title-letter {
-        animation: letterFade 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        opacity: 0;
-      }
-
-      .hero__title-letter:nth-child(1) {
-        animation-delay: 0.5s;
-      }
-      .hero__title-letter:nth-child(2) {
-        animation-delay: 0.6s;
-      }
-      .hero__title-letter:nth-child(3) {
-        animation-delay: 0.7s;
-      }
-      .hero__title-letter:nth-child(4) {
-        animation-delay: 0.8s;
-      }
-      .hero__title-letter:nth-child(5) {
-        animation-delay: 0.9s;
-      }
-      .hero__title-letter:nth-child(6) {
-        animation-delay: 1s;
-      }
-
-      @keyframes letterFade {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      /* Responsive dizajn */
-      @media (max-width: 992px) {
-        .hero__quote {
-          font-size: 1rem;
-          margin-bottom: 2.5rem;
-        }
-
-        .hero__title {
-          font-size: 5rem;
-          letter-spacing: 0.12em;
-        }
-
-        .hero__subtitle {
-          font-size: 0.85rem;
-        }
-      }
-
-      @media (max-width: 768px) {
-        .hero__content {
-          max-width: 600px;
-        }
-
-        .hero__quote {
-          font-size: 0.95rem;
-          margin-bottom: 2rem;
-        }
-
-        /* .hero__quote::before,
-        .hero__quote::after {
-          font-size: 1.2em;
-        } */
-
-        .hero__title {
-          font-size: 3.5rem;
-          letter-spacing: 0.1em;
-        }
-
-        .hero__title::after {
-          bottom: -15px;
-        }
-
-        .hero__subtitle {
-          font-size: 0.8rem;
-          margin-top: 1.5rem;
-        }
-
-        .hero__scroll-text {
-          font-size: 0.65rem;
-        }
-      }
-
-      @media (max-width: 480px) {
-        .hero__quote {
-          font-size: 0.85rem;
-          margin-bottom: 1.5rem;
-        }
-
-        .hero__title {
-          font-size: 2.5rem;
-          letter-spacing: 0.08em;
-        }
-
-        .hero__subtitle {
-          font-size: 0.75rem;
-          letter-spacing: 0.25em;
-        }
-      }
-
-      /* GNOTHE logo - defaultno crn */
-      .gnothe-logo .gnothe-main {
-        color: #000000;
-        transition: color 0.3s ease;
-      }
-
-      /* GNOTHE logo - bijeli na hero sekciji */
-      body:not(.scrolled-past-hero):not(.menu-is-open)
-        .gnothe-logo
-        .gnothe-main {
-        color: #ffffff;
-        transition: color 0.3s ease;
-      }
-
-      /* Hamburger menu linije - defaultno crne */
-      .mil-menu-btn span,
-      .mil-menu-btn span:after,
-      .mil-menu-btn span:before {
-        background: #000000;
-        transition: background 0.3s ease;
-      }
-
-      /* Hamburger menu linije - bijele na hero sekciji s većom specifičnošću */
-      body:not(.scrolled-past-hero):not(.menu-is-open) .mil-menu-btn span,
-      body:not(.scrolled-past-hero):not(.menu-is-open) .mil-menu-btn span:after,
-      body:not(.scrolled-past-hero):not(.menu-is-open)
-        .mil-menu-btn
-        span:before {
-        background: #ffffff;
-        transition: background 0.3s ease;
-      }
-
-      /* Kada skrolamo ispod hero sekcije - promjena na crnu */
-      body.scrolled-past-hero .gnothe-logo .gnothe-main {
-        color: #000000;
-      }
-
-      body.scrolled-past-hero .mil-menu-btn span,
-      body.scrolled-past-hero .mil-menu-btn span:after,
-      body.scrolled-past-hero .mil-menu-btn span:before {
-        background: #000000;
-      }
-
-      /* Kada je menu otvoren - uvijek crna boja */
-      .mil-menu-frame.mil-active ~ * .gnothe-logo .gnothe-main,
-      .mil-menu-frame.mil-active ~ header .gnothe-logo .gnothe-main,
-      body:has(.mil-menu-frame.mil-active) .gnothe-logo .gnothe-main,
-      body.menu-is-open .gnothe-logo .gnothe-main {
-        color: #000000 !important;
-      }
-
-      .mil-menu-frame.mil-active ~ * .mil-menu-btn span,
-      .mil-menu-frame.mil-active ~ * .mil-menu-btn span:after,
-      .mil-menu-frame.mil-active ~ * .mil-menu-btn span:before,
-      .mil-menu-frame.mil-active ~ header .mil-menu-btn span,
-      .mil-menu-frame.mil-active ~ header .mil-menu-btn span:after,
-      .mil-menu-frame.mil-active ~ header .mil-menu-btn span:before,
-      body:has(.mil-menu-frame.mil-active) .mil-menu-btn span,
-      body:has(.mil-menu-frame.mil-active) .mil-menu-btn span:after,
-      body:has(.mil-menu-frame.mil-active) .mil-menu-btn span:before,
-      body.menu-is-open .mil-menu-btn span,
-      body.menu-is-open .mil-menu-btn span:after,
-      body.menu-is-open .mil-menu-btn span:before {
-        background: #000000 !important;
-      }
-
-      /* Ako su logo i hamburger unutar menu frame-a */
-      .mil-menu-frame.mil-active .gnothe-logo .gnothe-main {
-        color: #000000 !important;
-      }
-
-      .mil-menu-frame.mil-active .mil-menu-btn span,
-      .mil-menu-frame.mil-active .mil-menu-btn span:after,
-      .mil-menu-frame.mil-active .mil-menu-btn span:before {
-        background: #000000 !important;
-      }
-
-      /* Dodatna specifičnost za manje ekrane */
-      @media (max-width: 1200px) {
-        body:not(.scrolled-past-hero):not(.menu-is-open) .mil-menu-btn span,
-        body:not(.scrolled-past-hero):not(.menu-is-open)
-          .mil-menu-btn
-          span:after,
-        body:not(.scrolled-past-hero):not(.menu-is-open)
-          .mil-menu-btn
-          span:before {
-          background: #ffffff;
-        }
-
-        body.scrolled-past-hero .mil-menu-btn span,
-        body.scrolled-past-hero .mil-menu-btn span:after,
-        body.scrolled-past-hero .mil-menu-btn span:before {
-          background: #000000;
-        }
-      }
-      /* ------------- 3-D flip core ------------- */
-      .cards-container {
-        display: flex;
-        flex-wrap: wrap; /* omogućuje prijelom u novi red po potrebi */
-        justify-content: center;
-        gap: 20px; /* razmak među karticama */
-        perspective: 800px; /* globalni 3-D kontekst */
-      }
-
-      .card-container {
-        width: 260px;
-        height: 320px;
-      }
-
-      .card {
-        width: 100%;
-        height: 100%;
-        position: relative;
-        transform-style: preserve-3d;
-        transition: transform 0.7s;
-        cursor: pointer;
-      }
-
-      .card-container:hover .card {
-        transform: rotateY(180deg);
-      }
-
-      /* ------------- prednja & stražnja strana ------------- */
-      .front,
-      .back {
-        position: absolute;
-        inset: 0;
-        padding: 24px 20px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
-        border-radius: 12px;
-        background: #fff;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        backface-visibility: hidden;
-      }
-
-      .front {
-        font: 700 1.1rem/1.3 "Helvetica Neue", sans-serif;
-        letter-spacing: 0.5px;
-        text-transform: uppercase;
-      }
-
-      .back {
-        transform: rotateY(180deg);
-        font: 400 0.95rem/1.5 "Helvetica Neue", sans-serif;
-        color: #555;
-      }
-
-      .event-item__btn {
-        background-color: #689483;
-        color: white;
-        padding: 12px 24px;
-        border-radius: 6px;
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 14px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        transition: all 0.3s ease;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-      }
-
-      .event-item__btn:hover {
-        background-color: #689483;
-        transform: translateY(-2px);
-        color: white;
-        text-decoration: none;
-      }
-
-      .event-item__btn-icon {
-        width: 16px;
-        height: 16px;
-      }
-
-      /* ------------- responzivno: kolona ispod 600 px ------------- */
-      @media (max-width: 750px) {
-        .cards-container {
-          display: none;
-        }
-      }
-      @media (min-width: 750px) {
-        .service-table {
-          display: none;
-        }
-      }
-
-      .services-section {
-        width: 100%;
-      }
-
-      .service-item {
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-        overflow: hidden;
-        opacity: 0;
-        animation: fadeIn 0.8s ease-out forwards;
-      }
-
-      @keyframes fadeIn {
-        to {
-          opacity: 1;
-        }
-      }
-
-      /* Background colors for each section */
-      .service-item:nth-child(1) {
-        background-color: #79a095;
-      }
-
-      .service-item:nth-child(2) {
-        background-color: #e3d1ba;
-      }
-
-      .service-item:nth-child(3) {
-        background-color: #ffffff;
-      }
-
-      .service-item:nth-child(4) {
-        background-color: #689483;
-      }
-
-      .service-container {
-        max-width: 800px;
-        margin: 0 auto;
-        padding: 60px;
-        width: 100%;
-        text-align: center;
-      }
-
-      .text-content {
-        opacity: 0;
-        transform: translateY(20px);
-        animation: slideIn 0.8s ease-out 0.3s forwards;
-      }
-
-      @keyframes slideIn {
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      .text-content h2 {
-        font-size: clamp(2rem, 4vw, 3rem);
-        margin-bottom: 30px;
-        font-weight: 600;
-        line-height: 1.2;
-        color: inherit;
-      }
-
-      /* Adjust text color for light backgrounds */
-      .service-item:nth-child(3) .text-content h2,
-      .service-item:nth-child(3) .text-content p {
-        color: #333;
-      }
-
-      .service-item:nth-child(2) .text-content h2,
-      .service-item:nth-child(2) .text-content p {
-        color: #333;
-      }
-
-      .service-item:nth-child(1) .text-content h2,
-      .service-item:nth-child(1) .text-content p,
-      .service-item:nth-child(4) .text-content h2,
-      .service-item:nth-child(4) .text-content p {
-        color: #fff;
-      }
-
-      .text-content p {
-        font-size: clamp(1rem, 2vw, 1.125rem);
-        line-height: 1.8;
-        opacity: 0.95;
-        margin-bottom: 40px;
-      }
-
-      .service-button {
-        display: inline-block;
-        padding: 16px 40px;
-        font-size: 1.1rem;
-        font-weight: 500;
-        text-decoration: none;
-        border-radius: 50px;
-        transition: all 0.3s ease;
-        cursor: pointer;
-        border: 2px solid transparent;
-        background: rgba(255, 255, 255, 0.15);
-        backdrop-filter: blur(10px);
-        opacity: 0;
-        animation: buttonFadeIn 0.8s ease-out 0.6s forwards;
-      }
-
-      @keyframes buttonFadeIn {
-        to {
-          opacity: 1;
-        }
-      }
-
-      /* Button colors for each section */
-      .service-item:nth-child(1) .service-button,
-      .service-item:nth-child(4) .service-button {
-        color: #fff;
-        border-color: rgba(255, 255, 255, 0.3);
-      }
-
-      .service-item:nth-child(1) .service-button:hover,
-      .service-item:nth-child(4) .service-button:hover {
-        background: rgba(255, 255, 255, 0.25);
-        border-color: rgba(255, 255, 255, 0.5);
-        transform: translateY(-2px);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-      }
-
-      .service-item:nth-child(2) .service-button,
-      .service-item:nth-child(3) .service-button {
-        color: #333;
-        border-color: rgba(0, 0, 0, 0.2);
-        background: rgba(0, 0, 0, 0.05);
-      }
-
-      .service-item:nth-child(2) .service-button:hover,
-      .service-item:nth-child(3) .service-button:hover {
-        background: rgba(0, 0, 0, 0.1);
-        border-color: rgba(0, 0, 0, 0.3);
-        transform: translateY(-2px);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-      }
-
-      /* Tablet styles */
-      @media (max-width: 1024px) {
-        .service-container {
-          padding: 50px 40px;
-        }
-
-        .text-content h2 {
-          font-size: 2.5rem;
-        }
-      }
-
-      /* Mobile styles */
-      @media (max-width: 768px) {
-        .service-item {
-          min-height: auto;
-          padding: 60px 0;
-        }
-
-        .service-container {
-          padding: 40px 20px;
-        }
-
-        .text-content h2 {
-          font-size: 2rem;
-          margin-bottom: 20px;
-        }
-
-        .text-content p {
-          font-size: 1rem;
-          margin-bottom: 30px;
-        }
-
-        .service-button {
-          padding: 14px 32px;
-          font-size: 1rem;
-        }
-      }
-
-      /* Small mobile */
-      @media (max-width: 480px) {
-        .service-item {
-          min-height: auto;
-          padding: 50px 0;
-        }
-
-        .service-container {
-          padding: 30px 15px;
-        }
-
-        .text-content h2 {
-          font-size: 1.75rem;
-        }
-
-        .service-button {
-          padding: 12px 28px;
-          font-size: 0.95rem;
-        }
-      }
-
-      /* Scroll indicator */
-      .scroll-indicator {
-        position: fixed;
-        bottom: 30px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 30px;
-        height: 50px;
-        border: 2px solid rgba(255, 255, 255, 0.5);
-        border-radius: 25px;
-        opacity: 0.8;
-        cursor: pointer;
-        transition: opacity 0.3s;
-        z-index: 10;
-      }
-
-      .scroll-indicator::before {
-        content: "";
-        position: absolute;
-        top: 8px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 6px;
-        height: 10px;
-        background: rgba(255, 255, 255, 0.8);
-        border-radius: 3px;
-        animation: scroll 2s infinite;
-      }
-
-      @keyframes scroll {
-        0% {
-          transform: translateX(-50%) translateY(0);
-          opacity: 1;
-        }
-        100% {
-          transform: translateX(-50%) translateY(20px);
-          opacity: 0;
-        }
-      }
-
-      .scroll-indicator.hide {
-        opacity: 0;
-        pointer-events: none;
-      }
-
-      .about-book {
-        object-fit: cover;
-        object-position: center;
-        height: 200px;
-      }
-      /* Toast notification styles */
-      .toast-notification {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        max-width: 400px;
-        padding: 16px 20px;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        z-index: 1000;
-        font-size: 14px;
-        font-weight: 500;
-        opacity: 0;
-        transform: translateX(100%) scale(0.3);
-        transition: all 0.3s ease;
-        display: none;
-      }
-
-      .toast-notification.show {
-        opacity: 1;
-        transform: translateX(0) scale(1);
-        display: block;
-        animation: bounceIn 0.6s ease-out;
-      }
-
-      @keyframes bounceIn {
-        0% {
-          opacity: 0;
-          transform: translateX(100%) scale(0.3);
-        }
-        50% {
-          opacity: 1;
-          transform: translateX(-10px) scale(1.05);
-        }
-        70% {
-          transform: translateX(10px) scale(0.95);
-        }
-        100% {
-          opacity: 1;
-          transform: translateX(0) scale(1);
-        }
-      }
-
-      .toast-success {
-        background: #d4edda;
-        color: #155724;
-        border-left: 4px solid #28a745;
-      }
-
-      .toast-error {
-        background: #f8d7da;
-        color: #721c24;
-        border-left: 4px solid #dc3545;
-      }
-
-      @media (max-width: 768px) {
-        .toast-notification {
-          top: 10px;
-          right: 10px;
-          left: 10px;
-          max-width: none;
-        }
-      }
-
-      .icon-text {
-        display: flex;
-        align-items: flex-start; /* ikona gore, tekst odmah pored */
-        margin-bottom: 14px;
-      }
-
-      .icon-text i {
-        color: #689483;
-        font-size: 1.2rem;
-        margin-right: 10px;
-        margin-top: 3px; /* sitno podešavanje da se bolje poravna s prvim redom teksta */
-        flex-shrink: 0; /* sprječava da ikona bude stisnuta */
-      }
-
-      .icon-text p {
-        margin: 0;
-      }
-      .signature {
-        font-family: "Allura", cursive;
-        font-size: 4rem !important;
-        color: #2d2d3d;
-        font-weight: 400;
-        font-style: normal;
-        letter-spacing: 2px;
-        display: inline-block;
-        line-height: 1;
-        margin: 0;
-        transform: rotate(-1deg);
-      }
-      .mil-no-bullets {
-        list-style: none;
-        /* padding-left: 20px; */
-        line-height: 1.5;
-      }
-      .checkbox-label {
-        display: flex;
-        align-items: flex-start;
-        margin-bottom: 15px;
-        cursor: pointer;
-        line-height: 1.6;
-      }
-
-      .checkbox-input {
-        margin-right: 12px;
-        margin-top: 4px;
-        min-width: 18px;
-        min-height: 18px;
-        cursor: pointer;
-      }
-
-      .checkbox-text {
-        flex: 1;
-      }
-    </style>
   </head>
 
   <body>
@@ -1327,96 +190,6 @@
       </div>
       <!-- frame end -->
 
-      <!-- <div class="mi-invert-fix">
-              <div class="mil-animation-frame">
-                <div
-                  class="mil-animation mil-position-1 mil-scale"
-                  data-value-1="7"
-                  data-value-2="1.6"
-                ></div>
-                <div
-                  class="mil-animation mil-position-2 mil-scale"
-                  data-value-1="4"
-                  data-value-2="1"
-                ></div>
-                <div
-                  class="mil-animation mil-position-3 mil-scale"
-                  data-value-1="1.2"
-                  data-value-2=".1"
-                ></div>
-              </div>
-
-              <div class="mil-gradient"></div>
-
-              <div class="container">
-                <div class="mil-banner-content mil-up">
-                  <h1 class="mil-mb-60">
-                    Otkrivanje <span class="mil-thin">Unutarnje Snage</span
-                    ><br />
-                    <span class="mil-thin">Već</span> Danas
-                  </h1>
-                  <div class="row">
-                    <div class="col-md-7 col-lg-5">
-                      <p class="mil-mb-60">
-                        Dobrodošli u siguran prostor posvećen vašem mentalnom
-                        zdravlju i osobnom razvoju. Kroz stručno vođen proces
-                        psihoterapije, zajedno otkrivamo puteve prema
-                        razumijevanju, iscjeljenju i pozitivnoj promjeni.
-                      </p>
-                    </div>
-                  </div>
-
-                  <a
-                    href="service.html"
-                    class="mil-button mil-arrow-place mil-btn-space"
-                  >
-                    <span>USLUGE</span>
-                  </a>
-
-                  <a href="about.html" class="mil-link mil-arrow-place">
-                    <span>O MENI</span>
-                  </a>
-
-                  <div class="mil-circle-text">
-                    <svg
-                      version="1.1"
-                      xmlns="http://www.w3.org/2000/svg"
-                      xmlns:xlink="http://www.w3.org/1999/xlink"
-                      x="0px"
-                      y="0px"
-                      viewBox="0 0 300 300"
-                      enable-background="new 0 0 300 300"
-                      xml:space="preserve"
-                      class="mil-ct-svg mil-rotate"
-                      data-value="360"
-                    >
-                      <defs>
-                        <path
-                          id="circlePath"
-                          d="M 150, 150 m -60, 0 a 60,60 0 0,1 120,0 a 60,60 0 0,1 -120,0 "
-                        />
-                      </defs>
-                      <circle cx="150" cy="100" r="75" fill="none" />
-                      <g>
-                        <use xlink:href="#circlePath" fill="none" />
-                        <text style="letter-spacing: 6.5px">
-                           circle text 
-                          <textPath xlink:href="#circlePath">
-                            Povuci dole - Povuci dole -
-                            Scroll down - Scroll down -
-                          </textPath>
-                        </text>
-                      </g>
-                    </svg>
-                    <a
-                      href="#about"
-                      class="mil-button mil-arrow-place mil-icon-button mil-arrow-down"
-                    ></a>
-                  </div>
-                </div>
-              </div>
-            </div> -->
-
       <!-- content -->
       <div class="mil-content">
         <div id="swupMain" class="mil-main-transition">
@@ -1512,127 +285,7 @@
           </section>
           <!-- about end -->
 
-          <!-- services -->
-          <!-- <section class="mil-soft-bg">
-            <div class="mi-invert-fix">
-              <div class="mil-animation-frame">
-                <div
-                  class="mil-animation mil-position-1 mil-scale"
-                  data-value-1="2.4"
-                  data-value-2="1.4"
-                  style="top: 300px; right: -100px"
-                ></div>
-                <div
-                  class="mil-animation mil-position-2 mil-scale"
-                  data-value-1="2"
-                  data-value-2="1"
-                  style="left: 150px"
-                ></div>
-              </div>
-              <div class="container mil-p-120-0">
-                <div class="mil-mb-120"> -->
-          <!-- <div class="row">
-                    <div class="col-lg-10">
-                      <span class="mil-suptitle mil-suptitle-right mil-up"
-                        >Stručna podrška na vašem putu prema emocionalnoj
-                        ravnoteži i osobnom rastu.</span
-                      >
-                    </div>
-                  </div> -->
-
-          <!-- <div
-                    class="mil-complex-text justify-content-center mil-up mil-mb-15"
-                  > -->
-          <!-- <span class="mil-text-image"
-                      ><img src="img/photo/2.jpg" alt="team"
-                    /></span> -->
-          <!-- <h2 class="mil-h1 mil-center">
-                      Stručna <span class="mil-thin">Podrška</span>
-                    </h2>
-                  </div>
-                  <div class="mil-complex-text justify-content-center mil-up">
-                    <h2 class="mil-h1 mil-center">
-                      <span class="mil-thin"> Za Vaše</span> Zdravlje
-                    </h2> -->
-          <!-- <a
-                      href="services.html"
-                      class="mil-services-button mil-button mil-arrow-place"
-                      ><span>USLUGE</span></a
-                    > -->
-          <!-- </div>
-                </div> -->
-
-          <!-- <div class="row mil-services-grid m-0">
-                  <div class="col-md-6 col-lg-3 mil-services-grid-item p-0">
-                    <a href="service.html" class="mil-service-card-sm mil-up">
-                      <h5 class="mil-mb-30">Individualno Savjetovanje</h5>
-                      <p class="mil-mb-30">
-                        Osobni prostor za istraživanje izazova, razvoj
-                        samorazumijevanja i rad na unutarnjim procesima kroz
-                        pristupe poput transakcijske analize i EMDR-a.
-                        Prilagođeno vašim jedinstvenim potrebama i ciljevima.
-                      </p>
-                      <div
-                        class="mil-button mil-icon-button-sm mil-arrow-place"
-                      ></div>
-                    </a>
-                  </div>
-                  <div class="col-md-6 col-lg-3 mil-services-grid-item p-0">
-                    <a href="service.html" class="mil-service-card-sm mil-up">
-                      <h5 class="mil-mb-30">
-                        Partnersko <br />
-                        Savjetovanje
-                      </h5>
-                      <p class="mil-mb-30">
-                        Stručno vođeni dijalog koji pomaže parovima unaprijediti
-                        komunikaciju, razriješiti konflikte i produbiti
-                        povezanost. Stvaramo siguran prostor za obje strane da
-                        budu saslušane i shvaćene.
-                      </p>
-                      <div
-                        class="mil-button mil-icon-button-sm mil-arrow-place"
-                      ></div>
-                    </a>
-                  </div>
-                  <div class="col-md-6 col-lg-3 mil-services-grid-item p-0">
-                    <a href="service.html" class="mil-service-card-sm mil-up">
-                      <h5 class="mil-mb-30">
-                        Grupno Savjetovanje i <br />Grupe Podrške
-                      </h5>
-                      <p class="mil-mb-30">
-                        Osnažujuće iskustvo zajedničkog rasta kroz dijeljenje i
-                        učenje od drugih. Specijalizirane grupe podrške za
-                        neurodivergentne osobe i radionice na temu partnerskih
-                        odnosa.
-                      </p>
-                      <div
-                        class="mil-button mil-icon-button-sm mil-arrow-place"
-                      ></div>
-                    </a>
-                  </div>
-                  <div class="col-md-6 col-lg-3 mil-services-grid-item p-0">
-                    <a href="service.html" class="mil-service-card-sm mil-up">
-                      <h5 class="mil-mb-30">
-                        Program Pomoći <br />Zaposlenicima (EAP)
-                      </h5>
-                      <p class="mil-mb-30">
-                        Profesionalna podrška tvrtkama i njihovim zaposlenicima
-                        kroz savjetovanje, radionice i edukacije. Prilagođeni
-                        programi za poboljšanje mentalnog zdravlja i radne
-                        učinkovitosti.
-                      </p>
-                      <div
-                        class="mil-button mil-icon-button-sm mil-arrow-place"
-                      ></div>
-                    </a>
-                  </div>
-                </div> -->
-          <!-- </div>
-            </div>
-          </section> -->
-          <!-- services end -->
-
-          <div class="services-section">
+          <div class="services-section" id="service">
             <div class="service-item">
               <div class="service-container">
                 <div class="text-content">
@@ -1702,6 +355,7 @@
                     zaposlenika ili kao psihoedukacija za timove.
                   </p>
                   <button
+                    class="company-button"
                     onclick="document.getElementById('companyModal').style.display='block'"
                   >
                     Upit za tvrtke
@@ -1710,83 +364,6 @@
               </div>
             </div>
           </div>
-          <!-- studio -->
-          <!-- <section>
-            <div class="container mil-p-120-30">
-              <div class="row justify-content-between align-items-center">
-                <div class="col-lg-5 col-xl-4">
-                  <div class="mil-mb-90">
-                    <h2 class="mil-up mil-mb-60">Terapijski <br />Prostor</h2>
-                    <p class="mil-up mil-mb-30">
-                      Smješten u mirnom okruženju, naš terapijski prostor je
-                      pažljivo dizajniran da stvara osjećaj sigurnosti i
-                      opuštenosti. Vjerujemo da je fizičko okruženje ključno za
-                      stvaranje atmosfere povjerenja i prihvaćanja.
-                    </p>
-
-                    <p class="mil-up mil-mb-60">
-                      Prostor je uređen s namjerom da potiče opuštanje i
-                      otvorenost, što su temelji uspješnog terapijskog procesa.
-                      Svaki element prostora odabran je kako bi doprinio ugodnom
-                      iskustvu tijekom naših susreta.
-                    </p>
-
-                    <div class="mil-up">
-                      <a
-                        href="gallery.html"
-                        class="mil-button mil-arrow-place mil-mb-60"
-                        ><span>Pogledajte studio</span></a
-                      >
-                    </div>
-
-                    <h4 class="mil-up">
-                      Pružam
-                      <span class="mil-thin">Vam </span><br />
-                      sigurno
-                      <span class="mil-thin">okruženje za </span>transformaciju.
-                    </h4>
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="mil-team-list">
-                    <div class="mil-lines-place"></div>
-
-                    <div class="row mil-mb-60">
-                      <div class="col-sm-6">
-                        <div class="mil-team-card mil-up mil-mb-30">
-                          <img src="img/studio/01studio.jpg" alt="Studio" />
-                        </div>
-
-                        <div class="mil-team-card mil-up mil-mb-30">
-                          <img src="img/studio/02studio.jpeg" alt="Studio" />
-                        </div>
-                      </div>
-                      <div class="col-sm-6">
-                        <p
-                          class="mil-mobile-hidden mil-text-sm mil-mb-30"
-                          style="height: 30px"
-                        >
-                          <span class="mil-accent">*</span> Sigurno okruženje za
-                          razgovor
-                        </p>
-
-                        <div class="mil-team-card mil-up mil-mb-30">
-                          <img src="img/studio/03studio.webp" alt="Studio" />
-                        </div>
-
-                        <div class="mil-team-card mil-up mil-mb-30">
-                          <img src="img/studio/04studio.jpeg" alt="Studio" />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section> -->
-          <!-- studio end -->
-
-          <!-- reviews -->
 
           <!-- hidden elements -->
           <div class="mil-hidden-elements">
@@ -2087,7 +664,7 @@
             <div class="modal-loader__spinner"></div>
           </div>
 
-          <div class="container mil-p-120-90">
+          <div class="container">
             <form class="row align-items-center" id="contactForm">
               <div class="col-lg-6 mil-up">
                 <input
@@ -2144,7 +721,7 @@
           <div class="modal-loader" id="companyModalLoader">
             <div class="modal-loader__spinner"></div>
           </div>
-          <div class="container mil-p-120-90">
+          <div class="container">
             <form class="row align-items-center" id="companyForm">
               <div class="col-lg-6 mil-up">
                 <input
@@ -2193,77 +770,35 @@
               </div>
 
               <div class="col-lg-12 mil-up" style="margin-top: 20px">
-                <p style="margin-bottom: 20px; font-weight: 500">
-                  Želim ugovoriti:
-                </p>
-              </div>
-
-              <div class="col-lg-12 mil-up">
-                <label class="checkbox-label">
-                  <input
-                    type="checkbox"
-                    name="service"
-                    value="individualno_savjetovanje"
-                    class="checkbox-input"
-                  />
-                  <span class="checkbox-text"
-                    >Individualno savjetovanje za zaposlenike (uživo ili
-                    online)</span
+                <div class="select-wrapper">
+                  <label for="services">Želim ugovoriti:</label>
+                  <select
+                    name="services[]"
+                    id="services"
+                    multiple
+                    size="4"
+                    required
                   >
-                </label>
-              </div>
-
-              <div class="col-lg-12 mil-up">
-                <label class="checkbox-label">
-                  <input
-                    type="checkbox"
-                    name="service"
-                    value="savjetovanje_s_obitelji"
-                    class="checkbox-input"
-                  />
-                  <span class="checkbox-text"
-                    >Individualno savjetovanje za zaposlenike i članove uže
-                    obitelji (uživo ili online)</span
-                  >
-                </label>
-              </div>
-
-              <div class="col-lg-12 mil-up">
-                <label class="checkbox-label">
-                  <input
-                    type="checkbox"
-                    name="service"
-                    value="psihoedukacija"
-                    class="checkbox-input"
-                  />
-                  <span class="checkbox-text"
-                    >Psihoedukaciju za tim na određenu temu (uživo ili
-                    online)</span
-                  >
-                </label>
-              </div>
-
-              <div class="col-lg-12 mil-up">
-                <label class="checkbox-label">
-                  <input
-                    type="checkbox"
-                    name="service"
-                    value="tre_seanse"
-                    class="checkbox-input"
-                  />
-                  <span class="checkbox-text"
-                    >TRE seanse za otpuštanje stresa i napetosti za grupu
-                    zaposlenika (uživo)</span
-                  >
-                </label>
-              </div>
-
-              <div class="col-lg-12 mil-up" style="margin-top: 20px">
-                <textarea
-                  placeholder="Dodatne napomene ili pitanja (opcionalno)"
-                  name="additional_notes"
-                  id="additionalNotes"
-                ></textarea>
+                    <option value="individualno_savjetovanje">
+                      Individualno savjetovanje za zaposlenike (uživo ili
+                      online)
+                    </option>
+                    <option value="savjetovanje_s_obitelji">
+                      Individualno savjetovanje za zaposlenike i članove uže
+                      obitelji (uživo ili online)
+                    </option>
+                    <option value="psihoedukacija">
+                      Psihoedukaciju za tim na određenu temu (uživo ili online)
+                    </option>
+                    <option value="tre_seanse">
+                      TRE seanse za otpuštanje stresa i napetosti za grupu
+                      zaposlenika (uživo)
+                    </option>
+                  </select>
+                  <small class="select-hint">
+                    Držite Ctrl (Cmd na Mac-u) za odabir više opcija
+                  </small>
+                </div>
               </div>
 
               <div class="col-lg-8"></div>
@@ -2283,7 +818,6 @@
         </div>
       </div>
     </div>
-
     <!-- footer -->
     <footer class="mil-soft-bg">
       <div class="mi-invert-fix">
@@ -2297,8 +831,28 @@
                   </div>
                 </a>
               </div>
-            </div>
 
+              <!-- Podaci o obrtu -->
+              <div
+                class="mil-up"
+                style="
+                  font-size: 13px;
+                  line-height: 1.8;
+                  color: #888;
+                  padding-left: 0;
+                "
+              >
+                <p style="margin-bottom: 10px; margin-top: 0">
+                  GNOTHE, obrt za savjetovanje<br />
+                  vl. Melita Zajkovski<br />
+                  Hrvatske mladeži 6c, Zaprešić
+                </p>
+                <p style="margin-bottom: 0">
+                  MBO: 98518267<br />
+                  IBAN: HR1823600001103043694
+                </p>
+              </div>
+            </div>
             <div class="col-md-7 col-lg-6">
               <div class="row justify-content-end align-items-start">
                 <div class="col-md-6 col-lg-7">
@@ -2316,18 +870,15 @@
                       <li class="mil-up">
                         <a href="about.html">O meni</a>
                       </li>
-
                       <li class="mil-up">
                         <a href="announcement.html">Najave</a>
                       </li>
-
                       <li class="mil-up">
                         <a href="contact.html">Kontakt</a>
                       </li>
                     </ul>
                   </nav>
                 </div>
-
                 <div class="col-md-6 col-lg-5" style="padding-top: 0">
                   <ul class="mil-menu-list mil-up mil-mb-60">
                     <li>
@@ -2335,7 +886,6 @@
                         Radno vrijeme
                       </h6>
                     </li>
-
                     <li>
                       <i
                         class="fa-solid fa-clock"
@@ -2348,24 +898,12 @@
               </div>
             </div>
           </div>
-
           <div class="row justify-content-between flex-sm-row-reverse">
             <div class="col-md-7 col-lg-6">
               <div class="row justify-content-between">
-                <!-- <div class="col-md-12 col-lg-12 mil-mb-60">
-                  <h6 class="mil-up mil-mb-30">Hrvatska, Zagreb</h6>
-
-                  <p class="mil-up">
-                    melita.zajkovski@gmail.com<br />
-                    Ul. Alojzija Stepinca 8A,<br />
-                    10290, Zaprešić<br />
-                    <span class="mil-no-wrap">+385 98 811 651</span>
-                  </p>
-                </div> -->
                 <div class="mil-vert-between">
                   <p class="mil-up">
                     <i><b>GNOTHE</b>, obrt za savjetovanje</i>
-
                     <br />
                     <a href="privacy-policy.html" style="color: #689483"
                       >Politika i privatnost</a
@@ -2374,7 +912,6 @@
                 </div>
               </div>
             </div>
-
             <div class="col-md-4 col-lg-6 mil-mb-60"></div>
           </div>
         </div>
@@ -2413,7 +950,7 @@
       </div>
     </div>
 
-    <!-- Toast Notifications - dodaj prije </body> -->
+    <!-- Toast Notifications -->
     <div id="successMessage" class="toast-notification toast-success">
       Uspješno ste poslali poruku!
     </div>
@@ -2421,6 +958,257 @@
       Dogodila se greška pri slanju poruke.
     </div>
 
+    <script>
+      // ============================================
+      // EMAILJS INICIJALIZACIJA
+      // ============================================
+      (function () {
+        console.log("Inicijalizujem EmailJS sa Public Key: 3IDB_1FNL6gwDO5f1");
+        emailjs.init("3IDB_1FNL6gwDO5f1");
+        console.log("EmailJS objekat:", emailjs);
+      })();
+
+      // ============================================
+      // GLAVNA FUNKCIONALNOST - DOM READY
+      // ============================================
+      document.addEventListener("DOMContentLoaded", function () {
+        // ============================================
+        // INTERSECTION OBSERVER - SCROLL ANIMACIJE
+        // ============================================
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: "0px",
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.style.animationDelay = "0s";
+              entry.target.classList.add("visible");
+            }
+          });
+        }, observerOptions);
+
+        document.querySelectorAll(".service-item").forEach((item) => {
+          observer.observe(item);
+        });
+
+        // ============================================
+        // PARALLAX EFEKT (DESKTOP ONLY)
+        // ============================================
+        if (window.innerWidth > 768) {
+          document.addEventListener("mousemove", (e) => {
+            const images = document.querySelectorAll(".image-content svg");
+            const x = (e.clientX / window.innerWidth - 0.5) * 20;
+            const y = (e.clientY / window.innerHeight - 0.5) * 20;
+
+            images.forEach((img) => {
+              img.style.transform = `translateX(${x}px) translateY(${y}px)`;
+            });
+          });
+        }
+
+        // ============================================
+        // MODAL 1: EGO ANALYSIS MODAL
+        // ============================================
+        const egoModal = document.getElementById("egoAnalysisModal");
+        const openBtns = document.querySelectorAll(".service-button");
+        const egoCloseBtn = egoModal?.querySelector(".ego-modal-close");
+        const form = document.getElementById("contactForm");
+        let selectedService = "";
+
+        if (egoModal && egoCloseBtn) {
+          // Otvori modal za sve buttone
+          openBtns.forEach((btn, index) => {
+            btn.onclick = function () {
+              egoModal.style.display = "block";
+              document.body.style.overflow = "hidden";
+
+              const services = [
+                "Individualno savjetovanje",
+                "Partnersko savjetovanje",
+                "Grupno savjetovanje",
+                "Program podrške zaposlenicima (EAP)",
+              ];
+              selectedService = services[index];
+              console.log("Otvorena usluga:", selectedService);
+            };
+          });
+
+          // Zatvori modal - X button
+          egoCloseBtn.onclick = function () {
+            egoModal.style.display = "none";
+            document.body.style.overflow = "";
+            resetEgoModal();
+          };
+
+          // Reset funkcija
+          function resetEgoModal() {
+            form?.reset();
+            const modalLoader = document.getElementById("modalLoader");
+            if (modalLoader) modalLoader.style.display = "none";
+            selectedService = "";
+          }
+        }
+
+        // ============================================
+        // MODAL 2: COMPANY MODAL
+        // ============================================
+        const companyModal = document.getElementById("companyModal");
+        const companyCloseBtn = companyModal?.querySelector(".ego-modal-close");
+
+        if (companyModal && companyCloseBtn) {
+          // Funkcija za otvaranje
+          window.openCompanyModal = function () {
+            companyModal.style.display = "block";
+            document.body.style.overflow = "hidden";
+          };
+
+          // Funkcija za zatvaranje
+          function closeCompanyModal() {
+            companyModal.style.display = "none";
+            document.body.style.overflow = "";
+          }
+
+          // Zatvori modal - X button
+          companyCloseBtn.addEventListener("click", function (e) {
+            e.preventDefault();
+            closeCompanyModal();
+          });
+
+          // Zatvori modal - klik izvan
+          companyModal.addEventListener("click", function (event) {
+            if (event.target === companyModal) {
+              closeCompanyModal();
+            }
+          });
+
+          // Zatvori modal - ESC tipka
+          document.addEventListener("keydown", function (event) {
+            if (
+              event.key === "Escape" &&
+              companyModal.style.display === "block"
+            ) {
+              closeCompanyModal();
+            }
+          });
+        }
+
+        // ============================================
+        // ZATVARANJE BILO KOJEG MODALA KLIKOM IZVAN
+        // ============================================
+        window.onclick = function (event) {
+          // Zatvori Ego Analysis Modal
+          if (event.target == egoModal && egoModal) {
+            egoModal.style.display = "none";
+            document.body.style.overflow = "";
+            const modalLoader = document.getElementById("modalLoader");
+            if (modalLoader) modalLoader.style.display = "none";
+            form?.reset();
+            selectedService = "";
+          }
+
+          // Zatvori Company Modal
+          if (event.target == companyModal && companyModal) {
+            companyModal.style.display = "none";
+            document.body.style.overflow = "";
+          }
+        };
+
+        // ============================================
+        // TOAST NOTIFIKACIJE
+        // ============================================
+        window.showToast = function (id, message) {
+          const toast = document.getElementById(id);
+          if (message) {
+            toast.textContent = message;
+          }
+          toast.classList.add("show");
+          setTimeout(() => {
+            hideToast(id);
+          }, 5000);
+        };
+
+        function hideToast(id) {
+          const toast = document.getElementById(id);
+          toast.classList.remove("show");
+        }
+
+        // ============================================
+        // EMAIL FUNKCIONALNOST
+        // ============================================
+        function getCurrentDate() {
+          const now = new Date();
+          const day = now.getDate().toString().padStart(2, "0");
+          const month = (now.getMonth() + 1).toString().padStart(2, "0");
+          const year = now.getFullYear();
+          return `${day}.${month}.${year}`;
+        }
+
+        function sendEmail(event) {
+          event.preventDefault();
+          const submitBtn = document.getElementById("submitBtn");
+          const modalLoader = document.getElementById("modalLoader");
+
+          submitBtn.disabled = true;
+          modalLoader.style.display = "flex";
+
+          const currentDate = getCurrentDate();
+          const templateParams = {
+            user_name: document.getElementById("userName").value,
+            user_email: document.getElementById("userEmail").value,
+            message: document.getElementById("message").value,
+            service_type: selectedService,
+            current_date: currentDate,
+            to_email: "m.besednik69@gmail.com",
+          };
+
+          console.log("Šaljem email za uslugu:", selectedService);
+
+          emailjs
+            .send("service_vq9x7ls", "template_859q8oi", templateParams)
+            .then(
+              function (response) {
+                console.log("SUCCESS!", response.status, response.text);
+                modalLoader.style.display = "none";
+                egoModal.style.display = "none";
+                document.body.style.overflow = "";
+                showToast("successMessage", "Uspješno ste poslali poruku!");
+                form.reset();
+                selectedService = "";
+              },
+              function (error) {
+                console.log("FAILED...", error);
+                modalLoader.style.display = "none";
+                const errorMessage = `Dogodila se greška: ${
+                  error.text || error.message || "Pokušajte ponovo."
+                }`;
+                showToast("errorMessage", errorMessage);
+              }
+            )
+            .finally(function () {
+              submitBtn.disabled = false;
+            });
+        }
+
+        // Event listener za formu
+        if (form) {
+          form.addEventListener("submit", sendEmail);
+        }
+
+        // ============================================
+        // STAGGER ANIMACIJE - PAGE LOAD
+        // ============================================
+        window.addEventListener("load", () => {
+          const elements = document.querySelectorAll(
+            ".text-content, .image-content"
+          );
+          elements.forEach((el, index) => {
+            el.style.animationDelay = `${index * 0.1}s`;
+          });
+        });
+      }); // Kraj DOMContentLoaded
+    </script>
     <script src="js/plugins/cookie-banner.js"></script>
     <!-- EmailJS SDK -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
@@ -2444,204 +1232,352 @@
     <!-- Gnothe js -->
     <script src="js/main.js"></script>
     <script>
-      // Intersection Observer for fade-in animations on scroll
-      const observerOptions = {
-        threshold: 0.1,
-        rootMargin: "0px",
-      };
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.style.animationDelay = "0s";
-            entry.target.classList.add("visible");
-          }
-        });
-      }, observerOptions);
-
-      // Observe all service items
-      document.querySelectorAll(".service-item").forEach((item) => {
-        observer.observe(item);
-      });
-
-      // Add subtle parallax effect on mouse move (desktop only)
-      if (window.innerWidth > 768) {
-        document.addEventListener("mousemove", (e) => {
-          const images = document.querySelectorAll(".image-content svg");
-          const x = (e.clientX / window.innerWidth - 0.5) * 20;
-          const y = (e.clientY / window.innerHeight - 0.5) * 20;
-
-          images.forEach((img) => {
-            img.style.transform = `translateX(${x}px) translateY(${y}px)`;
-          });
-        });
-      }
-
-      // Add stagger animation on page load
-      window.addEventListener("load", () => {
-        const elements = document.querySelectorAll(
-          ".text-content, .image-content"
-        );
-        elements.forEach((el, index) => {
-          el.style.animationDelay = `${index * 0.1}s`;
-        });
-      });
-    </script>
-
-    <script>
-      // Modal functionality - ZAMIJENI POSTOJEĆI KOD
-      const modal = document.getElementById("egoAnalysisModal");
-      const openBtns = document.querySelectorAll(".service-button"); // Sva dugmad
-      const closeBtn = document.querySelector(".ego-modal-close");
-      const modalBody = document.querySelector(".ego-modal-body");
-
-      // Dodaj skriveno polje u formu za tip usluge
-      const form = document.getElementById("contactForm");
-      let selectedService = "";
-
-      // Open modal - za SVA dugmad
-      openBtns.forEach((btn, index) => {
-        btn.onclick = function () {
-          modal.style.display = "block";
-          document.body.style.overflow = "hidden";
-
-          // Postavi koja je usluga odabrana
-          const services = [
-            "Individualno savjetovanje",
-            "Partnersko savjetovanje",
-            "Grupno savjetovanje",
-            "Program podrške zaposlenicima (EAP)",
-          ];
-          selectedService = services[index];
-          console.log("Otvorena usluga:", selectedService);
-        };
-      });
-
-      // Close modal
-      closeBtn.onclick = function () {
-        modal.style.display = "none";
-        document.body.style.overflow = "auto";
-        resetModal();
-      };
-
-      // Close modal when clicking outside
-      window.onclick = function (event) {
-        if (event.target == modal) {
-          modal.style.display = "none";
-          document.body.style.overflow = "auto";
-          resetModal();
-        }
-      };
-
-      // Reset modal function
-      function resetModal() {
-        document.getElementById("contactForm").reset();
-        document.getElementById("modalLoader").style.display = "none";
-        selectedService = "";
-      }
-    </script>
-    <script>
-      // Inicijalizuj EmailJS sa vašim javnim ključem
+      // ============================================
+      // EMAILJS INICIJALIZACIJA
+      // ============================================
       (function () {
         console.log("Inicijalizujem EmailJS sa Public Key: 3IDB_1FNL6gwDO5f1");
         emailjs.init("3IDB_1FNL6gwDO5f1");
         console.log("EmailJS objekat:", emailjs);
       })();
 
-      // Toast notification functions
-      function showToast(id, message) {
-        const toast = document.getElementById(id);
-        if (message) {
-          toast.textContent = message;
-        }
-        toast.classList.add("show");
-        // Auto hide after 5 seconds
-        setTimeout(() => {
-          hideToast(id);
-        }, 5000);
-      }
-
-      function hideToast(id) {
-        const toast = document.getElementById(id);
-        toast.classList.remove("show");
-      }
-
-      // Funkcija za formatiranje datuma
-      function getCurrentDate() {
-        const now = new Date();
-        const day = now.getDate().toString().padStart(2, "0");
-        const month = (now.getMonth() + 1).toString().padStart(2, "0");
-        const year = now.getFullYear();
-
-        // Format: DD.MM.YYYY
-        return `${day}.${month}.${year}`;
-      }
-
-      // Funkcija za slanje emaila
-      function sendEmail(event) {
-        event.preventDefault();
-        const submitBtn = document.getElementById("submitBtn");
-        const modalLoader = document.getElementById("modalLoader");
-
-        // Prikaži loader i disabiluj dugme
-        submitBtn.disabled = true;
-        modalLoader.style.display = "flex";
-
-        const currentDate = getCurrentDate();
-
-        const templateParams = {
-          user_name: document.getElementById("userName").value,
-          user_email: document.getElementById("userEmail").value,
-          message: document.getElementById("message").value,
-          service_type: selectedService,
-          current_date: currentDate,
-          to_email: "m.besednik69@gmail.com",
+      // ============================================
+      // GLAVNA FUNKCIONALNOST - DOM READY
+      // ============================================
+      document.addEventListener("DOMContentLoaded", function () {
+        // ============================================
+        // INTERSECTION OBSERVER - SCROLL ANIMACIJE
+        // ============================================
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: "0px",
         };
 
-        console.log("Šaljem email za uslugu:", selectedService);
-
-        emailjs
-          .send("service_vq9x7ls", "template_859q8oi", templateParams)
-          .then(
-            function (response) {
-              console.log("SUCCESS!", response.status, response.text);
-
-              // Sakrij loader
-              modalLoader.style.display = "none";
-
-              // Zatvori modal
-              modal.style.display = "none";
-              document.body.style.overflow = "auto";
-
-              // Prikaži success toast
-              showToast("successMessage", "Uspješno ste poslali poruku!");
-
-              // Resetuj formu
-              document.getElementById("contactForm").reset();
-              selectedService = "";
-            },
-            function (error) {
-              console.log("FAILED...", error);
-
-              // Sakrij loader
-              modalLoader.style.display = "none";
-
-              // Prikaži error toast
-              const errorMessage = `Dogodila se greška: ${
-                error.text || error.message || "Pokušajte ponovo."
-              }`;
-              showToast("errorMessage", errorMessage);
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.style.animationDelay = "0s";
+              entry.target.classList.add("visible");
             }
-          )
-          .finally(function () {
-            // Ponovo omogući dugme
-            submitBtn.disabled = false;
           });
-      }
-      // Dodeli event listener na formu
-      document
-        .getElementById("contactForm")
-        .addEventListener("submit", sendEmail);
+        }, observerOptions);
+
+        document.querySelectorAll(".service-item").forEach((item) => {
+          observer.observe(item);
+        });
+
+        // ============================================
+        // PARALLAX EFEKT (DESKTOP ONLY)
+        // ============================================
+        if (window.innerWidth > 768) {
+          document.addEventListener("mousemove", (e) => {
+            const images = document.querySelectorAll(".image-content svg");
+            const x = (e.clientX / window.innerWidth - 0.5) * 20;
+            const y = (e.clientY / window.innerHeight - 0.5) * 20;
+
+            images.forEach((img) => {
+              img.style.transform = `translateX(${x}px) translateY(${y}px)`;
+            });
+          });
+        }
+
+        // ============================================
+        // MODAL 1: EGO ANALYSIS MODAL
+        // ============================================
+        const egoModal = document.getElementById("egoAnalysisModal");
+        const openBtns = document.querySelectorAll(".service-button");
+        const egoCloseBtn = egoModal?.querySelector(".ego-modal-close");
+        const form = document.getElementById("contactForm");
+        let selectedService = "";
+
+        if (egoModal && egoCloseBtn) {
+          // Otvori modal za sve buttone
+          openBtns.forEach((btn, index) => {
+            btn.onclick = function () {
+              egoModal.style.display = "block";
+              document.body.style.overflow = "hidden";
+
+              const services = [
+                "Individualno savjetovanje",
+                "Partnersko savjetovanje",
+                "Grupno savjetovanje",
+                "Program podrške zaposlenicima (EAP)",
+              ];
+              selectedService = services[index];
+              console.log("Otvorena usluga:", selectedService);
+            };
+          });
+
+          // Zatvori modal - X button
+          egoCloseBtn.onclick = function () {
+            egoModal.style.display = "none";
+            document.body.style.overflow = "auto";
+            resetEgoModal();
+          };
+
+          // Zatvori modal - klik izvan
+          window.onclick = function (event) {
+            if (event.target == egoModal) {
+              egoModal.style.display = "none";
+              document.body.style.overflow = "auto";
+              resetEgoModal();
+            }
+          };
+
+          // Reset funkcija
+          function resetEgoModal() {
+            form?.reset();
+            const modalLoader = document.getElementById("modalLoader");
+            if (modalLoader) modalLoader.style.display = "none";
+            selectedService = "";
+          }
+        }
+
+        // ============================================
+        // MODAL 2: COMPANY MODAL
+        // ============================================
+        const companyModal = document.getElementById("companyModal");
+        const companyCloseBtn = companyModal?.querySelector(".ego-modal-close");
+
+        if (companyModal && companyCloseBtn) {
+          // Funkcija za otvaranje
+          window.openCompanyModal = function () {
+            companyModal.style.display = "block";
+            document.body.style.overflow = "hidden";
+          };
+
+          // Funkcija za zatvaranje
+          function closeCompanyModal() {
+            companyModal.style.display = "none";
+            document.body.style.overflow = "";
+          }
+
+          // Zatvori modal - X button
+          companyCloseBtn.addEventListener("click", function (e) {
+            e.preventDefault();
+            closeCompanyModal();
+          });
+
+          // Zatvori modal - klik izvan
+          companyModal.addEventListener("click", function (event) {
+            if (event.target === companyModal) {
+              closeCompanyModal();
+            }
+          });
+
+          // Zatvori modal - ESC tipka
+          document.addEventListener("keydown", function (event) {
+            if (
+              event.key === "Escape" &&
+              companyModal.style.display === "block"
+            ) {
+              closeCompanyModal();
+            }
+          });
+        }
+
+        // ============================================
+        // TOAST NOTIFIKACIJE
+        // ============================================
+        window.showToast = function (id, message) {
+          const toast = document.getElementById(id);
+          if (message) {
+            toast.textContent = message;
+          }
+          toast.classList.add("show");
+          setTimeout(() => {
+            hideToast(id);
+          }, 5000);
+        };
+
+        function hideToast(id) {
+          const toast = document.getElementById(id);
+          toast.classList.remove("show");
+        }
+
+        // ============================================
+        // HELPER FUNKCIJA - TRENUTNI DATUM
+        // ============================================
+        function getCurrentDate() {
+          const now = new Date();
+          const day = now.getDate().toString().padStart(2, "0");
+          const month = (now.getMonth() + 1).toString().padStart(2, "0");
+          const year = now.getFullYear();
+          return `${day}.${month}.${year}`;
+        }
+
+        // ============================================
+        // FORMA 1: INDIVIDUALNA FORMA (EGO MODAL)
+        // ============================================
+        function sendEmail(event) {
+          event.preventDefault();
+          const submitBtn = document.getElementById("submitBtn");
+          const modalLoader = document.getElementById("modalLoader");
+
+          submitBtn.disabled = true;
+          modalLoader.style.display = "flex";
+
+          const currentDate = getCurrentDate();
+          const templateParams = {
+            user_name: document.getElementById("userName").value,
+            user_email: document.getElementById("userEmail").value,
+            message: document.getElementById("message").value,
+            service_type: selectedService,
+            current_date: currentDate,
+            to_email: "m.besednik69@gmail.com",
+          };
+
+          console.log("Šaljem email za uslugu:", selectedService);
+
+          emailjs
+            .send("service_vq9x7ls", "template_859q8oi", templateParams)
+            .then(
+              function (response) {
+                console.log("SUCCESS!", response.status, response.text);
+                modalLoader.style.display = "none";
+                egoModal.style.display = "none";
+                document.body.style.overflow = "auto";
+                showToast("successMessage", "Uspješno ste poslali poruku!");
+                form.reset();
+                selectedService = "";
+              },
+              function (error) {
+                console.log("FAILED...", error);
+                modalLoader.style.display = "none";
+                const errorMessage = `Dogodila se greška: ${
+                  error.text || error.message || "Pokušajte ponovo."
+                }`;
+                showToast("errorMessage", errorMessage);
+              }
+            )
+            .finally(function () {
+              submitBtn.disabled = false;
+            });
+        }
+
+        // Event listener za individualnu formu
+        if (form) {
+          form.addEventListener("submit", sendEmail);
+        }
+
+        // ============================================
+        // FORMA 2: COMPANY FORMA
+        // ============================================
+        function sendCompanyEmail(event) {
+          event.preventDefault();
+
+          console.log("Company forma submitted - pokrećem slanje emaila...");
+
+          const companySubmitBtn = document.getElementById("companySubmitBtn");
+          const companyModalLoader =
+            document.getElementById("companyModalLoader");
+          const companyForm = document.getElementById("companyForm");
+
+          // Onemogući button i prikaži loader
+          companySubmitBtn.disabled = true;
+          companyModalLoader.style.display = "flex";
+
+          // Prikupi podatke iz forme
+          const companyName = document.getElementById("companyName").value;
+          const employeeCount = document.getElementById("employeeCount").value;
+          const contactPerson = document.getElementById("contactPerson").value;
+          const contactEmail = document.getElementById("contactEmail").value;
+          const contactPhone = document.getElementById("contactPhone").value;
+
+          // Prikupi odabrane usluge (multiple select)
+          const servicesSelect = document.getElementById("services");
+          const selectedOptions = Array.from(servicesSelect.selectedOptions);
+          const servicesArray = selectedOptions.map((option) => option.text);
+          const servicesText = servicesArray.join("\n• ");
+
+          // Datum
+          const currentDate = getCurrentDate();
+
+          // Template parametri
+          const templateParams = {
+            company_name: companyName,
+            employee_count: employeeCount,
+            contact_person: contactPerson,
+            contact_email: contactEmail,
+            contact_phone: contactPhone,
+            services: "• " + servicesText,
+            current_date: currentDate,
+            to_email: "m.besednik69@gmail.com",
+          };
+
+          console.log("Šaljem company email sa parametrima:", templateParams);
+
+          // Pošalji email
+          emailjs
+            .send(
+              "service_vq9x7ls",
+              "template_a1a9axs", // ⚠️ OVDJE STAVI SVOJ COMPANY TEMPLATE ID!
+              templateParams
+            )
+            .then(
+              function (response) {
+                console.log(
+                  "Company email SUCCESS!",
+                  response.status,
+                  response.text
+                );
+
+                // Sakrij loader
+                companyModalLoader.style.display = "none";
+
+                // Zatvori modal
+                companyModal.style.display = "none";
+                document.body.style.overflow = "auto";
+
+                // Prikaži success toast
+                showToast(
+                  "successMessage",
+                  "Uspješno ste poslali upit za tvrtku!"
+                );
+
+                // Resetuj formu
+                companyForm.reset();
+              },
+              function (error) {
+                console.log("Company email FAILED...", error);
+
+                // Sakrij loader
+                companyModalLoader.style.display = "none";
+
+                // Prikaži error toast
+                const errorMessage = `Dogodila se greška: ${
+                  error.text || error.message || "Pokušajte ponovo."
+                }`;
+                showToast("errorMessage", errorMessage);
+              }
+            )
+            .finally(function () {
+              // Omogući button ponovo
+              companySubmitBtn.disabled = false;
+            });
+        }
+
+        // Event listener za company formu
+        const companyForm = document.getElementById("companyForm");
+        if (companyForm) {
+          console.log("Company forma pronađena - dodajem event listener");
+          companyForm.addEventListener("submit", sendCompanyEmail);
+        } else {
+          console.error("Company forma NIJE pronađena!");
+        }
+
+        // ============================================
+        // STAGGER ANIMACIJE - PAGE LOAD
+        // ============================================
+        window.addEventListener("load", () => {
+          const elements = document.querySelectorAll(
+            ".text-content, .image-content"
+          );
+          elements.forEach((el, index) => {
+            el.style.animationDelay = `${index * 0.1}s`;
+          });
+        });
+      });
     </script>
   </body>
 </html>

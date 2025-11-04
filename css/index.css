@@ -1,0 +1,1051 @@
+/* ============================================
+   1. KEYFRAMES ANIMACIJE
+   ============================================ */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes scrollPulse {
+  0%,
+  100% {
+    transform: scaleY(0.5);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes letterFade {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes buttonFadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-50%) translateY(20px);
+    opacity: 0;
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: translateX(100%) scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(-10px) scale(1.05);
+  }
+  70% {
+    transform: translateX(10px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+/* ============================================
+   2. UTILITY CLASSES
+   ============================================ */
+
+.mil-no-bullets {
+  list-style: none;
+  line-height: 1.5;
+}
+
+.mil-up {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeInUp 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.mil-up--delayed {
+  animation-delay: 0.5s;
+}
+
+.mil-up--delayed-more {
+  animation-delay: 0.8s;
+}
+
+.signature {
+  font-family: "Allura", cursive;
+  font-size: 4rem !important;
+  color: #2d2d3d;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 2px;
+  display: inline-block;
+  line-height: 1;
+  margin: 0;
+  transform: rotate(-1deg);
+}
+
+.about-book {
+  object-fit: cover;
+  object-position: center;
+  height: 200px;
+}
+
+/* ============================================
+   3. HERO SEKCIJA
+   ============================================ */
+
+.hero {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+}
+
+.hero__background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.hero__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0.3) 0%,
+    rgba(0, 0, 0, 0.7) 100%
+  );
+  z-index: 2;
+}
+
+.hero__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(0.95);
+  transition: transform 0.5s ease-out;
+  will-change: transform;
+}
+
+.hero__content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 3;
+  color: #ffffff;
+  padding: 0 20px;
+  max-width: 900px;
+  width: 100%;
+}
+
+.hero__quote {
+  top: 25px;
+  font-family: "Georgia", "Playfair Display", serif;
+  font-size: 1.1rem;
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1.6;
+  margin-bottom: 3rem;
+  opacity: 0.9;
+  letter-spacing: 0.03em;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  position: relative;
+  color: #ffffff;
+  padding: 0 1.5em;
+}
+
+.hero__title-wrapper {
+  position: relative;
+}
+
+.hero__title {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 7rem;
+  font-weight: 100;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin: 0;
+  position: relative;
+  display: inline-block;
+  line-height: 1;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+.hero__title-letter {
+  display: inline-block;
+  transition: none;
+  position: relative;
+  animation: letterFade 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  opacity: 0;
+}
+
+.hero__title-letter:nth-child(1) {
+  animation-delay: 0.5s;
+}
+.hero__title-letter:nth-child(2) {
+  animation-delay: 0.6s;
+}
+.hero__title-letter:nth-child(3) {
+  animation-delay: 0.7s;
+}
+.hero__title-letter:nth-child(4) {
+  animation-delay: 0.8s;
+}
+.hero__title-letter:nth-child(5) {
+  animation-delay: 0.9s;
+}
+.hero__title-letter:nth-child(6) {
+  animation-delay: 1s;
+}
+
+.hero__title::after {
+  content: "";
+  position: absolute;
+  bottom: -20px;
+  left: 10%;
+  width: 80%;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.5),
+    transparent
+  );
+  opacity: 0.8;
+}
+
+.hero__subtitle {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 300;
+  letter-spacing: 0.3em;
+  text-transform: lowercase;
+  margin-top: 2rem;
+  opacity: 0.8;
+  color: #ffffff;
+}
+
+.hero__scroll-indicator {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  cursor: pointer;
+  text-align: center;
+}
+
+.hero__scroll-text {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  display: block;
+  margin-bottom: 10px;
+  transition: opacity 0.3s ease;
+}
+
+.hero__scroll-indicator::after {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 30px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), transparent);
+  margin: 0 auto;
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+.hero__scroll-indicator:hover .hero__scroll-text {
+  opacity: 1;
+}
+
+/* ============================================
+   4. LOGO I NAVIGACIJA
+   ============================================ */
+
+.gnothe-logo .gnothe-main {
+  color: #000000;
+  transition: color 0.3s ease;
+}
+
+body:not(.scrolled-past-hero):not(.menu-is-open) .gnothe-logo .gnothe-main {
+  color: #ffffff;
+  transition: color 0.3s ease;
+}
+
+.mil-menu-btn span,
+.mil-menu-btn span:after,
+.mil-menu-btn span:before {
+  background: #000000;
+  transition: background 0.3s ease;
+}
+
+body:not(.scrolled-past-hero):not(.menu-is-open) .mil-menu-btn span,
+body:not(.scrolled-past-hero):not(.menu-is-open) .mil-menu-btn span:after,
+body:not(.scrolled-past-hero):not(.menu-is-open) .mil-menu-btn span:before {
+  background: #ffffff;
+  transition: background 0.3s ease;
+}
+
+body.scrolled-past-hero .gnothe-logo .gnothe-main {
+  color: #000000;
+}
+
+body.scrolled-past-hero .mil-menu-btn span,
+body.scrolled-past-hero .mil-menu-btn span:after,
+body.scrolled-past-hero .mil-menu-btn span:before {
+  background: #000000;
+}
+
+.mil-menu-frame.mil-active ~ * .gnothe-logo .gnothe-main,
+.mil-menu-frame.mil-active ~ header .gnothe-logo .gnothe-main,
+body:has(.mil-menu-frame.mil-active) .gnothe-logo .gnothe-main,
+body.menu-is-open .gnothe-logo .gnothe-main {
+  color: #000000 !important;
+}
+
+.mil-menu-frame.mil-active ~ * .mil-menu-btn span,
+.mil-menu-frame.mil-active ~ * .mil-menu-btn span:after,
+.mil-menu-frame.mil-active ~ * .mil-menu-btn span:before,
+.mil-menu-frame.mil-active ~ header .mil-menu-btn span,
+.mil-menu-frame.mil-active ~ header .mil-menu-btn span:after,
+.mil-menu-frame.mil-active ~ header .mil-menu-btn span:before,
+body:has(.mil-menu-frame.mil-active) .mil-menu-btn span,
+body:has(.mil-menu-frame.mil-active) .mil-menu-btn span:after,
+body:has(.mil-menu-frame.mil-active) .mil-menu-btn span:before,
+body.menu-is-open .mil-menu-btn span,
+body.menu-is-open .mil-menu-btn span:after,
+body.menu-is-open .mil-menu-btn span:before {
+  background: #000000 !important;
+}
+
+.mil-menu-frame.mil-active .gnothe-logo .gnothe-main {
+  color: #000000 !important;
+}
+
+.mil-menu-frame.mil-active .mil-menu-btn span,
+.mil-menu-frame.mil-active .mil-menu-btn span:after,
+.mil-menu-frame.mil-active .mil-menu-btn span:before {
+  background: #000000 !important;
+}
+
+/* ============================================
+   5. SERVICES SEKCIJA
+   ============================================ */
+
+.services-section {
+  width: 100%;
+}
+
+.service-item {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.service-item:nth-child(1) {
+  background-color: #79a095;
+}
+
+.service-item:nth-child(2) {
+  background-color: #e3d1ba;
+}
+
+.service-item:nth-child(3) {
+  background-color: #ffffff;
+}
+
+.service-item:nth-child(4) {
+  background-color: #689483;
+}
+
+.service-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 60px;
+  width: 100%;
+  text-align: center;
+}
+
+.text-content {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideIn 0.8s ease-out 0.3s forwards;
+}
+
+.text-content h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 30px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: inherit;
+}
+
+.service-item:nth-child(3) .text-content h2,
+.service-item:nth-child(3) .text-content p {
+  color: #333;
+}
+
+.service-item:nth-child(2) .text-content h2,
+.service-item:nth-child(2) .text-content p {
+  color: #333;
+}
+
+.service-item:nth-child(1) .text-content h2,
+.service-item:nth-child(1) .text-content p,
+.service-item:nth-child(4) .text-content h2,
+.service-item:nth-child(4) .text-content p {
+  color: #fff;
+}
+
+.text-content p {
+  font-size: clamp(1rem, 2vw, 1.125rem);
+  line-height: 1.8;
+  opacity: 0.95;
+  margin-bottom: 40px;
+}
+
+.service-button {
+  display: inline-block;
+  padding: 16px 40px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 2px solid transparent;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  animation: buttonFadeIn 0.8s ease-out 0.6s forwards;
+}
+
+.company-button {
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.3);
+  display: inline-block;
+  padding: 16px 40px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  animation: buttonFadeIn 0.8s ease-out 0.6s forwards;
+}
+
+.company-button:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.service-item:nth-child(1) .service-button,
+.service-item:nth-child(4) .service-button {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.service-item:nth-child(1) .service-button:hover,
+.service-item:nth-child(4) .service-button:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.service-item:nth-child(2) .service-button,
+.service-item:nth-child(3) .service-button {
+  color: #333;
+  border-color: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.service-item:nth-child(2) .service-button:hover,
+.service-item:nth-child(3) .service-button:hover {
+  background: rgba(0, 0, 0, 0.1);
+  border-color: rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.scroll-indicator {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 50px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 25px;
+  opacity: 0.8;
+  cursor: pointer;
+  transition: opacity 0.3s;
+  z-index: 10;
+}
+
+.scroll-indicator::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 3px;
+  animation: scroll 2s infinite;
+}
+
+.scroll-indicator.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ============================================
+   6. MODAL STILOVI
+   ============================================ */
+
+.ego-modal {
+  display: none;
+  position: fixed;
+  z-index: 10000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.7);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.ego-modal-content {
+  background-color: #fefefe;
+  margin: 20px auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 90%;
+  max-width: 900px;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 10px;
+  position: relative;
+  animation: slideIn 0.3s ease-out;
+}
+
+.ego-modal-header {
+  background-color: #689483;
+  color: white;
+  padding: 25px 30px;
+  border-radius: 10px 10px 0 0;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ego-modal-header h2 {
+  color: white;
+  margin: 0;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.ego-modal-body {
+  padding-top: 25px;
+  position: relative;
+  min-height: 600px;
+}
+
+.ego-modal-close {
+  color: white;
+  font-size: 32px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s;
+  line-height: 1;
+  padding: 0 5px;
+}
+
+.ego-modal-close:hover,
+.ego-modal-close:focus {
+  color: #f1f1f1;
+}
+
+.modal-loader {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.95);
+  z-index: 100;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0 0 10px 10px;
+}
+
+.modal-loader__spinner {
+  width: 60px;
+  height: 60px;
+  border: 6px solid rgba(122, 184, 161, 0.2);
+  border-radius: 50%;
+  border-top: 6px solid #689483;
+  animation: spin 1s linear infinite;
+}
+
+.ego-modal-content::-webkit-scrollbar {
+  width: 10px;
+}
+
+.ego-modal-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.ego-modal-content::-webkit-scrollbar-thumb {
+  background: #689483;
+  border-radius: 10px;
+}
+
+.ego-modal-content::-webkit-scrollbar-thumb:hover {
+  background: #69a792;
+}
+
+/* ============================================
+   7. FORM ELEMENTI
+   ============================================ */
+
+#services {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #666;
+  background-color: white;
+  font-family: inherit;
+  line-height: 1.6;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+  overflow-y: auto;
+}
+
+#services:focus {
+  outline: none;
+  border-color: #7d9c8b;
+}
+
+#services option {
+  padding: 10px;
+  cursor: pointer;
+  line-height: 1.5;
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+#services option:checked {
+  background: #7d9c8b;
+  color: white;
+  font-weight: 500;
+}
+
+.select-wrapper {
+  margin-bottom: 15px;
+}
+
+.select-wrapper label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 500;
+  color: #333;
+  font-size: 15px;
+}
+
+.select-hint {
+  display: block;
+  margin-top: 8px;
+  color: #999;
+  font-size: 12px;
+  font-style: italic;
+}
+
+/* ============================================
+   8. TOAST NOTIFIKACIJE
+   ============================================ */
+
+.toast-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  max-width: 400px;
+  padding: 16px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  font-size: 14px;
+  font-weight: 500;
+  opacity: 0;
+  transform: translateX(100%) scale(0.3);
+  transition: all 0.3s ease;
+  display: none;
+}
+
+.toast-notification.show {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+  display: block;
+  animation: bounceIn 0.6s ease-out;
+}
+
+.toast-success {
+  background: #d4edda;
+  color: #155724;
+  border-left: 4px solid #28a745;
+}
+
+.toast-error {
+  background: #f8d7da;
+  color: #721c24;
+  border-left: 4px solid #dc3545;
+}
+
+/* ============================================
+   9. MEDIA QUERIES
+   ============================================ */
+
+/* Hero responsive */
+@media (max-width: 992px) {
+  .hero__quote {
+    font-size: 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero__title {
+    font-size: 5rem;
+    letter-spacing: 0.12em;
+  }
+
+  .hero__subtitle {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero__content {
+    max-width: 600px;
+  }
+
+  .hero__quote {
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+  }
+
+  .hero__title {
+    font-size: 3.5rem;
+    letter-spacing: 0.1em;
+  }
+
+  .hero__title::after {
+    bottom: -15px;
+  }
+
+  .hero__subtitle {
+    font-size: 0.8rem;
+    margin-top: 1.5rem;
+  }
+
+  .hero__scroll-text {
+    font-size: 0.65rem;
+  }
+
+  .toast-notification {
+    top: 10px;
+    right: 10px;
+    left: 10px;
+    max-width: none;
+  }
+
+  .company-button {
+    padding: 14px 32px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero__quote {
+    font-size: 0.85rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero__title {
+    font-size: 2.5rem;
+    letter-spacing: 0.08em;
+  }
+
+  .hero__subtitle {
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+  }
+}
+
+/* Services responsive */
+@media (max-width: 1024px) {
+  .service-container {
+    padding: 50px 40px;
+  }
+
+  .text-content h2 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .service-item {
+    min-height: auto;
+    padding: 60px 0;
+  }
+
+  .service-container {
+    padding: 40px 30px;
+  }
+
+  .text-content h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+
+  .text-content p {
+    font-size: 1rem;
+    margin-bottom: 30px;
+  }
+
+  .service-button {
+    padding: 14px 32px;
+    font-size: 1rem;
+  }
+
+  #services {
+    font-size: 13px;
+    padding: 10px;
+    line-height: 1.5;
+    min-height: 150px;
+    max-height: 200px;
+  }
+
+  #services option {
+    padding: 10px;
+    font-size: 16px;
+  }
+
+  .select-wrapper label {
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+
+  .select-hint {
+    font-size: 11px;
+    margin-top: 6px;
+  }
+
+  .ego-modal-content {
+    width: 95%;
+    margin: 10px auto;
+    max-height: 95vh;
+    overflow-y: auto;
+  }
+
+  .ego-modal-body {
+    padding: 20px;
+  }
+
+  .mil-button {
+    text-align: center;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .ego-modal-content {
+    width: 95%;
+    margin: 10px auto;
+  }
+
+  .ego-modal-body {
+    padding: 20px 15px;
+  }
+
+  .graph-popup__container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .graph-popup__item {
+    width: 100%;
+    max-width: 280px;
+    margin-bottom: 30px;
+  }
+
+  .graph-popup__canvas {
+    max-width: 100%;
+    height: auto !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .service-item {
+    min-height: auto;
+    padding: 50px 0;
+  }
+
+  .service-container {
+    padding: 30px 20px;
+  }
+
+  .text-content h2 {
+    font-size: 1.75rem;
+  }
+
+  .service-button {
+    padding: 12px 28px;
+    font-size: 0.95rem;
+  }
+
+  .ego-modal-header {
+    padding: 20px 15px;
+  }
+
+  .ego-modal-header h2 {
+    font-size: 22px;
+  }
+
+  .questionnaire__form {
+    padding: 0;
+  }
+
+  .questionnaire__question {
+    margin-bottom: 20px;
+  }
+
+  .questionnaire__option label {
+    font-size: 14px;
+  }
+
+  .graph-popup__item {
+    max-width: 240px;
+  }
+
+  .graph-popup__item-title {
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+
+  #services {
+    line-height: 1.4;
+    min-height: 180px;
+  }
+
+  #services option {
+    padding: 12px 6px;
+    font-size: 12px;
+    line-height: 1.4;
+    min-height: 50px;
+  }
+}
+
+@media (max-width: 350px) {
+  .graph-popup__item {
+    max-width: 200px;
+  }
+}
+
+/* Logo i hamburger na manjim ekranima */
+@media (max-width: 1200px) {
+  body:not(.scrolled-past-hero):not(.menu-is-open) .mil-menu-btn span,
+  body:not(.scrolled-past-hero):not(.menu-is-open) .mil-menu-btn span:after,
+  body:not(.scrolled-past-hero):not(.menu-is-open) .mil-menu-btn span:before {
+    background: #ffffff;
+  }
+
+  body.scrolled-past-hero .mil-menu-btn span,
+  body.scrolled-past-hero .mil-menu-btn span:after,
+  body.scrolled-past-hero .mil-menu-btn span:before {
+    background: #000000;
+  }
+}
