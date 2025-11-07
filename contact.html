@@ -407,7 +407,11 @@
                     playsinline
                     webkit-playsinline
                     x5-playsinline
-                    preload="metadata"
+                    x-webkit-airplay="allow"
+                    preload="auto"
+                    poster="./img/studio/01studio.jpg"
+                    disablePictureInPicture
+                    controlsList="nodownload noplaybackrate"
                     style="
                       width: 100%;
                       height: 100%;
@@ -415,7 +419,9 @@
                       display: block;
                     "
                   >
-                    <source src="./img/GNOTHE_video.webm" type="video/mp4" />
+                    <source src="./img/GNOTHE_video.mp4" type="video/mp4; codecs=avc1.42E01E,mp4a.40.2" />
+                    <source src="./img/GNOTHE_video.webm" type="video/webm; codecs=vp8,vorbis" />
+                    Vaš pretraživač ne podržava video element.
                   </video>
                 </div>
               </div>

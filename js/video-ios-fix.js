@@ -11,6 +11,31 @@
     return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
   }
 
+  // Funkcija za detekciju Safari browsera
+  function isSafari() {
+    return /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+  }
+
+  // Funkcija za forsirano korišćenje MP4 izvora na iOS/Safari
+  function forceMp4Source(video) {
+    if (!isIOS() && !isSafari()) return;
+
+    var sources = video.querySelectorAll('source');
+    var mp4Source = null;
+
+    // Pronađi MP4 source
+    sources.forEach(function(source) {
+      if (source.type.includes('video/mp4')) {
+        mp4Source = source;
+      }
+    });
+
+    if (mp4Source) {
+      console.log('Forcing MP4 source for iOS/Safari:', mp4Source.src);
+      video.src = mp4Source.src;
+    }
+  }
+
   // Funkcija za pokretanje video elementa
   function playVideo(video) {
     if (!video) return;
@@ -56,6 +81,9 @@
     console.log('Found ' + videos.length + ' autoplay video(s)');
 
     videos.forEach(function(video) {
+      // Eksplicitno koristi MP4 izvor na iOS/Safari
+      forceMp4Source(video);
+
       // Osiguraj da je video muted (iOS requirement)
       video.muted = true;
       video.playsInline = true;
@@ -64,6 +92,17 @@
       if (video.readyState < 3) {
         video.load();
       }
+
+      // Event listener za greške
+      video.addEventListener('error', function(e) {
+        console.error('Video error:', e);
+        console.error('Video error details:', {
+          error: video.error,
+          networkState: video.networkState,
+          readyState: video.readyState,
+          currentSrc: video.currentSrc
+        });
+      });
 
       // Event listener za kada je video spreman
       video.addEventListener('loadeddata', function() {
