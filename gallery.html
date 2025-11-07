@@ -193,8 +193,17 @@
           <!-- project -->
           <section class="mil-p-120-0">
             <div class="mil-image-frame mil-fw mil-up">
-              <video autoplay loop>
+              <video
+                autoplay
+                loop
+                muted
+                playsinline
+                webkit-playsinline
+                x5-playsinline
+                preload="auto"
+              >
                 <source src="./img/studio/GNOTHE_video.mp4" type="video/mp4" />
+                <source src="./img/studio/GNOTHE_video.webm" type="video/webm" />
               </video>
             </div>
             <div class="container mil-p-0-120" id="project">
@@ -387,7 +396,7 @@
                           </li>
                           <li>
                             <i
-                              class="fa-solid fa-clock"
+                              class="far fa-clock"
                               style="color: #689483; margin-right: 8px"
                             ></i>
                             <span>Prema dogovoru</span>
@@ -597,5 +606,7 @@
     <script src="js/plugins/ScrollTo.min.js"></script>
     <!-- Gnothe js -->
     <script src="js/main.js"></script>
+    <!-- iOS Video Fix -->
+    <script src="js/video-ios-fix.js"></script>
   </body>
 </html>

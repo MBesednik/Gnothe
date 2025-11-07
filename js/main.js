@@ -129,27 +129,70 @@ const observeMenuFrame = () => {
 // Pokreni observer kada je DOM spreman
 document.addEventListener("DOMContentLoaded", observeMenuFrame);
 
-// Promjena boje logo i hamburger menu na scroll
-window.addEventListener("scroll", () => {
-  const scrolled = window.pageYOffset;
-  const heroHeight = document.querySelector(".hero").offsetHeight;
+// ============================================
+// GLOBALNE HELPER FUNKCIJE
+// ============================================
+var accent = "rgba(255, 152, 0, 1)";
 
-  if (scrolled > heroHeight * 0.95) {
-    document.body.classList.add("scrolled-past-hero");
-  } else {
-    document.body.classList.remove("scrolled-past-hero");
-  }
-});
+// Accordion helper functions (koriste se i u init i u REINIT)
+function createAnimation(element) {
+  let menu = element.querySelector(".mil-accordion-menu");
+  let box = element.querySelector(".mil-accordion-content");
+  let symbol = element.querySelector(".mil-symbol");
+  let minusElement = element.querySelector(".mil-minus");
+  let plusElement = element.querySelector(".mil-plus");
 
-// Inicijalna provjera pri učitavanju stranice
-document.addEventListener("DOMContentLoaded", () => {
-  const scrolled = window.pageYOffset;
-  const heroHeight = document.querySelector(".hero")?.offsetHeight || 0;
+  gsap.set(box, {
+    height: "auto",
+  });
 
-  if (scrolled > heroHeight * 0.95) {
-    document.body.classList.add("scrolled-past-hero");
-  }
-});
+  let animation = gsap
+    .timeline()
+    .from(box, {
+      height: 0,
+      duration: 0.4,
+      ease: "sine",
+    })
+    .from(
+      minusElement,
+      {
+        duration: 0.4,
+        autoAlpha: 0,
+        ease: "none",
+      },
+      0
+    )
+    .to(
+      plusElement,
+      {
+        duration: 0.4,
+        autoAlpha: 0,
+        ease: "none",
+      },
+      0
+    )
+    .to(
+      symbol,
+      {
+        background: accent,
+        ease: "none",
+      },
+      0
+    )
+    .reverse();
+
+  return function (clickedMenu) {
+    if (clickedMenu === menu) {
+      animation.reversed(!animation.reversed());
+    } else {
+      animation.reverse();
+    }
+  };
+}
+
+function toggleMenu(clickedMenu, menuToggles) {
+  menuToggles.forEach((toggleFn) => toggleFn(clickedMenu));
+}
 
 $(function () {
   "use strict";
@@ -179,7 +222,6 @@ $(function () {
 
     ***************************/
 
-  var accent = "rgba(255, 152, 0, 1)";
   var dark = "#000";
   var light = "#fff";
 
@@ -337,67 +379,8 @@ $(function () {
   let menuToggles = groups.map(createAnimation);
 
   menus.forEach((menu) => {
-    menu.addEventListener("click", () => toggleMenu(menu));
+    menu.addEventListener("click", () => toggleMenu(menu, menuToggles));
   });
-
-  function toggleMenu(clickedMenu) {
-    menuToggles.forEach((toggleFn) => toggleFn(clickedMenu));
-  }
-
-  function createAnimation(element) {
-    let menu = element.querySelector(".mil-accordion-menu");
-    let box = element.querySelector(".mil-accordion-content");
-    let symbol = element.querySelector(".mil-symbol");
-    let minusElement = element.querySelector(".mil-minus");
-    let plusElement = element.querySelector(".mil-plus");
-
-    gsap.set(box, {
-      height: "auto",
-    });
-
-    let animation = gsap
-      .timeline()
-      .from(box, {
-        height: 0,
-        duration: 0.4,
-        ease: "sine",
-      })
-      .from(
-        minusElement,
-        {
-          duration: 0.4,
-          autoAlpha: 0,
-          ease: "none",
-        },
-        0
-      )
-      .to(
-        plusElement,
-        {
-          duration: 0.4,
-          autoAlpha: 0,
-          ease: "none",
-        },
-        0
-      )
-      .to(
-        symbol,
-        {
-          background: accent,
-          ease: "none",
-        },
-        0
-      )
-      .reverse();
-
-    return function (clickedMenu) {
-      if (clickedMenu === menu) {
-        animation.reversed(!animation.reversed());
-      } else {
-        animation.reverse();
-      }
-    };
-  }
   /***************************
 
     back to top
@@ -874,72 +857,14 @@ $(function () {
 
         ***************************/
 
+    // Reinicijalizacija accordion funkcionalnosti
     let groups = gsap.utils.toArray(".mil-accordion-group");
     let menus = gsap.utils.toArray(".mil-accordion-menu");
     let menuToggles = groups.map(createAnimation);
 
     menus.forEach((menu) => {
-      menu.addEventListener("click", () => toggleMenu(menu));
+      menu.addEventListener("click", () => toggleMenu(menu, menuToggles));
     });
-
-    function toggleMenu(clickedMenu) {
-      menuToggles.forEach((toggleFn) => toggleFn(clickedMenu));
-    }
-
-    function createAnimation(element) {
-      let menu = element.querySelector(".mil-accordion-menu");
-      let box = element.querySelector(".mil-accordion-content");
-      let symbol = element.querySelector(".mil-symbol");
-      let minusElement = element.querySelector(".mil-minus");
-      let plusElement = element.querySelector(".mil-plus");
-
-      gsap.set(box, {
-        height: "auto",
-      });
-
-      let animation = gsap
-        .timeline()
-        .from(box, {
-          height: 0,
-          duration: 0.4,
-          ease: "sine",
-        })
-        .from(
-          minusElement,
-          {
-            duration: 0.4,
-            autoAlpha: 0,
-            ease: "none",
-          },
-          0
-        )
-        .to(
-          plusElement,
-          {
-            duration: 0.4,
-            autoAlpha: 0,
-            ease: "none",
-          },
-          0
-        )
-        .to(
-          symbol,
-          {
-            background: accent,
-            ease: "none",
-          },
-          0
-        )
-        .reverse();
-
-      return function (clickedMenu) {
-        if (clickedMenu === menu) {
-          animation.reversed(!animation.reversed());
-        } else {
-          animation.reverse();
-        }
-      };
-    }
 
     /***************************
 
@@ -947,119 +872,7 @@ $(function () {
 
         ***************************/
 
-    $(".mil-drag, .mil-more, .mil-choose").mouseover(function () {
-      gsap.to($(cursor), 0.2, {
-        width: 90,
-        height: 90,
-        opacity: 1,
-        ease: "sine",
-      });
-    });
-
-    $(".mil-drag, .mil-more, .mil-choose").mouseleave(function () {
-      gsap.to($(cursor), 0.2, {
-        width: 20,
-        height: 20,
-        opacity: 0.1,
-        ease: "sine",
-      });
-    });
-
-    $(".mil-accent-cursor").mouseover(function () {
-      gsap.to($(cursor), 0.2, {
-        background: accent,
-        ease: "sine",
-      });
-      $(cursor).addClass("mil-accent");
-    });
-
-    $(".mil-accent-cursor").mouseleave(function () {
-      gsap.to($(cursor), 0.2, {
-        background: dark,
-        ease: "sine",
-      });
-      $(cursor).removeClass("mil-accent");
-    });
-
-    $(".mil-drag").mouseover(function () {
-      gsap.to($(".mil-ball .mil-icon-1"), 0.2, {
-        scale: "1",
-        ease: "sine",
-      });
-    });
-
-    $(".mil-drag").mouseleave(function () {
-      gsap.to($(".mil-ball .mil-icon-1"), 0.2, {
-        scale: "0",
-        ease: "sine",
-      });
-    });
-
-    $(".mil-more").mouseover(function () {
-      gsap.to($(".mil-ball .mil-more-text"), 0.2, {
-        scale: "1",
-        ease: "sine",
-      });
-    });
-
-    $(".mil-more").mouseleave(function () {
-      gsap.to($(".mil-ball .mil-more-text"), 0.2, {
-        scale: "0",
-        ease: "sine",
-      });
-    });
-
-    $(".mil-choose").mouseover(function () {
-      gsap.to($(".mil-ball .mil-choose-text"), 0.2, {
-        scale: "1",
-        ease: "sine",
-      });
-    });
-
-    $(".mil-choose").mouseleave(function () {
-      gsap.to($(".mil-ball .mil-choose-text"), 0.2, {
-        scale: "0",
-        ease: "sine",
-      });
-    });
-
-    $(
-      'a:not(".mil-choose , .mil-more , .mil-drag , .mil-accent-cursor"), input , textarea, .mil-accordion-menu'
-    ).mouseover(function () {
-      gsap.to($(cursor), 0.2, {
-        scale: 0,
-        ease: "sine",
-      });
-      gsap.to($(".mil-ball svg"), 0.2, {
-        scale: 0,
-      });
-    });
-
-    $(
-      'a:not(".mil-choose , .mil-more , .mil-drag , .mil-accent-cursor"), input, textarea, .mil-accordion-menu'
-    ).mouseleave(function () {
-      gsap.to($(cursor), 0.2, {
-        scale: 1,
-        ease: "sine",
-      });
-
-      gsap.to($(".mil-ball svg"), 0.2, {
-        scale: 1,
-      });
-    });
-
-    $("body").mousedown(function () {
-      gsap.to($(cursor), 0.2, {
-        scale: 0.1,
-        ease: "sine",
-      });
-    });
-    $("body").mouseup(function () {
-      gsap.to($(cursor), 0.2, {
-        scale: 1,
-        ease: "sine",
-      });
-    });
+    // Cursor eventi već postoje globalno, ne trebaju reinicijalizacija
     /***************************
 
         main menu

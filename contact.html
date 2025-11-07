@@ -342,7 +342,7 @@
                   </p>
                   <p class="mb-3">
                     <i
-                      class="fa-solid fa-clock"
+                      class="far fa-clock"
                       style="color: #689483; margin-right: 8px"
                     ></i>
                     Prema dogovoru
@@ -397,10 +397,15 @@
                     autoplay
                     loop
                     muted
+                    playsinline
                     preload="auto"
+                    webkit-playsinline
+                    x5-playsinline
                     style="width: 100%; height: 100%; object-fit: cover"
+                    poster="./img/video-poster.jpg"
                   >
                     <source src="./img/GNOTHE_video.mp4" type="video/mp4" />
+                    <source src="./img/GNOTHE_video.webm" type="video/webm" />
                     Your browser does not support the video tag.
                   </video>
                 </div>
@@ -564,7 +569,7 @@
                           </li>
                           <li>
                             <i
-                              class="fa-solid fa-clock"
+                              class="far fa-clock"
                               style="color: #689483; margin-right: 8px"
                             ></i>
                             <span>Prema dogovoru</span>
@@ -902,5 +907,7 @@
     <script src="js/plugins/ScrollTo.min.js"></script>
     <!-- Gnothe js -->
     <script src="js/main.js"></script>
+    <!-- iOS Video Fix -->
+    <script src="js/video-ios-fix.js"></script>
   </body>
 </html>

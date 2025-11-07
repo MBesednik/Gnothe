@@ -1,0 +1,76 @@
+/* -------------------------------------------------
+   CONTACT PAGE STYLES
+------------------------------------------------- */
+
+.mil-map-video-container {
+  padding: 60px 0;
+  background-color: #f9f9f9;
+}
+
+.mil-map,
+.mil-video-container {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+@media (max-width: 991px) {
+  .mil-video-container {
+    margin-top: 30px;
+  }
+}
+
+.icon-text {
+  display: flex;
+  align-items: flex-start; /* ikona gore, tekst odmah pored */
+  margin-bottom: 14px;
+}
+
+.icon-text i {
+  color: #689483;
+  font-size: 1.2rem;
+  margin-right: 10px;
+  margin-top: 3px; /* sitno podešavanje da se bolje poravna s prvim redom teksta */
+  flex-shrink: 0; /* sprječava da ikona bude stisnuta */
+}
+
+.icon-text p {
+  margin: 0;
+}
+
+/* Inline style attributes konvertovani u CSS klase */
+.contact-section-title {
+  font-size: 2rem;
+  color: #333;
+}
+
+.contact-icon {
+  color: #689483;
+  margin-right: 8px;
+}
+
+.contact-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.contact-link:hover {
+  color: #689483;
+  text-decoration: underline;
+}
+
+.map-container {
+  height: 500px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.map-iframe {
+  border: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.contact-divider {
+  opacity: 0.1;
+}

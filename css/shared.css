@@ -1,0 +1,106 @@
+/* -------------------------------------------------
+   SHARED COMPONENTS - Used across multiple pages
+------------------------------------------------- */
+
+/* Toast notification styles */
+.toast-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  max-width: 400px;
+  padding: 16px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  font-size: 14px;
+  font-weight: 500;
+  opacity: 0;
+  transform: translateX(100%) scale(0.3);
+  transition: all 0.3s ease;
+  display: none;
+}
+
+.toast-notification.show {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+  display: block;
+  animation: bounceIn 0.6s ease-out;
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: translateX(100%) scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(-10px) scale(1.05);
+  }
+  70% {
+    transform: translateX(10px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+.toast-success {
+  background: #d4edda;
+  color: #155724;
+  border-left: 4px solid #28a745;
+}
+
+.toast-error {
+  background: #f8d7da;
+  color: #721c24;
+  border-left: 4px solid #dc3545;
+}
+
+@media (max-width: 768px) {
+  .toast-notification {
+    top: 10px;
+    right: 10px;
+    left: 10px;
+    max-width: none;
+  }
+}
+
+/* Footer utility classes (used across multiple pages) */
+.footer-business-info {
+  font-size: 13px;
+  line-height: 1.8;
+  color: #888;
+  padding-left: 0;
+}
+
+.footer-business-info p:first-child {
+  margin-bottom: 10px;
+  margin-top: 0;
+}
+
+.footer-business-info p:last-child {
+  margin-bottom: 0;
+}
+
+.footer-menu-column {
+  padding-top: 0;
+}
+
+.footer-hours-title {
+  margin-bottom: 15px;
+  margin-top: 0;
+}
+
+.footer-icon-clock {
+  color: #689483;
+  margin-right: 8px;
+}
+
+.footer-privacy-link {
+  color: #689483;
+}
+
+.footer-privacy-link:hover {
+  text-decoration: underline;
+}

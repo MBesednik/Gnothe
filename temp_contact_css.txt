@@ -1,0 +1,100 @@
+      .mil-map-video-container {
+        padding: 60px 0;
+        background-color: #f9f9f9;
+      }
+
+      .mil-map,
+      .mil-video-container {
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      }
+
+      @media (max-width: 991px) {
+        .mil-video-container {
+          margin-top: 30px;
+        }
+      }
+
+      /* Toast notification styles */
+      .toast-notification {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        max-width: 400px;
+        padding: 16px 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        z-index: 1000;
+        font-size: 14px;
+        font-weight: 500;
+        opacity: 0;
+        transform: translateX(100%) scale(0.3);
+        transition: all 0.3s ease;
+        display: none;
+      }
+
+      .toast-notification.show {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+        display: block;
+        animation: bounceIn 0.6s ease-out;
+      }
+
+      @keyframes bounceIn {
+        0% {
+          opacity: 0;
+          transform: translateX(100%) scale(0.3);
+        }
+        50% {
+          opacity: 1;
+          transform: translateX(-10px) scale(1.05);
+        }
+        70% {
+          transform: translateX(10px) scale(0.95);
+        }
+        100% {
+          opacity: 1;
+          transform: translateX(0) scale(1);
+        }
+      }
+
+      .toast-success {
+        background: #d4edda;
+        color: #155724;
+        border-left: 4px solid #28a745;
+      }
+
+      .toast-error {
+        background: #f8d7da;
+        color: #721c24;
+        border-left: 4px solid #dc3545;
+      }
+
+      @media (max-width: 768px) {
+        .toast-notification {
+          top: 10px;
+          right: 10px;
+          left: 10px;
+          max-width: none;
+        }
+      }
+
+      .icon-text {
+        display: flex;
+        align-items: flex-start; /* ikona gore, tekst odmah pored */
+        margin-bottom: 14px;
+      }
+
+      .icon-text i {
+        color: #689483;
+        font-size: 1.2rem;
+        margin-right: 10px;
+        margin-top: 3px; /* sitno podešavanje da se bolje poravna s prvim redom teksta */
+        flex-shrink: 0; /* sprječava da ikona bude stisnuta */
+      }
+
+      .icon-text p {
+        margin: 0;
+      }
+    </style>

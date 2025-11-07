@@ -7,20 +7,38 @@
 
     <!-- FAVICON -->
     <link rel="icon" type="image/png" href="img/ICON-LOGO-lg.png" />
-    <!-- bootstrap grid css -->
-    <link rel="stylesheet" href="css/plugins/bootstrap-grid.css" />
-    <!-- font awesome css -->
-    <link rel="stylesheet" href="css/plugins/font-awesome.min.css" />
-    <!-- swiper css -->
-    <link rel="stylesheet" href="css/plugins/swiper.min.css" />
-    <!-- fancybox css -->
-    <link rel="stylesheet" href="css/plugins/fancybox.min.css" />
-    <!-- Gnothe scss -->
+
+    <!-- PRELOAD CRITICAL RESOURCES -->
+    <link rel="preload" href="css/style.css" as="style" />
+    <link rel="preload" href="css/about.css" as="style" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+
+    <!-- CRITICAL CSS INLINE -->
+    <style>
+      body{margin:0;font-family:"Outfit",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;background:#fff;color:#000;overflow-x:hidden}.mil-frame{position:fixed;top:0;left:0;width:100%;z-index:1000;pointer-events:none}.mil-frame>*{pointer-events:all}.mil-frame-top{display:flex;justify-content:space-between;align-items:center;padding:30px 60px}.gnothe-logo{font-size:28px;font-weight:700;color:#000}.mil-wrapper{min-height:100vh}.container{width:100%;max-width:1200px;margin:0 auto;padding:0 15px}
+    </style>
+
+    <!-- MAIN CSS FILES -->
     <link rel="stylesheet" href="css/style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    />
+    <link rel="stylesheet" href="css/about.css" />
+    <link rel="stylesheet" href="css/shared.css" />
+
+    <!-- NON-CRITICAL CSS (async) -->
+    <link rel="preload" href="css/plugins/bootstrap-grid.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="css/plugins/bootstrap-grid.css" /></noscript>
+
+    <link rel="stylesheet" href="css/plugins/font-awesome.min.css" />
+
+    <link rel="preload" href="css/plugins/swiper.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="css/plugins/swiper.min.css" /></noscript>
+
+    <link rel="preload" href="css/plugins/fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="css/plugins/fancybox.min.css" /></noscript>
+
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" /></noscript>
     <!-- Google Analytics s Consent Mode -->
     <!-- Google tag (gtag.js) -->
     <script
@@ -42,332 +60,6 @@
 
     <!-- page name -->
     <title>Gnothe</title>
-
-    <style>
-      /* -------------------------------------------------
-   ABOUT — HERO
-------------------------------------------------- */
-      .about-hero {
-        padding: 120px 0 80px;
-        text-align: center;
-      }
-      .about-hero__breadcrumb {
-        font-size: 14px;
-        color: #999;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        margin-bottom: 40px;
-      }
-      .about-hero__title {
-        font-size: 48px;
-        font-weight: 300;
-        color: #333;
-        margin-bottom: 20px;
-        line-height: 1.2;
-      }
-      .about-hero__name {
-        font-weight: 600;
-        color: #000;
-      }
-
-      /* -------------------------------------------------
-   NOVA PROFILE SEKCIJA
-------------------------------------------------- */
-      .about-content__container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
-      }
-
-      .about-profile {
-        display: grid;
-        grid-template-columns: 1fr auto;
-        gap: 100px;
-        align-items: start;
-        background: #fff;
-        padding: 60px 60px;
-        border-radius: 12px;
-        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
-        margin-bottom: 60px;
-      }
-
-      /* Profile Left Side */
-      .about-profile__left {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        gap: 30px;
-        max-width: 400px;
-        margin: 0 auto;
-      }
-
-      /* Profile Image */
-      .about-profile__image {
-        width: 230px;
-        height: 230px;
-        border-radius: 50%;
-        overflow: hidden;
-        flex-shrink: 0;
-        border: 6px solid #fff;
-        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
-      }
-
-      .about-profile__img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center 20%;
-      }
-
-      /* Profile Text */
-      .about-profile__content {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-      }
-
-      .profile-name {
-        font-size: 40px;
-        font-weight: 700;
-        color: #333;
-        margin: 0;
-        line-height: 1.2;
-      }
-
-      .profile-title {
-        font-size: 18px;
-        color: #666;
-        line-height: 1.5;
-        margin: 0;
-      }
-
-      /* Credentials sidebar */
-      .about-profile__credentials {
-        min-width: 280px;
-      }
-
-      .credentials,
-      .education {
-        margin-top: 40px;
-        margin-bottom: 40px;
-      }
-
-      .credentials__title,
-      .education__title {
-        font-size: 20px;
-        font-weight: 600;
-        color: #333;
-        margin-bottom: 20px;
-        position: relative;
-        padding-bottom: 8px;
-      }
-      .credentials__title::after,
-      .education__title::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 40px;
-        height: 2px;
-        background: #689483;
-      }
-
-      .credentials__list,
-      .education__list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-      }
-      .credentials__item,
-      .education__item {
-        font-size: 14px;
-        color: #666;
-        margin-bottom: 10px;
-        padding-left: 20px;
-        position: relative;
-        line-height: 1.4;
-      }
-      .credentials__item::before,
-      .education__item::before {
-        content: "·";
-        position: absolute;
-        left: 0;
-        color: #689483;
-        font-size: 18px;
-        font-weight: bold;
-      }
-
-      /* -------------------------------------------------
-   ORGANIZACIJE
-------------------------------------------------- */
-      .organizations {
-        padding: 80px 0;
-        background: #f8f8f8;
-      }
-      .organizations__title {
-        text-align: center;
-        font-size: 32px;
-        font-weight: 300;
-        color: #333;
-        margin-bottom: 60px;
-      }
-      .organizations__grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 40px;
-        max-width: 800px;
-        margin: 0 auto;
-        align-items: center;
-      }
-      .organizations__logo {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        padding: 10px;
-        height: 100px;
-        background: #fff;
-        border-radius: 8px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-        transition: transform 0.3s ease;
-      }
-      .organizations__logo:hover {
-        transform: translateY(-5px);
-      }
-      .organizations__img {
-        max-width: 100%;
-        max-height: 80px;
-        object-fit: contain;
-      }
-
-      /* -------------------------------------------------
-   KONTAKT
-------------------------------------------------- */
-      .contact-section {
-        padding: 80px 0;
-        text-align: center;
-      }
-      .contact-section__title {
-        font-size: 32px;
-        font-weight: 300;
-        color: #333;
-        margin-bottom: 20px;
-      }
-      .contact-section__subtitle {
-        font-size: 18px;
-        color: #666;
-        margin-bottom: 40px;
-        max-width: 600px;
-        margin-inline: auto;
-      }
-      .contact-section__btn {
-        display: inline-flex;
-        align-items: center;
-        background: #689483;
-        color: #fff;
-        padding: 18px 40px;
-        border-radius: 50px;
-        text-decoration: none;
-        font-weight: 500;
-        font-size: 16px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        transition: all 0.3s ease;
-      }
-      .contact-section__btn:hover {
-        background: #689483;
-        transform: translateY(-2px);
-        color: #fff;
-        text-decoration: none;
-      }
-      .contact-section__btn-icon {
-        margin-left: 15px;
-        width: 20px;
-        height: 20px;
-        background: #333;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .contact-section__btn-icon::after {
-        content: "→";
-        color: #fff;
-        font-size: 12px;
-      }
-
-      /* -------------------------------------------------
-   RESPONSIVE
-------------------------------------------------- */
-      @media (max-width: 768px) {
-        .about-hero__title {
-          font-size: 36px;
-        }
-
-        .about-profile {
-          grid-template-columns: 1fr;
-          text-align: center;
-          gap: 40px;
-          padding: 50px 20px;
-        }
-
-        .about-profile__left {
-          max-width: none;
-        }
-
-        .about-profile__image {
-          width: 210px;
-          height: 210px;
-          border: 5px solid #fff;
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
-        }
-
-        .profile-name {
-          font-size: 32px;
-        }
-
-        .profile-title {
-          font-size: 16px;
-        }
-
-        .about-profile__credentials {
-          min-width: auto;
-          text-align: left;
-        }
-
-        .credentials,
-        .education {
-          margin-bottom: 30px;
-        }
-
-        .organizations__grid {
-          grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-          gap: 20px;
-        }
-      }
-
-      @media (max-width: 480px) {
-        .profile-name {
-          font-size: 28px;
-        }
-
-        .profile-title {
-          font-size: 15px;
-        }
-
-        .about-profile {
-          padding: 40px 15px;
-        }
-
-        .about-profile__image {
-          width: 220px;
-          height: 220px;
-          border: 4px solid #fff;
-          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.16);
-        }
-      }
-    </style>
   </head>
 
   <body>
@@ -642,21 +334,13 @@
                     </div>
 
                     <!-- Podaci o obrtu -->
-                    <div
-                      class="mil-up"
-                      style="
-                        font-size: 13px;
-                        line-height: 1.8;
-                        color: #888;
-                        padding-left: 0;
-                      "
-                    >
-                      <p style="margin-bottom: 10px; margin-top: 0">
+                    <div class="mil-up footer-business-info">
+                      <p>
                         GNOTHE, obrt za savjetovanje<br />
                         vl. Melita Zajkovski<br />
                         Hrvatske mladeži 6c, Zaprešić
                       </p>
-                      <p style="margin-bottom: 0">
+                      <p>
                         MBO: 98518267<br />
                         IBAN: HR1823600001103043694
                       </p>
@@ -665,10 +349,7 @@
                   <div class="col-md-7 col-lg-6">
                     <div class="row justify-content-end align-items-start">
                       <div class="col-md-6 col-lg-7">
-                        <nav
-                          class="mil-footer-menu mil-mb-60"
-                          style="padding-top: 0"
-                        >
+                        <nav class="mil-footer-menu mil-mb-60 footer-menu-column">
                           <ul>
                             <li class="mil-up mil-active">
                               <a href="index.html">Naslovna</a>
@@ -691,21 +372,15 @@
                           </ul>
                         </nav>
                       </div>
-                      <div class="col-md-6 col-lg-5" style="padding-top: 0">
+                      <div class="col-md-6 col-lg-5 footer-menu-column">
                         <ul class="mil-menu-list mil-up mil-mb-60">
                           <li>
-                            <h6
-                              class=""
-                              style="margin-bottom: 15px; margin-top: 0"
-                            >
+                            <h6 class="footer-hours-title">
                               Radno vrijeme
                             </h6>
                           </li>
                           <li>
-                            <i
-                              class="fa-solid fa-clock"
-                              style="color: #689483; margin-right: 8px"
-                            ></i>
+                            <i class="far fa-clock footer-icon-clock"></i>
                             <span>Prema dogovoru</span>
                           </li>
                         </ul>
@@ -720,7 +395,7 @@
                         <p class="mil-up">
                           <i><b>GNOTHE</b>, obrt za savjetovanje</i>
                           <br />
-                          <a href="privacy-policy.html" style="color: #689483"
+                          <a href="privacy-policy.html" class="footer-privacy-link"
                             >Politika i privatnost</a
                           >
                         </p>
