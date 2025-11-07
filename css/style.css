@@ -1914,6 +1914,11 @@ frame
   transform: scaleY(1.25) !important; /* Slight vertical stretch */
 }
 
+.gnothe-main-privacy {
+  font-size: 18 !important; /* Increased size */
+  font-weight: 300;
+  transform: scaleY(1.25) !important; /* Slight vertical stretch */
+}
 .gnothe-subtitle {
   font-size: 14px;
   font-weight: 250;
