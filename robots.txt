@@ -1,4 +1,4 @@
-# robots.txt for GNOTHE - Psihološko savjetovanje
+# robots.txt for GNOTHE -  savjetovanje
 # https://www.gnothe.com
 
 User-agent: *
