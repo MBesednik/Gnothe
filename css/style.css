@@ -2793,12 +2793,7 @@ banner
 }
 
 .mil-inner-banner .mil-banner-content {
-  padding: 150px 0 0 0;
-}
-@media screen and (max-width: 1200px) {
-  .mil-inner-banner .mil-banner-content {
-    padding: 180px 0 0 0;
-  }
+  padding: 100px 0 0 0;
 }
 
 .mil-banner-personal {

@@ -34,7 +34,7 @@
 .about-content__container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 150px 20px 0px 20px;
 }
 
 .about-profile {
@@ -338,6 +338,9 @@
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 20px;
   }
+  .about-content__container {
+    padding: 120px 20px 0px 20px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -358,5 +361,8 @@
     height: 220px;
     border: 4px solid #fff;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.16);
+  }
+  .about-content__container {
+    padding: 100px 20px 0px 20px;
   }
 }
