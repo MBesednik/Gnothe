@@ -1,0 +1,23 @@
+# robots.txt for GNOTHE - Psihološko savjetovanje
+# https://www.gnothe.com
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://www.gnothe.com/sitemap.xml
+
+# Disallow crawling of admin and config files
+Disallow: /css/
+Disallow: /js/
+Disallow: /img/heroSection.mov
+
+# Allow crawling of important pages
+Allow: /index.html
+Allow: /about.html
+Allow: /contact.html
+Allow: /service.html
+Allow: /test.html
+Allow: /announcement.html
+Allow: /gallery.html
+Allow: /privacy-policy.html

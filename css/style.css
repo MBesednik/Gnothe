@@ -702,7 +702,9 @@ textarea::-webkit-input-placeholder {
   text-transform: uppercase;
   letter-spacing: 2px;
   font-weight: 500;
-  color: rgba(0, 0, 0, 0.5);
+  color: rgba(0, 0, 0, 0.6);
+  opacity: 1;
+  -webkit-text-fill-color: rgba(0, 0, 0, 0.6);
 }
 input::-moz-placeholder,
 textarea::-moz-placeholder {
@@ -710,7 +712,8 @@ textarea::-moz-placeholder {
   text-transform: uppercase;
   letter-spacing: 2px;
   font-weight: 500;
-  color: rgba(0, 0, 0, 0.5);
+  color: rgba(0, 0, 0, 0.6);
+  opacity: 1;
 }
 input:-ms-input-placeholder,
 textarea:-ms-input-placeholder {
@@ -718,7 +721,8 @@ textarea:-ms-input-placeholder {
   text-transform: uppercase;
   letter-spacing: 2px;
   font-weight: 500;
-  color: rgba(0, 0, 0, 0.5);
+  color: rgba(0, 0, 0, 0.6);
+  opacity: 1;
 }
 input::-ms-input-placeholder,
 textarea::-ms-input-placeholder {
@@ -726,7 +730,8 @@ textarea::-ms-input-placeholder {
   text-transform: uppercase;
   letter-spacing: 2px;
   font-weight: 500;
-  color: rgba(0, 0, 0, 0.5);
+  color: rgba(0, 0, 0, 0.6);
+  opacity: 1;
 }
 input::placeholder,
 textarea::placeholder {
@@ -734,12 +739,29 @@ textarea::placeholder {
   text-transform: uppercase;
   letter-spacing: 2px;
   font-weight: 500;
-  color: rgba(0, 0, 0, 0.5);
+  color: rgba(0, 0, 0, 0.6);
+  opacity: 1;
 }
 
 textarea {
   padding: 15px 30px;
   height: 300px;
+}
+
+/* iOS Safari specifični stilovi za input i textarea */
+@supports (-webkit-touch-callout: none) {
+  input,
+  textarea {
+    -webkit-appearance: none;
+    appearance: none;
+    -webkit-text-fill-color: rgba(0, 0, 0, 1);
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    -webkit-text-fill-color: rgba(0, 0, 0, 0.6);
+    opacity: 1;
+  }
 }
 
 /* -------------------------------------------

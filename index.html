@@ -5,8 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
+    <!-- SEO META TAGS -->
+    <meta
+      name="description"
+      content="GNOTHE - Stručno psihološko savjetovanje u Zaprešiću. Individualno, partnersko i grupno savjetovanje. Specijalizirani za anksiozna stanja, burnout, neurodivergentnost, TRE i EMDR terapiju. Siguran prostor za vaš osobni razvoj."
+    />
+    <meta
+      name="keywords"
+      content="psihološko savjetovanje, savjetovanje Zaprešić, transakcijska analiza, EMDR terapija, TRE seanse, anksioznost, burnout, neurodivergentnost, partnersko savjetovanje, grupno savjetovanje, EAP program, psiholog Zagreb, online savjetovanje"
+    />
+    <meta name="author" content="Melita Zajkovski" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://www.gnothe.com/" />
+
+    <!-- OPEN GRAPH / FACEBOOK -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.gnothe.com/" />
+    <meta
+      property="og:title"
+      content="GNOTHE - Psihološko savjetovanje | Spoznaj sebe"
+    />
+    <meta
+      property="og:description"
+      content="Sigurno i podržavajuće mjesto za osobni razvoj. Individualno, partnersko i grupno savjetovanje u Zaprešiću. Specijalizirani za transakcijsku analizu, EMDR i TRE terapiju."
+    />
+    <meta
+      property="og:image"
+      content="https://www.gnothe.com/img/ICON-LOGO-lg.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="hr_HR" />
+    <meta property="og:site_name" content="GNOTHE" />
+
+    <!-- TWITTER CARD -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://www.gnothe.com/" />
+    <meta
+      name="twitter:title"
+      content="GNOTHE - Psihološko savjetovanje | Spoznaj sebe"
+    />
+    <meta
+      name="twitter:description"
+      content="Sigurno i podržavajuće mjesto za osobni razvoj. Individualno, partnersko i grupno savjetovanje u Zaprešiću."
+    />
+    <meta
+      name="twitter:image"
+      content="https://www.gnothe.com/img/ICON-LOGO-lg.png"
+    />
+
     <!-- FAVICON -->
     <link rel="icon" type="image/png" href="img/ICON-LOGO-lg.png" />
+    <link rel="apple-touch-icon" href="img/ICON-LOGO-lg.png" />
 
     <!-- PRELOAD CRITICAL RESOURCES -->
     <link rel="preload" href="css/style.css" as="style" />
@@ -158,8 +208,59 @@
 
     <!-- Vaš cookie banner -->
     <link rel="stylesheet" href="css/plugins/cookie-banner.css" />
+
+    <!-- STRUCTURED DATA (JSON-LD) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "GNOTHE - Obrt za savjetovanje",
+        "image": "https://www.gnothe.com/img/ICON-LOGO-lg.png",
+        "description": "Stručno psihološko savjetovanje u Zaprešiću. Individualno, partnersko i grupno savjetovanje. Specijalizirani za transakcijsku analizu, EMDR i TRE terapiju.",
+        "@id": "https://www.gnothe.com",
+        "url": "https://www.gnothe.com",
+        "telephone": "+385",
+        "email": "melita.zajkovski@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Hrvatske mladeži 6c",
+          "addressLocality": "Zaprešić",
+          "postalCode": "10290",
+          "addressCountry": "HR"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 45.8564,
+          "longitude": 15.8072
+        },
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "09:00",
+          "closes": "20:00"
+        },
+        "priceRange": "$$",
+        "founder": {
+          "@type": "Person",
+          "name": "Melita Zajkovski"
+        },
+        "areaServed": {
+          "@type": "Place",
+          "name": "Hrvatska"
+        },
+        "serviceType": [
+          "Individualno psihološko savjetovanje",
+          "Partnersko savjetovanje",
+          "Grupno savjetovanje",
+          "EMDR terapija",
+          "TRE seanse",
+          "Program podrške zaposlenicima (EAP)"
+        ]
+      }
+    </script>
+
     <!-- page name -->
-    <title>Gnothe</title>
+    <title>GNOTHE - Psihološko savjetovanje Zaprešić | Spoznaj sebe</title>
   </head>
 
   <body>
@@ -865,7 +966,7 @@
               <div class="col-lg-12 mil-up">
                 <input
                   type="text"
-                  placeholder="Kontakt osoba (ime i prezime)"
+                  placeholder="Kontakt osoba"
                   name="contact_person"
                   id="contactPerson"
                   required
@@ -891,33 +992,56 @@
               </div>
 
               <div class="col-lg-12 mil-up" style="margin-top: 20px">
-                <div class="select-wrapper">
-                  <label for="services">Želim ugovoriti:</label>
-                  <select
-                    name="services[]"
-                    id="services"
-                    multiple
-                    size="4"
-                    required
-                  >
-                    <option value="individualno_savjetovanje">
-                      Individualno savjetovanje za zaposlenike (uživo ili
-                      online)
-                    </option>
-                    <option value="savjetovanje_s_obitelji">
-                      Individualno savjetovanje za zaposlenike i članove uže
-                      obitelji (uživo ili online)
-                    </option>
-                    <option value="psihoedukacija">
-                      Psihoedukaciju za tim na određenu temu (uživo ili online)
-                    </option>
-                    <option value="tre_seanse">
-                      TRE seanse za otpuštanje stresa i napetosti za grupu
-                      zaposlenika (uživo)
-                    </option>
-                  </select>
+                <div class="checkbox-wrapper">
+                  <label class="checkbox-group-label">Želim ugovoriti:</label>
+                  <div class="checkbox-group">
+                    <label class="checkbox-item">
+                      <input
+                        type="checkbox"
+                        name="services[]"
+                        value="individualno_savjetovanje"
+                      />
+                      <span class="checkbox-label">
+                        Individualno savjetovanje za zaposlenike (uživo ili
+                        online)
+                      </span>
+                    </label>
+                    <label class="checkbox-item">
+                      <input
+                        type="checkbox"
+                        name="services[]"
+                        value="savjetovanje_s_obitelji"
+                      />
+                      <span class="checkbox-label">
+                        Individualno savjetovanje za zaposlenike i članove uže
+                        obitelji (uživo ili online)
+                      </span>
+                    </label>
+                    <label class="checkbox-item">
+                      <input
+                        type="checkbox"
+                        name="services[]"
+                        value="psihoedukacija"
+                      />
+                      <span class="checkbox-label">
+                        Psihoedukaciju za tim na određenu temu (uživo ili
+                        online)
+                      </span>
+                    </label>
+                    <label class="checkbox-item">
+                      <input
+                        type="checkbox"
+                        name="services[]"
+                        value="tre_seanse"
+                      />
+                      <span class="checkbox-label">
+                        TRE seanse za otpuštanje stresa i napetosti za grupu
+                        zaposlenika (uživo)
+                      </span>
+                    </label>
+                  </div>
                   <small class="select-hint">
-                    Držite Ctrl (Cmd na Mac-u) za odabir više opcija
+                    Možete odabrati više opcija
                   </small>
                 </div>
               </div>

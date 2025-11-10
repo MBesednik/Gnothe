@@ -750,6 +750,128 @@ body.menu-is-open .mil-menu-btn span:before {
   font-style: italic;
 }
 
+/* Checkbox Group Stilovi */
+.checkbox-wrapper {
+  margin-bottom: 15px;
+}
+
+.checkbox-group-label {
+  display: block;
+  margin-bottom: 15px;
+  font-weight: 500;
+  color: #333;
+  font-size: 15px;
+}
+
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: flex-start;
+  cursor: pointer;
+  padding: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  background-color: #fff;
+}
+
+.checkbox-item:hover {
+  border-color: #7d9c8b;
+  background-color: rgba(125, 156, 139, 0.05);
+}
+
+.checkbox-item input[type="checkbox"] {
+  margin: 0;
+  margin-right: 12px;
+  margin-top: 2px;
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  accent-color: #7d9c8b;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.checkbox-label {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  cursor: pointer;
+  flex: 1;
+}
+
+.checkbox-item input[type="checkbox"]:checked + .checkbox-label {
+  font-weight: 500;
+  color: #000;
+}
+
+/* Responzivnost za male ekrane */
+@media screen and (max-width: 768px) {
+  .checkbox-item {
+    padding: 10px;
+    gap: 8px;
+  }
+
+  .checkbox-item input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    min-width: 18px;
+    margin-right: 10px;
+  }
+
+  .checkbox-label {
+    font-size: 13px;
+  }
+
+  .checkbox-group-label {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .checkbox-item {
+    padding: 8px;
+  }
+
+  .checkbox-label {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .checkbox-group {
+    gap: 10px;
+  }
+}
+
+/* iOS Safari specifični stilovi za select opcije */
+@supports (-webkit-touch-callout: none) {
+  #services {
+    -webkit-appearance: none;
+    appearance: none;
+    font-size: 16px;
+  }
+
+  #services option {
+    padding: 15px 10px;
+    font-size: 16px;
+    line-height: 1.6;
+    min-height: 48px;
+    background-color: white;
+  }
+
+  #services option:checked {
+    background: linear-gradient(180deg, #7d9c8b 0%, #7d9c8b 100%);
+    -webkit-text-fill-color: white;
+    color: white;
+  }
+}
+
 /* ============================================
    8. TOAST NOTIFIKACIJE
    ============================================ */
@@ -906,26 +1028,41 @@ body.menu-is-open .mil-menu-btn span:before {
   }
 
   #services {
-    font-size: 13px;
-    padding: 10px;
-    line-height: 1.5;
-    min-height: 150px;
-    max-height: 200px;
+    font-size: 15px;
+    padding: 12px;
+    line-height: 1.6;
+    min-height: 180px;
+    max-height: 220px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
   }
 
   #services option {
-    padding: 10px;
+    padding: 12px 10px;
     font-size: 16px;
+    line-height: 1.5;
+    min-height: 45px;
+    background-color: white;
+    color: #333;
+  }
+
+  #services option:checked {
+    background: linear-gradient(180deg, #7d9c8b 0%, #7d9c8b 100%);
+    color: white;
   }
 
   .select-wrapper label {
-    font-size: 14px;
-    margin-bottom: 8px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #000;
   }
 
   .select-hint {
-    font-size: 11px;
-    margin-top: 6px;
+    font-size: 12px;
+    margin-top: 8px;
+    color: #666;
   }
 
   .ego-modal-content {

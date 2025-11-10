@@ -257,6 +257,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const companyModalLoader = document.getElementById("companyModalLoader");
     const companyForm = document.getElementById("companyForm");
 
+    // Prikupi odabrane usluge (checkboxes)
+    const servicesCheckboxes = document.querySelectorAll('input[name="services[]"]:checked');
+
+    // Validacija - provjerava da li je barem jedan checkbox odabran
+    if (servicesCheckboxes.length === 0) {
+      showToast("errorMessage", "Molimo odaberite barem jednu uslugu!");
+      return;
+    }
+
     // Onemogući button i prikaži loader
     companySubmitBtn.disabled = true;
     companyModalLoader.style.display = "flex";
@@ -268,10 +277,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const contactEmail = document.getElementById("contactEmail").value;
     const contactPhone = document.getElementById("contactPhone").value;
 
-    // Prikupi odabrane usluge (multiple select)
-    const servicesSelect = document.getElementById("services");
-    const selectedOptions = Array.from(servicesSelect.selectedOptions);
-    const servicesArray = selectedOptions.map((option) => option.text);
+    const servicesArray = Array.from(servicesCheckboxes).map((checkbox) => {
+      return checkbox.nextElementSibling.textContent.trim();
+    });
     const servicesText = servicesArray.join("\n• ");
 
     // Datum
