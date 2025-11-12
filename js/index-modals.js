@@ -131,10 +131,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Zatvori modal - ESC tipka
     document.addEventListener("keydown", function (event) {
-      if (
-        event.key === "Escape" &&
-        companyModal.style.display === "block"
-      ) {
+      if (event.key === "Escape" && companyModal.style.display === "block") {
         closeCompanyModal();
       }
     });
@@ -209,7 +206,8 @@ document.addEventListener("DOMContentLoaded", function () {
       message: document.getElementById("message").value,
       service_type: selectedService,
       current_date: currentDate,
-      to_email: "m.besednik69@gmail.com",
+      from_email: "info@gnothe.com",
+      to_email: "info@gnothe.com",
     };
 
     console.log("Šaljem email za uslugu:", selectedService);
@@ -258,7 +256,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const companyForm = document.getElementById("companyForm");
 
     // Prikupi odabrane usluge (checkboxes)
-    const servicesCheckboxes = document.querySelectorAll('input[name="services[]"]:checked');
+    const servicesCheckboxes = document.querySelectorAll(
+      'input[name="services[]"]:checked'
+    );
 
     // Validacija - provjerava da li je barem jedan checkbox odabran
     if (servicesCheckboxes.length === 0) {
@@ -294,25 +294,17 @@ document.addEventListener("DOMContentLoaded", function () {
       contact_phone: contactPhone,
       services: "• " + servicesText,
       current_date: currentDate,
-      to_email: "m.besednik69@gmail.com",
+      to_email: "info@gnothe.com",
     };
 
     console.log("Šaljem company email sa parametrima:", templateParams);
 
     // Pošalji email
     emailjs
-      .send(
-        "service_vq9x7ls",
-        "template_a1a9axs",
-        templateParams
-      )
+      .send("service_vq9x7ls", "template_a1a9axs", templateParams)
       .then(
         function (response) {
-          console.log(
-            "Company email SUCCESS!",
-            response.status,
-            response.text
-          );
+          console.log("Company email SUCCESS!", response.status, response.text);
 
           // Sakrij loader
           companyModalLoader.style.display = "none";
@@ -322,10 +314,7 @@ document.addEventListener("DOMContentLoaded", function () {
           document.body.style.overflow = "";
 
           // Prikaži success toast
-          showToast(
-            "successMessage",
-            "Uspješno ste poslali upit za tvrtku!"
-          );
+          showToast("successMessage", "Uspješno ste poslali upit za tvrtku!");
 
           // Resetuj formu
           companyForm.reset();
@@ -362,9 +351,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // STAGGER ANIMACIJE - PAGE LOAD
   // ============================================
   window.addEventListener("load", () => {
-    const elements = document.querySelectorAll(
-      ".text-content, .image-content"
-    );
+    const elements = document.querySelectorAll(".text-content, .image-content");
     elements.forEach((el, index) => {
       el.style.animationDelay = `${index * 0.1}s`;
     });
