@@ -1,4 +1,4 @@
-// cookie-banner.js - GNOTHE Psihoterapija
+// consent-manager.js - GNOTHE Psihoterapija
 // Upravljanje kolačićima i GDPR pristankom
 
 // ========================================
