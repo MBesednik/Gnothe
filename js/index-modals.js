@@ -9,8 +9,8 @@ Handles EmailJS integration, modals, and form submissions
 // EMAILJS INICIJALIZACIJA
 // ============================================
 (function () {
-  console.log("Inicijalizujem EmailJS sa Public Key: 3IDB_1FNL6gwDO5f1");
-  emailjs.init("3IDB_1FNL6gwDO5f1");
+  console.log("Inicijalizujem EmailJS sa Public Key: 2OG-XdSwXIE-FanHB");
+  emailjs.init("2OG-XdSwXIE-FanHB");
   console.log("EmailJS objekat:", emailjs);
 })();
 
@@ -206,21 +206,23 @@ document.addEventListener("DOMContentLoaded", function () {
       message: document.getElementById("message").value,
       service_type: selectedService,
       current_date: currentDate,
-      from_email: "info@gnothe.com",
       to_email: "info@gnothe.com",
     };
 
     console.log("Šaljem email za uslugu:", selectedService);
 
     emailjs
-      .send("service_vq9x7ls", "template_859q8oi", templateParams)
+      .send("service_ssu11dk", "template_klby8m9", templateParams)
       .then(
         function (response) {
           console.log("SUCCESS!", response.status, response.text);
           modalLoader.style.display = "none";
           egoModal.style.display = "none";
           document.body.style.overflow = "";
-          showToast("successMessage", "Uspješno ste poslali poruku!");
+          showToast(
+            "successMessage",
+            "Upit je uspješno poslan, očekujte odgovor unutar 24 sata."
+          );
           form.reset();
           selectedService = "";
         },
@@ -301,7 +303,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Pošalji email
     emailjs
-      .send("service_vq9x7ls", "template_a1a9axs", templateParams)
+      .send("service_ssu11dk", "template_4gpce12", templateParams)
       .then(
         function (response) {
           console.log("Company email SUCCESS!", response.status, response.text);
@@ -314,7 +316,10 @@ document.addEventListener("DOMContentLoaded", function () {
           document.body.style.overflow = "";
 
           // Prikaži success toast
-          showToast("successMessage", "Uspješno ste poslali upit za tvrtku!");
+          showToast(
+            "successMessage",
+            "Upit je uspješno poslan, očekujte odgovor unutar 24 sata."
+          );
 
           // Resetuj formu
           companyForm.reset();
