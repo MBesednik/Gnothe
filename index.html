@@ -492,7 +492,7 @@
                 </div>
                 <div class="col-lg-5">
                   <div class="mil-about-photo mil-mb-90">
-                    <div class="mil-lines-place"></div>
+                    <!-- <div class="mil-lines-place"></div> -->
                     <div class="mil-up mil-img-frame">
                       <img
                         src="./img/book.jpeg"
@@ -590,6 +590,27 @@
           <!-- hidden elements -->
           <div class="mil-hidden-elements">
             <div class="mil-dodecahedron">
+              <div class="mil-pentagon">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+              <div class="mil-pentagon">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+              <div class="mil-pentagon">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
               <div class="mil-pentagon">
                 <div></div>
                 <div></div>
@@ -1130,14 +1151,7 @@
 
               <!-- Politika i privatnost -->
               <div class="mil-up">
-                <p
-                  style="
-                    font-size: 13px;
-                    line-height: 1.8;
-                    color: #888;
-                    margin: 0;
-                  "
-                >
+                <p style="">
                   <!-- <i>
                     <span class="gnothe-main-privacy">GNOTHE</span>, obrt za
                     savjetovanje
@@ -1231,6 +1245,66 @@
             console.log("Hero video autoplay prevented:", error);
           });
         }
+      });
+    </script>
+
+    <!-- NEW: Close menu when "Usluge" clicked and navigate to #service -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var serviceLink = document.querySelector(
+          '.mil-main-menu a[href="#service"]'
+        );
+        if (!serviceLink) return;
+
+        serviceLink.addEventListener("click", function (e) {
+          // 1) pokušaj zatvoriti meni "prirodno" — simuliraj klik na svaki otvoreni menu-btn
+          var activeBtns = document.querySelectorAll(
+            ".mil-menu-btn.mil-active"
+          );
+          if (activeBtns.length) {
+            activeBtns.forEach(function (btn) {
+              try {
+                btn.click();
+              } catch (err) {
+                // ignore
+              }
+            });
+          }
+
+          // 2) fallback: odmah ukloni klasu mil-active s bilo kojeg elementa (osigurava da meni više ne ostane otvoren)
+          document.querySelectorAll(".mil-active").forEach(function (el) {
+            el.classList.remove("mil-active");
+          });
+
+          // 3) dodatno ukloni moguće klase koje bi mogle držati otvoren stanje menija
+          var possibleSelectors = [
+            ".mil-menu-frame.mil-active",
+            ".mil-menu-frame.open",
+            "body.mil-menu-open",
+            ".mil-curtain.mil-active",
+          ];
+          possibleSelectors.forEach(function (sel) {
+            document.querySelectorAll(sel).forEach(function (el) {
+              el.classList.remove("mil-active", "open");
+            });
+          });
+
+          // 4) navigacija / smooth scroll
+          var path = window.location.pathname.split("/").pop();
+          var isIndex =
+            path === "" || path === "index.html" || path === "index.htm";
+          if (isIndex) {
+            e.preventDefault();
+            var section = document.getElementById("service");
+            if (section) {
+              section.scrollIntoView({ behavior: "smooth" });
+              history.replaceState(null, "", "#service");
+            }
+          } else {
+            e.preventDefault();
+            window.location.href = "index.html#service";
+          }
+        });
       });
     </script>
   </body>
