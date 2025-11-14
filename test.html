@@ -552,6 +552,18 @@
           font-size: 14px;
         }
       }
+
+      /* Stilovi za contact button */
+      .contact-button {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      .contact-button a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
     </style>
   </head>
 
@@ -1281,11 +1293,24 @@
 
                   <div class="results__note">
                     <p class="results__note-text">
-                      <strong class="results__note-emphasis">Napomena:</strong>
                       Ovaj upitnik je pojednostavljeni instrument za osobnu
                       refleksiju prema teoriji transakcijske analize. Nije
-                      dijagnostički alat i ne zamjenjuje stručnu procjenu.
+                      dijagnostički alat, niti zamjenjuje stručnu procjenu.
                     </p>
+                    <br />
+                    <p class="results__note-text">
+                      Ukoliko želite dublje istražiti svoje nesvjesne obrasce
+                      ili trebate dodatne informacije o ovom pristupu, slobodno
+                      mi se obratite.
+                    </p>
+                    <div class="contact-button">
+                      <a
+                        href="#"
+                        onclick="window.open('mailto:info@gnothe.com','_self')"
+                        class="mil-button mil-arrow-place"
+                        >Kontaktirajte me</a
+                      >
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1387,13 +1412,6 @@
           <!-- hidden elements -->
           <div class="mil-hidden-elements">
             <div class="mil-dodecahedron">
-              <div class="mil-pentagon">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-              </div>
               <div class="mil-pentagon">
                 <div></div>
                 <div></div>

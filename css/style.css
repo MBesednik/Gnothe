@@ -5456,4 +5456,6 @@ ul li {
   font-size: 20px !important;
 }
 
-/* INDEX.HTML */
+.contact-button {
+  margin: auto 0;
+}
