@@ -10,7 +10,7 @@ Sitemap: https://www.gnothe.com/sitemap.xml
 # Disallow crawling of admin and config files
 Disallow: /css/
 Disallow: /js/
-Disallow: /img/heroSection.mov
+## Disallow: /img/heroSection.mov  # (blokada uklonjena radi Google indexa)
 
 # Allow crawling of important pages
 Allow: /index.html
@@ -21,3 +21,4 @@ Allow: /test.html
 Allow: /announcement.html
 Allow: /gallery.html
 Allow: /privacy-policy.html
+Allow: /terms.html

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="hr">
   <head>
     <meta charset="UTF-8" />
@@ -8,7 +8,7 @@
     <!-- SEO META TAGS -->
     <meta
       name="description"
-      content="Najave nadolazećih radionica, grupnog savjetovanja i događaja u GNOTHE m savjetovalištu. Prijavite se za nove grupe i radionice u Zaprešiću."
+      content="Informacije o grupama podrške i edukacijama. Najave radionica."
     />
     <meta
       name="keywords"
@@ -27,7 +27,7 @@
     <meta property="og:title" content="GNOTHE | Najave radionica i događaja" />
     <meta
       property="og:description"
-      content="Prijavite se za nadolazeće radionice i grupno savjetovanje. Redovne najave novih grupa i događaja."
+      content="Informacije o grupama podrške i edukacijama. Najave radionica."
     />
     <meta
       property="og:image"
@@ -44,7 +44,7 @@
     <meta name="twitter:title" content="GNOTHE | Najave radionica i događaja" />
     <meta
       name="twitter:description"
-      content="Prijavite se za nadolazeće radionice i grupno savjetovanje u Zaprešiću."
+      content="Informacije o grupama podrške i edukacijama. Najave radionica."
     />
     <meta
       name="twitter:image"
@@ -101,7 +101,7 @@
     <link rel="stylesheet" href="css/plugins/cookie-banner.css" />
 
     <!-- page name -->
-    <title>Najave radionica i događaja | GNOTHE savjetovanje Zaprešić</title>
+    <title>Najave radionica i događaja</title>
 
     <style>
       /* Modern Clean Design for Announcements Page */
@@ -1170,7 +1170,14 @@
                     <div class="social-links mil-up">
                       <a
                         href="#"
-                        onclick="event.preventDefault(); window.open('https://www.linkedin.com/in/melita-zajkovski-7552829/', '_blank'); return false;"
+                        onclick="
+                          event.preventDefault();
+                          window.open(
+                            'https://www.linkedin.com/in/melita-zajkovski-7552829/',
+                            '_blank',
+                          );
+                          return false;
+                        "
                         class="social-icon"
                       >
                         <i class="fab fa-linkedin"></i>
@@ -1178,7 +1185,14 @@
 
                       <a
                         href="#"
-                        onclick="event.preventDefault(); window.open('https://www.instagram.com/gnothe_spoznaj_sebe/', '_blank'); return false;"
+                        onclick="
+                          event.preventDefault();
+                          window.open(
+                            'https://www.instagram.com/gnothe_spoznaj_sebe/',
+                            '_blank',
+                          );
+                          return false;
+                        "
                         class="social-icon"
                       >
                         <i class="fab fa-instagram"></i>
@@ -1186,7 +1200,14 @@
 
                       <a
                         href="#"
-                        onclick="event.preventDefault(); window.open('https://www.facebook.com/profile.php?id=61583660043682', '_blank'); return false;"
+                        onclick="
+                          event.preventDefault();
+                          window.open(
+                            'https://www.facebook.com/profile.php?id=61583660043682',
+                            '_blank',
+                          );
+                          return false;
+                        "
                         class="social-icon"
                       >
                         <i class="fab fa-facebook"></i>
@@ -1499,7 +1520,7 @@
 
         console.log(
           "✓ Kolačići prihvaćeni:",
-          new Date().toLocaleString("hr-HR")
+          new Date().toLocaleString("hr-HR"),
         );
       }
 
@@ -1739,7 +1760,7 @@
 
         // Tab trap unutar bannera kada je otvoren
         const focusableElements = banner.querySelectorAll(
-          'button, a[href], [tabindex]:not([tabindex="-1"])'
+          'button, a[href], [tabindex]:not([tabindex="-1"])',
         );
 
         if (focusableElements.length > 0) {

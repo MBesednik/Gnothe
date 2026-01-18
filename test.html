@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="hr">
   <head>
     <meta charset="UTF-8" />
@@ -8,7 +8,7 @@
     <!-- SEO META TAGS -->
     <meta
       name="description"
-      content="Terapijski pristup - Terapijski plan prilagođen potrebama klijenata. Integrativni pristup. Sigurno, inkluzivno okruženje uz visoke etičke standarde."
+      content="Terapijski plan prilagođen potrebama klijenata. Integrativni pristup. Sigurno, inkluzivno okruženje uz visoke etičke standarde."
     />
     <meta
       name="keywords"
@@ -24,7 +24,7 @@
     <meta property="og:title" content="GNOTHE | Terapijski pristup" />
     <meta
       property="og:description"
-      content="Integrativni terapijski pristup koji kombinira transakcijsku analizu, EMDR terapiju i TRE tehnike za holistički pristup mentalnom zdravlju."
+      content="Terapijski plan prilagođen potrebama klijenata. Integrativni pristup. Sigurno, inkluzivno okruženje uz visoke etičke standarde."
     />
     <meta
       property="og:image"
@@ -41,7 +41,7 @@
     />
     <meta
       name="twitter:description"
-      content="Integrativni pristup: transakcijska analiza, EMDR i TRE tehnike za holistički pristup mentalnom zdravlju."
+      content="Terapijski plan prilagođen potrebama klijenata. Integrativni pristup. Sigurno, inkluzivno okruženje uz visoke etičke standarde."
     />
     <meta
       name="twitter:image"
@@ -103,6 +103,48 @@
     <title>
       Terapijski pristup - Transakcijska analiza, EMDR, TRE | GNOTHE
     </title>
+
+    <!-- VIDEO STRUCTURED DATA (JSON-LD) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "VideoObject",
+        "name": "EMDR terapija - Uvodni video",
+        "description": "Uvod u EMDR terapiju: što je EMDR, kako izgleda proces i kome je namijenjen. Video s YouTube kanala GNOTHE.",
+        "thumbnailUrl": "https://img.youtube.com/vi/VIDEO_ID_1/hqdefault.jpg",
+        "uploadDate": "2024-01-01",
+        "contentUrl": "https://www.youtube.com/watch?v=VIDEO_ID_1",
+        "embedUrl": "https://www.youtube.com/embed/VIDEO_ID_1",
+        "publisher": {
+          "@type": "Organization",
+          "name": "GNOTHE",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.gnothe.com/img/ICON-LOGO-lg.png"
+          }
+        }
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "VideoObject",
+        "name": "TRE tehnike - Praktični prikaz",
+        "description": "Praktični prikaz TRE tehnika za otpuštanje stresa i napetosti. Video s YouTube kanala GNOTHE.",
+        "thumbnailUrl": "https://img.youtube.com/vi/VIDEO_ID_2/hqdefault.jpg",
+        "uploadDate": "2024-01-01",
+        "contentUrl": "https://www.youtube.com/watch?v=VIDEO_ID_2",
+        "embedUrl": "https://www.youtube.com/embed/VIDEO_ID_2",
+        "publisher": {
+          "@type": "Organization",
+          "name": "GNOTHE",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.gnothe.com/img/ICON-LOGO-lg.png"
+          }
+        }
+      }
+    </script>
 
     <!-- Dodatni stilovi za popup -->
     <style>
@@ -386,7 +428,9 @@
         border-radius: 12px;
         overflow: hidden;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
         background: #f8f9fa;
       }
 
@@ -829,7 +873,15 @@
                       <iframe
                         src="https://www.youtube.com/embed/si6QeZfODGA"
                         title="EMDR iskustvo - Sandra Bullock"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allow="
+                          accelerometer;
+                          autoplay;
+                          clipboard-write;
+                          encrypted-media;
+                          gyroscope;
+                          picture-in-picture;
+                          web-share;
+                        "
                         allowfullscreen
                       >
                       </iframe>
@@ -842,7 +894,15 @@
                       <iframe
                         src="https://www.youtube.com/embed/1IyzDWKZ8Lw"
                         title="EMDR iskustvo - Miley Cyrus"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allow="
+                          accelerometer;
+                          autoplay;
+                          clipboard-write;
+                          encrypted-media;
+                          gyroscope;
+                          picture-in-picture;
+                          web-share;
+                        "
                         allowfullscreen
                       >
                       </iframe>
@@ -1316,7 +1376,7 @@
                     <div class="contact-button">
                       <a
                         href="#"
-                        onclick="window.open('mailto:info@gnothe.com','_self')"
+                        onclick="window.open('mailto:info@gnothe.com', '_self')"
                         class="mil-button mil-arrow-place"
                         >Kontaktirajte me</a
                       >
@@ -1365,7 +1425,14 @@
                     <div class="social-links mil-up">
                       <a
                         href="#"
-                        onclick="event.preventDefault(); window.open('https://www.linkedin.com/in/melita-zajkovski-7552829/', '_blank'); return false;"
+                        onclick="
+                          event.preventDefault();
+                          window.open(
+                            'https://www.linkedin.com/in/melita-zajkovski-7552829/',
+                            '_blank',
+                          );
+                          return false;
+                        "
                         class="social-icon"
                       >
                         <i class="fab fa-linkedin"></i>
@@ -1373,7 +1440,14 @@
 
                       <a
                         href="#"
-                        onclick="event.preventDefault(); window.open('https://www.instagram.com/gnothe_spoznaj_sebe/', '_blank'); return false;"
+                        onclick="
+                          event.preventDefault();
+                          window.open(
+                            'https://www.instagram.com/gnothe_spoznaj_sebe/',
+                            '_blank',
+                          );
+                          return false;
+                        "
                         class="social-icon"
                       >
                         <i class="fab fa-instagram"></i>
@@ -1381,7 +1455,14 @@
 
                       <a
                         href="#"
-                        onclick="event.preventDefault(); window.open('https://www.facebook.com/profile.php?id=61583660043682', '_blank'); return false;"
+                        onclick="
+                          event.preventDefault();
+                          window.open(
+                            'https://www.facebook.com/profile.php?id=61583660043682',
+                            '_blank',
+                          );
+                          return false;
+                        "
                         class="social-icon"
                       >
                         <i class="fab fa-facebook"></i>
@@ -1736,7 +1817,7 @@
 
         console.log(
           "✓ Kolačići prihvaćeni:",
-          new Date().toLocaleString("hr-HR")
+          new Date().toLocaleString("hr-HR"),
         );
       }
 
@@ -1976,7 +2057,7 @@
 
         // Tab trap unutar bannera kada je otvoren
         const focusableElements = banner.querySelectorAll(
-          'button, a[href], [tabindex]:not([tabindex="-1"])'
+          'button, a[href], [tabindex]:not([tabindex="-1"])',
         );
 
         if (focusableElements.length > 0) {
