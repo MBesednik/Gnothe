@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="hr">
   <head>
     <meta charset="UTF-8" />
@@ -8,7 +8,7 @@
     <!-- SEO META TAGS -->
     <meta
       name="description"
-      content="Politika privatnosti i kolačića GNOTHE g savjetovališta. Informacije o zaštiti osobnih podataka, GDPR usklađenosti i korištenju kolačića."
+      content="Informacije o zaštiti osobnih podataka i GDPR usklađenosti."
     />
     <meta
       name="keywords"
@@ -549,7 +549,14 @@
                     <div class="social-links mil-up">
                       <a
                         href="#"
-                        onclick="event.preventDefault(); window.open('https://www.linkedin.com/in/melita-zajkovski-7552829/', '_blank'); return false;"
+                        onclick="
+                          event.preventDefault();
+                          window.open(
+                            'https://www.linkedin.com/in/melita-zajkovski-7552829/',
+                            '_blank',
+                          );
+                          return false;
+                        "
                         class="social-icon"
                       >
                         <i class="fab fa-linkedin"></i>
@@ -557,7 +564,14 @@
 
                       <a
                         href="#"
-                        onclick="event.preventDefault(); window.open('https://www.instagram.com/gnothe_spoznaj_sebe/', '_blank'); return false;"
+                        onclick="
+                          event.preventDefault();
+                          window.open(
+                            'https://www.instagram.com/gnothe_spoznaj_sebe/',
+                            '_blank',
+                          );
+                          return false;
+                        "
                         class="social-icon"
                       >
                         <i class="fab fa-instagram"></i>
@@ -565,7 +579,14 @@
 
                       <a
                         href="#"
-                        onclick="event.preventDefault(); window.open('https://www.facebook.com/profile.php?id=61583660043682', '_blank'); return false;"
+                        onclick="
+                          event.preventDefault();
+                          window.open(
+                            'https://www.facebook.com/profile.php?id=61583660043682',
+                            '_blank',
+                          );
+                          return false;
+                        "
                         class="social-icon"
                       >
                         <i class="fab fa-facebook"></i>
@@ -880,7 +901,7 @@
 
         console.log(
           "✓ Kolačići prihvaćeni:",
-          new Date().toLocaleString("hr-HR")
+          new Date().toLocaleString("hr-HR"),
         );
       }
 
@@ -1120,7 +1141,7 @@
 
         // Tab trap unutar bannera kada je otvoren
         const focusableElements = banner.querySelectorAll(
-          'button, a[href], [tabindex]:not([tabindex="-1"])'
+          'button, a[href], [tabindex]:not([tabindex="-1"])',
         );
 
         if (focusableElements.length > 0) {
